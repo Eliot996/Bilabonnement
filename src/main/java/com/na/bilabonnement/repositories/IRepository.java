@@ -4,10 +4,11 @@ import java.util.List;
 
 public interface IRepository<T>{
     //Create
-    public boolean create(T entity);
+    public T create(T entity);
 
     //Read
     public T getSingleEntityById(int id);
+
     public List<T> getAllEntities();
 
     //Update
