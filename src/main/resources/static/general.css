@@ -1,1 +1,13 @@
-#Header
+#Header{}
+
+#site_colour{
+background-color: #f2f2f2;
+}
+
+
+#site_container{
+    width: 80%;
+    margin: auto;
+    min-height: 100vh;
+}
+

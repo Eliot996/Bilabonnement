@@ -8,5 +8,28 @@
 <header>
     <h1>Bilabonnement.dk</h1>
 </header>
+<div class="content-under-header">
+<div id="site_colour">
+    <div id="site_container">
+        <div id="content-container">
+
+<form action="#" th:action="@{/login}" th:object="${user}" method="post">
+
+    <div class="container" >
+    <div class="container">
+        <label><b>Brugernavn</b></label>
+        <input type="text" placeholder="Indtast brugernavn" name="uname" th:field="*{email}" required>
+
+        <label> <b>Adgangskode</b></label>
+        <input type="password" placeholder="Indtast adgangskode" name="psw" th:field="*{password}" required>
+
+        <button type="submit">Log ind</button>
+    </div>
+    </div>
+</form>
+        </div>
+    </div>
+</div>
+</div>
 </body>
 </html>
