@@ -8,9 +8,9 @@ import java.util.List;
 
 public class LocationService {
 
-    IRepository<Location> repo = new LocationRepo();
+    private final IRepository<Location> REPO = new LocationRepo();
 
     public List<Location> getAllLocations() {
-        return repo.getAllEntities();
+        return REPO.getAllEntities();
     }
 }
