@@ -5,7 +5,6 @@ import com.na.bilabonnement.utils.DatabaseConnectionManager;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
-import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.List;
 
@@ -37,7 +36,7 @@ public class UserRepo implements IUserRepository {
         }
 
         DatabaseConnectionManager.closeConnection();
-        return null;
+        return null; // TODO: 10/05/2022 missing return of the newly created user
     }
 
     @Override
