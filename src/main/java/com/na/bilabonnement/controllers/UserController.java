@@ -15,4 +15,9 @@ public class UserController {
     public String dataregistration(){
         return "dataregistration";
     }
+
+    @GetMapping("skade_og_udbedring")
+    public String damageAndRectification(){
+        return "damageAndRectification";
+    }
 }
