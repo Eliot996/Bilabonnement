@@ -11,11 +11,15 @@ public class User {
     private String password;
     private String salt;
     private UserRole role;
+    private int roleID;
     private int locationId;
 
-    public User(String username, String password){
+    public User(String username, String password, String salt, UserRole role, int locationId) {
         this.username = username;
         this.password = password;
+        this.salt = salt;
+        this.role = role;
+        this.locationId = locationId;
     }
 
     public User() {
@@ -60,5 +64,13 @@ public class User {
 
     public void setLocationId(int locationId) {
         this.locationId = locationId;
+    }
+
+    public int getRoleID() {
+        return roleID;
+    }
+
+    public void setRoleID(int roleID) {
+        this.roleID = roleID;
     }
 }
