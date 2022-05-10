@@ -5,8 +5,7 @@
     background-color: #f2f2f2;
     margin: auto;
     min-height: 100vh;
-    padding-top: 20px
-
+    padding-top: 30px;
 }
 .landingpageHeader{
     display: flex;
@@ -23,7 +22,3 @@
     width: 80%
 }
 
-#botton_position{
-    display: flex;
-    justify-content: flex-end;
-}
