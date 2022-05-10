@@ -4,7 +4,6 @@ import com.na.bilabonnement.models.User;
 import com.na.bilabonnement.models.UserRole;
 import com.na.bilabonnement.repositories.IUserRepository;
 import com.na.bilabonnement.repositories.UserRepo;
-import org.springframework.web.client.HttpServerErrorException;
 
 import java.nio.charset.StandardCharsets;
 import java.security.MessageDigest;
@@ -15,6 +14,9 @@ import java.util.Random;
 public class UserService {
 
     private IUserRepository repo = UserRepo.getInstance();
+    public void setRepo(IUserRepository repo) {
+        this.repo = repo;
+    }
 
     private final String PEPPER_CHARACTERS = "aAbBcCdDeEfFgGhHiIjJkKlLmMnNoOpPqQrRsStTuUvVwWxXyYzZ0123456789";
     private final Random random = new Random();
