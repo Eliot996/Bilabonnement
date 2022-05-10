@@ -1,0 +1,12 @@
+.header-style{
+    padding-bottom: 5px;
+}
+
+#img_style{
+    display: flex;
+    width: 30%;
+}
+
+#log_out_button{
+    display: flex;
+}
