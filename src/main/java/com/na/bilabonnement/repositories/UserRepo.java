@@ -38,6 +38,7 @@ public class UserRepo implements IUserRepository {
 
         try {
             stmt.execute();
+            con.close();
         } catch (SQLException e) {
             e.printStackTrace();
         }

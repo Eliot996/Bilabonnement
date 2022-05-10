@@ -38,6 +38,7 @@ public class LocationRepo implements IRepository<Location>{
             while (rs.next()) {
                 locations.add(new Location(rs.getInt("id"), rs.getString("name")));
             }
+            con.close();
         } catch (SQLException e) {
             e.printStackTrace();
         }
