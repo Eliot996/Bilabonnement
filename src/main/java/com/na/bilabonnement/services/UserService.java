@@ -4,16 +4,21 @@ import com.na.bilabonnement.models.User;
 import com.na.bilabonnement.repositories.IUserRepository;
 
 import java.util.List;
-
-//Made by: Tobias Arboe
 public class UserService
 {
     final IUserRepository repo;
+
+    /**
+    *  @author Tobias Arboe
+    */
 
     public UserService(IUserRepository repo){
         this.repo = repo;
     }
 
+    /**
+     *  @author Tobias Arboe
+     */
     public boolean checkLogin(String expectedUsername, String expectedPassword){
         boolean loginValidity = false;
 
