@@ -40,6 +40,10 @@ public class UserController {
     */
     @PostMapping("/create-user")
     public String CreateUser(HttpSession session, @ModelAttribute User user) {
+        User createdUser = userService.createUser(user.getUsername(), user.getPassword(), user.getRoleID(), user.getLocationId());
+
+        return "redirect:/user/" + createdUser.getId();
+    }
 
     /*
     @Author Sofia
@@ -58,11 +62,7 @@ public class UserController {
     }
 
     @GetMapping("/forretningsudvikler")
-    public String businessdeveloper(){
+    public String businessdeveloper() {
         return "businessdeveloper";
-    }
-        User createdUser = userService.createUser(user.getUsername(), user.getPassword(), user.getRoleID(), user.getLocationId());
-
-        return "redirect:/user/" + createdUser.getId();
     }
 }
