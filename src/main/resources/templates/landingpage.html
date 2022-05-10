@@ -13,11 +13,12 @@
 </header>
 
 <div class="content-under-header">
-<form action="#" th:action="@{/login}" th:object="${user}" method="post">
-        <label><b>Brugernavn</b></label> &nbsp;&nbsp;
+<form  action="#" th:action="@{/login}" th:object="${user}" method="post">
+
+        <label><b>Brugernavn:</b></label> <br>
         <input type="text" placeholder="Indtast brugernavn" name="uname"> <br> <br>
 
-        <label> <b>Adgangskode</b></label>
+        <label> <b>Adgangskode:</b></label> <br>
         <input type="password" placeholder="Indtast adgangskode" name="psw"> <br> <br>
 
         <button type="submit">Log ind</button>

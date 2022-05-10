@@ -1,3 +1,24 @@
+.content-under-header{
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    background-color: #f2f2f2;
+    margin: auto;
+    min-height: 100vh;
+    padding-top: 20px;
+}
 
 
+.header-style{
+    padding-bottom: 10px;
+}
+
+#img_style{
+    width: 30%;
+    float: left;
+}
+
+#all_buttons_in_header{
+    float: right;
+}
 
