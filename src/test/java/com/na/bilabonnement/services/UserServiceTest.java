@@ -1,6 +1,6 @@
 package com.na.bilabonnement.services;
 
-import com.na.bilabonnement.repos.DummyUserRepo;
+import com.na.bilabonnement.repositories.DummyUserRepo;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;

@@ -1,7 +1,6 @@
-package com.na.bilabonnement.repos;
+package com.na.bilabonnement.repositories;
 
 import com.na.bilabonnement.models.User;
-import com.na.bilabonnement.repositories.IUserRepository;
 
 import java.util.ArrayList;
 import java.util.List;
