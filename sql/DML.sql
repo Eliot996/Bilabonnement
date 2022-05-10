@@ -1,10 +1,10 @@
 -- For locations
-INSERT INTO Location(name) VALUES("HQ");
-INSERT INTO Location(name) VALUES("DS Forhandler");
+INSERT INTO Locations(name) VALUES("HQ");
+INSERT INTO Locations(name) VALUES("DS Forhandler");
 
 -- for Users TODO: fix roles and passwords
-INSERT INTO User(`name`, `password`, `role`, `locationId`) Values ("Sofia", "password", "ADMIN", 1);
-INSERT INTO User(`name`, `password`, `role`, `locationId`) Values ("Lasse", "password", "Dataregistration", 1);
-INSERT INTO User(`name`, `password`, `role`, `locationId`) Values ("Arboe", "password", "DamageAndRectification", 1);
-INSERT INTO User(`name`, `password`, `role`, `locationId`) Values ("Mathias", "password", "BusinessDeveloper", 1);
+INSERT INTO Users(`name`, `password`, `role`, `locationId`, `salt`) Values ("Sofia", "password", "ADMIN", 1, "013456789");
+INSERT INTO Users(`name`, `password`, `role`, `locationId`, `salt`) Values ("Lasse", "password", "Dataregistration", 1, "013456789");
+INSERT INTO Users(`name`, `password`, `role`, `locationId`, `salt`) Values ("Arboe", "password", "DamageAndRectification", 1, "013456789");
+INSERT INTO Users(`name`, `password`, `role`, `locationId`, `salt`) Values ("Mathias", "password", "BusinessDeveloper", 1, "013456789");
 

@@ -1,8 +1,8 @@
 CREATE SCHEMA `bilabonnement` ;
 
-SELECT `bilabonnement` ;
+USE `bilabonnement` ;
 
-CREATE TABLE `bilabonnement`.`Location` (
+CREATE TABLE `bilabonnement`.`Locations` (
                                             `id` INT NOT NULL AUTO_INCREMENT,
                                             `name` VARCHAR(255) NOT NULL,
                                             PRIMARY KEY (`id`),
@@ -10,7 +10,7 @@ CREATE TABLE `bilabonnement`.`Location` (
                                             UNIQUE INDEX `name_UNIQUE` (`name` ASC) VISIBLE);
 
 
-CREATE TABLE `bilabonnement`.`User` (
+CREATE TABLE `bilabonnement`.`Users` (
                                         `id` INT NOT NULL AUTO_INCREMENT,
                                         `name` VARCHAR(255) NOT NULL,
                                         `password` VARCHAR(255) NOT NULL,
@@ -22,7 +22,7 @@ CREATE TABLE `bilabonnement`.`User` (
                                         INDEX `locationId_idx` (`locationId` ASC) VISIBLE,
                                         CONSTRAINT `locationId`
                                             FOREIGN KEY (`locationId`)
-                                                REFERENCES `bilabonnement`.`Location` (`id`)
+                                                REFERENCES `bilabonnement`.`Locations` (`id`)
                                                 ON DELETE NO ACTION
                                                 ON UPDATE NO ACTION);
 
