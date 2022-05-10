@@ -1,11 +1,17 @@
 package com.na.bilabonnement.repositories;
 
 import com.na.bilabonnement.models.User;
+import com.na.bilabonnement.utils.DatabaseConnectionManager;
 
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.List;
 
 public class UserRepo implements IUserRepository {
     private static final UserRepo instance = new UserRepo();
+
     private UserRepo() {}
     public static UserRepo getInstance() {
         return instance;
@@ -13,6 +19,29 @@ public class UserRepo implements IUserRepository {
 
     @Override
     public User create(User entity) {
+        Connection con = DatabaseConnectionManager.getConnection();
+
+        String insertSQL = "INSERT INTO Users(`name`, `password`, `role`, `locationId`, `salt`) " +
+                "VALUES (?, ?, ?, ?, ?);";
+
+        PreparedStatement stmt = null;
+        try {
+            stmt = con.prepareStatement(insertSQL);
+            stmt.setString(1, entity.getUsername());
+            stmt.setString(2, entity.getPassword());
+            stmt.setString(3, entity.getRole().toString());
+            stmt.setInt(4, entity.getLocationId());
+            stmt.setString(5, entity.getSalt());
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        try {
+            stmt.execute();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
         return null;
     }
 
