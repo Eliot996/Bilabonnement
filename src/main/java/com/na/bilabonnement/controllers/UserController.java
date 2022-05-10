@@ -33,8 +33,8 @@ public class UserController {
     @PostMapping("/create-user")
     public String CreateUser(HttpSession session, @ModelAttribute User user) {
 
-        userService.createUser(user.getUsername(), user.getPassword(), user.getRoleID(), user.getLocationId());
+        User createdUser = userService.createUser(user.getUsername(), user.getPassword(), user.getRoleID(), user.getLocationId());
 
-        return "create-user";
+        return "redirect:/user/" + createdUser.getId();
     }
 }
