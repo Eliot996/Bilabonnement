@@ -15,4 +15,9 @@ public class UserController {
     public String dataregistration(){
         return "dataregistration";
     }
+
+    @GetMapping("/forretningsudvikler")
+    public String businessdeveloper(){
+        return "businessdeveloper";
+    }
 }

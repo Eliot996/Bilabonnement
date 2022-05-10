@@ -4,9 +4,66 @@
     <meta charset="UTF-8">
     <title>Title</title>
     <link rel="stylesheet" th:href="@{general.css}">
-
+    <link rel="stylesheet" th:href="@{businessdeveloper.css}">
 </head>
+
 <body>
+<header class="header-style">
+    <img id="img_style" src="pictures/logo.jpg">
+
+    <button id="all_buttons_in_header" type="submit">Log ud</button>
+</header>
+
+<div class="content-under-header">
+<!--
+    <main id="main-container">
+
+        <h1 th:text="${wishlist.getName()}">navn</h1>
+
+        <div th:if="${wishlist.getWishes.empty}">
+            <h2>Der er ikke nogle ønsker endnu</h2>
+        </div>
+        <div th:each="wish : ${wishlist.getWishes()}">
+            <section class="section-container">
+                <div class="list-of-items-space">
+                    <h2 th:text="${wish.getTitle()}">title</h2>
+                    <div class="list-of-items-buttons">
+                        <button th:id="${wish.getPosition()}" onclick="seeMore(this.id)" class="button-style button button-spacing"> Se Mere</button>
+                        <a class="button-spacing" th:href="@{${wish.getLink()}}">
+                            <button class="button button-style">
+                                link
+                            </button>
+                        </a>
+                        <a class="button-spacing" th:href="@{/wishlists/{wishlistID}/{wishPosition}/reserve(wishlistID = ${wishlist.getID()}, wishPosition = ${wish.getPosition()})}">
+                            <button class="button button-reserve-style">
+                                <span th:if="${wish.getReserverID() == 0}"> Reserver </span>
+                                <span th:if="${wish.getReserverID() == 1}"> Fortryd reservation </span>
+                                <span th:if="${wish.getReserverID() == 2}"> Reserveret </span>
+                            </button>
+
+                        </a>
+
+                    </div>
+                </div>
+
+                <div th:id="${wish.getPosition()} + '-dropdown'" class="closed">
+                    <p th:text="${wish.getDescription()}">
+                        description
+                    </p>
+
+
+                </div>
+                <hr>
+            </section>
+
+            <div class="padding-div"></div>
+        </div>
+    </main>
+</div>
+</div>
+</div>
+-->
+</div>
 
 </body>
 </html>
