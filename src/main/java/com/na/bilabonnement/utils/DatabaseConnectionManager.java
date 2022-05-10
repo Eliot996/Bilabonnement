@@ -9,9 +9,6 @@ import java.sql.SQLException;
 import java.util.Properties;
 
 public class DatabaseConnectionManager {
-    private static String url;
-    private static String username;
-    private static String password;
     private static Connection conn;
 
     private DatabaseConnectionManager(){}
@@ -25,9 +22,9 @@ public class DatabaseConnectionManager {
         try(InputStream propertiesFile = new FileInputStream("src/main/resources/application.properties")){
             Properties props = new Properties();
             props.load(propertiesFile);
-            url = props.getProperty("db.url");
-            username = props.getProperty("db.username");
-            password = props.getProperty("db.password");
+            String url = props.getProperty("db.url");
+            String username = props.getProperty("db.username");
+            String password = props.getProperty("db.password");
             conn = DriverManager.getConnection(url, username, password);
         }
 
