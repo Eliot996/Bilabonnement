@@ -1,5 +1,6 @@
 package com.na.bilabonnement.services;
 
+import com.na.bilabonnement.models.User;
 import com.na.bilabonnement.repositories.DummyUserRepo;
 import org.junit.jupiter.api.Test;
 
@@ -13,7 +14,8 @@ class UserServiceTest
     @Test
     void checkLogin() {
         //Arrange
-        UserService userService = new UserService(new DummyUserRepo());
+        UserService userService = new UserService();
+        userService.setRepo(new DummyUserRepo());
 
         final boolean isLoggedIn = true;
         final boolean isNotLoggedIn = false;
@@ -55,5 +57,24 @@ class UserServiceTest
         assertEquals(isNotLoggedIn, testUserFourFalse);
        // assertEquals(isNotLoggedIn, testUserFourFalse2);
 
+    }
+
+    /**
+    *  @author Mathias(Eliot996)
+    */
+    @Test
+    void createUser(){
+        // Arrange
+        UserService userService = new UserService();
+        userService.setRepo(new DummyUserRepo());
+
+        String password = "password";
+
+        // Act
+        User createdUser = userService.createUser("name", password, 1, 9);
+
+        // assert
+        // to make sure the password constructor works
+        assertNotEquals(createdUser.getPassword(), password);
     }
 }
