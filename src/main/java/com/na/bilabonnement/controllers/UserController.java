@@ -16,6 +16,11 @@ public class UserController {
         return "dataregistration";
     }
 
+    @GetMapping("skade_og_udbedring")
+    public String damageAndRectification(){
+        return "damageAndRectification";
+    }
+
     @GetMapping("/forretningsudvikler")
     public String businessdeveloper(){
         return "businessdeveloper";
