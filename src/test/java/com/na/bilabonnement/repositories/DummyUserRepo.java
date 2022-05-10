@@ -1,6 +1,7 @@
 package com.na.bilabonnement.repositories;
 
 import com.na.bilabonnement.models.User;
+import com.na.bilabonnement.models.UserRole;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -13,10 +14,10 @@ public class DummyUserRepo implements IUserRepository
     private List<User> listOfUsers = new ArrayList<User>();
 
     public DummyUserRepo(){
-        User userOne = new User("Sofia", "1234");
-        User userTwo = new User("Lasse", "password");
-        User userThree = new User("Arboe", "test");
-        User userFour = new User("Mathias", "Pass1234");
+        User userOne = new User(-1, "Sofia", "1234", "salt", UserRole.DATA_REGISTRATION, 0);
+        User userTwo = new User(-1, "Lasse", "password", "salt", UserRole.DAMAGE_AND_RECTIFICATION, 0);
+        User userThree = new User(-1, "Arboe", "test", "salt", UserRole.BUSINESS_DEVELOPER, 0);
+        User userFour = new User(-1, "Mathias", "Pass1234", "salt", UserRole.ADMINISTRATOR, 0);
 
         listOfUsers.add(userOne);
         listOfUsers.add(userTwo);
