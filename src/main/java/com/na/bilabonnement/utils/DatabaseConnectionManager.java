@@ -44,4 +44,14 @@ public class DatabaseConnectionManager {
         }
         return conn;
     }
+
+    public static void closeConnection() {
+        try {
+            conn.close();
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+
+        conn = null;
+    }
 }
