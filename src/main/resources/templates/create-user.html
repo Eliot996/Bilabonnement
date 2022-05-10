@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Opret Bruger</title>
+</head>
+<body>
+<div id="site_colour">
+    <div id="site_container">
+        <div id="content-container">
+
+            <div>
+                <form action="#" th:action="@{/create-user}" th:object="${user}" method="post">
+
+                    <div class="container">
+                        <label><b>Brugernavn</b></label>
+                        <input type="text" placeholder="Navn" th:field="*{username}" required>
+
+                        <label ><b>Adgangskode</b></label>
+                        <input type="password" placeholder="Indtast adgangskode" th:field="*{password}" required>
+
+                        <label><b>Role</b>
+                            <select th:field="*{roleID}">
+                                <option th:value="0" th:text="'Dataregistrering'"></option>
+                                <option th:value="1" th:text="'Skade og Udbedring'"></option>
+                                <option th:value="2" th:text="'Forretningsudvikler'"></option>
+                            </select>
+                        </label>
+
+                        <button type="submit">Opret bruger</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>
