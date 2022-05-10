@@ -1,12 +1,3 @@
-.content-under-header{
-    display: flex;
-    justify-content: center;
-    width: 100%;
-    background-color: #f2f2f2;
-    margin: auto;
-    min-height: 100vh;
-    padding-top: 30px;
-}
 .landingpageHeader{
     display: flex;
     justify-content: center;

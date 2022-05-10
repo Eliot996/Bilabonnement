@@ -3,10 +3,11 @@
 }
 
 #img_style{
-    display: flex;
     width: 30%;
+    float: left;
 }
 
-#log_out_button{
-    display: flex;
+#all_buttons_in_header{
+float: right;
+
 }
