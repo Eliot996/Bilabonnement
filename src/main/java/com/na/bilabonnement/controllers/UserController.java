@@ -18,38 +18,39 @@ public class UserController {
     @Author Sofia
      */
 
-    private UserService userService = new UserService();
-    private LocationService locationService = new LocationService();
+    private final UserService USER_SERVICE = new UserService();
+    private final LocationService LOCATION_SERVICE = new LocationService();
 
     /**
     *  @author Mathias(Eliot996)
     */
     @GetMapping("/create-user")
     public String getCreateUser(HttpSession session, Model model) {
-        model.addAttribute("locations", locationService.getAllLocations());
+        model.addAttribute("locations", LOCATION_SERVICE.getAllLocations());
         model.addAttribute("user", new User());
         return "create-user";
+    }
+
+    /**
+     *  @author Mathias(Eliot996)
+     */
+    @PostMapping("/create-user")
+    public String createUser(HttpSession session, @ModelAttribute User user) {
+        User createdUser = USER_SERVICE.createUser(user.getUsername(), user.getPassword(), user.getRoleID(), user.getLocationId());
+
+        return "redirect:/user/" + createdUser.getId();
     }
 
     @GetMapping("/admin")
     public String admin(){
         return "administratorpage";
     }
-    /**
-    *  @author Mathias(Eliot996)
-    */
-    @PostMapping("/create-user")
-    public String CreateUser(HttpSession session, @ModelAttribute User user) {
-        User createdUser = userService.createUser(user.getUsername(), user.getPassword(), user.getRoleID(), user.getLocationId());
-
-        return "redirect:/user/" + createdUser.getId();
-    }
 
     /*
     @Author Sofia
      */
     @GetMapping("/dataregistrering")
-    public String dataregistration(){
+    public String dataRegistration(){
         return "dataregistration";
     }
 
@@ -62,7 +63,7 @@ public class UserController {
     }
 
     @GetMapping("/forretningsudvikler")
-    public String businessdeveloper() {
+    public String businessDeveloper() {
         return "businessdeveloper";
     }
 }
