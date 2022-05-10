@@ -24,19 +24,13 @@ public class UserRepo implements IUserRepository {
         String insertSQL = "INSERT INTO Users(`name`, `password`, `role`, `locationId`, `salt`) " +
                 "VALUES (?, ?, ?, ?, ?);";
 
-        PreparedStatement stmt = null;
         try {
-            stmt = con.prepareStatement(insertSQL);
+            PreparedStatement stmt = con.prepareStatement(insertSQL);
             stmt.setString(1, entity.getUsername());
             stmt.setString(2, entity.getPassword());
             stmt.setString(3, entity.getRole().toString());
             stmt.setInt(4, entity.getLocationId());
             stmt.setString(5, entity.getSalt());
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-
-        try {
             stmt.execute();
             con.close();
         } catch (SQLException e) {
