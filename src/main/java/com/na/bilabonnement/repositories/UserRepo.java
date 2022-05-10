@@ -32,11 +32,11 @@ public class UserRepo implements IUserRepository {
             stmt.setInt(4, entity.getLocationId());
             stmt.setString(5, entity.getSalt());
             stmt.execute();
-            con.close();
         } catch (SQLException e) {
             e.printStackTrace();
         }
 
+        DatabaseConnectionManager.closeConnection();
         return null;
     }
 
