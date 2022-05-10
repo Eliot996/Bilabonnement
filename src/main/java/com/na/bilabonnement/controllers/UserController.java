@@ -10,4 +10,9 @@ public class UserController {
     public String admin(){
         return "administratorpage";
     }
+
+    @GetMapping("/dataregistrering")
+    public String dataregistration(){
+        return "dataregistration";
+    }
 }
