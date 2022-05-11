@@ -10,6 +10,9 @@ public class LocationService {
 
     private final IRepository<Location> REPO = new LocationRepo();
 
+    /**
+     *  @author Mathias(Eliot996)
+     */
     public List<Location> getAllLocations() {
         return REPO.getAllEntities();
     }
