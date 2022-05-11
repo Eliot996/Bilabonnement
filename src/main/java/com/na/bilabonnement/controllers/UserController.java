@@ -40,7 +40,9 @@ public class UserController {
 
         return "redirect:/user/" + createdUser.getId();
     }
-
+    /*
+    @Author Lasse
+    */
     @GetMapping("/admin")
     public String admin(){
         return "administratorpage";
@@ -62,6 +64,9 @@ public class UserController {
         return "damageAndRectification";
     }
 
+    /*
+    @Author Lasse
+    */
     @GetMapping("/forretningsudvikler")
     public String businessdeveloper(){
         return "businessdeveloper";
