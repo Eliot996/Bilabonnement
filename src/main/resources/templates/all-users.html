@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Bruger</title>
+</head>
+<body>
+<h1>Bruger</h1>
+    <div th:if="${listOfUsers.empty}">
+        <h2>Der er ikke nogle bruger</h2>
+    </div>
+
+    <section th:each="user : ${listOfUsers}" class="list-box">
+        <div class="list-name">
+            <h2>
+                <span th:text="${user.getName()}"></span>
+            </h2>
+        </div>
+        <div class="list-buttons">
+            <button th:id="${user.id()}" class="button" onclick="copyLink(this.id)">Del</button>
+            <a th:href="@{/wishlists/{wishlistID}/edit(wishlistID=${list.getID()})}">
+                <button class="button">Rediger</button>
+            </a>
+            <a th:href="@{/wishlists/{wishlistID}(wishlistID=${list.getID()})}">
+                <button class="button">Se ønsker</button>
+            </a>
+        </div>
+    </section>
+</body>
+</html>
