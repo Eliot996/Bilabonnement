@@ -53,12 +53,54 @@ public class UserRepo implements IUserRepository {
             e.printStackTrace();
         }
 
+        User result = null;
         if (rs != null) {
-            return makeUserFromResultSet(rs);
+            result = makeUserFromResultSet(rs);
         }
 
         DatabaseConnectionManager.closeConnection();
+        return result;
+    }
+
+    @Override
+    public User getSingleEntityById(int id) {
         return null;
+    }
+
+    /**
+     *  @author Mathias(Eliot996)
+     */
+    @Override
+    public List<User> getAllEntities() {
+        Connection con = DatabaseConnectionManager.getConnection();
+
+        String selectSQL = "SELECT * FROM users;";
+
+        ResultSet rs = null;
+        try {
+            PreparedStatement stmt = con.prepareStatement(selectSQL);
+            rs = stmt.executeQuery();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        List<User> result = new ArrayList<>();
+        if (rs != null) {
+            result =  makeUsersFromResultSet(rs);
+        }
+
+        DatabaseConnectionManager.closeConnection();
+        return result;
+    }
+
+    @Override
+    public boolean update(User entity) {
+        return false;
+    }
+
+    @Override
+    public boolean deleteById(int id) {
+        return false;
     }
 
     /**
@@ -93,25 +135,5 @@ public class UserRepo implements IUserRepository {
             e.printStackTrace();
         }
         return users;
-    }
-
-    @Override
-    public User getSingleEntityById(int id) {
-        return null;
-    }
-
-    @Override
-    public List<User> getAllEntities() {
-        return null;
-    }
-
-    @Override
-    public boolean update(User entity) {
-        return false;
-    }
-
-    @Override
-    public boolean deleteById(int id) {
-        return false;
     }
 }

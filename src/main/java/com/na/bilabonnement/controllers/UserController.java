@@ -47,8 +47,9 @@ public class UserController {
      *  @author Mathias(Eliot996)
      *  return view of all the users on the system
      */
-    @GetMapping("/bruger")
+    @GetMapping("/brugere")
     public String getAllUsers(HttpSession session, Model model) {
+
         model.addAttribute("listOfUsers", USER_SERVICE.getAllUsers());
 
         return "all-users";

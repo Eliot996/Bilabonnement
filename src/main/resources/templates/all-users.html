@@ -6,23 +6,18 @@
 </head>
 <body>
 <h1>Bruger</h1>
-    <div th:if="${listOfUsers.empty}">
+    <!--<div th:if="${listOfUsers.size() == 0}">
         <h2>Der er ikke nogle bruger</h2>
-    </div>
+    </div>-->
 
     <section th:each="user : ${listOfUsers}" class="list-box">
         <div class="list-name">
-            <h2>
-                <span th:text="${user.getName()}"></span>
-            </h2>
+                <span th:text="${user.username}"></span>
+                <span th:text="${user.role}"></span>
         </div>
         <div class="list-buttons">
-            <button th:id="${user.id()}" class="button" onclick="copyLink(this.id)">Del</button>
-            <a th:href="@{/wishlists/{wishlistID}/edit(wishlistID=${list.getID()})}">
+            <a th:href="@{/bruger/{userID}(userID=${user.id})}">
                 <button class="button">Rediger</button>
-            </a>
-            <a th:href="@{/wishlists/{wishlistID}(wishlistID=${list.getID()})}">
-                <button class="button">Se ønsker</button>
             </a>
         </div>
     </section>
