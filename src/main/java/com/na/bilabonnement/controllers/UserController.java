@@ -9,8 +9,6 @@ public class UserController {
     /*
     @Author Sofia
      */
-
-
     @GetMapping("/admin")
     public String admin(){
         return "administratorpage";
