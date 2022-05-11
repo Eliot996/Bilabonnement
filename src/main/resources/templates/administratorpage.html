@@ -8,19 +8,15 @@
 </head>
 
 <body>
-<header class="header-style">
-    <img id="img_style" src="pictures/logo.jpg">
-
-    <button id="all_buttons_in_header" type="submit">Log ud</button>
-</header>
+<header th:insert="fragments/fragments.html :: header"> </header>
 
 <div class="content-under-header">
-<div id="all_buttons_in_body">
-    <button class="button_style" type="submit">Se alle brugere</button><br><br>
-    <button class="button_style" type="submit">Opret bruger</button><br><br>
-    <button class="button_style" type="submit">Rediger bruger</button><br><br>
-    <button class="button_style" type="submit">Slet bruger</button><br><br>
-</div>
+    <div id="all_buttons_in_body_admin">
+        <button class="button_style_admin" type="submit">Se alle brugere</button><br><br>
+        <button class="button_style_admin" type="submit">Opret bruger</button><br><br>
+        <button class="button_style_admin" type="submit">Rediger bruger</button><br><br>
+        <button class="button_style_admin" type="submit">Slet bruger</button><br><br>
+    </div>
 </div>
 
 

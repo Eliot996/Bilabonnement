@@ -4,17 +4,19 @@
     <meta charset="UTF-8">
     <title>Title</title>
     <link rel="stylesheet" th:href="@{general.css}">
-    <link rel="stylesheet" th:href="@{damageAndRectification.css}">
+    <link rel="stylesheet" th:href="@{damageAndRectificationpage.css}">
 </head>
 
 <body>
-<header class="header-style">
-    <img id="img_style" src="pictures/logo.jpg">
-
-    <button id="all_buttons_in_header" type="submit">Log ud</button>
-</header>
+<header th:insert="fragments/fragments.html :: header"> </header>
 
 <div class="content-under-header">
+    <div id="all_buttons_in_body_damage">
+        <button class="button_style_damage" type="submit">Se alle brugere</button><br><br>
+        <button class="button_style_damage" type="submit">Opret bruger</button><br><br>
+        <button class="button_style_damage" type="submit">Rediger bruger</button><br><br>
+        <button class="button_style_damage" type="submit">Slet bruger</button><br><br>
+    </div>
 </div>
 
 </body>
