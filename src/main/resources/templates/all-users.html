@@ -3,15 +3,19 @@
 <head>
     <meta charset="UTF-8">
     <title>Bruger</title>
+    <link rel="stylesheet" th:href="@{general.css}">
+    <link rel="stylesheet" th:href="@{all-users.css}">
 </head>
 <body>
-<h1>Bruger</h1>
+<header th:insert="fragments/fragments.html :: header"> </header>
+
+<div class="content-under-header">
+    <h1>Bruger</h1>
     <!--<div th:if="${listOfUsers.size() == 0}">
         <h2>Der er ikke nogle bruger</h2>
     </div>-->
-
-    <section th:each="user : ${listOfUsers}" class="list-box">
-        <div class="list-name">
+    <section id="all_buttons_in_body_alluser" th:each="user : ${listOfUsers}">
+        <div>
                 <span th:text="${user.username}"></span>
                 <span th:if="${user.role.toString() == 'DATA_REGISTRATION'}" th:text="'Dataregistrering'"></span>
                 <span th:if="${user.role.toString() == 'DAMAGE_AND_RECTIFICATION'}" th:text="'Skade og udbedring'"></span>
@@ -24,5 +28,6 @@
             </a>
         </div>
     </section>
+</div>
 </body>
 </html>
