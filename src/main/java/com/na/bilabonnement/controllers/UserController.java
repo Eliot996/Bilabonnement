@@ -22,8 +22,9 @@ public class UserController {
     private final LocationService LOCATION_SERVICE = new LocationService();
 
     /**
-    *  @author Mathias(Eliot996)
-    */
+     *  @author Mathias(Eliot996)
+     *  Get method for creation of a user
+     */
     @GetMapping("/create-user")
     public String getCreateUser(HttpSession session, Model model) {
         model.addAttribute("locations", LOCATION_SERVICE.getAllLocations());
@@ -33,6 +34,7 @@ public class UserController {
 
     /**
      *  @author Mathias(Eliot996)
+     *  Post method for creation of a user
      */
     @PostMapping("/create-user")
     public String createUser(HttpSession session, @ModelAttribute User user) {
@@ -40,6 +42,7 @@ public class UserController {
 
         return "redirect:/user/" + createdUser.getId();
     }
+
     /*
     @Author Lasse
     */
