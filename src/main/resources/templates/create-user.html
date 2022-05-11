@@ -4,10 +4,10 @@
     <meta charset="UTF-8">
     <title>Opret Bruger</title>
 </head>
+
+
 <body>
-<div id="site_colour">
-    <div id="site_container">
-        <div id="content-container">
+<header th:insert="fragments/fragments.html :: header"> </header>
 
             <div>
                 <form action="#" th:action="@{/create-user}" th:object="${user}" method="post">
@@ -37,9 +37,7 @@
                         <button type="submit">Opret bruger</button>
                     </div>
                 </form>
-            </div>
-        </div>
-    </div>
+                </div>
 </body>
 
 </html>
