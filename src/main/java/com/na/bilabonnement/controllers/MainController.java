@@ -31,26 +31,21 @@ public class MainController {
    @PostMapping("/login")
     public String landingPage(WebRequest dataFromForm, HttpSession session){
 
+        User user = USER_SERVICE.login(dataFromForm.getParameter("uname"), dataFromForm.getParameter("psw"));
 
-    //boolean validity = USER_SERVICE.checkLogin(dataFromForm.getParameter("uname"), dataFromForm.getParameter("psw"));
-    User user = USER_SERVICE.login(dataFromForm.getParameter("uname"), dataFromForm.getParameter("psw"));
-
-       System.out.println(dataFromForm.getParameter("uname"));
-       System.out.println(dataFromForm.getParameter("psw"));
-
-    if (user != null)
-    {
+        if (user != null)
+        {
 
 
-        session.setAttribute("userID", user.getId());
-        session.setAttribute("userRole", user.getRole());
-        return "redirect:/success";
-    }
+            session.setAttribute("userID", user.getId());
+            session.setAttribute("userRole", user.getRole());
+            return "redirect:/success";
+        }
 
-    else
-    {
-        return "redirect:/";
-    }
+        else
+        {
+            return "redirect:/";
+        }
    }
 
    @GetMapping("/fail")
