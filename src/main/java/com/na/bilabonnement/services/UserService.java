@@ -41,6 +41,7 @@ public class UserService {
 
     /**
     *  @author Mathias(Eliot996)
+    *  handels creation of the password, including the hashing of the password
     */
     public User createUser(String username, String password, int roleID, int locationID) {
         String salt = generateSalt();
@@ -67,6 +68,7 @@ public class UserService {
 
     /**
     *  @author Mathias(Eliot996)
+    *  generates a random 16 character string, from 94 possible characters
     */
     private String generateSalt() {
         StringBuilder salt = new StringBuilder();
@@ -79,6 +81,7 @@ public class UserService {
 
     /**
     *  @author Mathias(Eliot996)
+    *  hashes the password, with the salt and pepper added unto it
     */
     private String hashPassword(String pepper, String password, String salt) {
         MessageDigest digest = null;
@@ -97,6 +100,7 @@ public class UserService {
 
     /**
     *  @author Mathias(Eliot996)
+    *  converts the byte[] into a string
     */
     private String bytesToHex(byte[] hash) {
         StringBuilder hexString = new StringBuilder(2 * hash.length);
