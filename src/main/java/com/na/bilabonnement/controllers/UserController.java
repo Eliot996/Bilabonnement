@@ -24,7 +24,7 @@ public class UserController {
     /**
     *  @author Mathias(Eliot996)
     */
-    @GetMapping("/create-user")
+    @GetMapping("/opret-bruger")
     public String getCreateUser(HttpSession session, Model model) {
         model.addAttribute("locations", LOCATION_SERVICE.getAllLocations());
         model.addAttribute("user", new User());
@@ -34,7 +34,7 @@ public class UserController {
     /**
      *  @author Mathias(Eliot996)
      */
-    @PostMapping("/create-user")
+    @PostMapping("/opret-bruger")
     public String createUser(HttpSession session, @ModelAttribute User user) {
         User createdUser = USER_SERVICE.createUser(user.getUsername(), user.getPassword(), user.getRoleID(), user.getLocationId());
 
