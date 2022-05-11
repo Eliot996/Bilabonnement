@@ -29,18 +29,27 @@ public class MainController {
     }
 
    @PostMapping("/login")
-    public String landingPage(WebRequest dataFromForm){
+    public String landingPage(WebRequest dataFromForm, HttpSession session){
 
-    boolean validLogin = USER_SERVICE.checkLogin(dataFromForm.getParameter("uname"), dataFromForm.getParameter("psw"));
 
-    if (validLogin == true)
+    //boolean validity = USER_SERVICE.checkLogin(dataFromForm.getParameter("uname"), dataFromForm.getParameter("psw"));
+    User user = USER_SERVICE.login(dataFromForm.getParameter("uname"), dataFromForm.getParameter("psw"));
+
+       System.out.println(dataFromForm.getParameter("uname"));
+       System.out.println(dataFromForm.getParameter("psw"));
+
+    if (user != null)
     {
+
+
+        session.setAttribute("userID", user.getId());
+        session.setAttribute("userRole", user.getRole());
         return "redirect:/success";
     }
 
     else
     {
-        return "redirect:/fail";
+        return "redirect:/";
     }
    }
 

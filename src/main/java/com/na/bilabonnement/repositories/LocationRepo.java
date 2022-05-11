@@ -21,6 +21,9 @@ public class LocationRepo implements IRepository<Location>{
         return null;
     }
 
+    /**
+      *  @author Arboe(H4ppyN4p)
+      */
     @Override
     public List<Location> getAllEntities() {
         Connection con = DatabaseConnectionManager.getConnection();

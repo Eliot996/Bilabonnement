@@ -67,6 +67,34 @@ public class UserRepo implements IUserRepository {
         return null;
     }
 
+
+    /**
+     *  @author Mathias(Eliot996)
+     *  @author Arboe(H4ppyN4p)
+     */
+    @Override
+    public User getSingleEntityByUsername(String username) {
+        Connection con = DatabaseConnectionManager.getConnection();
+
+        String selectSQL = "SELECT * FROM users " +
+                "WHERE `name` = '" + username +  "';";
+
+        ResultSet rs = null;
+        try {
+            PreparedStatement stmt = con.prepareStatement(selectSQL);
+            rs = stmt.executeQuery();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        User result = null;
+        if (rs != null) {
+            result = makeUserFromResultSet(rs);
+        }
+
+        DatabaseConnectionManager.closeConnection();
+        return result;    }
+
     /**
      *  @author Mathias(Eliot996)
      */
@@ -136,4 +164,6 @@ public class UserRepo implements IUserRepository {
         }
         return users;
     }
+
+
 }

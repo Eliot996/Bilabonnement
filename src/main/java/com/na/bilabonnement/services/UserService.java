@@ -39,6 +39,35 @@ public class UserService {
         return loginValidity;
     }
 
+    public User login(String username, String password) {
+        // Get the user from the database
+        User user = repo.getSingleEntityByUsername(username);
+
+        if (user == null) {
+            return null;
+        }
+
+        if (checkPassword(user.getPassword(), user.getSalt(), password)) {
+
+            return user;
+        } else {
+            return null;
+        }
+    }
+
+    private boolean checkPassword(String userPassword, String userSalt, String passwordToCheck) {
+        String hashToCheck;
+
+        for (int i = 0; i < PEPPER_CHARACTERS.length(); i++) {
+            hashToCheck = hashPassword(PEPPER_CHARACTERS.substring(i, i+1),
+                    passwordToCheck,
+                    userSalt);
+            if (hashToCheck.equals(userPassword)) {
+                return true;
+            }
+        }
+        return false;
+    }
 
 
     /**
