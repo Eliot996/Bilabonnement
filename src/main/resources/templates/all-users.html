@@ -10,24 +10,22 @@
 <header th:insert="fragments/fragments.html :: header"> </header>
 
 <div class="content-under-header">
-    <h1>Bruger</h1>
     <!--<div th:if="${listOfUsers.size() == 0}">
         <h2>Der er ikke nogle bruger</h2>
     </div>-->
+    <div>
+        <h1 class="center_things">Bruger:</h1>
     <section id="all_buttons_in_body_alluser" th:each="user : ${listOfUsers}">
         <div>
                 <span th:text="${user.username}"></span>
-                <span th:if="${user.role.toString() == 'DATA_REGISTRATION'}" th:text="'Dataregistrering'"></span>
-                <span th:if="${user.role.toString() == 'DAMAGE_AND_RECTIFICATION'}" th:text="'Skade og udbedring'"></span>
-                <span th:if="${user.role.toString() == 'BUSINESS_DEVELOPER'}" th:text="'Forretningsudvikling'"></span>
-                <span th:if="${user.role.toString() == 'ADMINISTRATOR'}" th:text="'Administrator'"></span>
-        </div>
-        <div class="list-buttons">
-            <a th:href="@{/bruger/{userID}(userID=${user.id})}">
+                <span th:if="${user.role.toString() == 'DATA_REGISTRATION'}" th:text="'- Dataregistrering'"></span>
+                <span th:if="${user.role.toString() == 'DAMAGE_AND_RECTIFICATION'}" th:text="'- Skade og udbedring'"></span>
+                <span th:if="${user.role.toString() == 'BUSINESS_DEVELOPER'}" th:text="'- Forretningsudvikler'"></span>
+                <span th:if="${user.role.toString() == 'ADMINISTRATOR'}" th:text="'- Administrator'"></span>
                 <button class="button">Rediger</button>
-            </a>
         </div>
     </section>
+    </div>
 </div>
 </body>
 </html>
