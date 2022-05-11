@@ -58,8 +58,16 @@ public class UserService {
     }
 
     /**
-    *  @author Mathias(Eliot996)
-    */
+     *  @author Mathias(Eliot996)
+     */
+    public List<User> getAllUsers() {
+        return repo.getAllEntities();
+    }
+
+    /**
+     *  @author Mathias(Eliot996)
+     *  returns a random char as a string
+     */
     private String generatePepper() {
         return String.valueOf(
                 PEPPER_CHARACTERS.charAt(

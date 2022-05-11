@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Bruger</title>
+</head>
+<body>
+<h1>Bruger</h1>
+    <!--<div th:if="${listOfUsers.size() == 0}">
+        <h2>Der er ikke nogle bruger</h2>
+    </div>-->
+
+    <section th:each="user : ${listOfUsers}" class="list-box">
+        <div class="list-name">
+                <span th:text="${user.username}"></span>
+                <span th:text="${user.role}"></span>
+        </div>
+        <div class="list-buttons">
+            <a th:href="@{/bruger/{userID}(userID=${user.id})}">
+                <button class="button">Rediger</button>
+            </a>
+        </div>
+    </section>
+</body>
+</html>

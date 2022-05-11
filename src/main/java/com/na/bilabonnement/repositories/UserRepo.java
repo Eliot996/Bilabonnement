@@ -19,6 +19,10 @@ public class UserRepo implements IUserRepository {
         return instance;
     }
 
+    /**
+     *  @author Mathias(Eliot996)
+     *  Will push the user to the database, and fetch the created user and return it (to get the correct id)
+     */
     @Override
     public User create(User entity) {
         Connection con = DatabaseConnectionManager.getConnection();
@@ -49,14 +53,60 @@ public class UserRepo implements IUserRepository {
             e.printStackTrace();
         }
 
+        User result = null;
         if (rs != null) {
-            return makeUserFromResultSet(rs);
+            result = makeUserFromResultSet(rs);
         }
 
         DatabaseConnectionManager.closeConnection();
+        return result;
+    }
+
+    @Override
+    public User getSingleEntityById(int id) {
         return null;
     }
 
+    /**
+     *  @author Mathias(Eliot996)
+     */
+    @Override
+    public List<User> getAllEntities() {
+        Connection con = DatabaseConnectionManager.getConnection();
+
+        String selectSQL = "SELECT * FROM users;";
+
+        ResultSet rs = null;
+        try {
+            PreparedStatement stmt = con.prepareStatement(selectSQL);
+            rs = stmt.executeQuery();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        List<User> result = new ArrayList<>();
+        if (rs != null) {
+            result =  makeUsersFromResultSet(rs);
+        }
+
+        DatabaseConnectionManager.closeConnection();
+        return result;
+    }
+
+    @Override
+    public boolean update(User entity) {
+        return false;
+    }
+
+    @Override
+    public boolean deleteById(int id) {
+        return false;
+    }
+
+    /**
+     *  @author Mathias(Eliot996)
+     *  Make a user from the resultset
+     */
     private User makeUserFromResultSet(ResultSet rs) {
         List<User> users = makeUsersFromResultSet(rs);
         if (users.size() > 0) {
@@ -65,6 +115,10 @@ public class UserRepo implements IUserRepository {
         return null;
     }
 
+    /**
+     *  @author Mathias(Eliot996)
+     *  make a list of users from the given resultset
+     */
     private List<User> makeUsersFromResultSet(ResultSet rs) {
         ArrayList<User> users = new ArrayList<>();
         try {
@@ -81,25 +135,5 @@ public class UserRepo implements IUserRepository {
             e.printStackTrace();
         }
         return users;
-    }
-
-    @Override
-    public User getSingleEntityById(int id) {
-        return null;
-    }
-
-    @Override
-    public List<User> getAllEntities() {
-        return null;
-    }
-
-    @Override
-    public boolean update(User entity) {
-        return false;
-    }
-
-    @Override
-    public boolean deleteById(int id) {
-        return false;
     }
 }
