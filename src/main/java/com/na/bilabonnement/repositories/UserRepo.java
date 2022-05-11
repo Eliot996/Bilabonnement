@@ -42,24 +42,7 @@ public class UserRepo implements IUserRepository {
             e.printStackTrace();
         }
 
-        String selectSQL = "SELECT * FROM users " +
-                "WHERE `name` = '" + entity.getUsername() +  "';";
-
-        ResultSet rs = null;
-        try {
-            PreparedStatement stmt = con.prepareStatement(selectSQL);
-            rs = stmt.executeQuery();
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-
-        User result = null;
-        if (rs != null) {
-            result = makeUserFromResultSet(rs);
-        }
-
-        DatabaseConnectionManager.closeConnection();
-        return result;
+        return getSingleEntityByUsername(entity.getUsername());
     }
 
     @Override
