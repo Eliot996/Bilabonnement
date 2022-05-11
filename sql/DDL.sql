@@ -13,7 +13,7 @@ CREATE TABLE `bilabonnement`.`Locations` (
 CREATE TABLE `bilabonnement`.`Users` (
                                         `id` INT NOT NULL AUTO_INCREMENT,
                                         `name` VARCHAR(255) NOT NULL,
-                                        `password` VARCHAR(255) NOT NULL,
+                                        `password` VARCHAR(64) NOT NULL,
                                         `salt` VARCHAR(16) NOT NULL,
                                         `role` VARCHAR(25) NOT NULL,
                                         `locationId` INT NOT NULL,
