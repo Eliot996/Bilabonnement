@@ -4,7 +4,7 @@ package com.na.bilabonnement.models;
 /**
  *  @author Tobias Arboe
  *  @author Mathias(Eliot996)
-*/
+ */
 
 public class User {
     private int id;

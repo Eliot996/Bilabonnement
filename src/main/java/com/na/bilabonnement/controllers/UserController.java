@@ -22,9 +22,10 @@ public class UserController {
     private final LocationService LOCATION_SERVICE = new LocationService();
 
     /**
-    *  @author Mathias(Eliot996)
-    */
-    @GetMapping("/create-user")
+     *  @author Mathias(Eliot996)
+     *  Get method for creation of a user
+     */
+    @GetMapping("/opret-bruger")
     public String getCreateUser(HttpSession session, Model model) {
         model.addAttribute("locations", LOCATION_SERVICE.getAllLocations());
         model.addAttribute("user", new User());
@@ -33,13 +34,27 @@ public class UserController {
 
     /**
      *  @author Mathias(Eliot996)
+     *  Post method for creation of a user
      */
-    @PostMapping("/create-user")
+    @PostMapping("/opret-bruger")
     public String createUser(HttpSession session, @ModelAttribute User user) {
         User createdUser = USER_SERVICE.createUser(user.getUsername(), user.getPassword(), user.getRoleID(), user.getLocationId());
 
         return "redirect:/user/" + createdUser.getId();
     }
+
+    /**
+     *  @author Mathias(Eliot996)
+     *  return view of all the users on the system
+     */
+    @GetMapping("/brugere")
+    public String getAllUsers(HttpSession session, Model model) {
+
+        model.addAttribute("listOfUsers", USER_SERVICE.getAllUsers());
+
+        return "all-users";
+    }
+
     /*
     @Author Lasse
     */

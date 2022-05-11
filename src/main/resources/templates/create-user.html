@@ -3,43 +3,42 @@
 <head>
     <meta charset="UTF-8">
     <title>Opret Bruger</title>
+    <link rel="stylesheet" th:href="@{general.css}">
+    <link rel="stylesheet" th:href="@{create-user.css}">
 </head>
+
 <body>
-<div id="site_colour">
-    <div id="site_container">
-        <div id="content-container">
+<header th:insert="fragments/fragments.html :: header"> </header>
 
-            <div>
-                <form action="#" th:action="@{/create-user}" th:object="${user}" method="post">
+            <div class="content-under-header" id="all_buttons_in_body_createuser">
+                <form action="#" th:action="@{/opret-bruger}" th:object="${user}" method="post">
 
-                    <div class="container">
-                        <label><b>Brugernavn</b></label>
-                        <input type="text" placeholder="Navn" th:field="*{username}" required>
+                    <div>
+                        <label><b>Brugernavn:</b></label> <br>
+                        <input type="text" placeholder="Navn" th:field="*{username}" required>  <br><br>
 
-                        <label ><b>Adgangskode</b></label>
-                        <input type="password" placeholder="Indtast adgangskode" th:field="*{password}" required>
+                        <label ><b>Adgangskode:</b></label> <br>
+                        <input type="password" placeholder="Indtast adgangskode" th:field="*{password}" required>  <br> <br>
 
-                        <label><b>Role</b>
+                        <label><b>Rolle:</b> <br>
                             <select th:field="*{roleID}">
                                 <option th:value="0" th:text="'Dataregistrering'"></option>
                                 <option th:value="1" th:text="'Skade og Udbedring'"></option>
                                 <option th:value="2" th:text="'Forretningsudvikler'"></option>
                                 <option th:value="3" th:text="'Administrator'"></option>
                             </select>
-                        </label>
+                        </label> <br><br>
 
-                        <label><b>Location</b>
+                        <label><b>Lokation:</b> <br>
                             <select th:field="*{locationId}">
                                 <option th:each="location : ${locations}" th:value="${location.id}" th:text="${location.name}"></option>
                             </select>
-                        </label>
+                        </label> <br> <br>
 
                         <button type="submit">Opret bruger</button>
                     </div>
                 </form>
             </div>
-        </div>
-    </div>
 </body>
 
 </html>
