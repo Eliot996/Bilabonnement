@@ -13,7 +13,10 @@
     <section th:each="user : ${listOfUsers}" class="list-box">
         <div class="list-name">
                 <span th:text="${user.username}"></span>
-                <span th:text="${user.role}"></span>
+                <span th:if="${user.role.toString() == 'DATA_REGISTRATION'}" th:text="'Dataregistrering'"></span>
+                <span th:if="${user.role.toString() == 'DAMAGE_AND_RECTIFICATION'}" th:text="'Skade og udbedring'"></span>
+                <span th:if="${user.role.toString() == 'BUSINESS_DEVELOPER'}" th:text="'Forretningsudvikling'"></span>
+                <span th:if="${user.role.toString() == 'ADMINISTRATOR'}" th:text="'Administrator'"></span>
         </div>
         <div class="list-buttons">
             <a th:href="@{/bruger/{userID}(userID=${user.id})}">
