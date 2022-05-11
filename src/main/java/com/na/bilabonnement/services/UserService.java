@@ -95,6 +95,10 @@ public class UserService {
         return repo.getAllEntities();
     }
 
+    public boolean deleteUser(int userId){
+        return repo.deleteById(userId);
+    }
+
     /**
      *  @author Mathias(Eliot996)
      *  returns a random char as a string
@@ -152,4 +156,5 @@ public class UserService {
         }
         return hexString.toString();
     }
+
 }
