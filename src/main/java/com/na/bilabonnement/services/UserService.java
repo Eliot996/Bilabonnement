@@ -56,21 +56,30 @@ public class UserService {
         return repo.create(newUser);
     }
 
+    /**
+    *  @author Mathias(Eliot996)
+    */
     private String generatePepper() {
         return String.valueOf(
                 PEPPER_CHARACTERS.charAt(
                         random.nextInt(PEPPER_CHARACTERS.length())));
     }
 
+    /**
+    *  @author Mathias(Eliot996)
+    */
     private String generateSalt() {
         StringBuilder salt = new StringBuilder();
 
-        for (int i = 0; i < 10; i++) {
+        for (int i = 0; i < 16; i++) {
             salt.append(Character.toChars(random.nextInt(94) + 32));
         }
         return salt.toString();
     }
 
+    /**
+    *  @author Mathias(Eliot996)
+    */
     private String hashPassword(String pepper, String password, String salt) {
         MessageDigest digest = null;
 
@@ -86,6 +95,9 @@ public class UserService {
         return bytesToHex(encodedHash);
     }
 
+    /**
+    *  @author Mathias(Eliot996)
+    */
     private String bytesToHex(byte[] hash) {
         StringBuilder hexString = new StringBuilder(2 * hash.length);
         for (int i = 0; i < hash.length; i++) {
