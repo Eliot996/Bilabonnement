@@ -14,6 +14,7 @@ import java.util.List;
 public class UserRepo implements IUserRepository {
     private static final UserRepo instance = new UserRepo();
 
+
     private UserRepo() {}
     public static UserRepo getInstance() {
         return instance;
@@ -85,8 +86,48 @@ public class UserRepo implements IUserRepository {
 
     @Override
     public User getSingleEntityById(int id) {
-        return null;
+        Connection con = DatabaseConnectionManager.getConnection();
+
+        PreparedStatement stmt = null;
+        try {
+            stmt = con.prepareStatement("SELECT * FROM users " +
+                    "WHERE `ID` = " + id + ";");
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        ResultSet rs = null;
+        try {
+            rs = stmt.executeQuery();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        return makeUserFromResultSet(rs);
     }
+
+    public User getSingleEntityByUsername(String username){
+        Connection con = DatabaseConnectionManager.getConnection();
+
+        PreparedStatement stmt = null;
+        try {
+            stmt = con.prepareStatement("SELECT * FROM users " +
+                    "WHERE `name` = " + username + ";");
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        ResultSet rs = null;
+        try {
+            rs = stmt.executeQuery();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        return makeUserFromResultSet(rs);
+    };
+
+
 
     @Override
     public List<User> getAllEntities() {
