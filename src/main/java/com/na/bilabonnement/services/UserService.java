@@ -39,6 +39,8 @@ public class UserService {
         return loginValidity;
     }
 
+
+
     /**
     *  @author Mathias(Eliot996)
     *  handels creation of the password, including the hashing of the password

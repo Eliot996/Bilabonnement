@@ -9,6 +9,7 @@ public interface IRepository<T>{
     //Read
     public T getSingleEntityById(int id);
 
+
     public List<T> getAllEntities();
 
     //Update

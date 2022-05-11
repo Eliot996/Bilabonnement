@@ -51,4 +51,9 @@ public class DummyUserRepo implements IUserRepository
     public boolean deleteById(int id) {
         return false;
     }
+
+    @Override
+    public User getSingleEntityByUsername(String username) {
+        return null;
+    }
 }
