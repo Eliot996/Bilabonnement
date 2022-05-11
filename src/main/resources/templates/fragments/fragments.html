@@ -8,7 +8,9 @@
 <body>
 <header class="header-style" th:fragment="header">
     <img id="img_style" src="pictures/logo.jpg">
-    <button id="all_buttons_in_header" type="submit">Log ud</button>
+   <a th:href="@{/logout}">
+       <button id="all_buttons_in_header" type="submit">Log ud</button>
+   </a>
 </header>
 </body>
 </html>
