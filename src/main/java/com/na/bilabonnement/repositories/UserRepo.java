@@ -19,6 +19,10 @@ public class UserRepo implements IUserRepository {
         return instance;
     }
 
+    /**
+     *  @author Mathias(Eliot996)
+     *  Will push the user to the database, and fetch the created user and return it (to get the correct id)
+     */
     @Override
     public User create(User entity) {
         Connection con = DatabaseConnectionManager.getConnection();
@@ -57,6 +61,10 @@ public class UserRepo implements IUserRepository {
         return null;
     }
 
+    /**
+     *  @author Mathias(Eliot996)
+     *  Make a user from the resultset
+     */
     private User makeUserFromResultSet(ResultSet rs) {
         List<User> users = makeUsersFromResultSet(rs);
         if (users.size() > 0) {
@@ -65,6 +73,10 @@ public class UserRepo implements IUserRepository {
         return null;
     }
 
+    /**
+     *  @author Mathias(Eliot996)
+     *  make a list of users from the given resultset
+     */
     private List<User> makeUsersFromResultSet(ResultSet rs) {
         ArrayList<User> users = new ArrayList<>();
         try {
