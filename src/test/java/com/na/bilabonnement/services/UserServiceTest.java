@@ -77,4 +77,22 @@ class UserServiceTest
         // to make sure the password constructor works
         assertNotEquals(createdUser.getPassword(), password);
     }
+
+    /**
+     *  @author Mathias(Eliot996)
+     */
+    @Test
+    void GetAllUsers(){
+        // Arrange
+        UserService userService = new UserService();
+        userService.setRepo(new DummyUserRepo());
+
+        int expectedLength = 4;
+
+        // Act
+        int actualLength = userService.getAllUsers().size();
+
+        // assert
+        assertEquals(expectedLength,actualLength);
+    }
 }
