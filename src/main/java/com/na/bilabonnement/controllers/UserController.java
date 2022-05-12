@@ -68,37 +68,53 @@ public class UserController {
     }
 
 
+
+    @GetMapping("/home")
+    public String home(HttpSession session){
+        UserRole userRole = (UserRole)session.getAttribute("userRole");
+        if (userRole == UserRole.ADMINISTRATOR){
+            return "administratorpage";
+        }
+        else if (userRole == UserRole.BUSINESS_DEVELOPER)
+            return "businessdeveloper";
+        else if (userRole == UserRole.DAMAGE_AND_RECTIFICATION)
+            return "damageAndRectification";
+        else if (userRole == UserRole.DATA_REGISTRATION)
+            return "damageAndRectification";
+        return "redirect:/home";
+    }
+
     /*
     @Author Lasse
     */
-    @GetMapping("/admin")
+    /*@GetMapping("/admin")
     public String admin(){
         return "administratorpage";
     }
 
-    /*
+    *//*
     @Author Sofia
-     */
+     *//*
     @GetMapping("/dataregistrering")
     public String dataregistration(){
         return "dataregistration";
     }
 
-    /*
+    *//*
     @Author Sofia
-     */
-    @GetMapping("skade_og_udbedring")
+     *//*
+    @GetMapping("/skade_og_udbedring")
     public String damageAndRectification(){
         return "damageAndRectification";
     }
 
-    /*
+    *//*
     @Author Lasse
-    */
+    *//*
     @GetMapping("/forretningsudvikler")
     public String businessdeveloper(){
         return "businessdeveloper";
-    }
+    }*/
 
 
 }
