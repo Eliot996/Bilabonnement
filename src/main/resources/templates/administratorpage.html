@@ -12,9 +12,16 @@
 
 <div class="content-under-header">
     <div id="all_buttons_in_body_admin">
+        <a href="/brugere">
         <button class="button_style_admin" type="submit">Se alle brugere</button><br><br>
+        </a>
+        <a href="/opret-bruger">
         <button class="button_style_admin" type="submit">Opret bruger</button><br><br>
+        </a>
+        <a th:href="@{/bruger/{userId}}">
         <button class="button_style_admin" type="submit">Rediger bruger</button><br><br>
+        </a>
+
     </div>
 </div>
 
