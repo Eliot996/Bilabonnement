@@ -50,8 +50,8 @@ public class LocationRepo implements IRepository<Location>{
     }
 
     @Override
-    public boolean update(Location entity) {
-        return false;
+    public Location update(Location entity) {
+        return null;
     }
 
     @Override

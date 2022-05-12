@@ -48,8 +48,8 @@ public class DummyUserRepo implements IUserRepository
     }
 
     @Override
-    public boolean update(User entity) {
-        return false;
+    public User update(User entity) {
+        return null;
     }
 
     @Override
