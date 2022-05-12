@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title th:text="${user.getUsername() + ' - Rediger'}">Opret Bruger</title>
+    <link rel="stylesheet" th:href="@{general.css}">
+    <link rel="stylesheet" th:href="@{create-user.css}">
+</head>
+
+<body>
+<header th:insert="fragments/fragments.html :: header"> </header>
+
+<div class="content-under-header" id="all_buttons_in_body_createuser">
+    <form action="#" th:action="@{/bruger/{userId}(userId=${user.id})}" th:object="${user}" method="post">
+
+        <div>
+            <label><b>Brugernavn:</b></label> <br>
+            <input type="text" th:placeholder="${user.username}" th:field="*{username}" required>  <br><br>
+
+            <label ><b>Ny adgangskode:</b></label> <br>
+            <input type="password" placeholder="Indtast adgangskode" th:field="*{password}" required>  <br> <br>
+
+            <label><b>Rolle:</b> <br>
+                <select th:field="*{roleID}">
+                    <option th:value="0" th:text="'Dataregistrering'">
+                    </option>
+                    <option th:value="1" th:text="'Skade og Udbedring'"
+                            th:selected="${user.role.toString() == 'DAMAGE_AND_RECTIFICATION'}">
+                    </option>
+                    <option th:value="2" th:text="'Forretningsudvikler'"
+                            th:selected="${user.role.toString() == 'BUSINESS_DEVELOPER'}">
+                    </option>
+                    <option th:value="3" th:text="'Administrator'"
+                            th:selected="${user.role.toString() == 'ADMINISTRATOR'}">
+                    </option>
+                </select>
+            </label> <br><br>
+
+            <label><b>Lokation:</b> <br>
+                <select th:field="*{locationId}">
+                    <option th:each="location : ${locations}" th:value="${location.id}" th:text="${location.name}"
+                            th:selected="${user.locationId == location.id}"></option>
+                </select>
+            </label> <br> <br>
+
+            <button type="submit">Opret bruger</button>
+        </div>
+    </form>
+</div>
+</body>
+
+</html>

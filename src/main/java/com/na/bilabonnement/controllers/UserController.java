@@ -57,6 +57,22 @@ public class UserController {
         return "all-users";
     }
 
+    /**
+     *  @author Mathias(Eliot996)
+     */
+    @GetMapping("/bruger/{userID}")
+    public String getEditUser(HttpSession session, @PathVariable() int userID, Model model){
+        UserRole userRole = (UserRole) session.getAttribute("userRole");
+        if (userRole!=UserRole.ADMINISTRATOR){
+            return "redirect:/";
+        }
+
+        model.addAttribute("user",USER_SERVICE.getUser(userID));
+        model.addAttribute("locations",LOCATION_SERVICE.getAllLocations());
+
+        return "edit-user";
+    }
+
     @GetMapping("/bruger/{userID}/slet")
     public String deleteUser(HttpSession session, @PathVariable() int userID){
         UserRole userRole = (UserRole) session.getAttribute("userRole");
