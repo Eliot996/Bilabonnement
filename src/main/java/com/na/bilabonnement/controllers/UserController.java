@@ -1,5 +1,6 @@
 package com.na.bilabonnement.controllers;
 
+import com.na.bilabonnement.models.UserRole;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import com.na.bilabonnement.models.User;
@@ -7,6 +8,7 @@ import com.na.bilabonnement.services.LocationService;
 import com.na.bilabonnement.services.UserService;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 
 import javax.servlet.http.HttpSession;
@@ -54,6 +56,17 @@ public class UserController {
 
         return "all-users";
     }
+
+    @GetMapping("/bruger/{userID}/slet")
+    public String deleteUser(HttpSession session, @PathVariable() int userID){
+        UserRole userRole = (UserRole) session.getAttribute("userRole");
+        if (userRole!=UserRole.ADMINISTRATOR){
+            return "redirect:/";
+        }
+        USER_SERVICE.deleteUser(userID);
+        return "redirect:/brugere";
+    }
+
 
     /*
     @Author Lasse

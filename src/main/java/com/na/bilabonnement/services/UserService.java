@@ -24,6 +24,7 @@ public class UserService {
     /**
      *  @author Tobias Arboe
      */
+    //TODO: change Unit Test
     public boolean checkLogin(String expectedUsername, String expectedPassword){
         boolean loginValidity = false;
 
@@ -88,11 +89,19 @@ public class UserService {
         return repo.create(newUser);
     }
 
+    public User getSingleUserByUsername(String username){
+        return repo.getSingleEntityByUsername(username);
+    }
+
     /**
      *  @author Mathias(Eliot996)
      */
     public List<User> getAllUsers() {
         return repo.getAllEntities();
+    }
+
+    public boolean deleteUser(int userId){
+        return repo.deleteById(userId);
     }
 
     /**
@@ -152,4 +161,5 @@ public class UserService {
         }
         return hexString.toString();
     }
+
 }

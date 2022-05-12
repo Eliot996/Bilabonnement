@@ -111,6 +111,16 @@ public class UserRepo implements IUserRepository {
 
     @Override
     public boolean deleteById(int id) {
+        Connection conn = DatabaseConnectionManager.getConnection();
+        try{
+            PreparedStatement stmt = conn.prepareStatement("DELETE FROM users WHERE id=?");
+            stmt.setInt(1, id);
+            stmt.execute();
+            DatabaseConnectionManager.closeConnection();
+            return true;
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
         return false;
     }
 
@@ -147,6 +157,4 @@ public class UserRepo implements IUserRepository {
         }
         return users;
     }
-
-
 }
