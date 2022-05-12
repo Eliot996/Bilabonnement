@@ -172,4 +172,33 @@ public class UserService {
         return hexString.toString();
     }
 
+    /**
+     *  @author Mathias(Eliot996)
+     *  Updates the user, WITHOUT a password
+     */
+    public User updateUser(int id, String username, int roleID, int locationID) {
+        User user = repo.getSingleEntityById(id);
+        user.setUsername(username);
+        user.setRole(UserRole.values()[roleID]);
+        user.setLocationId(locationID);
+        return repo.update(user);
+    }
+
+    /**
+     *  @author Mathias(Eliot996)
+     *  Updates the user, WITH a password
+     */
+    public User updateUser(int id, String username, String password, int roleID, int locationID) {
+        String salt = generateSalt();
+        String pepper = generatePepper();
+
+        User user = repo.getSingleEntityById(id);
+        user.setUsername(username);
+        user.setSalt(salt);
+        user.setPassword(hashPassword(pepper, password, salt));
+        user.setRole(UserRole.values()[roleID]);
+        user.setLocationId(locationID);
+
+        return repo.update(user);
+    }
 }

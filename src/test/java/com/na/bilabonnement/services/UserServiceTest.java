@@ -1,6 +1,7 @@
 package com.na.bilabonnement.services;
 
 import com.na.bilabonnement.models.User;
+import com.na.bilabonnement.models.UserRole;
 import com.na.bilabonnement.repositories.DummyUserRepo;
 import org.junit.jupiter.api.Test;
 
@@ -82,7 +83,7 @@ class UserServiceTest
      *  @author Mathias(Eliot996)
      */
     @Test
-    void GetAllUsers(){
+    void getAllUsers(){
         // Arrange
         UserService userService = new UserService();
         userService.setRepo(new DummyUserRepo());
@@ -95,4 +96,102 @@ class UserServiceTest
         // assert
         assertEquals(expectedLength,actualLength);
     }
+
+    @Test
+    void updateUser_username(){
+        // Arrange
+        UserService userService = new UserService();
+        userService.setRepo(new DummyUserRepo());
+
+        String name = "test name";
+        String password = "password";
+        int roleID = 1;
+        int locationID = 0;
+
+        String expected = "changed name";
+
+        User user = userService.createUser(name, password, roleID, locationID);
+
+        // Act
+        user = userService.updateUser(user.getId(), expected, roleID, locationID);
+
+        String actual = user.getUsername();
+
+        // assert
+        assertEquals(expected,actual);
+    }
+
+    @Test
+    void updateUser_location(){
+        // Arrange
+        UserService userService = new UserService();
+        userService.setRepo(new DummyUserRepo());
+
+        String name = "test name";
+        String password = "password";
+        int roleID = 1;
+        int locationID = 0;
+
+        int expected = 1;
+
+        User user = userService.createUser(name, password, roleID, locationID);
+
+        // Act
+        user = userService.updateUser(user.getId(), password, roleID, expected);
+
+        int actual = user.getLocationId();
+
+        // assert
+        assertEquals(expected,actual);
+    }
+
+    @Test
+    void updateUser_roleID(){
+        // Arrange
+        UserService userService = new UserService();
+        userService.setRepo(new DummyUserRepo());
+
+        String name = "test name";
+        String password = "password";
+        int roleID = 1;
+        int locationID = 0;
+
+        UserRole expected = UserRole.ADMINISTRATOR;
+
+        User user = userService.createUser(name, password, roleID, locationID);
+
+        // Act
+        user = userService.updateUser(user.getId(), password, 3, locationID);
+
+        UserRole actual = user.getRole();
+
+        // assert
+        assertEquals(expected,actual);
+    }
+
+    @Test
+    void updateUser_password(){
+        // Arrange
+        UserService userService = new UserService();
+        userService.setRepo(new DummyUserRepo());
+
+        String name = "test name";
+        String password = "password";
+        int roleID = 1;
+        int locationID = 0;
+
+        String newPassword = "new password";
+
+        User user = userService.createUser(name, password, roleID, locationID);
+
+        // Act
+        user = userService.updateUser(user.getId(), name, newPassword, roleID, locationID);
+
+        User actual = userService.login(user.getUsername(), newPassword);
+
+        // assert
+        assertEquals(user.getId(), actual.getId());
+    }
+
+
 }
