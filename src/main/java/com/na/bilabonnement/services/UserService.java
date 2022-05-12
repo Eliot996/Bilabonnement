@@ -59,16 +59,20 @@ public class UserService {
     private boolean checkPassword(String userPassword, String userSalt, String passwordToCheck) {
         String hashToCheck;
 
+
         for (int i = 0; i < PEPPER_CHARACTERS.length(); i++) {
             hashToCheck = hashPassword(PEPPER_CHARACTERS.substring(i, i+1),
                     passwordToCheck,
                     userSalt);
+
             if (hashToCheck.equals(userPassword)) {
                 return true;
             }
         }
         return false;
     }
+
+
 
 
     /**
