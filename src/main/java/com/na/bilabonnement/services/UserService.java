@@ -89,8 +89,15 @@ public class UserService {
         return repo.create(newUser);
     }
 
-    public User getSingleUserByUsername(String username){
+    public User getUser(String username){
         return repo.getSingleEntityByUsername(username);
+    }
+
+    /**
+     *  @author Mathias(Eliot996)
+     */
+    public User getUser(int id){
+        return repo.getSingleEntityById(id);
     }
 
     /**
@@ -100,6 +107,9 @@ public class UserService {
         return repo.getAllEntities();
     }
 
+    /**
+     *  @author Sofia
+     */
     public boolean deleteUser(int userId){
         return repo.deleteById(userId);
     }

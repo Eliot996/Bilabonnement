@@ -1,7 +1,6 @@
 package com.na.bilabonnement.services;
 
 import com.na.bilabonnement.models.User;
-import com.na.bilabonnement.repositories.UserRepo;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -17,7 +16,7 @@ class LoginTest
         //Arrange
         UserService userService = new UserService();
 
-        final User validUser = userService.getSingleUserByUsername("Sofia");
+        final User validUser = userService.getUser("Sofia");
         final User invalidUser = null;
 
         String validUname1 = "Sofia";
