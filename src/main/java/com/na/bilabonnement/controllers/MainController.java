@@ -24,6 +24,10 @@ public class MainController {
     @GetMapping("/")
         public String landingPage(HttpSession session, Model model){
 
+        if (session.getAttribute("userID") != null){
+            return "redirect:/home";
+        }
+
         model.addAttribute("user", new User());
         return "landingpage";
     }
