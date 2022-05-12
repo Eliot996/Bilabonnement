@@ -18,21 +18,12 @@
             <input type="text" th:placeholder="${user.username}" th:field="*{username}" required>  <br><br>
 
             <label ><b>Ny adgangskode:</b></label> <br>
-            <input type="password" placeholder="Indtast adgangskode" th:field="*{password}" required>  <br> <br>
+            <input type="password" placeholder="Indtast adgangskode" th:field="*{password}">  <br> <br>
 
-            <label><b>Rolle:</b> <br>
+            <label><b>Rolle: </b> <br>
                 <select th:field="*{roleID}">
-                    <option th:value="0" th:text="'Dataregistrering'">
-                    </option>
-                    <option th:value="1" th:text="'Skade og Udbedring'"
-                            th:selected="${user.role.toString() == 'DAMAGE_AND_RECTIFICATION'}">
-                    </option>
-                    <option th:value="2" th:text="'Forretningsudvikler'"
-                            th:selected="${user.role.toString() == 'BUSINESS_DEVELOPER'}">
-                    </option>
-                    <option th:value="3" th:text="'Administrator'"
-                            th:selected="${user.role.toString() == 'ADMINISTRATOR'}">
-                    </option>
+                    <option th:each="role : ${roles}" th:value="${role.id}" th:text="${role.name}"
+                            th:selected="${user.roleID == role.id}"></option>
                 </select>
             </label> <br><br>
 
