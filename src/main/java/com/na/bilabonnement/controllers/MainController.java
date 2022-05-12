@@ -39,7 +39,7 @@ public class MainController {
 
             session.setAttribute("userID", user.getId());
             session.setAttribute("userRole", user.getRole());
-            return "redirect:/success";
+            return "redirect:/home";
         }
 
         else
@@ -47,6 +47,9 @@ public class MainController {
             return "redirect:/";
         }
    }
+
+
+
 
    @GetMapping("/fail")
        public String fail()
