@@ -49,7 +49,13 @@ public class DummyUserRepo implements IUserRepository
 
     @Override
     public User update(User entity) {
-        return null;
+        User user = getSingleEntityById(entity.getId());
+        user.setUsername(entity.getUsername());
+        user.setPassword(entity.getPassword());
+        user.setSalt(entity.getSalt());
+        user.setRole(entity.getRole());
+        user.setLocationId(entity.getLocationId());
+        return user;
     }
 
     @Override
