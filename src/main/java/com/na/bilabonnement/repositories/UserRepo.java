@@ -45,9 +45,31 @@ public class UserRepo implements IUserRepository {
         return getSingleEntityByUsername(entity.getUsername());
     }
 
+    /**
+     *  @author Mathias(Eliot996)
+     */
     @Override
     public User getSingleEntityById(int id) {
-        return null;
+        Connection con = DatabaseConnectionManager.getConnection();
+
+        String selectSQL = "SELECT * FROM users WHERE `id` = ?;";
+
+        ResultSet rs = null;
+        try {
+            PreparedStatement stmt = con.prepareStatement(selectSQL);
+            stmt.setInt(1, id);
+            rs = stmt.executeQuery();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        User result = null;
+        if (rs != null) {
+            result = makeUserFromResultSet(rs);
+        }
+
+        DatabaseConnectionManager.closeConnection();
+        return result;
     }
 
 
@@ -76,7 +98,8 @@ public class UserRepo implements IUserRepository {
         }
 
         DatabaseConnectionManager.closeConnection();
-        return result;    }
+        return result;
+    }
 
     /**
      *  @author Mathias(Eliot996)
@@ -104,9 +127,31 @@ public class UserRepo implements IUserRepository {
         return result;
     }
 
+    /**
+     *  @author Mathias(Eliot996)
+     */
     @Override
     public User update(User entity) {
-        return null;
+        Connection con = DatabaseConnectionManager.getConnection();
+
+        String insertSQL = "UPDATE `bilabonnement`.`Users` " +
+                           "SET `name` = ?, `password` = ?, `salt` = ?, `role` = ?, `locationId` = ? " +
+                           "WHERE (`id` = ?);";
+
+        try {
+            PreparedStatement stmt = con.prepareStatement(insertSQL);
+            stmt.setString(1, entity.getUsername());
+            stmt.setString(2, entity.getPassword());
+            stmt.setString(3, entity.getSalt());
+            stmt.setString(4, entity.getRole().toString());
+            stmt.setInt(5, entity.getLocationId());
+            stmt.setInt(6, entity.getId());
+            stmt.execute();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        return getSingleEntityByUsername(entity.getUsername());
     }
 
     @Override
