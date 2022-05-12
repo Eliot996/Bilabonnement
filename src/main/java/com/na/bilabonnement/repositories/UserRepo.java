@@ -154,6 +154,9 @@ public class UserRepo implements IUserRepository {
         return getSingleEntityByUsername(entity.getUsername());
     }
 
+    /*
+    @Author Sofia
+     */
     @Override
     public boolean deleteById(int id) {
         Connection conn = DatabaseConnectionManager.getConnection();

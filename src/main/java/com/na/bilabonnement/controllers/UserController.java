@@ -57,11 +57,14 @@ public class UserController {
         return "all-users";
     }
 
+    /*
+    @Author Sofia
+     */
     @GetMapping("/bruger/{userID}/slet")
     public String deleteUser(HttpSession session, @PathVariable() int userID){
         UserRole userRole = (UserRole) session.getAttribute("userRole");
         if (userRole!=UserRole.ADMINISTRATOR){
-            return "redirect:/";
+            return "redirect:/logout";
         }
         USER_SERVICE.deleteUser(userID);
         return "redirect:/brugere";
@@ -69,18 +72,17 @@ public class UserController {
 
 
 
-    @GetMapping("/home")
+    @GetMapping ("/home")
     public String home(HttpSession session){
         UserRole userRole = (UserRole)session.getAttribute("userRole");
         if (userRole == UserRole.ADMINISTRATOR){
             return "administratorpage";
-        }
-        else if (userRole == UserRole.BUSINESS_DEVELOPER)
+        } else if (userRole == UserRole.BUSINESS_DEVELOPER)
             return "businessdeveloper";
         else if (userRole == UserRole.DAMAGE_AND_RECTIFICATION)
             return "damageAndRectification";
         else if (userRole == UserRole.DATA_REGISTRATION)
-            return "damageAndRectification";
+            return "dataregistration";
         return "redirect:/home";
     }
 
