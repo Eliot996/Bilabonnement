@@ -1,5 +1,6 @@
 package com.na.bilabonnement.controllers;
 
+import com.na.bilabonnement.models.Location;
 import com.na.bilabonnement.models.UserRole;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -67,10 +68,45 @@ public class UserController {
             return "redirect:/";
         }
 
-        model.addAttribute("user",USER_SERVICE.getUser(userID));
+        User user = USER_SERVICE.getUser(userID);
+
+        // setting the roleId to make the dropdown work
+        switch (user.getRole()) {
+            case DATA_REGISTRATION:         user.setRoleID(0);  break;
+            case DAMAGE_AND_RECTIFICATION:  user.setRoleID(1);  break;
+            case BUSINESS_DEVELOPER:        user.setRoleID(2);  break;
+            case ADMINISTRATOR:             user.setRoleID(3);  break;
+        }
+
+        model.addAttribute("user", user);
         model.addAttribute("locations",LOCATION_SERVICE.getAllLocations());
 
+        // brutalized to make the dropdown work...
+        Location[] roles = {
+                new Location(0, "Dataregistrering"),
+                new Location(1, "Skade og Udbedring"),
+                new Location(2, "Forretningsudvikler"),
+                new Location(3, "Administrator")
+        };
+        model.addAttribute("roles", roles);
+
         return "edit-user";
+    }
+
+    @PostMapping("/bruger/{userID}")
+    public String editUser(HttpSession session, @PathVariable() int userID, @ModelAttribute User user){
+        UserRole userRole = (UserRole) session.getAttribute("userRole");
+        if (userRole!=UserRole.ADMINISTRATOR){
+            return "redirect:/";
+        }
+
+        if (user.getPassword().equals("")) {
+            USER_SERVICE.updateUser(userID,user.getUsername(), user.getRoleID(), user.getLocationId());
+        } else {
+            USER_SERVICE.updateUser(userID,user.getUsername(), user.getPassword(), user.getRoleID(), user.getLocationId());
+        }
+
+        return "redirect:/bruger/" + userID;
     }
 
     /*
