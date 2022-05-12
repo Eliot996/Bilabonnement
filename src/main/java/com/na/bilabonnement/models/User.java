@@ -24,6 +24,8 @@ public class User {
         this.locationId = locationId;
     }
 
+
+
     public User() {
 
     }
@@ -83,4 +85,6 @@ public class User {
     public void setRoleID(int roleID) {
         this.roleID = roleID;
     }
+
+
 }

@@ -24,6 +24,10 @@ public class MainController {
     @GetMapping("/")
         public String landingPage(HttpSession session, Model model){
 
+        if (session.getAttribute("userID") != null){
+            return "redirect:/home";
+        }
+
         model.addAttribute("user", new User());
         return "landingpage";
     }
@@ -35,8 +39,6 @@ public class MainController {
 
         if (user != null)
         {
-
-
             session.setAttribute("userID", user.getId());
             session.setAttribute("userRole", user.getRole());
             return "redirect:/home";
@@ -63,6 +65,9 @@ public class MainController {
         return "success";
     }
 
+    /*
+    @Author Sofia
+     */
     @GetMapping("/logout")
     public String logout(HttpSession session) {
         session.invalidate();
