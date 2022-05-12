@@ -14,10 +14,10 @@ public class DummyUserRepo implements IUserRepository
     private List<User> listOfUsers = new ArrayList<User>();
 
     public DummyUserRepo(){
-        User userOne = new User(-1, "Sofia", "1234", "salt", UserRole.DATA_REGISTRATION, 0);
-        User userTwo = new User(-1, "Lasse", "password", "salt", UserRole.DAMAGE_AND_RECTIFICATION, 0);
-        User userThree = new User(-1, "Arboe", "test", "salt", UserRole.BUSINESS_DEVELOPER, 0);
-        User userFour = new User(-1, "Mathias", "Pass1234", "salt", UserRole.ADMINISTRATOR, 0);
+        User userOne = new User(0, "Sofia", "1234", "salt", UserRole.DATA_REGISTRATION, 0);
+        User userTwo = new User(1, "Lasse", "password", "salt", UserRole.DAMAGE_AND_RECTIFICATION, 0);
+        User userThree = new User(2, "Arboe", "test", "salt", UserRole.BUSINESS_DEVELOPER, 0);
+        User userFour = new User(3, "Mathias", "Pass1234", "salt", UserRole.ADMINISTRATOR, 0);
 
         listOfUsers.add(userOne);
         listOfUsers.add(userTwo);
@@ -27,13 +27,18 @@ public class DummyUserRepo implements IUserRepository
 
     @Override
     public User create(User entity) {
-
-
+        entity.setId(listOfUsers.size());
+        listOfUsers.add(entity);
         return entity;
     }
 
     @Override
     public User getSingleEntityById(int id) {
+        for (User user : listOfUsers) {
+            if (user.getId() == id) {
+                return user;
+            }
+        }
         return null;
     }
 
@@ -49,11 +54,22 @@ public class DummyUserRepo implements IUserRepository
 
     @Override
     public boolean deleteById(int id) {
+        for (User user : listOfUsers) {
+            if (user.getId() == id) {
+                listOfUsers.remove(user);
+                return true;
+            }
+        }
         return false;
     }
 
     @Override
     public User getSingleEntityByUsername(String username) {
+        for (User user : listOfUsers) {
+            if (user.getUsername().equals(username)) {
+                return user;
+            }
+        }
         return null;
     }
 }
