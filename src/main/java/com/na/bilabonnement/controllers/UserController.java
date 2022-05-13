@@ -96,7 +96,7 @@ public class UserController {
     @PostMapping("/bruger/{userID}")
     public String editUser(HttpSession session, @PathVariable() int userID, @ModelAttribute User user){
         UserRole userRole = (UserRole) session.getAttribute("userRole");
-        if (userRole!=UserRole.ADMINISTRATOR){
+        if (userRole != UserRole.ADMINISTRATOR){
             return "redirect:/";
         }
 
