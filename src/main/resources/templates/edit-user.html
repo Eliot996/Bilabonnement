@@ -34,9 +34,12 @@
                 </select>
             </label> <br> <br>
 
-            <button type="submit">Opret bruger</button>
+            <button type="submit">Rediger bruger</button>
         </div>
     </form>
+    <a th:href="@{/bruger/{userId}/slet(userId=${user.id})}">
+        <button class="button">Slet</button>
+    </a>
 </div>
 </body>
 
