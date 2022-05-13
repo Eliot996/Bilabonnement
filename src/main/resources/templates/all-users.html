@@ -3,16 +3,16 @@
 <head>
     <meta charset="UTF-8">
     <title>Bruger</title>
-    <link rel="stylesheet" th:href="@{general.css}">
-    <link rel="stylesheet" th:href="@{all-users.css}">
+    <link rel="stylesheet" th:href="@{/general.css}">
+    <link rel="stylesheet" th:href="@{/all-users.css}">
 </head>
 <body>
 <header th:insert="fragments/fragments.html :: header"> </header>
 
 <div class="content-under-header">
-    <!--<div th:if="${listOfUsers.size() == 0}">
+    <div th:if="${listOfUsers.size() == 0}">
         <h2>Der er ikke nogle bruger</h2>
-    </div>-->
+    </div>
     <div>
         <h1 class="center_things">Bruger:</h1>
     <section id="all_buttons_in_body_alluser" th:each="user : ${listOfUsers}">
