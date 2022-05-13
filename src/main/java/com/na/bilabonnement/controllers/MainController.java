@@ -25,6 +25,12 @@ public class MainController {
     @GetMapping("/")
         public String landingPage(HttpSession session, Model model){
 
+        if (session.getAttribute("loginSuccess") == null){
+            session.setAttribute("loginSuccess", "none");
+        }
+        model.addAttribute("loginValidity", session.getAttribute("loginSuccess"));
+        System.out.println(model.getAttribute("loginValidity"));
+
         if (session.getAttribute("userID") != null){
             return "redirect:/home";
         }
@@ -42,11 +48,13 @@ public class MainController {
         {
             session.setAttribute("userID", user.getId());
             session.setAttribute("userRole", user.getRole());
+            session.setAttribute("loginSuccess", "success");
             return "redirect:/home";
         }
 
         else
         {
+            session.setAttribute("loginSuccess", "fail");
             return "redirect:/";
         }
    }

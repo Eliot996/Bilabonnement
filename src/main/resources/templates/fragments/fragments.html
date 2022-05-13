@@ -6,11 +6,24 @@
     <link rel="stylesheet" th:href="@{general.css}">
 </head>
 <body>
+
 <header class="header-style" th:fragment="header">
     <img id="img_style" src="pictures/logo.jpg">
    <a th:href="@{/logout}">
        <button id="all_buttons_in_header" type="submit">Log ud</button>
    </a>
 </header>
+
+<form th:fragment="loginForm"  action="#" th:action="@{/login}" th:object="${user}" method="post">
+
+    <label><b>Brugernavn:</b></label> <br>
+    <input type="text" placeholder="Indtast brugernavn" name="uname"> <br> <br>
+
+    <label> <b>Adgangskode:</b></label> <br>
+    <input type="password" placeholder="Indtast adgangskode" name="psw"> <br> <br>
+
+    <button type="submit">Log ind</button>
+</form>
+
 </body>
 </html>

@@ -12,18 +12,23 @@
     <img class="img_style" src="pictures/logo.jpg">
 </header>
 
-<div class="content-under-header">
-<form  action="#" th:action="@{/login}" th:object="${user}" method="post">
+    <div  class="content-under-header">
+        <form  action="#" th:action="@{/login}" th:object="${user}" method="post">
 
-        <label><b>Brugernavn:</b></label> <br>
-        <input type="text" placeholder="Indtast brugernavn" name="uname"> <br> <br>
+            <label><b>Brugernavn:</b></label> <br>
+            <input type="text" placeholder="Indtast brugernavn" name="uname"> <br> <br>
 
-        <label> <b>Adgangskode:</b></label> <br>
-        <input type="password" placeholder="Indtast adgangskode" name="psw"> <br> <br>
+            <label> <b>Adgangskode:</b></label> <br>
+            <input type="password" placeholder="Indtast adgangskode" name="psw"> <br> <br>
 
-        <button type="submit">Log ind</button>
-</form>
-</div>
+            <button type="submit">Log ind</button>
+            <div th:if="${loginValidity == 'fail'}">
+                <p>Dit brugernavn eller kode var forkert</p>
+            </div>
+        </form>
+
+    </div>
+
 
 </body>
 </html>
