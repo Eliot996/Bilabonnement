@@ -43,7 +43,7 @@ public class UserController {
     public String createUser(HttpSession session, @ModelAttribute User user) {
         User createdUser = USER_SERVICE.createUser(user.getUsername(), user.getPassword(), user.getRoleID(), user.getLocationId());
 
-        return "redirect:/user/" + createdUser.getId();
+        return "redirect:/bruger/" + createdUser.getId();
     }
 
     /**
