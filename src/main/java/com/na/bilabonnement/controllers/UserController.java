@@ -111,7 +111,6 @@ public class UserController {
 
     /*
     @Author Sofia
-    @Author Lasse
      */
     @GetMapping("/bruger/{userID}/slet")
     public String deleteUser(HttpSession session, @PathVariable() int userID){
@@ -123,22 +122,57 @@ public class UserController {
         return "redirect:/brugere";
     }
 
-    /*
-    @Author Lasse
-    */
+
+
     @GetMapping ("/home")
     public String home(HttpSession session){
         UserRole userRole = (UserRole)session.getAttribute("userRole");
         if (userRole == UserRole.ADMINISTRATOR){
             return "administratorpage";
-        } else if (userRole == UserRole.BUSINESS_DEVELOPER)
+        } else if (userRole == UserRole.BUSINESS_DEVELOPER) {
             return "businessdeveloper";
-        else if (userRole == UserRole.DAMAGE_AND_RECTIFICATION)
+        }
+        else if (userRole == UserRole.DAMAGE_AND_RECTIFICATION) {
             return "damageAndRectification";
-        else if (userRole == UserRole.DATA_REGISTRATION)
+        }
+        else if (userRole == UserRole.DATA_REGISTRATION) {
             return "dataregistration";
-        return "redirect:/home";
+        }
+
+        return "redirect:/";
     }
+
+    /*
+    @Author Lasse
+    */
+    /*@GetMapping("/admin")
+    public String admin(){
+        return "administratorpage";
+    }
+
+    *//*
+    @Author Sofia
+     *//*
+    @GetMapping("/dataregistrering")
+    public String dataregistration(){
+        return "dataregistration";
+    }
+
+    *//*
+    @Author Sofia
+     *//*
+    @GetMapping("/skade_og_udbedring")
+    public String damageAndRectification(){
+        return "damageAndRectification";
+    }
+
+    *//*
+    @Author Lasse
+    *//*
+    @GetMapping("/forretningsudvikler")
+    public String businessdeveloper(){
+        return "businessdeveloper";
+    }*/
 
 
 }
