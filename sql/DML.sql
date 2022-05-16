@@ -28,3 +28,9 @@ Values ("Mathias",
         1,
         'v{zF/ $HY{ti|%xP');
 
+
+--for cars
+INSERT INTO `bilabonnement`.`cars` (`chassisNumber`, `status`, `make`, `model`, `trimLevel`, `scrapPrice`, `registrationFee`, `co2Emission`, `kilometersDriven`, `damages`, `colour`, `fuelType`, `locationId`) VALUES ('12345678', 'klar til levering', 'citroen', 'c5', 'tip top', '5000', '20000', '126', '97000', 'punkteret', 'gul', 'dielsel', '1');
+INSERT INTO `bilabonnement`.`cars` (`chassisNumber`, `status`, `make`, `model`, `trimLevel`, `scrapPrice`, `registrationFee`, `co2Emission`, `kilometersDriven`, `damages`, `colour`, `fuelType`, `locationId`) VALUES ('12345', 'ikke klar', 'toyota', 'aygo', 'lort', '6000', '10002', '117', '20594', 'tip tip', 'grå', 'benzin', '2');
+INSERT INTO `bilabonnement`.`cars` (`chassisNumber`, `status`, `make`, `model`, `trimLevel`, `scrapPrice`, `registrationFee`, `co2Emission`, `kilometersDriven`, `damages`, `colour`, `fuelType`, `locationId`) VALUES ('123894', 'fint nok', 'renault', 'clio', 'sport', '4000', '123', '98', '50', 'ok', 'lilla', 'benzin', '2');
+INSERT INTO `bilabonnement`.`cars` (`chassisNumber`, `status`, `make`, `model`, `trimLevel`, `scrapPrice`, `registrationFee`, `co2Emission`, `kilometersDriven`, `damages`, `colour`, `fuelType`, `locationId`) VALUES ('12345123123', 'god stand', 'bmw', 'i4', 'brugt', '3500', '1234', '0', '197000', 'ingen', 'sort', 'el', '1');
