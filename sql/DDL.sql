@@ -45,7 +45,7 @@ CREATE TABLE `bilabonnement`.`cars` (
                                         PRIMARY KEY (`id`),
                                         UNIQUE INDEX `chassisNumber_UNIQUE` (`chassisNumber` ASC) VISIBLE,
                                         CONSTRAINT `locationId_FK`
-                                            FOREIGN KEY (`id`)
+                                            FOREIGN KEY (`locationId`)
                                                 REFERENCES `bilabonnement`.`locations` (`id`)
                                                 ON DELETE NO ACTION
                                                 ON UPDATE NO ACTION);
