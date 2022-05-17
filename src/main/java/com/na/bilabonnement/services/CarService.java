@@ -10,7 +10,24 @@ public class CarService {
         this.repo = repo;
     }
 
-    public Car createCar(Car car){
+    public Car createCar(int id, int chassisNumber, boolean status, String make, String model, String trimLevel,
+                         int scrapPrice, int registrationFee, int co2Emission, int kilometersDriven,
+                         String damage, String colour, String fuelType, int locationId){
+        Car car = new Car(
+                id,
+                chassisNumber,
+                status,
+                make,
+                model,
+                trimLevel,
+                scrapPrice,
+                registrationFee,
+                co2Emission,
+                kilometersDriven,
+                damage,
+                colour,
+                fuelType,
+                locationId);
         return repo.create(car);
     }
 

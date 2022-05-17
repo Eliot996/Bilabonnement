@@ -122,6 +122,35 @@ public class CarRepo implements ICarRepository{
     @Override
     public Car update(Car entity)
     {
+        Connection con = DatabaseConnectionManager.getConnection();
+
+        String insertSQL = "UPDATE `bilabonnement`.`car`" +
+                            "SET `id` = ?,  `status` = ?, `make` = ?, `model` = ?, `trimLevel` = ?, `scrapPrice` = ?, `registrationFee` = ?, `co2Emission` = ?, `kilometersDriven` = ?, `damages` = ?, `colour` = ?, `fuelType` = ?, `locationId` = ?" +
+                            "WHERE (`id` = ?);";
+
+
+
+        try {
+            PreparedStatement stmt = con.prepareStatement(insertSQL);
+            stmt.setInt(1, entity.getId());
+            stmt.setString(2, entity.isStatus());
+            stmt.setString(3, entity.getMake());
+            stmt.setString(4, entity.getModel());
+            stmt.setString(5, entity.getTrimLevel());
+            stmt.setInt(6, entity.getScrapPrice());
+            stmt.setInt(7, entity.getRegistrationFee());
+            stmt.setInt(8, entity.getCo2Emission());
+            stmt.setInt(9, entity.getKilometersDriven());
+            stmt.setString(10, entity.getDamage());
+            stmt.setString(11, entity.getColour());
+            stmt.setString(12, entity.getFuelType());
+            stmt.setInt(11, entity.getLocationId());
+
+
+            stmt.execute();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
         return null;
     }
 
