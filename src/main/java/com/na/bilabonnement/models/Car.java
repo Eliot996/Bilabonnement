@@ -1,0 +1,173 @@
+package com.na.bilabonnement.models;
+/*
+@Author Lasse
+*/
+
+public class Car
+{
+    private int id;
+    private int chassisNumber;
+    private boolean status;
+    private String make;
+    private String trimLevel;
+    private int scrapPrice;
+    private int registrationFee;
+    private int co2Emission;
+    private int kilometersDriven;
+    private String damage;
+    private String colour;
+    private String fuelType;
+    private int locationId;
+
+
+    public Car(int id, int chassisNumber, boolean status, String make, String trimLevel, int scrapPrice, int registrationFee, int co2Emission, int kilometersDriven, String damage, String colour, String fuelType, int locationId)
+    {
+        this.id = id;
+        this.chassisNumber = chassisNumber;
+        this.status = status;
+        this.make = make;
+        this.trimLevel = trimLevel;
+        this.scrapPrice = scrapPrice;
+        this.registrationFee = registrationFee;
+        this.co2Emission = co2Emission;
+        this.kilometersDriven = kilometersDriven;
+        this.damage = damage;
+        this.colour = colour;
+        this.fuelType = fuelType;
+        this.locationId = locationId;
+    }
+
+    public Car(){
+
+    }
+
+    public int getId()
+    {
+        return id;
+    }
+
+    public void setId(int id)
+    {
+        this.id = id;
+    }
+
+    public int getChassisNumber()
+    {
+        return chassisNumber;
+    }
+
+    public void setChassisNumber(int chassisNumber)
+    {
+        this.chassisNumber = chassisNumber;
+    }
+
+    public boolean isStatus()
+    {
+        return status;
+    }
+
+    public void setStatus(boolean status)
+    {
+        this.status = status;
+    }
+
+    public String getMake()
+    {
+        return make;
+    }
+
+    public void setMake(String make)
+    {
+        this.make = make;
+    }
+
+    public String getTrimLevel()
+    {
+        return trimLevel;
+    }
+
+    public void setTrimLevel(String trimLevel)
+    {
+        this.trimLevel = trimLevel;
+    }
+
+    public int getScrapPrice()
+    {
+        return scrapPrice;
+    }
+
+    public void setScrapPrice(int scrapPrice)
+    {
+        this.scrapPrice = scrapPrice;
+    }
+
+    public int getRegistrationFee()
+    {
+        return registrationFee;
+    }
+
+    public void setRegistrationFee(int registrationFee)
+    {
+        this.registrationFee = registrationFee;
+    }
+
+    public int getCo2Emission()
+    {
+        return co2Emission;
+    }
+
+    public void setCo2Emission(int co2Emission)
+    {
+        this.co2Emission = co2Emission;
+    }
+
+    public int getKilometersDriven()
+    {
+        return kilometersDriven;
+    }
+
+    public void setKilometersDriven(int kilometersDriven)
+    {
+        this.kilometersDriven = kilometersDriven;
+    }
+
+    public String getDamage()
+    {
+        return damage;
+    }
+
+    public void setDamage(String damage)
+    {
+        this.damage = damage;
+    }
+
+    public String getColour()
+    {
+        return colour;
+    }
+
+    public void setColour(String colour)
+    {
+        this.colour = colour;
+    }
+
+    public String getFuelType()
+    {
+        return fuelType;
+    }
+
+    public void setFuelType(String fuelType)
+    {
+        this.fuelType = fuelType;
+    }
+
+    public int getLocationId()
+    {
+        return locationId;
+    }
+
+    public void setLocationId(int locationId)
+    {
+        this.locationId = locationId;
+    }
+}

@@ -8,37 +8,38 @@
 </head>
 
 <body>
-<header th:insert="fragments/fragments.html :: header"> </header>
+<header th:insert="fragments/fragments.html :: header"></header>
 
-            <div class="content-under-header" id="all_buttons_in_body_createuser">
-                <form action="#" th:action="@{/opret-bruger}" th:object="${user}" method="post">
+<div class="content-under-header" id="all_buttons_in_body_createuser">
+    <form action="#" th:action="@{/opret-bruger}" th:object="${user}" method="post">
 
-                    <div>
-                        <label><b>Brugernavn:</b></label> <br>
-                        <input type="text" placeholder="Navn" th:field="*{username}" required>  <br><br>
+        <div>
+            <label><b>Brugernavn:</b></label> <br>
+            <input type="text" placeholder="Navn" th:field="*{username}" required> <br><br>
 
-                        <label ><b>Adgangskode:</b></label> <br>
-                        <input type="password" placeholder="Indtast adgangskode" th:field="*{password}" required>  <br> <br>
+            <label><b>Adgangskode:</b></label> <br>
+            <input type="password" placeholder="Indtast adgangskode" th:field="*{password}" required> <br> <br>
 
-                        <label><b>Rolle:</b> <br>
-                            <select th:field="*{roleID}">
-                                <option th:value="0" th:text="'Dataregistrering'"></option>
-                                <option th:value="1" th:text="'Skade og Udbedring'"></option>
-                                <option th:value="2" th:text="'Forretningsudvikler'"></option>
-                                <option th:value="3" th:text="'Administrator'"></option>
-                            </select>
-                        </label> <br><br>
+            <label><b>Rolle:</b> <br>
+                <select th:field="*{roleID}">
+                    <option th:value="0" th:text="'Dataregistrering'"></option>
+                    <option th:value="1" th:text="'Skade og Udbedring'"></option>
+                    <option th:value="2" th:text="'Forretningsudvikler'"></option>
+                    <option th:value="3" th:text="'Administrator'"></option>
+                </select>
+            </label> <br><br>
 
-                        <label><b>Lokation:</b> <br>
-                            <select th:field="*{locationId}">
-                                <option th:each="location : ${locations}" th:value="${location.id}" th:text="${location.name}"></option>
-                            </select>
-                        </label> <br> <br>
+            <label><b>Lokation:</b> <br>
+                <select th:field="*{locationId}">
+                    <option th:each="location : ${locations}" th:value="${location.id}"
+                            th:text="${location.name}"></option>
+                </select>
+            </label> <br> <br>
 
-                        <button type="submit">Opret bruger</button>
-                    </div>
-                </form>
-            </div>
+            <button type="submit">Opret bruger</button>
+        </div>
+    </form>
+</div>
 </body>
 
 </html>

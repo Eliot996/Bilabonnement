@@ -2,23 +2,23 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title th:text="${user.getUsername() + ' - Rediger'}">Opret Bruger</title>
+    <title th:text="${user.getUsername() + ' - Rediger'}">Opret bruger</title>
     <link rel="stylesheet" th:href="@{/general.css}">
     <link rel="stylesheet" th:href="@{/create-user.css}">
 </head>
 
 <body>
-<header th:insert="fragments/fragments.html :: header"> </header>
+<header th:insert="fragments/fragments.html :: header"></header>
 
 <div class="content-under-header" id="all_buttons_in_body_createuser">
     <form action="#" th:action="@{/bruger/{userId}(userId=${user.id})}" th:object="${user}" method="post">
 
         <div>
             <label><b>Brugernavn:</b></label> <br>
-            <input type="text" th:placeholder="${user.username}" th:field="*{username}" required>  <br><br>
+            <input type="text" th:placeholder="${user.username}" th:field="*{username}" required> <br><br>
 
-            <label ><b>Ny adgangskode:</b></label> <br>
-            <input type="password" placeholder="Indtast adgangskode" th:field="*{password}">  <br> <br>
+            <label><b>Ny adgangskode:</b></label> <br>
+            <input type="password" placeholder="Indtast adgangskode" th:field="*{password}"> <br> <br>
 
             <label><b>Rolle: </b> <br>
                 <select th:field="*{roleID}">
