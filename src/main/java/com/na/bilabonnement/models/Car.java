@@ -45,6 +45,11 @@ public class Car {
         this.id = id;
     }
 
+    public Car()
+    {
+
+    }
+
     public int getId()
     {
         return id;

@@ -18,6 +18,9 @@ public class CarRepo implements ICarRepository{
         return instance;
     }
 
+    /*
+    @Author Lasse
+    */
     @Override
     public Car create(Car entity)
     {
@@ -55,7 +58,11 @@ public class CarRepo implements ICarRepository{
         return null;
     }
 
+    /*
+    @Author Lasse
+    */
 
+    @Override
     public Car getSingleEntityByChassisNumber(int chassisNumber)
     {
         Connection con = DatabaseConnectionManager.getConnection();
@@ -80,6 +87,10 @@ public class CarRepo implements ICarRepository{
         return result;
     }
 
+    /*
+    @Author Lasse
+    */
+
     private Car makeCarFromResultSet(ResultSet rs)
     {
         List<Car> cars = makeCarsFromResultSet(rs);
@@ -89,28 +100,28 @@ public class CarRepo implements ICarRepository{
         return null;
     }
 
-        private List<Car> makeCarsFromResultSet(ResultSet rs) {
-            ArrayList<Car> cars = new ArrayList<>();
-            try {
-                while(rs.next()) {
-                    int carId = rs.getInt("id");
-                    int chassisNumber = rs.getInt("chassisnumber");
-                    String status = rs.getString("status");
-                    String make = rs.getString("make");
-                    String trimLevel = rs.getString("trimlevel");
-                    int scrapPrice = rs.getInt("scrapprice");
-                    int registrationFee = rs.getInt("registrationfee");
-                    int co2Emission = rs.getInt("co2emission");
-                    int kilometersDriven = rs.getInt("kilometersdriven");
-                    String damage = rs.getString("damage");
-                    String colour = rs.getString("colour");
-                    String fuelType = rs.getString("fueltype");
-                    int locationId = rs.getInt("locationId");
-                }
-            } catch (SQLException e) {
-                e.printStackTrace();
+    private List<Car> makeCarsFromResultSet(ResultSet rs) {
+        ArrayList<Car> cars = new ArrayList<>();
+        try {
+            while(rs.next()) {
+                int carId = rs.getInt("id");
+                int chassisNumber = rs.getInt("chassisnumber");
+                String status = rs.getString("status");
+                String make = rs.getString("make");
+                String trimLevel = rs.getString("trimlevel");
+                int scrapPrice = rs.getInt("scrapprice");
+                int registrationFee = rs.getInt("registrationfee");
+                int co2Emission = rs.getInt("co2emission");
+                int kilometersDriven = rs.getInt("kilometersdriven");
+                String damage = rs.getString("damage");
+                String colour = rs.getString("colour");
+                String fuelType = rs.getString("fueltype");
+                int locationId = rs.getInt("locationId");
             }
-            return cars;
+        } catch (SQLException e) {
+            e.printStackTrace();
+            }
+        return cars;
         }
 
     @Override
