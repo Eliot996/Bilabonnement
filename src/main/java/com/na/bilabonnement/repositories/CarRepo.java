@@ -127,7 +127,25 @@ public class CarRepo implements ICarRepository{
     @Override
     public List<Car> getAllEntities()
     {
-        return null;
+        Connection con = DatabaseConnectionManager.getConnection();
+
+        String selectSQL = "SELECT * FROM cars;";
+
+        ResultSet rs = null;
+        try {
+            PreparedStatement stmt = con.prepareStatement(selectSQL);
+            rs = stmt.executeQuery();
+        }   catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        List<Car> result = new ArrayList<>();
+        if (rs != null){
+            result = makeCarsFromResultSet(rs);
+        }
+
+        DatabaseConnectionManager.closeConnection();
+        return result;
     }
 
     @Override
