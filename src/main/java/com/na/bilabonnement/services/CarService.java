@@ -3,6 +3,8 @@ package com.na.bilabonnement.services;
 import com.na.bilabonnement.models.Car;
 import com.na.bilabonnement.repositories.*;
 
+import java.util.List;
+
 public class CarService {
 /*
 @Author Sofia
@@ -20,5 +22,9 @@ public class CarService {
 
     public boolean deleteCar(int carId){
         return repo.deleteById(carId);
+    }
+
+    public List<Car> getAllCars() {
+        return repo.getAllEntities();
     }
 }
