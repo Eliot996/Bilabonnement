@@ -37,8 +37,8 @@ public class Car
         this.locationId = locationId;
     }
 
-    public Car(){
-
+    public Car(int id){
+        this.id = id;
     }
 
     public int getId()
