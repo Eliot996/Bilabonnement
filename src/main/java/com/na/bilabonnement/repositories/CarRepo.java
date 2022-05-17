@@ -18,9 +18,9 @@ public class CarRepo implements ICarRepository{
         return instance;
     }
 
-    /*
-    @Author Lasse
-    */
+    /**
+     *  @author Lasse
+     */
     @Override
     public Car create(Car entity)
     {
@@ -53,17 +53,18 @@ public class CarRepo implements ICarRepository{
         return getSingleEntityByChassisNumber(entity.getChassisNumber());
     }
 
-
+    /**
+     *  @author Lasse
+     */
     @Override
     public Car getSingleEntityById(int id)
     {
         return null;
     }
 
-    /*
-    @Author Lasse
-    */
-
+    /**
+     *  @author Lasse
+     */
     @Override
     public Car getSingleEntityByChassisNumber(String chassisNumber)
     {
@@ -89,10 +90,9 @@ public class CarRepo implements ICarRepository{
         return result;
     }
 
-    /*
-    @Author Lasse
-    */
-
+    /**
+     *  @author Lasse
+     */
     private Car makeCarFromResultSet(ResultSet rs)
     {
         List<Car> cars = makeCarsFromResultSet(rs);
@@ -102,6 +102,10 @@ public class CarRepo implements ICarRepository{
         return null;
     }
 
+    /**
+     *  @author Mathias(Eliot996)
+     *  @author Lasse
+     */
     private List<Car> makeCarsFromResultSet(ResultSet rs) {
         ArrayList<Car> cars = new ArrayList<>();
         try {
@@ -128,8 +132,11 @@ public class CarRepo implements ICarRepository{
             e.printStackTrace();
             }
         return cars;
-        }
+    }
 
+    /**
+     *  @author Mathias(Eliot996)
+     */
     @Override
     public List<Car> getAllEntities()
     {
@@ -154,6 +161,9 @@ public class CarRepo implements ICarRepository{
         return result;
     }
 
+    /**
+     *  @author Tobias(H4ppyN4p)
+     */
     @Override
     public Car update(Car entity)
     {
@@ -189,6 +199,9 @@ public class CarRepo implements ICarRepository{
         return null;
     }
 
+    /**
+     *  @author Tobias(H4ppyN4p)
+     */
     @Override
     public boolean deleteById(int id) {
         Connection conn = DatabaseConnectionManager.getConnection();
