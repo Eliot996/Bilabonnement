@@ -3,8 +3,8 @@ package com.na.bilabonnement.models;
 @Author Lasse
 */
 
-public class Car
-{
+public class Car {
+
     private int id;
     private int chassisNumber;
     private String status;
@@ -65,7 +65,7 @@ public class Car
         this.chassisNumber = chassisNumber;
     }
 
-    public String isStatus()
+    public String getStatus()
     {
         return status;
     }

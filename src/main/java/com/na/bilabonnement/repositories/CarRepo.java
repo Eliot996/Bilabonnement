@@ -28,7 +28,7 @@ public class CarRepo implements ICarRepository{
         try {
             PreparedStatement stmt = conn.prepareStatement(insertSQL);
             stmt.setInt(1, entity.getChassisNumber());
-            stmt.setString(2, entity.isStatus());
+            stmt.setString(2, entity.getStatus());
             stmt.setString(3, entity.getMake());
             stmt.setString(4, entity.getTrimLevel());
             stmt.setInt(5, entity.getScrapPrice());
@@ -133,7 +133,7 @@ public class CarRepo implements ICarRepository{
         try {
             PreparedStatement stmt = con.prepareStatement(insertSQL);
             stmt.setInt(1, entity.getId());
-            stmt.setString(2, entity.isStatus());
+            stmt.setString(2, entity.getStatus());
             stmt.setString(3, entity.getMake());
             stmt.setString(4, entity.getModel());
             stmt.setString(5, entity.getTrimLevel());
