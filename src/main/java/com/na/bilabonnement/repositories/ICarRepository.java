@@ -4,5 +4,5 @@ import com.na.bilabonnement.models.Car;
 
 public interface ICarRepository extends IRepository<Car> {
 
-     Car getSingleEntityByChassisNumber(int chassisNumber);
+     Car getSingleEntityByChassisNumber(String chassisNumber);
 }
