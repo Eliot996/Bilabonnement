@@ -105,18 +105,22 @@ public class CarRepo implements ICarRepository{
         try {
             while(rs.next()) {
                 int carId = rs.getInt("id");
-                int chassisNumber = rs.getInt("chassisnumber");
+                String chassisNumber = rs.getString("chassisnumber");
                 String status = rs.getString("status");
                 String make = rs.getString("make");
+                String model = rs.getString("model");
                 String trimLevel = rs.getString("trimlevel");
                 int scrapPrice = rs.getInt("scrapprice");
                 int registrationFee = rs.getInt("registrationfee");
                 int co2Emission = rs.getInt("co2emission");
                 int kilometersDriven = rs.getInt("kilometersdriven");
-                String damage = rs.getString("damage");
+                String damage = rs.getString("damages");
                 String colour = rs.getString("colour");
                 String fuelType = rs.getString("fueltype");
                 int locationId = rs.getInt("locationId");
+                cars.add(new Car(carId, chassisNumber, status, make, model, trimLevel,
+                        scrapPrice, registrationFee, co2Emission, kilometersDriven,
+                        damage, colour, fuelType, locationId));
             }
         } catch (SQLException e) {
             e.printStackTrace();
