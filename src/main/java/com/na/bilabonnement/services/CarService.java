@@ -26,9 +26,9 @@ public class CarService {
      /**
           *  @author Arboe(H4ppyN4p)
           */
-    public Car updateCar( int chassisNumber, int id, String status, String make, String model, String trimLevel,
-                          int scrapPrice, int registrationFee, int co2Emission, int kilometersDriven,
-                          String damage, String colour, String fuelType, int locationId) {
+    public Car updateCar(String chassisNumber, int id, String status, String make, String model, String trimLevel,
+                         int scrapPrice, int registrationFee, int co2Emission, int kilometersDriven,
+                         String damage, String colour, String fuelType, int locationId) {
 
         Car car = repo.getSingleEntityByChassisNumber(chassisNumber);
 
@@ -48,5 +48,9 @@ public class CarService {
         car.setLocationId(locationId);
 
         return repo.update(car);
+    }
+
+    public Object getAllCars() {
+        return null;
     }
 }
