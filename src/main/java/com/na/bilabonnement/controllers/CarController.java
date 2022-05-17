@@ -11,7 +11,9 @@ import org.springframework.web.bind.annotation.PostMapping;
 import javax.servlet.http.HttpSession;
 
 public class CarController {
-
+/*
+@Author Sofia
+ */
     private final CarService CAR_SERVICE = new CarService();
     private final LocationService LOCATION_SERVICE = new LocationService();
 

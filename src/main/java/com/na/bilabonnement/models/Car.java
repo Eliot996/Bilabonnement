@@ -38,16 +38,8 @@ public class Car {
         this.fuelType = fuelType;
         this.locationId = locationId;
     }
+
     public Car(){
-    }
-
-    public Car(int i, int chassisNumber, boolean status, String make, String model, String trimLevel, int scrapPrice, int registrationFee, int co2Emission, int kilometersDriven, String damage, String colour, String fuelType, int id){
-        this.id = id;
-    }
-
-    public Car()
-    {
-
     }
 
     public int getId()

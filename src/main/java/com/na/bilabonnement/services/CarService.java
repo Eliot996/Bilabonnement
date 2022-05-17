@@ -4,12 +4,16 @@ import com.na.bilabonnement.models.Car;
 import com.na.bilabonnement.repositories.*;
 
 public class CarService {
-
+/*
+@Author Sofia
+ */
     private ICarRepository repo = CarRepo.getInstance();
     public void setRepo(ICarRepository repo) {
         this.repo = repo;
     }
-
+/*
+@Author Sofia
+ */
     public Car createCar(Car car){
         return repo.create(car);
     }

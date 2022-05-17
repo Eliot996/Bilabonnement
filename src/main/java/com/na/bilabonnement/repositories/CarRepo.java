@@ -135,7 +135,7 @@ public class CarRepo implements ICarRepository{
     {
         Connection con = DatabaseConnectionManager.getConnection();
 
-        String insertSQL = "UPDATE `bilabonnement`.`car`" +
+        String insertSQL = "UPDATE `bilabonnement`.`cars`" +
                             "SET `id` = ?,  `status` = ?, `make` = ?, `model` = ?, `trimLevel` = ?, `scrapPrice` = ?, `registrationFee` = ?, `co2Emission` = ?, `kilometersDriven` = ?, `damages` = ?, `colour` = ?, `fuelType` = ?, `locationId` = ?" +
                             "WHERE (`id` = ?);";
 
