@@ -29,4 +29,11 @@ public class CarController {
         Car createdCar = CAR_SERVICE.createCar(car);
         return "redirect:/bil/" + createdCar.getId();
     }
+
+    @GetMapping("/biler")
+    public String viewAllCars(HttpSession session, Model model) {
+        model.addAttribute("cars", CAR_SERVICE.getAllCars());
+
+        return "all-cars";
+    }
 }
