@@ -88,6 +88,11 @@ public class Car {
         return model;
     }
 
+    public void setModel(String model)
+    {
+        this.model = model;
+    }
+
     public String getTrimLevel()
     {
         return trimLevel;

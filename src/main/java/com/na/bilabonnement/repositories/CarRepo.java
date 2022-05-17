@@ -1,5 +1,6 @@
 package com.na.bilabonnement.repositories;
 import com.na.bilabonnement.models.Car;
+import com.na.bilabonnement.models.User;
 import com.na.bilabonnement.utils.DatabaseConnectionManager;
 
 import java.sql.Connection;
@@ -130,16 +131,16 @@ public class CarRepo implements ICarRepository{
         return null;
     }
 
+     /**
+          *  @author Arboe(H4ppyN4p)
+          */
     @Override
-    public Car update(Car entity)
-    {
+    public Car update(Car entity) {
         Connection con = DatabaseConnectionManager.getConnection();
 
         String insertSQL = "UPDATE `bilabonnement`.`cars`" +
-                            "SET `id` = ?,  `status` = ?, `make` = ?, `model` = ?, `trimLevel` = ?, `scrapPrice` = ?, `registrationFee` = ?, `co2Emission` = ?, `kilometersDriven` = ?, `damages` = ?, `colour` = ?, `fuelType` = ?, `locationId` = ?" +
-                            "WHERE (`id` = ?);";
-
-
+                "SET `id` = ?,  `status` = ?, `make` = ?, `model` = ?, `trimLevel` = ?, `scrapPrice` = ?, `registrationFee` = ?, `co2Emission` = ?, `kilometersDriven` = ?, `damages` = ?, `colour` = ?, `fuelType` = ?, `locationId` = ?" +
+                "WHERE (`id` = ?);";
 
         try {
             PreparedStatement stmt = con.prepareStatement(insertSQL);
@@ -155,16 +156,20 @@ public class CarRepo implements ICarRepository{
             stmt.setString(10, entity.getDamage());
             stmt.setString(11, entity.getColour());
             stmt.setString(12, entity.getFuelType());
-            stmt.setInt(11, entity.getLocationId());
+            stmt.setInt(13, entity.getLocationId());
 
+            stmt.setInt(14, entity.getChassisNumber());
 
             stmt.execute();
         } catch (SQLException e) {
             e.printStackTrace();
         }
-        return null;
+        return getSingleEntityByChassisNumber(entity.getChassisNumber());
     }
 
+    /**
+         *  @author Arboe(H4ppyN4p)
+         */
     @Override
     public boolean deleteById(int id) {
         Connection conn = DatabaseConnectionManager.getConnection();

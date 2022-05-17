@@ -29,6 +29,11 @@ public class DummyCarRepo implements ICarRepository
 
     @Override
     public Car getSingleEntityById(int id) {
+        for (Car car: listOfCars){
+            if (car.getId() == id){
+                return car;
+            }
+        }
         return null;
     }
 
@@ -41,6 +46,7 @@ public class DummyCarRepo implements ICarRepository
     public Car update(Car entity) {
         return null;
     }
+
 
     @Override
     public boolean deleteById(int id) {
@@ -55,6 +61,14 @@ public class DummyCarRepo implements ICarRepository
 
     @Override
     public Car getSingleEntityByChassisNumber(int chassisNumber) {
+        for (Car car: listOfCars){
+            System.out.println();
+            if (car.getChassisNumber() == chassisNumber){
+                return car;
+            }
+        }
         return null;
     }
+
+
 }
