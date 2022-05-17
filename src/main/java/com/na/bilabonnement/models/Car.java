@@ -6,7 +6,7 @@ package com.na.bilabonnement.models;
 public class Car {
 
     private int id;
-    private int chassisNumber;
+    private String chassisNumber;
     private String status;
     private String make;
     private String model;
@@ -21,7 +21,7 @@ public class Car {
     private int locationId;
 
 
-    public Car(int id, int chassisNumber, String status, String make, String model, String trimLevel, int scrapPrice, int registrationFee, int co2Emission, int kilometersDriven, String damage, String colour, String fuelType, int locationId)
+    public Car(int id, String chassisNumber, String status, String make, String model, String trimLevel, int scrapPrice, int registrationFee, int co2Emission, int kilometersDriven, String damage, String colour, String fuelType, int locationId)
     {
         this.id = id;
         this.chassisNumber = chassisNumber;
@@ -52,12 +52,12 @@ public class Car {
         this.id = id;
     }
 
-    public int getChassisNumber()
+    public String getChassisNumber()
     {
         return chassisNumber;
     }
 
-    public void setChassisNumber(int chassisNumber)
+    public void setChassisNumber(String chassisNumber)
     {
         this.chassisNumber = chassisNumber;
     }
