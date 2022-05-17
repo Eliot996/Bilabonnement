@@ -36,6 +36,8 @@ public class Car
         this.fuelType = fuelType;
         this.locationId = locationId;
     }
+    public Car(){
+    }
 
     public Car(int id){
         this.id = id;

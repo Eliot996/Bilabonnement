@@ -23,7 +23,8 @@ public class DummyCarRepo implements ICarRepository
 
     @Override
     public Car create(Car entity) {
-        return null;
+       listOfCars.add(entity);
+       return entity;
     }
 
     @Override
