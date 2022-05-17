@@ -1,6 +1,5 @@
 package com.na.bilabonnement.repositories;
 import com.na.bilabonnement.models.Car;
-import com.na.bilabonnement.models.UserRole;
 import com.na.bilabonnement.utils.DatabaseConnectionManager;
 
 import java.sql.Connection;
@@ -10,8 +9,8 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-public class CarRepo implements ICarRepository
-{
+public class CarRepo implements ICarRepository{
+
     private static final CarRepo instance = new CarRepo();
 
     private CarRepo() {}
@@ -23,15 +22,96 @@ public class CarRepo implements ICarRepository
     public Car create(Car entity)
     {
         Connection conn = DatabaseConnectionManager.getConnection();
+        String insertSQL = "INSERT INTO Cars (`id`, `chassisNumber`, `status`, `make`, `model`, `trimLevel`, `scrapPrice`, `registrationFee`, `co2Emission`, `kilometersDriven`, `damages`, `colour`, `fuelType`, `locationId`)" +
+                "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?);";
 
-        return null;
+        try {
+            PreparedStatement stmt = conn.prepareStatement(insertSQL);
+            stmt.setInt(1, entity.getChassisNumber());
+            stmt.setString(2, entity.isStatus());
+            stmt.setString(3, entity.getMake());
+            stmt.setString(4, entity.getTrimLevel());
+            stmt.setInt(5, entity.getScrapPrice());
+            stmt.setInt(6, entity.getRegistrationFee());
+            stmt.setInt(7, entity.getCo2Emission());
+            stmt.setInt(8, entity.getKilometersDriven());
+            stmt.setString(9, entity.getDamage());
+            stmt.setString(10, entity.getColour());
+            stmt.setString(11, entity.getFuelType());
+            stmt.setInt(12, entity.getLocationId());
+            stmt.execute();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+
+        return getSingleEntityByChassisNumber(entity.getChassisNumber());
     }
+
 
     @Override
     public Car getSingleEntityById(int id)
     {
         return null;
     }
+
+
+    private Car getSingleEntityByChassisNumber(int chassisNumber)
+    {
+        Connection con = DatabaseConnectionManager.getConnection();
+
+        String selectSQL = "SELECT * FROM cars " +
+                "WHERE `chassisNumber` = '" + chassisNumber +  "';";
+
+        ResultSet rs = null;
+        try {
+            PreparedStatement stmt = con.prepareStatement(selectSQL);
+            rs = stmt.executeQuery();
+        }   catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        Car result = null;
+        if (rs != null){
+            result = makeCarFromResultSet(rs);
+        }
+
+        DatabaseConnectionManager.closeConnection();
+        return result;
+    }
+
+    private Car makeCarFromResultSet(ResultSet rs)
+    {
+        List<Car> cars = makeCarsFromResultSet(rs);
+        if (cars.size() > 0) {
+            return cars.get(0);
+        }
+        return null;
+    }
+
+        private List<Car> makeCarsFromResultSet(ResultSet rs) {
+            ArrayList<Car> cars = new ArrayList<>();
+            try {
+                while(rs.next()) {
+                    int carId = rs.getInt("id");
+                    int chassisNumber = rs.getInt("chassisnumber");
+                    String status = rs.getString("status");
+                    String make = rs.getString("make");
+                    String trimLevel = rs.getString("trimlevel");
+                    int scrapPrice = rs.getInt("scrapprice");
+                    int registrationFee = rs.getInt("registrationfee");
+                    int co2Emission = rs.getInt("co2emission");
+                    int kilometersDriven = rs.getInt("kilometersdriven");
+                    String damage = rs.getString("damage");
+                    String colour = rs.getString("colour");
+                    String fuelType = rs.getString("fueltype");
+                    int locationId = rs.getInt("locationId");
+                }
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+            return cars;
+        }
 
     @Override
     public List<Car> getAllEntities()
@@ -59,4 +139,5 @@ public class CarRepo implements ICarRepository
         }
         return false;
     }
+
 }

@@ -7,7 +7,7 @@ public class Car
 {
     private int id;
     private int chassisNumber;
-    private boolean status;
+    private String status;
     private String make;
     private String trimLevel;
     private int scrapPrice;
@@ -20,7 +20,7 @@ public class Car
     private int locationId;
 
 
-    public Car(int id, int chassisNumber, boolean status, String make, String trimLevel, int scrapPrice, int registrationFee, int co2Emission, int kilometersDriven, String damage, String colour, String fuelType, int locationId)
+    public Car(int id, int chassisNumber, String status, String make, String trimLevel, int scrapPrice, int registrationFee, int co2Emission, int kilometersDriven, String damage, String colour, String fuelType, int locationId)
     {
         this.id = id;
         this.chassisNumber = chassisNumber;
@@ -61,12 +61,12 @@ public class Car
         this.chassisNumber = chassisNumber;
     }
 
-    public boolean isStatus()
+    public String isStatus()
     {
         return status;
     }
 
-    public void setStatus(boolean status)
+    public void setStatus(String status)
     {
         this.status = status;
     }
