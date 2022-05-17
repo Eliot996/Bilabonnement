@@ -26,22 +26,24 @@ public class CarRepo implements ICarRepository{
     {
         Connection conn = DatabaseConnectionManager.getConnection();
         String insertSQL = "INSERT INTO Cars (`id`, `chassisNumber`, `status`, `make`, `model`, `trimLevel`, `scrapPrice`, `registrationFee`, `co2Emission`, `kilometersDriven`, `damages`, `colour`, `fuelType`, `locationId`)" +
-                "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?);";
+                "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ? ,? ,?);";
 
         try {
             PreparedStatement stmt = conn.prepareStatement(insertSQL);
-            stmt.setInt(1, entity.getChassisNumber());
-            stmt.setString(2, entity.getStatus());
-            stmt.setString(3, entity.getMake());
-            stmt.setString(4, entity.getTrimLevel());
-            stmt.setInt(5, entity.getScrapPrice());
-            stmt.setInt(6, entity.getRegistrationFee());
-            stmt.setInt(7, entity.getCo2Emission());
-            stmt.setInt(8, entity.getKilometersDriven());
-            stmt.setString(9, entity.getDamage());
-            stmt.setString(10, entity.getColour());
-            stmt.setString(11, entity.getFuelType());
-            stmt.setInt(12, entity.getLocationId());
+            stmt.setInt(1, entity.getId());
+            stmt.setString(2, entity.getChassisNumber());
+            stmt.setString(3, entity.getStatus());
+            stmt.setString(4, entity.getMake());
+            stmt.setString(5, entity.getModel());
+            stmt.setString(6, entity.getTrimLevel());
+            stmt.setInt(7, entity.getScrapPrice());
+            stmt.setInt(8, entity.getRegistrationFee());
+            stmt.setInt(9, entity.getCo2Emission());
+            stmt.setInt(10, entity.getKilometersDriven());
+            stmt.setString(11, entity.getDamage());
+            stmt.setString(12, entity.getColour());
+            stmt.setString(13, entity.getFuelType());
+            stmt.setInt(14, entity.getLocationId());
             stmt.execute();
         } catch (SQLException e) {
             e.printStackTrace();
@@ -63,7 +65,7 @@ public class CarRepo implements ICarRepository{
     */
 
     @Override
-    public Car getSingleEntityByChassisNumber(int chassisNumber)
+    public Car getSingleEntityByChassisNumber(String chassisNumber)
     {
         Connection con = DatabaseConnectionManager.getConnection();
 
