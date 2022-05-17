@@ -10,8 +10,14 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-public class CarRepo implements IRepository <Car>
-{
+public class CarRepo implements IRepository <Car> {
+
+    private static final CarRepo instance = new CarRepo();
+    private CarRepo(){}
+    public static CarRepo getInstance(){
+        return instance;
+    }
+
     @Override
     public Car create(Car entity)
     {
@@ -43,4 +49,5 @@ public class CarRepo implements IRepository <Car>
     {
         return false;
     }
+
 }
