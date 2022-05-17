@@ -1,12 +1,14 @@
 package com.na.bilabonnement.services;
 
 import com.na.bilabonnement.models.Car;
-import com.na.bilabonnement.repositories.CarRepo;
-import com.na.bilabonnement.repositories.ICarRepository;
-import com.na.bilabonnement.repositories.IUserRepository;
+import com.na.bilabonnement.repositories.*;
 
 public class CarService {
 
+    private ICarRepository repo = CarRepo.getInstance();
+    public void setRepo(ICarRepository repo) {
+        this.repo = repo;
+    }
 
     public Car createCar(int id, int chassisNumber, boolean status, String make, String trimLevel,
                          int scrapPrice, int registrationFee, int co2Emission, int kilometersDriven,
@@ -26,5 +28,9 @@ public class CarService {
                 fuelType,
                 locationId);
         return repo.create(car);
+    }
+
+    public boolean deleteCar(int carId){
+        return repo.deleteById(carId);
     }
 }
