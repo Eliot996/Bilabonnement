@@ -52,4 +52,8 @@ public class DummyCarRepo implements ICarRepository
         return false;
     }
 
+    @Override
+    public Car getSingleEntityByChassisNumber(int chassisNumber) {
+        return null;
+    }
 }
