@@ -9,6 +9,7 @@ public class Car
     private int chassisNumber;
     private String status;
     private String make;
+    private String model;
     private String trimLevel;
     private int scrapPrice;
     private int registrationFee;
@@ -20,12 +21,13 @@ public class Car
     private int locationId;
 
 
-    public Car(int id, int chassisNumber, String status, String make, String trimLevel, int scrapPrice, int registrationFee, int co2Emission, int kilometersDriven, String damage, String colour, String fuelType, int locationId)
+    public Car(int id, int chassisNumber, String status, String make, String model, String trimLevel, int scrapPrice, int registrationFee, int co2Emission, int kilometersDriven, String damage, String colour, String fuelType, int locationId)
     {
         this.id = id;
         this.chassisNumber = chassisNumber;
         this.status = status;
         this.make = make;
+        this.model = model;
         this.trimLevel = trimLevel;
         this.scrapPrice = scrapPrice;
         this.registrationFee = registrationFee;
@@ -36,8 +38,10 @@ public class Car
         this.fuelType = fuelType;
         this.locationId = locationId;
     }
+    public Car(){
+    }
 
-    public Car(int id){
+    public Car(int i, int chassisNumber, boolean status, String make, String model, String trimLevel, int scrapPrice, int registrationFee, int co2Emission, int kilometersDriven, String damage, String colour, String fuelType, int id){
         this.id = id;
     }
 
@@ -84,6 +88,12 @@ public class Car
     public void setMake(String make)
     {
         this.make = make;
+    }
+
+
+    public String getModel()
+    {
+        return model;
     }
 
     public String getTrimLevel()
