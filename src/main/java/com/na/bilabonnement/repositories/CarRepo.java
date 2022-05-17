@@ -1,5 +1,46 @@
 package com.na.bilabonnement.repositories;
+import com.na.bilabonnement.models.Car;
+import com.na.bilabonnement.models.UserRole;
+import com.na.bilabonnement.utils.DatabaseConnectionManager;
 
-public class CarRepo
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
+
+public class CarRepo implements IRepository <Car>
 {
+    @Override
+    public Car create(Car entity)
+    {
+        Connection conn = DatabaseConnectionManager.getConnection();
+
+        return null;
+    }
+
+    @Override
+    public Car getSingleEntityById(int id)
+    {
+        return null;
+    }
+
+    @Override
+    public List<Car> getAllEntities()
+    {
+        return null;
+    }
+
+    @Override
+    public Car update(Car entity)
+    {
+        return null;
+    }
+
+    @Override
+    public boolean deleteById(int id)
+    {
+        return false;
+    }
 }
