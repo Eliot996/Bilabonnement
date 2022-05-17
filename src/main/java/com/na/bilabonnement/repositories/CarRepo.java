@@ -56,7 +56,7 @@ public class CarRepo implements ICarRepository{
     }
 
 
-    private Car getSingleEntityByChassisNumber(int chassisNumber)
+    public Car getSingleEntityByChassisNumber(int chassisNumber)
     {
         Connection con = DatabaseConnectionManager.getConnection();
 
