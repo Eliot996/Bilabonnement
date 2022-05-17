@@ -1,6 +1,5 @@
 package com.na.bilabonnement.repositories;
 import com.na.bilabonnement.models.Car;
-import com.na.bilabonnement.models.User;
 import com.na.bilabonnement.utils.DatabaseConnectionManager;
 
 import java.sql.Connection;
@@ -19,30 +18,32 @@ public class CarRepo implements ICarRepository{
         return instance;
     }
 
-    /*
-    @Author Lasse
-    */
+    /**
+     *  @author Lasse
+     */
     @Override
     public Car create(Car entity)
     {
         Connection conn = DatabaseConnectionManager.getConnection();
         String insertSQL = "INSERT INTO Cars (`id`, `chassisNumber`, `status`, `make`, `model`, `trimLevel`, `scrapPrice`, `registrationFee`, `co2Emission`, `kilometersDriven`, `damages`, `colour`, `fuelType`, `locationId`)" +
-                "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?);";
+                "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ? ,? ,?);";
 
         try {
             PreparedStatement stmt = conn.prepareStatement(insertSQL);
-            stmt.setInt(1, entity.getChassisNumber());
-            stmt.setString(2, entity.getStatus());
-            stmt.setString(3, entity.getMake());
-            stmt.setString(4, entity.getTrimLevel());
-            stmt.setInt(5, entity.getScrapPrice());
-            stmt.setInt(6, entity.getRegistrationFee());
-            stmt.setInt(7, entity.getCo2Emission());
-            stmt.setInt(8, entity.getKilometersDriven());
-            stmt.setString(9, entity.getDamage());
-            stmt.setString(10, entity.getColour());
-            stmt.setString(11, entity.getFuelType());
-            stmt.setInt(12, entity.getLocationId());
+            stmt.setInt(1, entity.getId());
+            stmt.setString(2, entity.getChassisNumber());
+            stmt.setString(3, entity.getStatus());
+            stmt.setString(4, entity.getMake());
+            stmt.setString(5, entity.getModel());
+            stmt.setString(6, entity.getTrimLevel());
+            stmt.setInt(7, entity.getScrapPrice());
+            stmt.setInt(8, entity.getRegistrationFee());
+            stmt.setInt(9, entity.getCo2Emission());
+            stmt.setInt(10, entity.getKilometersDriven());
+            stmt.setString(11, entity.getDamage());
+            stmt.setString(12, entity.getColour());
+            stmt.setString(13, entity.getFuelType());
+            stmt.setInt(14, entity.getLocationId());
             stmt.execute();
         } catch (SQLException e) {
             e.printStackTrace();
@@ -52,19 +53,20 @@ public class CarRepo implements ICarRepository{
         return getSingleEntityByChassisNumber(entity.getChassisNumber());
     }
 
-
+    /**
+     *  @author Lasse
+     */
     @Override
     public Car getSingleEntityById(int id)
     {
         return null;
     }
 
-    /*
-    @Author Lasse
-    */
-
+    /**
+     *  @author Lasse
+     */
     @Override
-    public Car getSingleEntityByChassisNumber(int chassisNumber)
+    public Car getSingleEntityByChassisNumber(String chassisNumber)
     {
         Connection con = DatabaseConnectionManager.getConnection();
 
@@ -88,10 +90,9 @@ public class CarRepo implements ICarRepository{
         return result;
     }
 
-    /*
-    @Author Lasse
-    */
-
+    /**
+     *  @author Lasse
+     */
     private Car makeCarFromResultSet(ResultSet rs)
     {
         List<Car> cars = makeCarsFromResultSet(rs);
@@ -101,46 +102,78 @@ public class CarRepo implements ICarRepository{
         return null;
     }
 
+    /**
+     *  @author Mathias(Eliot996)
+     *  @author Lasse
+     */
     private List<Car> makeCarsFromResultSet(ResultSet rs) {
         ArrayList<Car> cars = new ArrayList<>();
         try {
             while(rs.next()) {
                 int carId = rs.getInt("id");
-                int chassisNumber = rs.getInt("chassisnumber");
+                String chassisNumber = rs.getString("chassisnumber");
                 String status = rs.getString("status");
                 String make = rs.getString("make");
+                String model = rs.getString("model");
                 String trimLevel = rs.getString("trimlevel");
                 int scrapPrice = rs.getInt("scrapprice");
                 int registrationFee = rs.getInt("registrationfee");
                 int co2Emission = rs.getInt("co2emission");
                 int kilometersDriven = rs.getInt("kilometersdriven");
-                String damage = rs.getString("damage");
+                String damage = rs.getString("damages");
                 String colour = rs.getString("colour");
                 String fuelType = rs.getString("fueltype");
                 int locationId = rs.getInt("locationId");
+                cars.add(new Car(carId, chassisNumber, status, make, model, trimLevel,
+                        scrapPrice, registrationFee, co2Emission, kilometersDriven,
+                        damage, colour, fuelType, locationId));
             }
         } catch (SQLException e) {
             e.printStackTrace();
             }
         return cars;
-        }
+    }
 
+    /**
+     *  @author Mathias(Eliot996)
+     */
     @Override
     public List<Car> getAllEntities()
     {
-        return null;
+        Connection con = DatabaseConnectionManager.getConnection();
+
+        String selectSQL = "SELECT * FROM cars;";
+
+        ResultSet rs = null;
+        try {
+            PreparedStatement stmt = con.prepareStatement(selectSQL);
+            rs = stmt.executeQuery();
+        }   catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        List<Car> result = new ArrayList<>();
+        if (rs != null){
+            result = makeCarsFromResultSet(rs);
+        }
+
+        DatabaseConnectionManager.closeConnection();
+        return result;
     }
 
-     /**
-          *  @author Arboe(H4ppyN4p)
-          */
+    /**
+     *  @author Tobias(H4ppyN4p)
+     */
     @Override
-    public Car update(Car entity) {
+    public Car update(Car entity)
+    {
         Connection con = DatabaseConnectionManager.getConnection();
 
         String insertSQL = "UPDATE `bilabonnement`.`cars`" +
-                "SET `id` = ?,  `status` = ?, `make` = ?, `model` = ?, `trimLevel` = ?, `scrapPrice` = ?, `registrationFee` = ?, `co2Emission` = ?, `kilometersDriven` = ?, `damages` = ?, `colour` = ?, `fuelType` = ?, `locationId` = ?" +
-                "WHERE (`id` = ?);";
+                            "SET `id` = ?,  `status` = ?, `make` = ?, `model` = ?, `trimLevel` = ?, `scrapPrice` = ?, `registrationFee` = ?, `co2Emission` = ?, `kilometersDriven` = ?, `damages` = ?, `colour` = ?, `fuelType` = ?, `locationId` = ?" +
+                            "WHERE (`id` = ?);";
+
+
 
         try {
             PreparedStatement stmt = con.prepareStatement(insertSQL);
@@ -156,20 +189,19 @@ public class CarRepo implements ICarRepository{
             stmt.setString(10, entity.getDamage());
             stmt.setString(11, entity.getColour());
             stmt.setString(12, entity.getFuelType());
-            stmt.setInt(13, entity.getLocationId());
+            stmt.setInt(11, entity.getLocationId());
 
-            stmt.setInt(14, entity.getChassisNumber());
 
             stmt.execute();
         } catch (SQLException e) {
             e.printStackTrace();
         }
-        return getSingleEntityByChassisNumber(entity.getChassisNumber());
+        return null;
     }
 
     /**
-         *  @author Arboe(H4ppyN4p)
-         */
+     *  @author Tobias(H4ppyN4p)
+     */
     @Override
     public boolean deleteById(int id) {
         Connection conn = DatabaseConnectionManager.getConnection();

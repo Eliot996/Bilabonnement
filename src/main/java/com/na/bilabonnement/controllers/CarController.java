@@ -3,6 +3,7 @@ package com.na.bilabonnement.controllers;
 import com.na.bilabonnement.models.Car;
 import com.na.bilabonnement.services.CarService;
 import com.na.bilabonnement.services.LocationService;
+import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -10,6 +11,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 
 import javax.servlet.http.HttpSession;
 
+@Controller
 public class CarController {
 /*
 @Author Sofia
@@ -28,5 +30,12 @@ public class CarController {
     public String createCar(HttpSession session, Model model, @ModelAttribute Car car){
         Car createdCar = CAR_SERVICE.createCar(car);
         return "redirect:/bil/" + createdCar.getId();
+    }
+
+    @GetMapping("/biler")
+    public String viewAllCars(HttpSession session, Model model) {
+        model.addAttribute("listOfCars", CAR_SERVICE.getAllCars());
+
+        return "all-cars";
     }
 }
