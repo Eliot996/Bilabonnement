@@ -3,6 +3,8 @@ package com.na.bilabonnement.services;
 import com.na.bilabonnement.models.Car;
 import com.na.bilabonnement.repositories.*;
 
+import java.util.List;
+
 public class CarService {
 /*
 @Author Sofia
@@ -50,7 +52,10 @@ public class CarService {
         return repo.update(car);
     }
 
-    public Object getAllCars() {
-        return null;
+    /**
+     *  @author Mathias(Eliot996)
+     */
+    public List<Car> getAllCars() {
+        return repo.getAllEntities();
     }
 }
