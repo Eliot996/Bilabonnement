@@ -54,12 +54,32 @@ public class CarRepo implements ICarRepository{
     }
 
     /**
-     *  @author Lasse
+     *  @author Mathias(Eliot996)
      */
     @Override
     public Car getSingleEntityById(int id)
     {
-        return null;
+        Connection con = DatabaseConnectionManager.getConnection();
+
+        String selectSQL = "SELECT * FROM cars " +
+                "WHERE `id` = ?;";
+
+        ResultSet rs = null;
+        try {
+            PreparedStatement stmt = con.prepareStatement(selectSQL);
+            stmt.setInt(1, id);
+            rs = stmt.executeQuery();
+        }   catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        Car result = null;
+        if (rs != null){
+            result = makeCarFromResultSet(rs);
+        }
+
+        DatabaseConnectionManager.closeConnection();
+        return result;
     }
 
     /**
