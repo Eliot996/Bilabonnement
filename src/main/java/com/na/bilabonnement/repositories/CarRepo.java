@@ -193,7 +193,7 @@ public class CarRepo implements ICarRepository{
                             "SET `id` = ?,  `status` = ?, `make` = ?, " +
                                 "`model` = ?, `trimLevel` = ?, `scrapPrice` = ?, " +
                                 "`registrationFee` = ?, `co2Emission` = ?, `kilometersDriven` = ?, " +
-                                "`damages` = ?, `colour` = ?, `fuelType` = ?, `locationId` = ?" +
+                                "`damages` = ?, `colour` = ?, `fuelType` = ?, `locationId` = ? " +
                             "WHERE (`chassisNumber` = ?);";
 
 
@@ -215,8 +215,8 @@ public class CarRepo implements ICarRepository{
             stmt.setInt(13, entity.getLocationId());
             stmt.setString(14, entity.getChassisNumber());
 
-
             stmt.execute();
+
         } catch (SQLException e) {
             e.printStackTrace();
         }
