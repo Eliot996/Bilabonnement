@@ -1,7 +1,6 @@
 package com.na.bilabonnement.services;
 
 import com.na.bilabonnement.models.Car;
-import com.na.bilabonnement.models.User;
 import com.na.bilabonnement.repositories.*;
 
 import java.util.List;
