@@ -5,11 +5,9 @@ import com.na.bilabonnement.services.UserService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.context.request.WebRequest;
 
-import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpSession;
 
 /*
@@ -29,7 +27,6 @@ public class MainController {
             session.setAttribute("loginSuccess", "none");
         }
         model.addAttribute("loginValidity", session.getAttribute("loginSuccess"));
-        System.out.println(model.getAttribute("loginValidity"));
 
         if (session.getAttribute("userID") != null){
             return "redirect:/home";
@@ -58,21 +55,6 @@ public class MainController {
             return "redirect:/";
         }
    }
-
-
-
-
-   @GetMapping("/fail")
-       public String fail()
-   {
-           return "fail";
-   }
-
-    @GetMapping("/success")
-    public String success()
-    {
-        return "success";
-    }
 
     /*
     @Author Sofia
