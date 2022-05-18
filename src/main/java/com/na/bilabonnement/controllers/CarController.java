@@ -36,6 +36,9 @@ public class CarController {
         return "redirect:/bil/" + createdCar.getId();
     }
 
+    /**
+     *  @author Mathias(Eliot996)
+     */
     @GetMapping("/biler")
     public String viewAllCars(HttpSession session, Model model) {
         model.addAttribute("listOfCars", CAR_SERVICE.getAllCars());
