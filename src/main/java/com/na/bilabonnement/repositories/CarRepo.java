@@ -190,8 +190,11 @@ public class CarRepo implements ICarRepository{
         Connection con = DatabaseConnectionManager.getConnection();
 
         String insertSQL = "UPDATE `bilabonnement`.`cars`" +
-                            "SET `id` = ?,  `status` = ?, `make` = ?, `model` = ?, `trimLevel` = ?, `scrapPrice` = ?, `registrationFee` = ?, `co2Emission` = ?, `kilometersDriven` = ?, `damages` = ?, `colour` = ?, `fuelType` = ?, `locationId` = ?" +
-                            "WHERE (`id` = ?);";
+                            "SET `id` = ?,  `status` = ?, `make` = ?, " +
+                                "`model` = ?, `trimLevel` = ?, `scrapPrice` = ?, " +
+                                "`registrationFee` = ?, `co2Emission` = ?, `kilometersDriven` = ?, " +
+                                "`damages` = ?, `colour` = ?, `fuelType` = ?, `locationId` = ?" +
+                            "WHERE (`chassisNumber` = ?);";
 
 
 
@@ -209,7 +212,8 @@ public class CarRepo implements ICarRepository{
             stmt.setString(10, entity.getDamage());
             stmt.setString(11, entity.getColour());
             stmt.setString(12, entity.getFuelType());
-            stmt.setInt(11, entity.getLocationId());
+            stmt.setInt(13, entity.getLocationId());
+            stmt.setString(14, entity.getChassisNumber());
 
 
             stmt.execute();
