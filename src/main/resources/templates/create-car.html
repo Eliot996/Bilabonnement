@@ -13,35 +13,35 @@
      <form action="#" th:action="@{/opret-bil}" th:object="${car}" method="post">
 
          <div>
-             <label><b>Vognnummer:</b></label> <br>
+             <label><b>Vognnummer:*</b></label> <br>
              <input type="text" placeholder="Vognnummer" th:field="*{chassisNumber}" required> <br><br>
 
-             <label><b>Status:</b></label> <br>
+             <label><b>Status:*</b></label> <br>
              <input type="text" placeholder="Status" th:field="*{status}" required> <br> <br>
 
-             <label><b>Mærke:</b></label> <br>
+             <label><b>Mærke:*</b></label> <br>
              <input type="text" placeholder="Mærke" th:field="*{make}" required> <br><br>
 
-             <label><b>Model:</b></label> <br>
+             <label><b>Model:*</b></label> <br>
              <input type="text" placeholder="Model" th:field="*{model}" required> <br><br>
 
-             <label><b>Udstyrsniveau:</b></label> <br>
+             <label><b>Udstyrsniveau:*</b></label> <br>
              <input type="text" placeholder="Udstyrsniveau" th:field="*{trimLevel}" required> <br><br>
 
-             <label><b>Skrotpris:</b></label> <br>
+             <label><b>Skrotpris:*</b></label> <br>
              <input type="text" placeholder="" th:field="*{scrapPrice}" required> <br><br>
 
-             <label><b>Registreringsafgift::</b></label> <br>
+             <label><b>Registreringsafgift:*</b></label> <br>
              <input type="text" placeholder="" th:field="*{registrationFee}" required> <br><br>
 
-             <label><b>Co2 udledning:</b></label> <br>
+             <label><b>Co2 udledning:*</b></label> <br>
              <input type="text" placeholder="" th:field="*{co2Emission}" required> <br><br>
 
              <label><b>Kørte kilometer:</b></label> <br>
-             <input type="text" placeholder="" th:field="*{kilometersDriven}" required> <br><br>
+             <input type="text" placeholder="" th:field="*{kilometersDriven}"> <br><br>
 
-             <label><b>Skader:</b></label> <br>
-             <input type="text" placeholder="Skader" th:field="*{damage}" required> <br><br>
+             <label><b>Noter:</b></label> <br>
+             <input type="text" placeholder="Skader" th:field="*{damage}"> <br><br>
 
              <label><b>Farve:</b></label> <br>
              <input type="text" placeholder="Farve" th:field="*{colour}" required> <br><br>
@@ -56,7 +56,7 @@
                  </select>
              </label> <br> <br>
 
-             <button type="submit">Opret bruger</button>
+             <button type="submit">Opret bil</button>
          </div>
      </form>
  </div>
