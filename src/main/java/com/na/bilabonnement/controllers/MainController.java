@@ -57,21 +57,6 @@ public class MainController {
         }
    }
 
-
-
-
-   @GetMapping("/fail")
-       public String fail()
-   {
-           return "fail";
-   }
-
-    @GetMapping("/success")
-    public String success()
-    {
-        return "success";
-    }
-
     /*
     @Author Sofia
      */
