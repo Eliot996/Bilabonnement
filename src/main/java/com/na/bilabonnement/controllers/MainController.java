@@ -27,7 +27,6 @@ public class MainController {
             session.setAttribute("loginSuccess", "none");
         }
         model.addAttribute("loginValidity", session.getAttribute("loginSuccess"));
-        System.out.println(model.getAttribute("loginValidity"));
 
         if (session.getAttribute("userID") != null){
             return "redirect:/home";
