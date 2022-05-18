@@ -65,7 +65,9 @@
     <button type="submit">Rediger bil</button>
 </form>
 
-
+<a th:href="@{/bil/{carId}/slet(carId=${car.id})}">
+    <button class="button">Slet</button>
+</a>
 
 </body>
 </html>

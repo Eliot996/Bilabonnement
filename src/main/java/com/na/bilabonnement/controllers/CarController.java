@@ -67,4 +67,12 @@ public class CarController {
         return "redirect:/biler";
 
     }
+
+    @GetMapping("/bil/{carID}/slet")
+    public String deleteCar(HttpSession session, @PathVariable() int carID){
+
+        CAR_SERVICE.deleteCar(carID);
+
+        return "redirect:/biler";
+    }
 }
