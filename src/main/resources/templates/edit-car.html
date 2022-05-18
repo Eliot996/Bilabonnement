@@ -3,8 +3,66 @@
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
+    <link rel="stylesheet" th:href="@{/general.css}">
+    <link rel="stylesheet" th:href="@{/create-car.css}">
 </head>
 <body>
+<header th:insert="fragments/fragments.html :: header"></header>
+
+<form action="#" th:action="@{/bil/{carId}(carId=${car.id})}" th:object="${car}"  method="post">
+
+    <div>
+
+        <label>Id i systemet</label>
+        <input type="text" th:placeholder="${car.id}" th:field="*{id}" required> <br><br>
+
+        <label>Status</label>
+        <input type="text" th:placeholder="${car.status}" th:field="*{status}" required> <br><br>
+
+        <label>Mærke</label>
+        <input type="text" th:placeholder="${car.make}" th:field="*{make}" required> <br><br>
+
+        <label>Model</label>
+        <input type="text" th:placeholder="${car.model}" th:field="*{model}" required> <br><br>
+
+        <label>Udstyrsniveau</label>
+        <input type="text" th:placeholder="${car.trimLevel}" th:field="*{trimLevel}" required> <br><br>
+
+        <label>Skrotpris</label>
+        <input type="text" th:placeholder="${car.scrapPrice}" th:field="*{scrapPrice}" required> <br><br>
+
+        <label>Registreringsafgift</label>
+        <input type="text" th:placeholder="${car.registrationFee}" th:field="*{registrationFee}" required> <br><br>
+
+        <label>CO2 udledning</label>
+        <input type="text" th:placeholder="${car.co2Emission}" th:field="*{co2Emission}" required> <br><br>
+
+        <label>Kilometer kørt</label>
+        <input type="text" th:placeholder="${car.kilometersDriven}" th:field="*{kilometersDriven}" required> <br><br>
+
+        <label>Skader</label>
+        <input type="text" th:placeholder="${car.damage}" th:field="*{damage}" required> <br><br>
+
+        <label>Farve</label>
+        <input type="text" th:placeholder="${car.colour}"  th:field="*{colour}" required> <br><br>
+
+        <label>Brændstofstype</label>
+        <input type="text" th:placeholder="${car.fuelType}" th:field="*{fuelType}" required> <br><br>
+
+        <label>location</label>
+        <label><b>Lokation:</b> <br>
+            <select th:field="*{locationId}">
+                <option th:each="location : ${locations}" th:value="${location.id}" th:text="${location.name}"
+                        th:selected="${car.locationId == location.id}"></option>
+            </select>
+        </label> <br> <br>
+
+    </div>
+
+    <button type="submit">Rediger bil</button>
+</form>
+
+
 
 </body>
 </html>

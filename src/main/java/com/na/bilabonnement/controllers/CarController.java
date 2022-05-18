@@ -1,12 +1,16 @@
 package com.na.bilabonnement.controllers;
 
 import com.na.bilabonnement.models.Car;
+import com.na.bilabonnement.models.Location;
+import com.na.bilabonnement.models.User;
+import com.na.bilabonnement.models.UserRole;
 import com.na.bilabonnement.services.CarService;
 import com.na.bilabonnement.services.LocationService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 
 import javax.servlet.http.HttpSession;
@@ -37,5 +41,27 @@ public class CarController {
         model.addAttribute("listOfCars", CAR_SERVICE.getAllCars());
 
         return "all-cars";
+    }
+
+    @GetMapping("/bil/{carID}")
+    public String getEditCar(HttpSession session, @PathVariable() int carID, Model model){
+
+        Car car = CAR_SERVICE.getCar(carID);
+
+        model.addAttribute("car", car);
+        model.addAttribute("locations",LOCATION_SERVICE.getAllLocations());
+
+
+
+        return "edit-car";
+    }
+
+    @PostMapping("/bil/{carID}")
+    public String editCar(HttpSession session, @PathVariable() int carID, @ModelAttribute Car car){
+
+        CAR_SERVICE.updateCar(car.getChassisNumber(), carID, car.getStatus(), car.getMake(), car.getModel(), car.getTrimLevel(), car.getScrapPrice(), car.getRegistrationFee(), car.getCo2Emission(), car.getKilometersDriven(), car.getDamage(), car.getColour(), car.getFuelType(), car.getLocationId());
+
+        return "redirect:/all-cars";
+
     }
 }

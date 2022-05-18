@@ -1,6 +1,7 @@
 package com.na.bilabonnement.services;
 
 import com.na.bilabonnement.models.Car;
+import com.na.bilabonnement.models.User;
 import com.na.bilabonnement.repositories.*;
 
 import java.util.List;
@@ -50,6 +51,10 @@ public class CarService {
         car.setLocationId(locationId);
 
         return repo.update(car);
+    }
+
+    public Car getCar(int id){
+        return repo.getSingleEntityById(id);
     }
 
     /**
