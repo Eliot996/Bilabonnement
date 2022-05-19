@@ -1,6 +1,7 @@
 package com.na.bilabonnement.controllers;
 
 import com.na.bilabonnement.models.RentalAgreement;
+import com.na.bilabonnement.models.UserRole;
 import com.na.bilabonnement.services.CarService;
 import com.na.bilabonnement.services.RentalAgreementService;
 import org.springframework.stereotype.Controller;
@@ -19,7 +20,10 @@ public class RentalAgreementController {
 
     @GetMapping("/opret-lejekontrakt")
     public String getCreateRentalAgreement(HttpSession session, Model model) {
-        // TODO: add role restriction
+
+        if (session.getAttribute("userRole") != UserRole.DATA_REGISTRATION) {
+            return "redirect:/logout";
+        }
 
         model.addAttribute("cars", CAR_SERVICE.getAllCars()); // todo: make get only relevant cars
         model.addAttribute("rentalAgreement", new RentalAgreement());
@@ -29,6 +33,11 @@ public class RentalAgreementController {
     @PostMapping("/opret-lejekontrakt")
     public String createRentalAgreement(HttpSession session, Model model,
                                         @ModelAttribute RentalAgreement rentalAgreement) {
+
+        if (session.getAttribute("userRole") != UserRole.DATA_REGISTRATION) {
+            return "redirect:/logout";
+        }
+
         if (rentalAgreement.getCarId() == -1 ||
             rentalAgreement.getEndDate().isBefore(rentalAgreement.getStartDate())) {
 
