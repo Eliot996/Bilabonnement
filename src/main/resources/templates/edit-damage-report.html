@@ -3,8 +3,33 @@
 <head>
     <meta charset="UTF-8">
     <title>Ændre skadesrapport</title>
+    <link rel="stylesheet" th:href="@{/general.css}">
+    <link rel="stylesheet" th:href="@{/create-car.css}">
 </head>
 <body>
+<header th:insert="fragments/fragments.html :: header"></header>
+
+<form action="#" th:action="@{/skadesrapport/{damageReportId}(damageReportId=${damageReport.id})}" th:object="${damageReport}"  method="post">
+
+    <div>
+        <label>Id i systemet</label>
+        <input type="text" th:placeholder="${damageReport.id}" th:field="*{id}" required readonly> <br><br>
+
+        <label>Bil id for rapporten</label>
+        <input type="text" th:placeholder="${damageReport.carId}" th:field="*{carId}" required> <br><br>
+
+        <label>Medarbejder id</label>
+        <input type="text" th:placeholder="${damageReport.technicianId}" th:field="*{technicianId}" required> <br><br>
+
+        <label>Bemærkninger</label>
+        <input type="text" th:placeholder="${damageReport.notes}" th:field="*{notes}" required> <br><br>
+    </div>
+
+    <button type="submit">Rediger bil</button>
+</form>
+<a th:href="@{/skadesrapport/{damageReportId}/slet(damageReportId=${damageReport.id})}">
+    <button class="button">Slet</button>
+</a>
 
 </body>
 </html>

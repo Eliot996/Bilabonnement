@@ -25,7 +25,7 @@
                 <td colspan="5"> Der er ingen skadesrapporter i systemet </td>
             </tr>
             <tr th:each="damageReport : ${listOfDamageReports}">
-                <td><span th:text="${damageReport.id}"> Bil </span></td>
+                <td><span th:text="${damageReport.id}"> Skadesrapport id </span></td>
                 <td><span th:text="${damageReport.notes}"> Bemærkninger </span></td>
                 <td><span th:text="${damageReport.technicianId}"> Bruger id </span></td>
                 <td>

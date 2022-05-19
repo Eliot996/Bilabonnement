@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Opret skadesrapport</title>
+    <link rel="stylesheet" th:href="@{/general.css}">
+    <link rel="stylesheet" th:href="@{/create-user.css}">
+</head>
+<body>
+<header th:insert="fragments/fragments.html :: header"> </header>
+
+<div class="content-under-header" id="all_buttons_in_body_createuser">
+    <form action="#" th:action="@{/opret-skadesrapport}" th:object="${damageReport}" method="post">
+
+        <div>
+            <label><b>Bil id:*</b></label> <br>
+            <input type="text" placeholder="Vognnummer" th:field="*{carId}" required> <br><br>
+
+            <label><b>Medarbejder id:*</b></label> <br>
+            <input type="text" placeholder="Status" th:field="*{technicianId}" required> <br> <br>
+
+            <label><b>Bæmærkninger:*</b></label> <br>
+            <input type="text" placeholder="Mærke" th:field="*{notes}" required> <br><br>
+
+            <button type="submit">Opret skadesrapport</button>
+        </div>
+    </form>
+</div>
+
+</body>
+</html>
