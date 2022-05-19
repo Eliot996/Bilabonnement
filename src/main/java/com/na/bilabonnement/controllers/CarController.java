@@ -1,9 +1,6 @@
 package com.na.bilabonnement.controllers;
 
 import com.na.bilabonnement.models.Car;
-import com.na.bilabonnement.models.Location;
-import com.na.bilabonnement.models.User;
-import com.na.bilabonnement.models.UserRole;
 import com.na.bilabonnement.services.CarService;
 import com.na.bilabonnement.services.LocationService;
 import org.springframework.stereotype.Controller;
@@ -29,7 +26,9 @@ public class CarController {
         model.addAttribute("car", new Car());
         return "create-car";
     }
-
+/*
+@Author Sofia
+ */
     @PostMapping("/opret-bil")
     public String createCar(HttpSession session, Model model, @ModelAttribute Car car){
         Car createdCar = CAR_SERVICE.createCar(car);
@@ -71,7 +70,7 @@ public class CarController {
           *  @author Arboe(H4ppyN4p)
           */
     @PostMapping("/bil/{carID}")
-    public String editCar(HttpSession session, @ModelAttribute Car car){
+    public String editCar(HttpSession session, @ModelAttribute Car car, @PathVariable int carID){
 
         CAR_SERVICE.updateCar(car.getChassisNumber(), car.getId(), car.getStatus(), car.getMake(), car.getModel(), car.getTrimLevel(), car.getScrapPrice(), car.getRegistrationFee(), car.getCo2Emission(), car.getKilometersDriven(), car.getDamage(), car.getColour(), car.getFuelType(), car.getLocationId());
 
