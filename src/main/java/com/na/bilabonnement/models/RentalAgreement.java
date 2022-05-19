@@ -1,6 +1,7 @@
 package com.na.bilabonnement.models;
 
 import org.springframework.format.annotation.DateTimeFormat;
+import org.springframework.web.multipart.MultipartFile;
 
 import java.io.File;
 import java.time.LocalDate;
@@ -10,7 +11,7 @@ public class RentalAgreement {
 
     private int id, carId, price, typeId;
     private LocalDate startDate, endDate;
-    private File contract;
+    private MultipartFile contract;
     private RentalType type;
 
     private String startDateString, endDateString;
@@ -18,7 +19,7 @@ public class RentalAgreement {
     /**
      *  @author Mathias(Eliot996)
      */
-    public RentalAgreement(int id, int carId, int price, LocalDate startDate, LocalDate endDate, File contract, RentalType type) {
+    public RentalAgreement(int id, int carId, int price, LocalDate startDate, LocalDate endDate, MultipartFile contract, RentalType type) {
         this.id = id;
         this.carId = carId;
         this.price = price;
@@ -74,11 +75,11 @@ public class RentalAgreement {
         this.endDate = endDate;
     }
 
-    public File getContract() {
+    public MultipartFile getContract() {
         return contract;
     }
 
-    public void setContract(File contract) {
+    public void setContract(MultipartFile contract) {
         this.contract = contract;
     }
 

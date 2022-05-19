@@ -14,7 +14,7 @@
     <div style="width: 100%">
         <h1>Opret Lejekontrakt</h1>
     </div>
-    <form action="#" th:action="@{/opret-lejekontrakt}" th:object="${rentalAgreement}" method="post">
+    <form action="#" th:action="@{/opret-lejekontrakt}" th:object="${rentalAgreement}" method="post" enctype="multipart/form-data">
 
         <div>
             <label><b>Vælg bil:*</b> <br>
@@ -37,6 +37,7 @@
             <input type="date" th:field="*{startDateString}" required> <br><br>
 
             <label><b>Slut Dato:*</b></label> <br>
+            <span th:if="${noCar}" style="font-size: small; color: red">Slut dato er før start dato <br></span>
             <input type="date" th:field="*{endDateString}" required> <br> <br>
 
             <label><b>Månedlig pris:*</b></label> <br>
