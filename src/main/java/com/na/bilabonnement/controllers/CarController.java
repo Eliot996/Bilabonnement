@@ -73,7 +73,7 @@ public class CarController {
     @PostMapping("/bil/{carID}")
     public String editCar(HttpSession session, @ModelAttribute Car car, @PathVariable int carID){
 
-        CAR_SERVICE.updateCar(car.getId(), car.getChassisNumber(), car.getStatus(), car.getMake(), car.getModel(), car.getTrimLevel(), car.getScrapPrice(), car.getRegistrationFee(), car.getCo2Emission(), car.getKilometersDriven(), car.getDamage(), car.getColour(), car.getFuelType(), car.getLocationId());
+        CAR_SERVICE.updateCar(car.getId(), car.getChassisNumber(), car.getStatus(), car.getMake(), car.getModel(), car.getTrimLevel(), car.getCarPrice(), car.getScrapPrice(), car.getRegistrationFee(), car.getCo2Emission(), car.getKilometersDriven(), car.getDamage(), car.getColour(), car.getFuelType(), car.getLocationId());
 
         return "redirect:/biler";
 

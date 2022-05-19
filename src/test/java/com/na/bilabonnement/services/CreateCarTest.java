@@ -15,7 +15,7 @@ public class CreateCarTest {
         //Arrange
         CarService carService = new CarService();
         carService.setRepo(new DummyCarRepo());
-        Car expected = new Car(5,"123456","status","make","Model","trimlevel",10000,20000,30000,100000,"damage","colour","fueltype",1);
+        Car expected = new Car(5,"123456","status","make","Model","trimlevel", 200000, 10000,20000,30000,100000,"damage","colour","fueltype",1);
 
         //Act
         Car actual = carService.createCar(expected);

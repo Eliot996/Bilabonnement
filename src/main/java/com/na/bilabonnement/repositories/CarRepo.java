@@ -25,8 +25,8 @@ public class CarRepo implements ICarRepository{
     public Car create(Car entity)
     {
         Connection conn = DatabaseConnectionManager.getConnection();
-        String insertSQL = "INSERT INTO Cars (`id`, `chassisNumber`, `status`, `make`, `model`, `trimLevel`, `scrapPrice`, `registrationFee`, `co2Emission`, `kilometersDriven`, `damages`, `colour`, `fuelType`, `locationId`)" +
-                "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ? ,? ,?);";
+        String insertSQL = "INSERT INTO Cars (`id`, `chassisNumber`, `status`, `make`, `model`, `trimLevel`, `carPrice`, `scrapPrice`, `registrationFee`, `co2Emission`, `kilometersDriven`, `damages`, `colour`, `fuelType`, `locationId`)" +
+                "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ? ,? ,?, ?);";
 
         try {
             PreparedStatement stmt = conn.prepareStatement(insertSQL);
@@ -36,14 +36,15 @@ public class CarRepo implements ICarRepository{
             stmt.setString(4, entity.getMake());
             stmt.setString(5, entity.getModel());
             stmt.setString(6, entity.getTrimLevel());
-            stmt.setInt(7, entity.getScrapPrice());
-            stmt.setInt(8, entity.getRegistrationFee());
-            stmt.setInt(9, entity.getCo2Emission());
-            stmt.setInt(10, entity.getKilometersDriven());
-            stmt.setString(11, entity.getDamage());
-            stmt.setString(12, entity.getColour());
-            stmt.setString(13, entity.getFuelType());
-            stmt.setInt(14, entity.getLocationId());
+            stmt.setInt(7, entity.getCarPrice());
+            stmt.setInt(8, entity.getScrapPrice());
+            stmt.setInt(9, entity.getRegistrationFee());
+            stmt.setInt(10, entity.getCo2Emission());
+            stmt.setInt(11, entity.getKilometersDriven());
+            stmt.setString(12, entity.getDamage());
+            stmt.setString(13, entity.getColour());
+            stmt.setString(14, entity.getFuelType());
+            stmt.setInt(15, entity.getLocationId());
             stmt.execute();
         } catch (SQLException e) {
             e.printStackTrace();
@@ -136,6 +137,7 @@ public class CarRepo implements ICarRepository{
                 String make = rs.getString("make");
                 String model = rs.getString("model");
                 String trimLevel = rs.getString("trimlevel");
+                int carPrice = rs.getInt("carprice");
                 int scrapPrice = rs.getInt("scrapprice");
                 int registrationFee = rs.getInt("registrationfee");
                 int co2Emission = rs.getInt("co2emission");
@@ -145,7 +147,7 @@ public class CarRepo implements ICarRepository{
                 String fuelType = rs.getString("fueltype");
                 int locationId = rs.getInt("locationId");
                 cars.add(new Car(carId, chassisNumber, status, make, model, trimLevel,
-                        scrapPrice, registrationFee, co2Emission, kilometersDriven,
+                        carPrice, scrapPrice, registrationFee, co2Emission, kilometersDriven,
                         damage, colour, fuelType, locationId));
             }
         } catch (SQLException e) {
@@ -191,7 +193,7 @@ public class CarRepo implements ICarRepository{
 
         String insertSQL = "UPDATE `bilabonnement`.`cars`" +
                             "SET `chassisNumber` = ?,  `status` = ?, `make` = ?, " +
-                                "`model` = ?, `trimLevel` = ?, `scrapPrice` = ?, " +
+                                "`model` = ?, `trimLevel` = ?, `carPrice` = ?, `scrapPrice` = ?, " +
                                 "`registrationFee` = ?, `co2Emission` = ?, `kilometersDriven` = ?, " +
                                 "`damages` = ?, `colour` = ?, `fuelType` = ?, `locationId` = ? " +
                             "WHERE (`id` = ?);";
@@ -204,16 +206,17 @@ public class CarRepo implements ICarRepository{
             stmt.setString(3, entity.getMake());
             stmt.setString(4, entity.getModel());
             stmt.setString(5, entity.getTrimLevel());
-            stmt.setInt(6, entity.getScrapPrice());
-            stmt.setInt(7, entity.getRegistrationFee());
-            stmt.setInt(8, entity.getCo2Emission());
-            stmt.setInt(9, entity.getKilometersDriven());
-            stmt.setString(10, entity.getDamage());
-            stmt.setString(11, entity.getColour());
-            stmt.setString(12, entity.getFuelType());
-            stmt.setInt(13, entity.getLocationId());
+            stmt.setInt(6, entity.getCarPrice());
+            stmt.setInt(7, entity.getScrapPrice());
+            stmt.setInt(8, entity.getRegistrationFee());
+            stmt.setInt(9, entity.getCo2Emission());
+            stmt.setInt(10, entity.getKilometersDriven());
+            stmt.setString(11, entity.getDamage());
+            stmt.setString(12, entity.getColour());
+            stmt.setString(13, entity.getFuelType());
+            stmt.setInt(14, entity.getLocationId());
 
-            stmt.setInt(14, entity.getId());
+            stmt.setInt(15, entity.getId());
 
             System.out.println(stmt);
 
