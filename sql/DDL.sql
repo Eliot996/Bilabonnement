@@ -49,3 +49,20 @@ CREATE TABLE `bilabonnement`.`cars` (
                                                 REFERENCES `bilabonnement`.`locations` (`id`)
                                                 ON DELETE NO ACTION
                                                 ON UPDATE NO ACTION);
+
+
+CREATE TABLE `bilabonnement`.`rental_agreements` (
+                                                     `id` INT NOT NULL AUTO_INCREMENT,
+                                                     `carId` INT NOT NULL,
+                                                     `startDate` DATE NOT NULL,
+                                                     `endDate` DATE NOT NULL,
+                                                     `price` INT NULL,
+                                                     `contract` MEDIUMBLOB NULL, -- 16MB max
+                                                     `type` VARCHAR(45) NULL,
+                                                     PRIMARY KEY (`id`),
+                                                     INDEX `carId_RA_FK_idx` (`carId` ASC) VISIBLE,
+                                                     CONSTRAINT `carId_RA_FK`
+                                                         FOREIGN KEY (`carId`)
+                                                             REFERENCES `bilabonnement`.`cars` (`id`)
+                                                             ON DELETE NO ACTION
+                                                             ON UPDATE NO ACTION);

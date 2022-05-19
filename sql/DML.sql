@@ -38,3 +38,14 @@ INSERT INTO `bilabonnement`.`cars` (`id`,`chassisNumber`, `status`, `make`, `mod
     VALUES (3, '123894', 'fint nok', 'renault', 'clio', 'sport', '4000', '123', '98', '50', 'ok', 'lilla', 'benzin', '2');
 INSERT INTO `bilabonnement`.`cars` (`id`,`chassisNumber`, `status`, `make`, `model`, `trimLevel`, `scrapPrice`, `registrationFee`, `co2Emission`, `kilometersDriven`, `damages`, `colour`, `fuelType`, `locationId`)
     VALUES (4, '12345123123', 'god stand', 'bmw', 'i4', 'brugt', '3500', '1234', '0', '197000', 'ingen', 'sort', 'el', '1');
+
+
+-- for rental agreements
+INSERT INTO `bilabonnement`.`rental_agreements` (`carId`, `startDate`, `endDate`, `price`, `type`)
+    VALUES ('1', '2022-10-02', '2022-12-02', '3500', 'UNLIMITED');
+INSERT INTO `bilabonnement`.`rental_agreements` (`carId`, `startDate`, `endDate`, `price`, `type`)
+    VALUES ('2', '2022-05-01', '2022-12-01', '4000', 'UNLIMITED');
+INSERT INTO `bilabonnement`.`rental_agreements` (`carId`, `startDate`, `endDate`, `price`, `type`)
+    VALUES ('3', '2021-01-01', '2022-02-01', '5000', 'UNLIMITED');
+INSERT INTO `bilabonnement`.`rental_agreements` (`carId`, `startDate`, `endDate`, `price`, `type`)
+    VALUES ('4', '2020-02-01', '2023-01-01', '4000', 'UNLIMITED');
