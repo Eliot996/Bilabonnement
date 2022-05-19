@@ -67,21 +67,14 @@ CREATE TABLE `bilabonnement`.`rental_agreements` (
                                                              ON DELETE NO ACTION
                                                              ON UPDATE NO ACTION);
 
-CREATE TABLE `bilabonnement`.`damage_report` (
-                                                 `id` INT NOT NULL,
-                                                 `notes` TEXT NULL,
-                                                 `technicianName` INT NULL,
-                                                 `carId` INT NULL,
-                                                 PRIMARY KEY (`id`),
-                                                 INDEX `technitianId_idx` (`technicianName` ASC) VISIBLE,
-                                                 INDEX `carId_idx` (`carId` ASC) VISIBLE,
-                                                 CONSTRAINT `carId`
-                                                     FOREIGN KEY (`carId`)
-                                                         REFERENCES `bilabonnement`.`cars` (`id`)
-                                                         ON DELETE NO ACTION
-                                                         ON UPDATE NO ACTION,
-                                                 CONSTRAINT `technicianId`
-                                                     FOREIGN KEY (`technicianName`)
-                                                         REFERENCES `bilabonnement`.`users` (`id`)
-                                                         ON DELETE NO ACTION
-                                                         ON UPDATE NO ACTION);
+CREATE TABLE `damage_report` (
+                                 `id` int NOT NULL,
+                                 `notes` text,
+                                 `technicianId` int DEFAULT NULL,
+                                 `carId` int DEFAULT NULL,
+                                 PRIMARY KEY (`id`),
+                                 KEY `technitianId_idx` (`technicianId`),
+                                 KEY `carId_idx` (`carId`),
+                                 CONSTRAINT `carId` FOREIGN KEY (`carId`) REFERENCES `cars` (`id`),
+                                 CONSTRAINT `technicianId` FOREIGN KEY (`technicianId`) REFERENCES `users` (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci
