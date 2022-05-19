@@ -5,6 +5,9 @@ import com.na.bilabonnement.repositories.RentalAgreementRepo;
 
 public class RentalAgreementService {
 
+    /**
+     *  @author Mathias(Eliot996)
+     */
     private IRentalAgreementRepository repo = new RentalAgreementRepo();
     public void setRepo(IRentalAgreementRepository repo) { this.repo = repo; }
 

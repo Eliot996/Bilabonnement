@@ -10,6 +10,9 @@ public class RentalAgreement {
     private File contract;
     private RentalType type;
 
+    /**
+     *  @author Mathias(Eliot996)
+     */
     public RentalAgreement(int id, int carId, int price, Date startDate, Date endDate, File contract, RentalType type) {
         this.id = id;
         this.carId = carId;
@@ -20,6 +23,9 @@ public class RentalAgreement {
         this.type = type;
     }
 
+    /**
+     *  @author Mathias(Eliot996)
+     */
     public RentalAgreement() {
     }
 
