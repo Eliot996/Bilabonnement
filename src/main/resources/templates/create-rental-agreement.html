@@ -17,7 +17,8 @@
     <form action="#" th:action="@{/opret-lejekontrakt}" th:object="${rentalAgreement}" method="post">
 
         <div>
-            <label><b>Vælg bil:</b> <br>
+            <label><b>Vælg bil:*</b> <br>
+                <span th:if="${noCar}" style="font-size: small; color: red">Vælg en bil! <br></span>
                 <select th:field="*{carId}">
                     <option value="-1">Vælg bil</option>
                     <option th:each="car : ${cars}" th:value="${car.id}"
@@ -33,10 +34,10 @@
             </label> <br> <br>
 
             <label><b>Start Dato:*</b></label> <br>
-            <input type="date" th:field="*{startDate}" required> <br><br>
+            <input type="date" th:field="*{startDateString}" required> <br><br>
 
             <label><b>Slut Dato:*</b></label> <br>
-            <input type="date" th:field="*{endDate}" required> <br> <br>
+            <input type="date" th:field="*{endDateString}" required> <br> <br>
 
             <label><b>Månedlig pris:*</b></label> <br>
             <input type="text" placeholder="0" th:field="*{price}" required> <br><br>
