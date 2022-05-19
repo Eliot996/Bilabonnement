@@ -8,16 +8,14 @@ import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.util.List;
 
-public class DamageReportRepo implements IDamageReportRepository
-    {
+public class DamageReportRepo implements IDamageReportRepository {
 
-        private static final DamageReportRepo Instance = new DamageReportRepo();
+    private static final DamageReportRepo instance = new DamageReportRepo();
 
     private DamageReportRepo(){}
         public static DamageReportRepo getInstance(){
         return instance;
     }
-
 
     @Override
     public DamageReport create(DamageReport entity)
