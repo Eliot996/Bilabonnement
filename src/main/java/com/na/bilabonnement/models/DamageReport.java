@@ -13,6 +13,10 @@ public class DamageReport
 
     }
 
+    public DamageReport(int id, String notes, int technicianId, int carId)
+    {
+    }
+
     public int getId()
     {
         return id;
