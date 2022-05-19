@@ -46,8 +46,16 @@ public class CarController {
         return "all-cars";
     }
 
+     /**
+          *  @author Arboe(H4ppyN4p)
+          */
     @GetMapping("/bil/{carID}")
     public String getEditCar(HttpSession session, @PathVariable() int carID, Model model){
+
+        UserRole userRole = (UserRole) session.getAttribute("userRole");
+        if (userRole!=UserRole.BUSINESS_DEVELOPER){
+            return "redirect:/";
+        }
 
         Car car = CAR_SERVICE.getCar(carID);
 
@@ -59,6 +67,9 @@ public class CarController {
         return "edit-car";
     }
 
+     /**
+          *  @author Arboe(H4ppyN4p)
+          */
     @PostMapping("/bil/{carID}")
     public String editCar(HttpSession session, @ModelAttribute Car car){
 
@@ -68,6 +79,9 @@ public class CarController {
 
     }
 
+     /**
+          *  @author Arboe(H4ppyN4p)
+          */
     @GetMapping("/bil/{carID}/slet")
     public String deleteCar(HttpSession session, @PathVariable() int carID){
 
