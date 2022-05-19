@@ -26,7 +26,9 @@ public class CarController {
         model.addAttribute("car", new Car());
         return "create-car";
     }
-
+/*
+@Author Sofia
+ */
     @PostMapping("/opret-bil")
     public String createCar(HttpSession session, Model model, @ModelAttribute Car car){
         Car createdCar = CAR_SERVICE.createCar(car);
