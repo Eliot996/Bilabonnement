@@ -1,19 +1,25 @@
 package com.na.bilabonnement.models;
 
+import org.springframework.format.annotation.DateTimeFormat;
+import org.springframework.web.multipart.MultipartFile;
+
 import java.io.File;
-import java.util.Date;
+import java.time.LocalDate;
 
 public class RentalAgreement {
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
 
     private int id, carId, price, typeId;
-    private Date startDate, endDate;
-    private File contract;
+    private LocalDate startDate, endDate;
+    private MultipartFile contract;
     private RentalType type;
+
+    private String startDateString, endDateString;
 
     /**
      *  @author Mathias(Eliot996)
      */
-    public RentalAgreement(int id, int carId, int price, Date startDate, Date endDate, File contract, RentalType type) {
+    public RentalAgreement(int id, int carId, int price, LocalDate startDate, LocalDate endDate, MultipartFile contract, RentalType type) {
         this.id = id;
         this.carId = carId;
         this.price = price;
@@ -53,27 +59,27 @@ public class RentalAgreement {
         this.price = price;
     }
 
-    public Date getStartDate() {
+    public LocalDate getStartDate() {
         return startDate;
     }
 
-    public void setStartDate(Date startDate) {
+    public void setStartDate(LocalDate startDate) {
         this.startDate = startDate;
     }
 
-    public Date getEndDate() {
+    public LocalDate getEndDate() {
         return endDate;
     }
 
-    public void setEndDate(Date endDate) {
+    public void setEndDate(LocalDate endDate) {
         this.endDate = endDate;
     }
 
-    public File getContract() {
+    public MultipartFile getContract() {
         return contract;
     }
 
-    public void setContract(File contract) {
+    public void setContract(MultipartFile contract) {
         this.contract = contract;
     }
 
@@ -91,5 +97,23 @@ public class RentalAgreement {
 
     public void setTypeId(int typeId) {
         this.typeId = typeId;
+    }
+
+    public String getStartDateString() {
+        return startDateString;
+    }
+
+    public void setStartDateString(String startDateString) {
+        this.startDateString = startDateString;
+        startDate = LocalDate.parse(startDateString);
+    }
+
+    public String getEndDateString() {
+        return endDateString;
+    }
+
+    public void setEndDateString(String endDateString) {
+        this.endDateString = endDateString;
+        endDate = LocalDate.parse(endDateString);
     }
 }
