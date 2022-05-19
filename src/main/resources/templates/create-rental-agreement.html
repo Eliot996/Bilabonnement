@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Opret lejekontrakt</title>
+    <link rel="stylesheet" th:href="@{/general.css}">
+    <link rel="stylesheet" th:href="@{/create-user.css}">
+</head>
+<body>
+<header th:insert="fragments/fragments.html :: header"> </header>
+
+<div class="content-under-header" id="all_buttons_in_body_createuser">
+
+    <div style="width: 100%">
+        <h1>Opret Lejekontrakt</h1>
+    </div>
+    <form action="#" th:action="@{/opret-lejekontrakt}" th:object="${rentalAgreement}" method="post">
+
+        <div>
+            <label><b>Vælg bil:</b> <br>
+                <select th:field="*{carId}">
+                    <option value="-1">Vælg bil</option>
+                    <option th:each="car : ${cars}" th:value="${car.id}"
+                            th:text="${car.id + ' - ' + car.make + ' ' + car.model}"></option>
+                </select>
+            </label> <br> <br>
+
+            <label><b>Type:*</b> <br>
+                <select th:field="*{typeId}">
+                    <option value="0">Limited</option>
+                    <option value="1">Unlimited</option>
+                </select>
+            </label> <br> <br>
+
+            <label><b>Start Dato:*</b></label> <br>
+            <input type="date" th:field="*{startDate}" required> <br><br>
+
+            <label><b>Slut Dato:*</b></label> <br>
+            <input type="date" th:field="*{endDate}" required> <br> <br>
+
+            <label><b>Månedlig pris:*</b></label> <br>
+            <input type="text" placeholder="0" th:field="*{price}" required> <br><br>
+
+            <label><b>Kontrakt:</b></label> <br>
+            <span style="font-size: small">Maks. 16MB</span>
+            <input type="file"  th:field="*{contract}"> <br><br>
+
+
+
+            <button type="submit">Opret bil</button>
+        </div>
+    </form>
+</div>
+</body>
+</html>
