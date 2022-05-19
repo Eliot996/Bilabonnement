@@ -2,7 +2,7 @@ package com.na.bilabonnement.models;
 /*
 @Author Lasse
 */
-public class Damage
+public class DamageReport
 {
     private int id;
     private String notes;
@@ -10,7 +10,7 @@ public class Damage
     private int carId;
 
 
-    public Damage(int id, String notes, int technicianId, int carId)
+    public DamageReport(int id, String notes, int technicianId, int carId)
     {
         this.id = id;
         this.notes = notes;
