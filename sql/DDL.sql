@@ -78,3 +78,16 @@ CREATE TABLE `damage_report` (
                                  CONSTRAINT `carId` FOREIGN KEY (`carId`) REFERENCES `cars` (`id`),
                                  CONSTRAINT `technicianId` FOREIGN KEY (`technicianId`) REFERENCES `users` (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci
+
+CREATE TABLE `bilabonnement`.`damageline` (
+                                              `lineNumber` INT NOT NULL,
+                                              `damageReportId` INT NULL,
+                                              `damageNotes` VARCHAR(255) NULL,
+                                              `price` INT NULL,
+                                              PRIMARY KEY (`lineNumber`),
+                                              INDEX `damageReportId_idx` (`damageReportId` ASC) VISIBLE,
+                                              CONSTRAINT `damageReportId`
+                                                  FOREIGN KEY (`damageReportId`)
+                                                      REFERENCES `bilabonnement`.`damage_report` (`id`)
+                                                      ON DELETE NO ACTION
+                                                      ON UPDATE NO ACTION);
