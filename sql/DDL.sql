@@ -34,6 +34,7 @@ CREATE TABLE `bilabonnement`.`cars` (
                                         `make` VARCHAR(255) NULL,
                                         `model` VARCHAR(255) NULL,
                                         `trimLevel` VARCHAR(2400) NULL,
+                                        `carPrice` INT NULL,
                                         `scrapPrice` INT NULL,
                                         `registrationFee` INT NULL,
                                         `co2Emission` VARCHAR(255) NULL,

@@ -29,7 +29,7 @@ public class CarService {
           *  @author Arboe(H4ppyN4p)
           */
     public Car updateCar( int id, String chassisNumber, String status, String make, String model, String trimLevel,
-                         int scrapPrice, int registrationFee, int co2Emission, int kilometersDriven,
+                         int carPrice, int scrapPrice, int registrationFee, int co2Emission, int kilometersDriven,
                          String damage, String colour, String fuelType, int locationId) {
 
         Car car = repo.getSingleEntityById(id);
@@ -40,6 +40,7 @@ public class CarService {
         car.setMake(make);
         car.setModel(model);
         car.setTrimLevel(trimLevel);
+        car.setCarPrice(carPrice);
         car.setScrapPrice(scrapPrice);
         car.setRegistrationFee(registrationFee);
         car.setCo2Emission(co2Emission);

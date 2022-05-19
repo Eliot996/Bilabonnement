@@ -30,14 +30,14 @@ Values ("Mathias",
 
 
 -- for cars
-INSERT INTO `bilabonnement`.`cars` (`id`, `chassisNumber`, `status`, `make`, `model`, `trimLevel`, `scrapPrice`, `registrationFee`, `co2Emission`, `kilometersDriven`, `damages`, `colour`, `fuelType`, `locationId`)
-    VALUES (1, '12345678', 'klar til levering', 'citroen', 'c5', 'tip top', '5000', '20000', '126', '97000', 'punkteret', 'gul', 'dielsel', '1');
-INSERT INTO `bilabonnement`.`cars` (`id`,`chassisNumber`, `status`, `make`, `model`, `trimLevel`, `scrapPrice`, `registrationFee`, `co2Emission`, `kilometersDriven`, `damages`, `colour`, `fuelType`, `locationId`)
-    VALUES (2, '12345', 'ikke klar', 'toyota', 'aygo', 'lort', '6000', '10002', '117', '20594', 'tip tip', 'grå', 'benzin', '2');
-INSERT INTO `bilabonnement`.`cars` (`id`,`chassisNumber`, `status`, `make`, `model`, `trimLevel`, `scrapPrice`, `registrationFee`, `co2Emission`, `kilometersDriven`, `damages`, `colour`, `fuelType`, `locationId`)
-    VALUES (3, '123894', 'fint nok', 'renault', 'clio', 'sport', '4000', '123', '98', '50', 'ok', 'lilla', 'benzin', '2');
-INSERT INTO `bilabonnement`.`cars` (`id`,`chassisNumber`, `status`, `make`, `model`, `trimLevel`, `scrapPrice`, `registrationFee`, `co2Emission`, `kilometersDriven`, `damages`, `colour`, `fuelType`, `locationId`)
-    VALUES (4, '12345123123', 'god stand', 'bmw', 'i4', 'brugt', '3500', '1234', '0', '197000', 'ingen', 'sort', 'el', '1');
+INSERT INTO `bilabonnement`.`cars` (`id`, `chassisNumber`, `status`, `make`, `model`, `trimLevel`, `carPrice`, `scrapPrice`, `registrationFee`, `co2Emission`, `kilometersDriven`, `damages`, `colour`, `fuelType`, `locationId`)
+    VALUES (1, '12345678', 'klar til levering', 'citroen', 'c5', 'tip top', '8000', '5000', '20000', '126', '97000', 'punkteret', 'gul', 'dielsel', '1');
+INSERT INTO `bilabonnement`.`cars` (`id`,`chassisNumber`, `status`, `make`, `model`, `trimLevel`, `carPrice`, `scrapPrice`, `registrationFee`, `co2Emission`, `kilometersDriven`, `damages`, `colour`, `fuelType`, `locationId`)
+    VALUES (2, '12345', 'ikke klar', 'toyota', 'aygo', 'lort', '9000', '6000', '10002', '117', '20594', 'tip tip', 'grå', 'benzin', '2');
+INSERT INTO `bilabonnement`.`cars` (`id`,`chassisNumber`, `status`, `make`, `model`, `trimLevel`, `carPrice`, `scrapPrice`, `registrationFee`, `co2Emission`, `kilometersDriven`, `damages`, `colour`, `fuelType`, `locationId`)
+    VALUES (3, '123894', 'fint nok', 'renault', 'clio', 'sport', '7000', '4000', '123', '98', '50', 'ok', 'lilla', 'benzin', '2');
+INSERT INTO `bilabonnement`.`cars` (`id`,`chassisNumber`, `status`, `make`, `model`, `trimLevel`, `carPrice`, `scrapPrice`, `registrationFee`, `co2Emission`, `kilometersDriven`, `damages`, `colour`, `fuelType`, `locationId`)
+    VALUES (4, '12345123123', 'god stand', 'bmw', 'i4', 'brugt', '5500', '3500', '1234', '0', '197000', 'ingen', 'sort', 'el', '1');
 
 
 -- for rental agreements
