@@ -66,3 +66,22 @@ CREATE TABLE `bilabonnement`.`rental_agreements` (
                                                              REFERENCES `bilabonnement`.`cars` (`id`)
                                                              ON DELETE NO ACTION
                                                              ON UPDATE NO ACTION);
+
+CREATE TABLE `bilabonnement`.`damage_report` (
+                                                 `id` INT NOT NULL,
+                                                 `notes` TEXT NULL,
+                                                 `technicianName` INT NULL,
+                                                 `carId` INT NULL,
+                                                 PRIMARY KEY (`id`),
+                                                 INDEX `technitianId_idx` (`technicianName` ASC) VISIBLE,
+                                                 INDEX `carId_idx` (`carId` ASC) VISIBLE,
+                                                 CONSTRAINT `carId`
+                                                     FOREIGN KEY (`carId`)
+                                                         REFERENCES `bilabonnement`.`cars` (`id`)
+                                                         ON DELETE NO ACTION
+                                                         ON UPDATE NO ACTION,
+                                                 CONSTRAINT `technicianId`
+                                                     FOREIGN KEY (`technicianName`)
+                                                         REFERENCES `bilabonnement`.`users` (`id`)
+                                                         ON DELETE NO ACTION
+                                                         ON UPDATE NO ACTION);

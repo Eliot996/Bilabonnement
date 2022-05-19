@@ -49,3 +49,9 @@ INSERT INTO `bilabonnement`.`rental_agreements` (`carId`, `startDate`, `endDate`
     VALUES ('3', '2021-01-01', '2022-02-01', '5000', 'UNLIMITED');
 INSERT INTO `bilabonnement`.`rental_agreements` (`carId`, `startDate`, `endDate`, `price`, `type`)
     VALUES ('4', '2020-02-01', '2023-01-01', '4000', 'UNLIMITED');
+
+-- for damage reports
+INSERT INTO `bilabonnement`.`damage_report` (`id`, `notes`, `technicianName`, `carId`) VALUES ('1', 'skrammer for 100000', '1', '1');
+INSERT INTO `bilabonnement`.`damage_report` (`id`, `notes`, `technicianName`, `carId`) VALUES ('2', 'smadret rude', '2', '2');
+INSERT INTO `bilabonnement`.`damage_report` (`id`, `notes`, `technicianName`, `carId`) VALUES ('3', 'smadret gearkasse', '3', '3');
+INSERT INTO `bilabonnement`.`damage_report` (`id`, `notes`, `technicianName`, `carId`) VALUES ('4', 'smadret bremer', '4', '4');
