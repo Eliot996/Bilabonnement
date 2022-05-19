@@ -78,7 +78,7 @@ CREATE TABLE `damage_report` (
                                  KEY `carId_idx` (`carId`),
                                  CONSTRAINT `carId` FOREIGN KEY (`carId`) REFERENCES `cars` (`id`),
                                  CONSTRAINT `technicianId` FOREIGN KEY (`technicianId`) REFERENCES `users` (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 CREATE TABLE `bilabonnement`.`damageline` (
                                               `lineNumber` INT NOT NULL,
