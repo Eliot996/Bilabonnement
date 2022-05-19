@@ -67,3 +67,15 @@ CREATE TABLE `bilabonnement`.`rental_agreements` (
                                                              REFERENCES `bilabonnement`.`cars` (`id`)
                                                              ON DELETE NO ACTION
                                                              ON UPDATE NO ACTION);
+
+CREATE TABLE `damage_report` (
+                                 `id` int NOT NULL,
+                                 `notes` text,
+                                 `technicianId` int DEFAULT NULL,
+                                 `carId` int DEFAULT NULL,
+                                 PRIMARY KEY (`id`),
+                                 KEY `technitianId_idx` (`technicianId`),
+                                 KEY `carId_idx` (`carId`),
+                                 CONSTRAINT `carId` FOREIGN KEY (`carId`) REFERENCES `cars` (`id`),
+                                 CONSTRAINT `technicianId` FOREIGN KEY (`technicianId`) REFERENCES `users` (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci
