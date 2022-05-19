@@ -123,7 +123,9 @@ public class UserController {
     }
 
 
-
+    /*
+    @Author Lasse
+    */
     @GetMapping ("/home")
     public String home(HttpSession session){
         UserRole userRole = (UserRole)session.getAttribute("userRole");
@@ -142,37 +144,7 @@ public class UserController {
         return "redirect:/";
     }
 
-    /*
-    @Author Lasse
-    */
-    /*@GetMapping("/admin")
-    public String admin(){
-        return "administratorpage";
-    }
 
-    *//*
-    @Author Sofia
-     *//*
-    @GetMapping("/dataregistrering")
-    public String dataregistration(){
-        return "dataregistration";
-    }
-
-    *//*
-    @Author Sofia
-     *//*
-    @GetMapping("/skade_og_udbedring")
-    public String damageAndRectification(){
-        return "damageAndRectification";
-    }
-
-    *//*
-    @Author Lasse
-    *//*
-    @GetMapping("/forretningsudvikler")
-    public String businessdeveloper(){
-        return "businessdeveloper";
-    }*/
 
 
 }

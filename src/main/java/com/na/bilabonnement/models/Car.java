@@ -1,8 +1,8 @@
 package com.na.bilabonnement.models;
+
 /*
 @Author Lasse
 */
-
 public class Car {
 
     private int id;
