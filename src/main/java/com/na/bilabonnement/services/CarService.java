@@ -3,6 +3,7 @@ package com.na.bilabonnement.services;
 import com.na.bilabonnement.models.Car;
 import com.na.bilabonnement.repositories.*;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class CarService {
@@ -62,5 +63,36 @@ public class CarService {
      */
     public List<Car> getAllCars() {
         return repo.getAllEntities();
+    }
+
+
+     /**
+          *  @author Arboe(H4ppyN4p)
+          */
+    public List<Car> getRentedCars(){
+        ArrayList<Car> listOfRentedCars = new ArrayList<>();
+
+        for (Car car: repo.getAllEntities()
+        ) {
+            if (car.getStatus().toLowerCase().equals("rented"))
+            {
+                listOfRentedCars.add(car);
+            }
+        }
+        return listOfRentedCars;
+    }
+
+     /**
+          *  @author Arboe(H4ppyN4p)
+          */
+    public int getPriceOfRentedCars(){
+        int totalPrice = 0;
+
+        for (Car car: getRentedCars()
+             ) {
+            totalPrice += car.getCarPrice();
+        }
+
+        return totalPrice;
     }
 }
