@@ -3,7 +3,6 @@ package com.na.bilabonnement.controllers;
 import com.na.bilabonnement.models.RentalAgreement;
 import com.na.bilabonnement.services.CarService;
 import com.na.bilabonnement.services.RentalAgreementService;
-import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
