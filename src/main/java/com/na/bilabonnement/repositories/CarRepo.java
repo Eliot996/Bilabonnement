@@ -86,7 +86,6 @@ public class CarRepo implements ICarRepository{
     /**
      *  @author Lasse
      */
-    @Override
     public Car getSingleEntityByChassisNumber(String chassisNumber)
     {
         Connection con = DatabaseConnectionManager.getConnection();

@@ -53,7 +53,7 @@ public class CarController {
     public String getEditCar(HttpSession session, @PathVariable() int carID, Model model){
 
         UserRole userRole = (UserRole) session.getAttribute("userRole");
-        if (userRole!=UserRole.BUSINESS_DEVELOPER){
+        if (userRole != UserRole.BUSINESS_DEVELOPER){
             return "redirect:/biler";
         }
 
