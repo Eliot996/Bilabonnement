@@ -18,6 +18,9 @@ public class RentalAgreementController {
     private final CarService CAR_SERVICE = new CarService();
     private final RentalAgreementService RENTAL_AGREEMENT_SERVICE = new RentalAgreementService();
 
+    /**
+     *  @author Mathias(Eliot996)
+     */
     @GetMapping("/opret-lejekontrakt")
     public String getCreateRentalAgreement(HttpSession session, Model model) {
 
@@ -30,6 +33,9 @@ public class RentalAgreementController {
         return "create-rental-agreement";
     }
 
+    /**
+     *  @author Mathias(Eliot996)
+     */
     @PostMapping("/opret-lejekontrakt")
     public String createRentalAgreement(HttpSession session, Model model,
                                         @ModelAttribute RentalAgreement rentalAgreement) {
