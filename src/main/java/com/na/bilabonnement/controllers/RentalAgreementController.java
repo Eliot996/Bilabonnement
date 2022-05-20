@@ -60,8 +60,22 @@ public class RentalAgreementController {
             return "create-rental-agreement";
         }
 
-        RENTAL_AGREEMENT_SERVICE.create(rentalAgreement);
+        rentalAgreement = RENTAL_AGREEMENT_SERVICE.create(rentalAgreement);
 
         return "redirect:/lejekontrakt/" + rentalAgreement.getId();
+    }
+
+    /**
+     *  @author Mathias(Eliot996)
+     */
+    @GetMapping("/lejekontrakter")
+    public String viewAllRentalAgreements(HttpSession session, Model model) {
+        if (session.getAttribute("userRole") != UserRole.DATA_REGISTRATION) {
+            return "redirect:/logout";
+        }
+
+        model.addAttribute("listOfRentalAgreement", RENTAL_AGREEMENT_SERVICE.getAll());
+
+        return "all-rental-agreements";
     }
 }

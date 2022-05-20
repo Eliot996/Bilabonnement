@@ -6,9 +6,17 @@ import com.na.bilabonnement.utils.DatabaseConnectionManager;
 
 import java.io.IOException;
 import java.sql.*;
+import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.List;
 
 public class RentalAgreementRepo implements IRentalAgreementRepository{
+
+    private static final RentalAgreementRepo instance = new RentalAgreementRepo();
+    private RentalAgreementRepo() {}
+    public static RentalAgreementRepo getInstance() {
+        return instance;
+    }
 
     /**
      *  @author Mathias(Eliot996)
@@ -54,8 +62,42 @@ public class RentalAgreementRepo implements IRentalAgreementRepository{
 
     @Override
     public List<RentalAgreement> getAllEntities() {
-        return null;
+        Connection conn = DatabaseConnectionManager.getConnection();
+        String selectSQL = "SELECT id, carId, startDate, endDate, price, type FROM rental_agreements;";
+
+        ResultSet rs = null;
+        try {
+            PreparedStatement stmt = conn.prepareStatement(selectSQL);
+            rs = stmt.executeQuery();
+        }   catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        List<RentalAgreement> result = new ArrayList<>();
+        if (rs != null){
+            result = makeRentalAgreementsFromResultSet(rs);
+        }
+
+        DatabaseConnectionManager.closeConnection();
+        return result;
     }
+
+    private List<RentalAgreement> makeRentalAgreementsFromResultSet(ResultSet rs) {
+        ArrayList<RentalAgreement> rentalAgreements = new ArrayList<>();
+        try {
+            while(rs.next()) {
+                int id = rs.getInt("id");
+                int carId = rs.getInt("carId");
+                int price = rs.getInt("price");
+                LocalDate startDate = LocalDate.parse(rs.getString("startDate"));
+                LocalDate endDate = LocalDate.parse(rs.getString("endDate"));
+                RentalType type = RentalType.valueOf(rs.getString("type"));
+                rentalAgreements.add(new RentalAgreement(id, carId, price, startDate, endDate, type));
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return rentalAgreements;    }
 
     @Override
     public RentalAgreement update(RentalAgreement entity) {

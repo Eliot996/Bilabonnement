@@ -12,7 +12,7 @@ public class RentalAgreement {
     private LocalDate startDate, endDate;
     private MultipartFile contract;
     private RentalType type;
-
+    private Car car;
     private String startDateString, endDateString;
 
     /**
@@ -113,5 +113,13 @@ public class RentalAgreement {
     public void setEndDateString(String endDateString) {
         this.endDateString = endDateString;
         endDate = LocalDate.parse(endDateString);
+    }
+
+    public Car getCar() {
+        return car;
+    }
+
+    public void setCar(Car car) {
+        this.car = car;
     }
 }
