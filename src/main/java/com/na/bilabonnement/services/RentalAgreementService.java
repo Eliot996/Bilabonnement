@@ -14,6 +14,7 @@ public class RentalAgreementService {
     private IRentalAgreementRepository repo = RentalAgreementRepo.getInstance();
     private CarService carService =  new CarService();
     public void setRepo(IRentalAgreementRepository repo) { this.repo = repo; }
+    public void setCarService(CarService carService) { this.carService = carService; }
 
 
     public RentalAgreement create(RentalAgreement rentalAgreement) {
