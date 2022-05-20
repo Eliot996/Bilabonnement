@@ -2,6 +2,7 @@ package com.na.bilabonnement.repositories;
 
 import com.na.bilabonnement.models.User;
 import com.na.bilabonnement.models.UserRole;
+import com.na.bilabonnement.repositories.interfaces.IUserRepository;
 
 import java.util.ArrayList;
 import java.util.List;

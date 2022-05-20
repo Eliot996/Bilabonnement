@@ -1,7 +1,7 @@
 package com.na.bilabonnement.services;
 
 import com.na.bilabonnement.models.RentalAgreement;
-import com.na.bilabonnement.repositories.IRentalAgreementRepository;
+import com.na.bilabonnement.repositories.interfaces.IRentalAgreementRepository;
 import com.na.bilabonnement.repositories.RentalAgreementRepo;
 
 import java.util.List;

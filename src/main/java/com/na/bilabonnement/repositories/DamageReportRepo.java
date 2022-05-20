@@ -1,5 +1,6 @@
 package com.na.bilabonnement.repositories;
 import com.na.bilabonnement.models.DamageReport;
+import com.na.bilabonnement.repositories.interfaces.IDamageReportRepository;
 import com.na.bilabonnement.utils.DatabaseConnectionManager;
 
 import java.sql.Connection;

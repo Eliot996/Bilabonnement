@@ -1,6 +1,7 @@
 package com.na.bilabonnement.repositories;
 
 import com.na.bilabonnement.models.Location;
+import com.na.bilabonnement.repositories.interfaces.IRepository;
 import com.na.bilabonnement.utils.DatabaseConnectionManager;
 
 import java.sql.Connection;
@@ -10,7 +11,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-public class LocationRepo implements IRepository<Location>{
+public class LocationRepo implements IRepository<Location> {
     @Override
     public Location create(Location entity) {
         return null;

@@ -2,6 +2,7 @@ package com.na.bilabonnement.repositories;
 
 import com.na.bilabonnement.models.RentalAgreement;
 import com.na.bilabonnement.models.RentalType;
+import com.na.bilabonnement.repositories.interfaces.IRentalAgreementRepository;
 import com.na.bilabonnement.utils.DatabaseConnectionManager;
 
 import java.io.IOException;
@@ -10,7 +11,7 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
-public class RentalAgreementRepo implements IRentalAgreementRepository{
+public class RentalAgreementRepo implements IRentalAgreementRepository {
 
     private static final RentalAgreementRepo instance = new RentalAgreementRepo();
     private RentalAgreementRepo() {}

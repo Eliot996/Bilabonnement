@@ -1,6 +1,7 @@
 package com.na.bilabonnement.repositories;
 
 import com.na.bilabonnement.models.Car;
+import com.na.bilabonnement.repositories.interfaces.ICarRepository;
 
 import java.util.ArrayList;
 import java.util.List;
