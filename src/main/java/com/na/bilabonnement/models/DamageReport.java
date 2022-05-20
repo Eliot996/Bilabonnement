@@ -9,8 +9,7 @@ public class DamageReport
     private int technicianId;
     private int carId;
 
-    public DamageReport(){
-    }
+
 
     public DamageReport(int id, String notes, int technicianId, int carId)
     {
@@ -18,6 +17,9 @@ public class DamageReport
         this.notes=notes;
         this.technicianId=technicianId;
         this.carId=carId;
+    }
+
+    public DamageReport(){
     }
 
     public int getId()

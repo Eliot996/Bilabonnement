@@ -2,6 +2,8 @@ package com.na.bilabonnement.controllers;
 
 import com.na.bilabonnement.models.DamageReport;
 import com.na.bilabonnement.models.UserRole;
+import com.na.bilabonnement.repositories.CarRepo;
+import com.na.bilabonnement.services.CarService;
 import com.na.bilabonnement.services.DamageReportService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -17,10 +19,12 @@ public class DamageReportController {
     @Author Sofia
      */
     private final DamageReportService DAMAGE_REPORT_SERVICE = new DamageReportService();
+    private final CarService CAR_SERVICE = new CarService();
 
     @GetMapping("/opret-skadesrapport")
     public String getCreateDamageReport(HttpSession session, Model model){
         model.addAttribute("damageReport", new DamageReport());
+        model.addAttribute("cars", CAR_SERVICE.getAllCars()); // todo: make get only relevant cars
         return "create-damage-report";
     }
 
