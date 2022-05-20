@@ -60,7 +60,7 @@ public class RentalAgreementController {
             return "create-rental-agreement";
         }
 
-        RENTAL_AGREEMENT_SERVICE.create(rentalAgreement);
+        rentalAgreement = RENTAL_AGREEMENT_SERVICE.create(rentalAgreement);
 
         return "redirect:/lejekontrakt/" + rentalAgreement.getId();
     }
