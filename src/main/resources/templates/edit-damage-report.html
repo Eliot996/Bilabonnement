@@ -31,10 +31,10 @@
         <input type="text" th:placeholder="${damageReport.notes}" th:field="*{notes}" required> <br><br>
     </div>
 
-    <button type="submit">Rediger bil</button>
+    <button class="btn btn-secondary" type="submit">Rediger bil</button>
 </form>
 <a th:href="@{/skadesrapport/{damageReportId}/slet(damageReportId=${damageReport.id})}">
-    <button class="button">Slet</button>
+    <button class="btn btn-secondary">Slet</button>
 </a>
 
 <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>

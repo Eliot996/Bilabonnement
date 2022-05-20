@@ -29,7 +29,7 @@
                 <span th:if="${user.role.toString() == 'BUSINESS_DEVELOPER'}" th:text="'- Forretningsudvikler'"></span>
                 <span th:if="${user.role.toString() == 'ADMINISTRATOR'}" th:text="'- Administrator'"></span>
                 <a th:href="@{/bruger/{userId}(userId=${user.id})}">
-                    <button class="button">Rediger</button>
+                    <button class="btn btn-secondary">Rediger</button>
                 </a>
         </div>
     </section>

@@ -20,28 +20,32 @@
         <h1 class="center_things">Bruger:</h1>
         <table>
             <thead>
-            <tr>
-                <th> Vognnummer</th>
-                <th> Mærke</th>
-                <th> Model</th>
-                <th> Status</th>
-                <th> Link</th>
-            </tr>
+                <tr>
+                    <th > Vognnummer</th>
+                    <th > Mærke</th>
+                    <th > Model</th>
+                    <th > Status</th>
+                    <th > Link</th>
+                </tr>
             </thead>
             <tbody>
-            <tr th:if="${listOfCars.empty}">
-                <td colspan="5"> Der er ingen biler i systemet</td>
-            </tr>
-            <tr th:each="car : ${listOfCars}">
-                <td><span th:text="${car.id}"> Vognnummer </span></td>
-                <td><span th:text="${car.make}"> Mærke </span></td>
-                <td><span th:text="${car.model}"> Model </span></td>
-                <td><span th:text="${car.status}"> Status </span></td>
-                <td>
-                    <a th:href="@{/bil/{carId}(carId=${car.id})}">
-                        <button class="button">Rediger</button>
-                    </a>
-                </td>
+                <tr th:if="${listOfCars.empty}">
+                    <td colspan="5"> Der er ingen biler i systemet</td>
+                </tr>
+            <tr class="mb-1" th:each="car : ${listOfCars}">
+                <div style="margin: 20px">
+                    <td ><span th:text="${car.id}"> Vognnummer </span></td>
+                    <td ><span th:text="${car.make}"> Mærke </span></td>
+                    <td ><span th:text="${car.model}"> Model </span></td>
+                    <td ><span th:text="${car.status}"> Status </span></td>
+                    <td>
+                        <a th:href="@{/bil/{carId}(carId=${car.id})}">
+                            <div class="m-2">
+                              <button class="btn btn-secondary" style="height: 90%">Rediger</button>
+                            </div>
+                        </a>
+                    </td>
+                </div>
             </tr>
             </tbody>
         </table>
