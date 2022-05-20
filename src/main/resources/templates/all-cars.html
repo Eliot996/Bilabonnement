@@ -13,7 +13,7 @@
     <link rel="stylesheet" th:href="@{/all-users.css}">
 </head>
 <body>
-<header th:insert="fragments/fragments.html :: header"> </header>
+<header th:insert="fragments/fragments.html :: header"></header>
 
 <div class="content-under-header">
     <div>
@@ -21,16 +21,16 @@
         <table>
             <thead>
             <tr>
-                <th> Vognnummer </th>
-                <th> Mærke </th>
-                <th> Model </th>
-                <th> Status </th>
-                <th> Link </th>
+                <th> Vognnummer</th>
+                <th> Mærke</th>
+                <th> Model</th>
+                <th> Status</th>
+                <th> Link</th>
             </tr>
             </thead>
             <tbody>
             <tr th:if="${listOfCars.empty}">
-                <td colspan="5"> Der er ingen biler i systemet </td>
+                <td colspan="5"> Der er ingen biler i systemet</td>
             </tr>
             <tr th:each="car : ${listOfCars}">
                 <td><span th:text="${car.id}"> Vognnummer </span></td>

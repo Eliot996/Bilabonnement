@@ -22,7 +22,9 @@ public class Car {
     private int locationId;
 
 
-    public Car(int id, String chassisNumber, String status, String make, String model, String trimLevel, int carPrice, int scrapPrice, int registrationFee, int co2Emission, int kilometersDriven, String damage, String colour, String fuelType, int locationId)
+    public Car(int id, String chassisNumber, String status, String make, String model, String trimLevel,
+               int carPrice, int scrapPrice, int registrationFee, int co2Emission, int kilometersDriven,
+               String damage, String colour, String fuelType, int locationId)
     {
         this.id = id;
         this.chassisNumber = chassisNumber;

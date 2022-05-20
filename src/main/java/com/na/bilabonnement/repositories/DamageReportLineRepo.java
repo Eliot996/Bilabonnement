@@ -1,5 +1,5 @@
 package com.na.bilabonnement.repositories;
-
+import com.na.bilabonnement.models.DamageReport;
 import com.na.bilabonnement.models.DamageReportLine;
 import com.na.bilabonnement.utils.DatabaseConnectionManager;
 
@@ -10,7 +10,6 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-import java.util.List;
 public class DamageReportLineRepo implements IDamageReportLineRepository
 {
     private static final DamageReportLineRepo instance = new DamageReportLineRepo();
@@ -37,15 +36,15 @@ public class DamageReportLineRepo implements IDamageReportLineRepository
             e.printStackTrace();
         }
 
-        return getSingleEntityByDamageReportId(entity.getDamageReportId());
+        return getSingleEntityByLinenumber(entity.getLineNumber());
     }
 
-    public DamageReportLine getSingleEntityByDamageReportId(int damageReportId)
+    public DamageReportLine getSingleEntityByLinenumber(int lineNumber)
     {
         Connection connection = DatabaseConnectionManager.getConnection();
 
         String selectSQL = "SELECT * FROM damageline " +
-                "WHERE `damageReportId` = '" + damageReportId +  "';";
+                "WHERE `lineNumber` = '" + lineNumber +  "';";
         ResultSet rs = null;
         try {
             PreparedStatement stmt = connection.prepareStatement(selectSQL);
@@ -76,8 +75,8 @@ public class DamageReportLineRepo implements IDamageReportLineRepository
         ArrayList<DamageReportLine> damageReportLines = new ArrayList<>();
         try {
             while (rs.next()){
-                int lineNumber = rs.getInt("linenumer");
-                int damageReportId = rs.getInt("damagereportId");
+                int lineNumber = rs.getInt("linenumber");
+                int damageReportId = rs.getInt("damageReportId");
                 String damageNotes = rs.getString("damageNotes");
                 int price = rs.getInt("price");
                 damageReportLines.add(new DamageReportLine(lineNumber, damageReportId, damageNotes, price));
@@ -91,7 +90,26 @@ public class DamageReportLineRepo implements IDamageReportLineRepository
     @Override
     public DamageReportLine getSingleEntityById(int id)
     {
-        return null;
+        Connection connection = DatabaseConnectionManager.getConnection();
+
+        String selectSQL = "SELECT * FROM damage_report WHERE `id` = ?;";
+
+        ResultSet rs = null;
+        try {
+            PreparedStatement stmt = connection.prepareStatement(selectSQL);
+            stmt.setInt(1, id);
+            rs = stmt.executeQuery();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        DamageReportLine result = null;
+        if (rs != null) {
+            result = makeDamageReportLineFromResultSet(rs);
+        }
+
+        DatabaseConnectionManager.closeConnection();
+        return result;
     }
 
     @Override
@@ -123,12 +141,40 @@ public class DamageReportLineRepo implements IDamageReportLineRepository
     @Override
     public DamageReportLine update(DamageReportLine entity)
     {
+        Connection connection = DatabaseConnectionManager.getConnection();
+
+        String insertSQL = "UPDATE `bilabonnement`.`damageline`" +
+                "SET `damageNotes` = ?,  `damageReportId` = ?, `price` = ? " +
+                "WHERE (`lineNumber` = ?);";
+
+        try {
+            PreparedStatement stmt = connection.prepareStatement(insertSQL);
+            stmt.setString(1,entity.getDamageNotes());
+            stmt.setInt(2, entity.getDamageReportId());
+            stmt.setInt(3,entity.getPrice());
+
+            stmt.setInt(4, entity.getLineNumber());
+
+            stmt.execute();
+        }catch (SQLException e){
+            e.printStackTrace();
+        }
         return null;
     }
 
     @Override
-    public boolean deleteById(int id)
-    {
+    public boolean deleteById(int id){
+        Connection connection = DatabaseConnectionManager.getConnection();
+        try {
+            PreparedStatement stmt = connection.prepareStatement("DELETE FROM damageline where lineNumber=?");
+            stmt.setInt(1, id);
+            stmt.execute();
+
+            DatabaseConnectionManager.closeConnection();
+        } catch (SQLException throwables){
+            throwables.printStackTrace();
+        }
         return false;
+
     }
 }
