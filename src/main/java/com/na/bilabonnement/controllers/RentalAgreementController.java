@@ -24,9 +24,14 @@ public class RentalAgreementController {
     @GetMapping("/opret-lejekontrakt")
     public String getCreateRentalAgreement(HttpSession session, Model model) {
 
+
+
         if (session.getAttribute("userRole") != UserRole.DATA_REGISTRATION) {
             return "redirect:/logout";
         }
+
+        UserRole userRole = (UserRole)session.getAttribute("userRole");
+         model.addAttribute("userRole", userRole.toString());
 
         model.addAttribute("cars", CAR_SERVICE.getAllCars()); // todo: make get only relevant cars
         model.addAttribute("rentalAgreement", new RentalAgreement());

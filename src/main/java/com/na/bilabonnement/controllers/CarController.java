@@ -24,6 +24,9 @@ public class CarController {
 
     @GetMapping("/opret-bil")
     public String getCreateCar(HttpSession session, Model model){
+        UserRole userRole = (UserRole)session.getAttribute("userRole");
+        model.addAttribute("userRole", userRole.toString());
+
         model.addAttribute("locations", LOCATION_SERVICE.getAllLocations());
         model.addAttribute("car", new Car());
         return "create-car";
@@ -42,6 +45,9 @@ public class CarController {
      */
     @GetMapping("/biler")
     public String viewAllCars(HttpSession session, Model model) {
+        UserRole userRole = (UserRole)session.getAttribute("userRole");
+        model.addAttribute("userRole", userRole.toString());
+
         model.addAttribute("listOfCars", CAR_SERVICE.getAllCars());
 
         return "all-cars";
@@ -58,7 +64,10 @@ public class CarController {
             return "redirect:/biler";
         }
 
+
         Car car = CAR_SERVICE.getCar(carID);
+
+        model.addAttribute("userRole", userRole.toString());
 
         model.addAttribute("car", car);
         model.addAttribute("locations",LOCATION_SERVICE.getAllLocations());
@@ -84,7 +93,10 @@ public class CarController {
           *  @author Arboe(H4ppyN4p)
           */
     @GetMapping("/bil/{carID}/slet")
-    public String deleteCar(HttpSession session, @PathVariable() int carID){
+    public String deleteCar(HttpSession session, @PathVariable() int carID, Model model){
+
+        UserRole userRole = (UserRole)session.getAttribute("userRole");
+        model.addAttribute("userRole", userRole);
 
         CAR_SERVICE.deleteCar(carID);
 
@@ -94,6 +106,8 @@ public class CarController {
     @GetMapping("/biler/data")
     public String carData(HttpSession session, Model model){
 
+        UserRole userRole = (UserRole)session.getAttribute("userRole");
+        model.addAttribute("userRole", userRole.toString());
 
         model.addAttribute("listOfRentedCars", CAR_SERVICE.getRentedCars());
         model.addAttribute("numberOfRentedCars", CAR_SERVICE.getRentedCars().size());

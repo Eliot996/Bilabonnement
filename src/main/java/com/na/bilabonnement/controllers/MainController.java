@@ -1,6 +1,7 @@
 package com.na.bilabonnement.controllers;
 
 import com.na.bilabonnement.models.User;
+import com.na.bilabonnement.models.UserRole;
 import com.na.bilabonnement.services.UserService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -62,6 +63,29 @@ public class MainController {
     @GetMapping("/logout")
     public String logout(HttpSession session) {
         session.invalidate();
+        return "redirect:/";
+    }
+
+    @GetMapping ("/home")
+    public String home(HttpSession session, Model model){
+        UserRole userRole = (UserRole)session.getAttribute("userRole");
+        if (userRole == UserRole.ADMINISTRATOR){
+            model.addAttribute("userRole", userRole.toString());
+            return "administratorpage";
+        } else if (userRole == UserRole.BUSINESS_DEVELOPER) {
+            model.addAttribute("userRole", userRole.toString());
+            return "businessdeveloper";
+        }
+        else if (userRole == UserRole.DAMAGE_AND_RECTIFICATION) {
+            model.addAttribute("userRole", userRole.toString());
+            return "damageAndRectification";
+        }
+        else if (userRole == UserRole.DATA_REGISTRATION) {
+            model.addAttribute("userRole", userRole.toString());
+            return "dataregistration";
+        }
+        
+
         return "redirect:/";
     }
 }

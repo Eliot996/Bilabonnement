@@ -20,6 +20,9 @@ public class DamageReportController {
 
     @GetMapping("/opret-skadesrapport")
     public String getCreateDamageReport(HttpSession session, Model model){
+        UserRole userRole = (UserRole)session.getAttribute("userRole");
+         model.addAttribute("userRole", userRole.toString());
+
         model.addAttribute("damageReport", new DamageReport());
         return "create-damage-report";
     }
@@ -32,6 +35,9 @@ public class DamageReportController {
 
     @GetMapping("/skadesrapporter")
     public String viewAllDamageReports(HttpSession session, Model model){
+        UserRole userRole = (UserRole)session.getAttribute("userRole");
+         model.addAttribute("userRole", userRole.toString());
+
         model.addAttribute("listOfDamageReports", DAMAGE_REPORT_SERVICE.getAllDamageReports());
         return "all-damage-reports";
     }
@@ -41,7 +47,11 @@ public class DamageReportController {
         UserRole userRole = (UserRole) session.getAttribute("userRole");
         if (userRole != UserRole.DAMAGE_AND_RECTIFICATION){
             return "redirect:/skadesrapporter";
+
         }
+
+         model.addAttribute("userRole", userRole.toString());
+
         DamageReport damageReport = DAMAGE_REPORT_SERVICE.getDamageReport(damageReportId);
         model.addAttribute("damageReport", damageReport);
         return "edit-damage-report";
@@ -54,7 +64,10 @@ public class DamageReportController {
     }
 
     @GetMapping("/skadesrapport/{damageReportId}/slet")
-    public String deleteDamageReport(HttpSession session, @PathVariable int damageReportId){
+    public String deleteDamageReport(HttpSession session, @PathVariable int damageReportId, Model model){
+        UserRole userRole = (UserRole)session.getAttribute("userRole");
+         model.addAttribute("userRole", userRole);
+
         DAMAGE_REPORT_SERVICE.deleteDamageReport(damageReportId);
         return "redirect:/skadesrapporter";
     }

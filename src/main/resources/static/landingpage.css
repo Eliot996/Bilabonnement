@@ -4,12 +4,7 @@
     padding-bottom: 5px;
 }
 
-.container{
-    display: inline-block;
-    box-sizing: border-box;
-}
-
-.img_style{
-    width: 80%
+#img_style{
+    width: 100%
 }
 

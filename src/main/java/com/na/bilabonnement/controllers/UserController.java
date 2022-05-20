@@ -24,12 +24,20 @@ public class UserController {
     private final UserService USER_SERVICE = new UserService();
     private final LocationService LOCATION_SERVICE = new LocationService();
 
+    /*
+   @Author Lasse
+   */
+
+
     /**
      *  @author Mathias(Eliot996)
      *  Get method for creation of a user
      */
     @GetMapping("/opret-bruger")
     public String getCreateUser(HttpSession session, Model model) {
+        UserRole userRole = (UserRole)session.getAttribute("userRole");
+        model.addAttribute("userRole", userRole.toString());
+
         model.addAttribute("locations", LOCATION_SERVICE.getAllLocations());
         model.addAttribute("user", new User());
         return "create-user";
@@ -52,6 +60,8 @@ public class UserController {
      */
     @GetMapping("/brugere")
     public String getAllUsers(HttpSession session, Model model) {
+        UserRole userRole = (UserRole)session.getAttribute("userRole");
+        model.addAttribute("userRole", userRole.toString());
 
         model.addAttribute("listOfUsers", USER_SERVICE.getAllUsers());
 
@@ -77,6 +87,8 @@ public class UserController {
             case BUSINESS_DEVELOPER:        user.setRoleID(2);  break;
             case ADMINISTRATOR:             user.setRoleID(3);  break;
         }
+
+        model.addAttribute("userRole", userRole.toString());
 
         model.addAttribute("user", user);
         model.addAttribute("locations",LOCATION_SERVICE.getAllLocations());
@@ -123,26 +135,7 @@ public class UserController {
     }
 
 
-    /*
-    @Author Lasse
-    */
-    @GetMapping ("/home")
-    public String home(HttpSession session){
-        UserRole userRole = (UserRole)session.getAttribute("userRole");
-        if (userRole == UserRole.ADMINISTRATOR){
-            return "administratorpage";
-        } else if (userRole == UserRole.BUSINESS_DEVELOPER) {
-            return "businessdeveloper";
-        }
-        else if (userRole == UserRole.DAMAGE_AND_RECTIFICATION) {
-            return "damageAndRectification";
-        }
-        else if (userRole == UserRole.DATA_REGISTRATION) {
-            return "dataregistration";
-        }
 
-        return "redirect:/";
-    }
 
 
 
