@@ -44,6 +44,8 @@ public class RentalAgreementService {
     }
 
     public RentalAgreement get(int id) {
-        return repo.getSingleEntityById(id);
+        RentalAgreement ra = repo.getSingleEntityById(id);
+        ra.setCar(carService.getCar(ra.getCarId()));
+        return ra;
     }
 }
