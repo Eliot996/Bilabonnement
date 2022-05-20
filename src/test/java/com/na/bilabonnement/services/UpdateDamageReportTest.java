@@ -8,6 +8,9 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class UpdateDamageReportTest {
 
+    /*
+    @Author Sofia
+     */
     @Test
     void updateDamageReportTest(){
         //Arrange
