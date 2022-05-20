@@ -21,13 +21,13 @@ public class DamageReportController {
     @GetMapping("/opret-skadesrapport")
     public String getCreateDamageReport(HttpSession session, Model model){
         model.addAttribute("damageReport", new DamageReport());
-        return "create-damageReport";
+        return "create-damage-report";
     }
 
     @PostMapping("/opret-skadesrapport")
     public String createDamageReport(HttpSession session, Model model, @ModelAttribute DamageReport damageReport){
         DamageReport createdDamageReport = DAMAGE_REPORT_SERVICE.createDamageReport(damageReport);
-        return "redirect:/skadesrapport" + createdDamageReport.getId();
+        return "redirect:/skadesrapport/" + createdDamageReport.getId();
     }
 
     @GetMapping("/skadesrapporter")

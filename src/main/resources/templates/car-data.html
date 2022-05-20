@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" th:href="@{/general.css}">
+    <link rel="stylesheet" th:href="@{/cars-data.css}">
+</head>
+<body>
+
+<header th:insert="fragments/fragments.html :: header"> </header>
+
+
+<div class="flex data-spaced">
+    <div >
+        <p>Total antal udlejde biler:</p>
+        <p th:text="${numberOfRentedCars}"></p>
+    </div>
+
+    <div>
+        <p>Totalpris for udlejede biler:</p>
+        <p th:text="${totalPriceOfRentedCars}"></p>
+    </div>
+
+    <div>
+        <table>
+            <thead>
+                <tr>
+                    <th style="padding: 0 20px"> Vognnummer </th>
+                    <th style="padding: 0 20px"> Købspris </th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr th:if="${listOfRentedCars.empty}">
+                    <td colspan="5"> Der er ingen udlejede biler i systemet </td>
+                </tr>
+
+
+                <p>Udlejede biler:</p>
+                <tr th:each="car : ${listOfRentedCars}">
+                    <td style="padding: 0 20px"><span th:text="${car.id}"> Vognnummer </span></td>
+                    <td style="padding: 0 20px"><span th:text="${car.carPrice}"> Købspris </span></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+
+
+</body>
+</html>

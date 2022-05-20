@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 
 import javax.servlet.http.HttpSession;
+import java.util.List;
 
 @Controller
 public class CarController {
@@ -88,5 +89,16 @@ public class CarController {
         CAR_SERVICE.deleteCar(carID);
 
         return "redirect:/biler";
+    }
+
+    @GetMapping("/biler/data")
+    public String carData(HttpSession session, Model model){
+
+
+        model.addAttribute("listOfRentedCars", CAR_SERVICE.getRentedCars());
+        model.addAttribute("numberOfRentedCars", CAR_SERVICE.getRentedCars().size());
+        model.addAttribute("totalPriceOfRentedCars", CAR_SERVICE.getPriceOfRentedCars());
+
+        return "car-data";
     }
 }

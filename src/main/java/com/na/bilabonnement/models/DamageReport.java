@@ -10,11 +10,14 @@ public class DamageReport
     private int carId;
 
     public DamageReport(){
-
     }
 
     public DamageReport(int id, String notes, int technicianId, int carId)
     {
+        this.id=id;
+        this.notes=notes;
+        this.technicianId=technicianId;
+        this.carId=carId;
     }
 
     public int getId()

@@ -9,12 +9,16 @@
 
 <header class="header-style" th:fragment="header">
     <a style="text-decoration: none" href="/home">
-    <img id="img_style" th:src="@{/pictures/logo.jpg}">
+        <img id="img_style" th:src="@{/pictures/logo.jpg}">
     </a>
-   <a th:href="@{/logout}">
-       <button id="all_buttons_in_header" type="submit">Log ud</button>
-   </a>
+    <a th:href="@{/logout}">
+        <button id="all_buttons_in_header" type="submit">Log ud</button>
+    </a>
 </header>
+
+
+
+
 
 <form th:fragment="loginForm"  action="#" th:action="@{/login}" th:object="${user}" method="post">
 
