@@ -33,4 +33,17 @@ public class RentalAgreementService {
 
         return list;
     }
+
+    /**
+     *  @author Mathias(Eliot996)
+     */
+    public boolean update(RentalAgreement rentalAgreement) {
+
+
+        return false;
+    }
+
+    public RentalAgreement get(int id) {
+        return repo.getSingleEntityById(id);
+    }
 }
