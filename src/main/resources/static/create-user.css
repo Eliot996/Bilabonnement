@@ -1,4 +1,6 @@
 #all_buttons_in_body_createuser{
-    align-self: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
     font-size: 18px;
 }

@@ -17,16 +17,30 @@
     width: 100%;
 }
 
+#header-logout-button{
+    float: right;
+}
+
+
 .content-under-header{
     display: flex;
+    align-items: center;
     justify-content: center;
     width: 100%;
     background-color: #f2f2f2;
     margin: auto;
-    height: 90vh;
+    height: 80vh;
 }
 
+
 .button-style-home{
+    background-color: #f2f2f2;
+    color: black;
+    cursor: pointer;
+    width: 100%;
+    button:hover;
+    font-size: 45px;
+    border-radius: 5px;
 
 }
 
@@ -39,7 +53,6 @@
     float: left;
 }
 
-
 button:hover {
     opacity: 0.8;
 }
@@ -47,6 +60,5 @@ button:hover {
 .flex{
     display: flex;
 }
-
 
 
