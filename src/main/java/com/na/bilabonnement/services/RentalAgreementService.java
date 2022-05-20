@@ -8,19 +8,22 @@ import java.util.List;
 
 public class RentalAgreementService {
 
-    /**
-     *  @author Mathias(Eliot996)
-     */
     private IRentalAgreementRepository repo = RentalAgreementRepo.getInstance();
     private CarService carService =  new CarService();
     public void setRepo(IRentalAgreementRepository repo) { this.repo = repo; }
     public void setCarService(CarService carService) { this.carService = carService; }
 
 
+    /**
+     *  @author Mathias(Eliot996)
+     */
     public RentalAgreement create(RentalAgreement rentalAgreement) {
         return repo.create(rentalAgreement);
     }
 
+    /**
+     *  @author Mathias(Eliot996)
+     */
     public List<RentalAgreement> getAll() {
         List<RentalAgreement> list = repo.getAllEntities();
 
