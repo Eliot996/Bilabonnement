@@ -28,18 +28,22 @@ public class RentalAgreementRepo implements IRentalAgreementRepository{
             stmt.setString(5, RentalType.values()[entity.getTypeId()].toString());
 
             if (entity.getContract().isEmpty()) {
-                System.out.println("file was empty");
                 stmt.setNull(6, Types.BLOB);
             } else {
                 stmt.setBlob(6,  entity.getContract().getInputStream());
             }
 
             stmt.execute();
+
+            stmt = conn.prepareStatement("SELECT LAST_INSERT_ID();");
+            ResultSet rs = stmt.executeQuery();
+            rs.next();
+
+            entity.setId(rs.getInt("LAST_INSERT_ID()"));
+            return entity;
         } catch (SQLException | IOException e) {
             e.printStackTrace();
         }
-
-
         return null;
     }
 
