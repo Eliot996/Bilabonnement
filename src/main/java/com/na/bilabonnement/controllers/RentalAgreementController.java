@@ -64,4 +64,18 @@ public class RentalAgreementController {
 
         return "redirect:/lejekontrakt/" + rentalAgreement.getId();
     }
+
+    /**
+     *  @author Mathias(Eliot996)
+     */
+    @GetMapping("/lejekontrakter")
+    public String viewAllRentalAgreements(HttpSession session, Model model) {
+        if (session.getAttribute("userRole") != UserRole.DATA_REGISTRATION) {
+            return "redirect:/logout";
+        }
+
+        model.addAttribute("listOfRentalAgreement", RENTAL_AGREEMENT_SERVICE.getAll());
+
+        return "all-rental-agreements";
+    }
 }
