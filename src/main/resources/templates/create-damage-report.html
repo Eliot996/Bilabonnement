@@ -13,8 +13,15 @@
     <form action="#" th:action="@{/opret-skadesrapport}" th:object="${damageReport}" method="post">
 
         <div>
-            <label><b>Bil id:*</b></label> <br>
-            <input type="text" placeholder="Vognnummer" th:field="*{carId}" required> <br><br>
+
+            <label><b>Vælg bil:*</b> <br>
+                <span th:if="${noCar}" style="font-size: small; color: red">Vælg en bil! <br></span>
+                <select th:field="*{carId}">
+                    <option value="-1">Vælg bil</option>
+                    <option th:each="car : ${cars}" th:value="${car.id}"
+                            th:text="${car.id + ' - ' + car.make + ' ' + car.model}"></option>
+                </select>
+            </label> <br> <br>
 
             <label><b>Medarbejder id:*</b></label> <br>
             <input type="text" placeholder="Status" th:field="*{technicianId}" required> <br> <br>

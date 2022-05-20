@@ -22,7 +22,7 @@ public class DamageReportRepo implements IDamageReportRepository {
     public DamageReport create(DamageReport entity)
     {
         Connection conn = DatabaseConnectionManager.getConnection();
-        String insertSQL = "INSERT INTO `bilabonnement`.`damage_report` (`id`, `notes`, `technicianId`, `carId`)" +
+        String insertSQL = "INSERT INTO damage_report (`id`, `notes`, `technicianId`, `carId`)" +
                             "VALUES (?, ?, ?, ?);";
         try {
             PreparedStatement stmt = conn.prepareStatement(insertSQL);
@@ -138,6 +138,8 @@ public class DamageReportRepo implements IDamageReportRepository {
             stmt.setInt(2, entity.getTechnicianId());
             stmt.setInt(3, entity.getCarId());
 
+            stmt.setInt(4, entity.getId());
+
             System.out.println(stmt);
 
             stmt.execute();
@@ -152,9 +154,10 @@ public class DamageReportRepo implements IDamageReportRepository {
     public boolean deleteById(int id)
     {Connection conn = DatabaseConnectionManager.getConnection();
         try{
-            PreparedStatement stmt = conn.prepareStatement("DELETE FROM damage_report WHERE id=?");
+            PreparedStatement stmt = conn.prepareStatement( "DELETE FROM damage_report WHERE id=?");
             stmt.setInt(1, id);
             stmt.execute();
+
             DatabaseConnectionManager.closeConnection();
             return true;
         } catch (SQLException throwables) {

@@ -7,7 +7,7 @@
     <link rel="stylesheet" th:href="@{/all-users.css}">
 </head>
 <body>
-<header th:insert="fragments/fragments.html :: header"> </header>
+<header th:insert="fragments/fragments.html :: header"></header>
 
 <div class="content-under-header">
     <div>
@@ -15,14 +15,14 @@
         <table>
             <thead>
             <tr>
-                <th> Skadesrapport id </th>
-                <th> Bemærkninger </th>
-                <th> Medarbejder id </th>
+                <th> Skadesrapport id</th>
+                <th> Bemærkninger</th>
+                <th> Medarbejder id</th>
             </tr>
             </thead>
             <tbody>
             <tr th:if="${listOfDamageReports.empty}">
-                <td colspan="5"> Der er ingen skadesrapporter i systemet </td>
+                <td colspan="5"> Der er ingen skadesrapporter i systemet</td>
             </tr>
             <tr th:each="damageReport : ${listOfDamageReports}">
                 <td><span th:text="${damageReport.id}"> Skadesrapport id </span></td>
