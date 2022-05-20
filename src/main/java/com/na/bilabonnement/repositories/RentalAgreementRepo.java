@@ -60,6 +60,9 @@ public class RentalAgreementRepo implements IRentalAgreementRepository{
         return null;
     }
 
+    /**
+     *  @author Mathias(Eliot996)
+     */
     @Override
     public List<RentalAgreement> getAllEntities() {
         Connection conn = DatabaseConnectionManager.getConnection();
@@ -82,6 +85,9 @@ public class RentalAgreementRepo implements IRentalAgreementRepository{
         return result;
     }
 
+    /**
+     *  @author Mathias(Eliot996)
+     */
     private List<RentalAgreement> makeRentalAgreementsFromResultSet(ResultSet rs) {
         ArrayList<RentalAgreement> rentalAgreements = new ArrayList<>();
         try {
