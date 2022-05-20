@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Lejekontrakter</title>
+    <link rel="stylesheet" th:href="@{/general.css}">
+    <link rel="stylesheet" th:href="@{/all-users.css}">
+</head>
+<body>
+<header th:insert="fragments/fragments.html :: header"> </header>
+
+<div class="content-under-header">
+    <div>
+        <h1 class="center_things">Lejekontrakter:</h1>
+        <table>
+            <thead>
+            <tr>
+                <th> ID </th>
+                <th> Bil </th>
+                <th> StartDato </th>
+                <th> SlutDato </th>
+                <th> Type </th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:if="${listOfRentalAgreement.empty}">
+                <td colspan="5"> Der er ingen lejekontrakter i systemet </td>
+            </tr>
+            <tr th:each="RA : ${listOfRentalAgreement}">
+                <td><span th:text="${RA.id}"> ID </span></td>
+                <td><span th:text="${RA.car.id + ' - ' + RA.car.make + ' ' + RA.car.model}" > Bil </span></td>
+                <td><span th:text="${RA.startDate.toString()}" > Startdato </span></td>
+                <td><span th:text="${RA.endDate.toString()}" > Slutdato </span></td>
+                <td><span th:text="${RA.type}" > Type </span></td>
+                <td>
+                    <a th:href="@{/lejekontrakt/{RAId}(RAId=${RA.id})}">
+                        <button class="button">Rediger</button>
+                    </a>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+</body>
+</html>
