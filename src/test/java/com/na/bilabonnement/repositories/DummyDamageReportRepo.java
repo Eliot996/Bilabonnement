@@ -1,6 +1,7 @@
 package com.na.bilabonnement.repositories;
 
 import com.na.bilabonnement.models.DamageReport;
+import com.na.bilabonnement.repositories.interfaces.IDamageReportRepository;
 
 import java.util.ArrayList;
 import java.util.List;

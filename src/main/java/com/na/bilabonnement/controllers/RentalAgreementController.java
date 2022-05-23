@@ -1,6 +1,8 @@
 package com.na.bilabonnement.controllers;
 
+import com.na.bilabonnement.models.Location;
 import com.na.bilabonnement.models.RentalAgreement;
+import com.na.bilabonnement.models.RentalType;
 import com.na.bilabonnement.models.UserRole;
 import com.na.bilabonnement.services.CarService;
 import com.na.bilabonnement.services.RentalAgreementService;
@@ -8,9 +10,11 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 
 import javax.servlet.http.HttpSession;
+import javax.websocket.server.PathParam;
 
 @Controller
 public class RentalAgreementController {
@@ -82,5 +86,34 @@ public class RentalAgreementController {
         model.addAttribute("listOfRentalAgreement", RENTAL_AGREEMENT_SERVICE.getAll());
 
         return "all-rental-agreements";
+    }
+
+    /**
+     *  @author Mathias(Eliot996)
+     */
+    @GetMapping("/lejekontrakt/{id}")
+    public String getEditRentalAgreement(@PathVariable() int id, HttpSession session, Model model) {
+        /*if (session.getAttribute("userRole") != UserRole.DATA_REGISTRATION) {
+            return "redirect:/logout";
+        }*/
+
+        // brutalization of locations to make the dropdown for rental type work
+        Location[] types = {new Location(0, "Limited"), new Location(1, "Unlimited")};
+        model.addAttribute("types", types);
+
+        RentalAgreement ra = RENTAL_AGREEMENT_SERVICE.get(id);
+
+        if (ra.getType() == RentalType.LIMITED) {
+            ra.setTypeId(0);
+        } else {
+            ra.setTypeId(1);
+        }
+
+        // cannot get date picker to work....
+
+        model.addAttribute("RA", ra);
+        model.addAttribute("cars", CAR_SERVICE.getAllCars());
+
+        return "edit-rental-agreement";
     }
 }

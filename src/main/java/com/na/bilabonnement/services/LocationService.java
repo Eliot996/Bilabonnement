@@ -1,7 +1,7 @@
 package com.na.bilabonnement.services;
 
 import com.na.bilabonnement.models.Location;
-import com.na.bilabonnement.repositories.IRepository;
+import com.na.bilabonnement.repositories.interfaces.IRepository;
 import com.na.bilabonnement.repositories.LocationRepo;
 
 import java.util.List;

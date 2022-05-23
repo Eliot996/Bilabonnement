@@ -1,6 +1,6 @@
 package com.na.bilabonnement.repositories;
-import com.na.bilabonnement.models.DamageReport;
 import com.na.bilabonnement.models.DamageReportLine;
+import com.na.bilabonnement.repositories.interfaces.IDamageReportLineRepository;
 import com.na.bilabonnement.utils.DatabaseConnectionManager;
 
 import java.sql.Connection;
@@ -92,7 +92,7 @@ public class DamageReportLineRepo implements IDamageReportLineRepository
     {
         Connection connection = DatabaseConnectionManager.getConnection();
 
-        String selectSQL = "SELECT * FROM damage_report WHERE `id` = ?;";
+        String selectSQL = "SELECT * FROM damageline WHERE `lineNumber` = ?;";
 
         ResultSet rs = null;
         try {

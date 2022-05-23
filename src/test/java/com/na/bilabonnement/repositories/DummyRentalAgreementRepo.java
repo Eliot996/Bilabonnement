@@ -1,12 +1,13 @@
 package com.na.bilabonnement.repositories;
 
 import com.na.bilabonnement.models.RentalAgreement;
+import com.na.bilabonnement.repositories.interfaces.IRentalAgreementRepository;
 
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class DummyRentalAgreementRepo implements IRentalAgreementRepository{
+public class DummyRentalAgreementRepo implements IRentalAgreementRepository {
 
     private ArrayList<RentalAgreement> list = new ArrayList<>();
 

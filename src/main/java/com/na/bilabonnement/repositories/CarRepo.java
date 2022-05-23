@@ -1,5 +1,6 @@
 package com.na.bilabonnement.repositories;
 import com.na.bilabonnement.models.Car;
+import com.na.bilabonnement.repositories.interfaces.ICarRepository;
 import com.na.bilabonnement.utils.DatabaseConnectionManager;
 
 import java.sql.Connection;
@@ -9,7 +10,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-public class CarRepo implements ICarRepository{
+public class CarRepo implements ICarRepository {
 
     private static final CarRepo instance = new CarRepo();
 

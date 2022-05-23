@@ -1,7 +1,7 @@
 package com.na.bilabonnement.services;
 
 import com.na.bilabonnement.models.RentalAgreement;
-import com.na.bilabonnement.repositories.IRentalAgreementRepository;
+import com.na.bilabonnement.repositories.interfaces.IRentalAgreementRepository;
 import com.na.bilabonnement.repositories.RentalAgreementRepo;
 
 import java.util.List;
@@ -32,5 +32,20 @@ public class RentalAgreementService {
         }
 
         return list;
+    }
+
+    /**
+     *  @author Mathias(Eliot996)
+     */
+    public boolean update(RentalAgreement rentalAgreement) {
+
+
+        return false;
+    }
+
+    public RentalAgreement get(int id) {
+        RentalAgreement ra = repo.getSingleEntityById(id);
+        ra.setCar(carService.getCar(ra.getCarId()));
+        return ra;
     }
 }

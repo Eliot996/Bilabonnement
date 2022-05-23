@@ -10,32 +10,25 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css" integrity="sha384-zCbKRCUGaJDkqS1kPbPd7TveP5iyJE0EjAuZQTgFLD2ylzuqKfdKlfG/eSrtxUkn" crossorigin="anonymous">
 
     <link rel="stylesheet" th:href="@{/general.css}">
-    <link rel="stylesheet" th:href="@{/create-user.css}">
+    <link rel="stylesheet" th:href="@{/create-user.css} ">
 </head>
 <body>
 <header th:insert="fragments/fragments.html :: header"> </header>
 
 <div class="content-under-header" id="all_buttons_in_body_createuser">
-    <form action="#" th:action="@{/opret-skadesrapport}" th:object="${damageReport}" method="post">
+    <form action="#" th:action="@{/skade/{lineNumber}(lineNumber=${lineNumber})}" th:object="${damageReportLine}" method="post">
 
         <div>
 
-            <label><b>Vælg bil:*</b> <br>
-                <span th:if="${noCar}" style="font-size: small; color: red">Vælg en bil! <br></span>
-                <select th:field="*{carId}">
-                    <option value="-1">Vælg bil</option>
-                    <option th:each="car : ${cars}" th:value="${car.id}"
-                            th:text="${car.id + ' - ' + car.make + ' ' + car.model}"></option>
-                </select>
-            </label> <br> <br>
+            <label><b>Note:*</b></label> <br>
+            <input type="text" placeholder="Note" th:field="*{damageNotes}" required> <br> <br>
 
-            <label><b>Medarbejder id:*</b></label> <br>
-            <input type="text" placeholder="Status" th:field="*{technicianId}" required> <br> <br>
+            <label><b>Pris:*</b></label> <br>
+            <input type="text" placeholder="Pris" th:field="*{price}" required> <br><br>
 
-            <label><b>Bemærkninger:*</b></label> <br>
-            <input type="text" placeholder="Mærke" th:field="*{notes}" required> <br><br>
-
-            <button class="btn btn-secondary" type="submit">Opret skadesrapport</button>
+            <a>
+                <button class="btn btn-secondary" type="submit">Tilføj skade</button>
+            </a>
         </div>
     </form>
 </div>

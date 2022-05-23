@@ -2,6 +2,7 @@ package com.na.bilabonnement.repositories;
 
 import com.na.bilabonnement.models.RentalAgreement;
 import com.na.bilabonnement.models.RentalType;
+import com.na.bilabonnement.repositories.interfaces.IRentalAgreementRepository;
 import com.na.bilabonnement.utils.DatabaseConnectionManager;
 
 import java.io.IOException;
@@ -10,7 +11,7 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
-public class RentalAgreementRepo implements IRentalAgreementRepository{
+public class RentalAgreementRepo implements IRentalAgreementRepository {
 
     private static final RentalAgreementRepo instance = new RentalAgreementRepo();
     private RentalAgreementRepo() {}
@@ -57,7 +58,25 @@ public class RentalAgreementRepo implements IRentalAgreementRepository{
 
     @Override
     public RentalAgreement getSingleEntityById(int id) {
-        return null;
+        Connection conn = DatabaseConnectionManager.getConnection();
+        String selectSQL = "SELECT id, carId, startDate, endDate, price, type FROM rental_agreements WHERE id=?;";
+
+        ResultSet rs = null;
+        try {
+            PreparedStatement stmt = conn.prepareStatement(selectSQL);
+            stmt.setInt(1, id);
+            rs = stmt.executeQuery();
+        }   catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        RentalAgreement result = null;
+        if (rs != null){
+            result = makeRentalAgreementFromResultSet(rs);
+        }
+
+        DatabaseConnectionManager.closeConnection();
+        return result;
     }
 
     /**
@@ -85,6 +104,23 @@ public class RentalAgreementRepo implements IRentalAgreementRepository{
         return result;
     }
 
+    @Override
+    public RentalAgreement update(RentalAgreement entity) {
+        return null;
+    }
+
+    @Override
+    public boolean deleteById(int id) {
+        return false;
+    }
+
+    /**
+     *  @author Mathias(Eliot996)
+     */
+    private RentalAgreement makeRentalAgreementFromResultSet(ResultSet rs) {
+        return makeRentalAgreementsFromResultSet(rs).get(0);
+    }
+
     /**
      *  @author Mathias(Eliot996)
      */
@@ -104,16 +140,5 @@ public class RentalAgreementRepo implements IRentalAgreementRepository{
             e.printStackTrace();
         }
         return rentalAgreements;    }
-
-    @Override
-    public RentalAgreement update(RentalAgreement entity) {
-        return null;
-    }
-
-    @Override
-    public boolean deleteById(int id) {
-        return false;
-    }
-
 
 }

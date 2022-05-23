@@ -1,4 +1,4 @@
-package com.na.bilabonnement.repositories;
+package com.na.bilabonnement.repositories.interfaces;
 
 import java.util.List;
 

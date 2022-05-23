@@ -2,7 +2,7 @@ package com.na.bilabonnement.services;
 
 import com.na.bilabonnement.models.User;
 import com.na.bilabonnement.models.UserRole;
-import com.na.bilabonnement.repositories.IUserRepository;
+import com.na.bilabonnement.repositories.interfaces.IUserRepository;
 import com.na.bilabonnement.repositories.UserRepo;
 
 import java.nio.charset.StandardCharsets;
