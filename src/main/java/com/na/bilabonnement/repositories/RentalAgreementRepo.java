@@ -1,9 +1,12 @@
 package com.na.bilabonnement.repositories;
 
+import com.na.bilabonnement.models.FileReply;
 import com.na.bilabonnement.models.RentalAgreement;
 import com.na.bilabonnement.models.RentalType;
 import com.na.bilabonnement.repositories.interfaces.IRentalAgreementRepository;
 import com.na.bilabonnement.utils.DatabaseConnectionManager;
+import org.springframework.core.io.InputStreamResource;
+import org.springframework.core.io.Resource;
 
 import java.io.IOException;
 import java.sql.*;
@@ -25,8 +28,8 @@ public class RentalAgreementRepo implements IRentalAgreementRepository {
     @Override
     public RentalAgreement create(RentalAgreement entity) {
         Connection conn = DatabaseConnectionManager.getConnection();
-        String insertSQL = "INSERT INTO `bilabonnement`.`rental_agreements` (`carId`, `startDate`, `endDate`, `price`, `type`, `contract`) " +
-                           "VALUES (?, ?, ?, ?, ?, ?);";
+        String insertSQL = "INSERT INTO `bilabonnement`.`rental_agreements` (`carId`, `startDate`, `endDate`, `price`, `type`, `contract`, `filename`) " +
+                           "VALUES (?, ?, ?, ?, ?, ?, ?);";
 
         try {
             PreparedStatement stmt = conn.prepareStatement(insertSQL);
@@ -40,6 +43,7 @@ public class RentalAgreementRepo implements IRentalAgreementRepository {
                 stmt.setNull(6, Types.BLOB);
             } else {
                 stmt.setBlob(6,  entity.getContract().getInputStream());
+                stmt.setString(7, entity.getContract().getOriginalFilename());
             }
 
             stmt.execute();
@@ -111,7 +115,7 @@ public class RentalAgreementRepo implements IRentalAgreementRepository {
     public RentalAgreement update(RentalAgreement entity) {
         Connection con = DatabaseConnectionManager.getConnection();
         String updateSQL = "UPDATE `bilabonnement`.`rental_agreements` " +
-                           "SET `carId` = ?, `startDate` = ?, `endDate` = ?, `price` = ?, `type` = ?, `contract` = ? " +
+                           "SET `carId` = ?, `startDate` = ?, `endDate` = ?, `price` = ?, `type` = ?, `contract` = ?, `filename` = ? " +
                            "WHERE (`id` = ?);";
 
 
@@ -123,7 +127,8 @@ public class RentalAgreementRepo implements IRentalAgreementRepository {
             stmt.setInt(4, entity.getPrice());
             stmt.setString(5, RentalType.values()[entity.getTypeId()].toString());
             stmt.setBlob(6,  entity.getContract().getInputStream());
-            stmt.setInt(7, entity.getId());
+            stmt.setString(7, entity.getContract().getOriginalFilename());
+            stmt.setInt(8, entity.getId());
 
             stmt.execute();
         } catch (SQLException e) {
@@ -160,6 +165,37 @@ public class RentalAgreementRepo implements IRentalAgreementRepository {
         }
 
         return getSingleEntityById(entity.getId());
+    }
+
+    @Override
+    public FileReply loadFile(int id) {
+        Connection conn = DatabaseConnectionManager.getConnection();
+        String selectSQL = "SELECT contract, filename FROM rental_agreements WHERE id=?;";
+
+        ResultSet rs = null;
+        try {
+            PreparedStatement stmt = conn.prepareStatement(selectSQL);
+            stmt.setInt(1, id);
+            rs = stmt.executeQuery();
+        }   catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        FileReply result = null;
+        if (rs != null){
+            try {
+                rs.next();
+                Resource resource = new InputStreamResource(rs.getBlob("contract").getBinaryStream());
+                String name = rs.getString("filename");
+                result = new FileReply(resource, name);
+            } catch (SQLException e) {
+                throw new RuntimeException(e);
+            }
+
+        }
+
+        DatabaseConnectionManager.closeConnection();
+        return result;
     }
 
     /**
