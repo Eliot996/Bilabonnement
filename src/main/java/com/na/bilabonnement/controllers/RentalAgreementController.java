@@ -116,4 +116,11 @@ public class RentalAgreementController {
 
         return "edit-rental-agreement";
     }
+
+    @PostMapping("/lejekontrakt/{id}")
+    public String getEditRentalAgreement(@PathVariable() int id, HttpSession session, @ModelAttribute RentalAgreement rentalAgreement) {
+        rentalAgreement.setId(id);
+        RENTAL_AGREEMENT_SERVICE.update(rentalAgreement);
+        return "redirect:/lejekontrakt/" + id;
+    }
 }
