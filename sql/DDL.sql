@@ -59,6 +59,7 @@ CREATE TABLE `bilabonnement`.`rental_agreements` (
                                                      `endDate` DATE NOT NULL,
                                                      `price` INT NULL,
                                                      `contract` MEDIUMBLOB NULL, -- 16MB max
+                                                     `filename`VARCHAR(100) NULL,
                                                      `type` VARCHAR(45) NULL,
                                                      PRIMARY KEY (`id`),
                                                      INDEX `carId_RA_FK_idx` (`carId` ASC) VISIBLE,
