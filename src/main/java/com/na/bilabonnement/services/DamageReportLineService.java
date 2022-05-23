@@ -2,7 +2,7 @@ package com.na.bilabonnement.services;
 
 import com.na.bilabonnement.models.DamageReportLine;
 import com.na.bilabonnement.repositories.DamageReportLineRepo;
-import com.na.bilabonnement.repositories.IDamageReportLineRepository;
+import com.na.bilabonnement.repositories.interfaces.IDamageReportLineRepository;
 
 import java.util.List;
 

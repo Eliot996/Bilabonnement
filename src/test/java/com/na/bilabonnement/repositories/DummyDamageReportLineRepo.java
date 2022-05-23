@@ -1,6 +1,7 @@
 package com.na.bilabonnement.repositories;
 
 import com.na.bilabonnement.models.DamageReportLine;
+import com.na.bilabonnement.repositories.interfaces.IDamageReportLineRepository;
 
 import java.util.ArrayList;
 import java.util.LinkedList;
@@ -9,7 +10,7 @@ import java.util.List;
 /*
 @Author Sofia
  */
-public class DummyDamageReportLineRepo implements IDamageReportLineRepository{
+public class DummyDamageReportLineRepo implements IDamageReportLineRepository {
     private List<DamageReportLine> listOfDamageReportLines = new ArrayList<>();
 
     public DummyDamageReportLineRepo(){
