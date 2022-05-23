@@ -56,6 +56,10 @@
             <button type="submit">Ret lejekontrakt</button>
         </div>
     </form>
+
+    <a th:href="@{/lejekontrakt/{raId}/fil(raId = ${RA.id})}">
+        <button>Hent fil</button>
+    </a>
 </div>
 
 <script th:inline="javascript">
