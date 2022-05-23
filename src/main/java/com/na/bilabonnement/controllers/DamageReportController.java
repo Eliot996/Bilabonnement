@@ -80,7 +80,7 @@ public class DamageReportController {
         return "redirect:/skadesrapporter";
     }
 
-
+    // for damage report lines
     @GetMapping("/opret-skade")
     public String getCreateDamageReportLine(HttpSession session, Model model){
         UserRole userRole = (UserRole)session.getAttribute("userRole");
