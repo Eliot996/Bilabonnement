@@ -35,7 +35,7 @@ public class RentalAgreementController {
         }
 
         UserRole userRole = (UserRole)session.getAttribute("userRole");
-         model.addAttribute("userRole", userRole.toString());
+        model.addAttribute("userRole", userRole.toString());
 
         model.addAttribute("cars", CAR_SERVICE.getAllCars()); // todo: make get only relevant cars
         model.addAttribute("rentalAgreement", new RentalAgreement());

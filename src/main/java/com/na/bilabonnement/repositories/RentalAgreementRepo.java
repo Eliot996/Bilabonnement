@@ -121,9 +121,9 @@ public class RentalAgreementRepo implements IRentalAgreementRepository {
             stmt.setString(2, entity.getStartDate().toString());
             stmt.setString(3, entity.getEndDate().toString());
             stmt.setInt(4, entity.getPrice());
-            stmt.setString(5, entity.getType().toString());
+            stmt.setString(5, RentalType.values()[entity.getTypeId()].toString());
             stmt.setBlob(6,  entity.getContract().getInputStream());
-            stmt.setInt(6, entity.getId());
+            stmt.setInt(7, entity.getId());
 
             stmt.execute();
         } catch (SQLException e) {
@@ -151,7 +151,7 @@ public class RentalAgreementRepo implements IRentalAgreementRepository {
             stmt.setString(2, entity.getStartDate().toString());
             stmt.setString(3, entity.getEndDate().toString());
             stmt.setInt(4, entity.getPrice());
-            stmt.setString(5, entity.getType().toString());
+            stmt.setString(5, RentalType.values()[entity.getTypeId()].toString());
             stmt.setInt(6, entity.getId());
 
             stmt.execute();
