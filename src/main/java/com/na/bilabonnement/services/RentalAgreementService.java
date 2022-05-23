@@ -47,12 +47,18 @@ public class RentalAgreementService {
         return true;
     }
 
+    /**
+     *  @author Mathias(Eliot996)
+     */
     public RentalAgreement get(int id) {
         RentalAgreement ra = repo.getSingleEntityById(id);
         ra.setCar(carService.getCar(ra.getCarId()));
         return ra;
     }
 
+    /**
+     *  @author Mathias(Eliot996)
+     */
     public FileReply getFile(int id) {
         return repo.loadFile(id);
     }
