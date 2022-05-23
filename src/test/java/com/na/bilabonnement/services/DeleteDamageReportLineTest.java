@@ -7,6 +7,9 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class DeleteDamageReportLineTest {
 
+    /*
+    @Author Sofia
+     */
     @Test
     void deleteDamageReportLine(){
         //Arrange
