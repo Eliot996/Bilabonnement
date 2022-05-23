@@ -134,7 +134,7 @@ public class DamageReportController {
 
 
     @GetMapping("/skade/{lineNumber}/slet")
-    public String editDamageReportLine(HttpSession session, @PathVariable() int lineNumber, Model model){
+    public String deleteDamageReportLine(HttpSession session, @PathVariable() int lineNumber, Model model){
         UserRole userRole = (UserRole) session.getAttribute("userRole");
         model.addAttribute("userRole", userRole);
 
