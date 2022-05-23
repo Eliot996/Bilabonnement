@@ -106,8 +106,6 @@ public class RentalAgreementController {
             ra.setTypeId(1);
         }
 
-        // cannot get date picker to work....
-
         model.addAttribute("RA", ra);
         model.addAttribute("cars", CAR_SERVICE.getAllCars());
 
