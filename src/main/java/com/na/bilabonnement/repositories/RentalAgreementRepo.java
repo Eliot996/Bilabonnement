@@ -104,21 +104,62 @@ public class RentalAgreementRepo implements IRentalAgreementRepository {
         return result;
     }
 
+    /**
+     *  @author Mathias(Eliot996)
+     */
     @Override
     public RentalAgreement update(RentalAgreement entity) {
-        return null;
-    }
+        Connection con = DatabaseConnectionManager.getConnection();
+        String updateSQL = "UPDATE `bilabonnement`.`rental_agreements` " +
+                           "SET `carId` = ?, `startDate` = ?, `endDate` = ?, `price` = ?, `type` = ?, `contract` = ? " +
+                           "WHERE (`id` = ?);";
 
-    @Override
-    public boolean deleteById(int id) {
-        return false;
+
+        try {
+            PreparedStatement stmt = con.prepareStatement(updateSQL);
+            stmt.setInt(1, entity.getCarId());
+            stmt.setString(2, entity.getStartDate().toString());
+            stmt.setString(3, entity.getEndDate().toString());
+            stmt.setInt(4, entity.getPrice());
+            stmt.setString(5, RentalType.values()[entity.getTypeId()].toString());
+            stmt.setBlob(6,  entity.getContract().getInputStream());
+            stmt.setInt(7, entity.getId());
+
+            stmt.execute();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+
+        return getSingleEntityById(entity.getId());
     }
 
     /**
      *  @author Mathias(Eliot996)
      */
-    private RentalAgreement makeRentalAgreementFromResultSet(ResultSet rs) {
-        return makeRentalAgreementsFromResultSet(rs).get(0);
+    @Override
+    public RentalAgreement updateWithoutContract(RentalAgreement entity) {
+        Connection con = DatabaseConnectionManager.getConnection();
+        String updateSQL = "UPDATE `bilabonnement`.`rental_agreements` " +
+                "SET `carId` = ?, `startDate` = ?, `endDate` = ?, `price` = ?, `type` = ? WHERE (`id` = ?);";
+
+
+        try {
+            PreparedStatement stmt = con.prepareStatement(updateSQL);
+            stmt.setInt(1, entity.getCarId());
+            stmt.setString(2, entity.getStartDate().toString());
+            stmt.setString(3, entity.getEndDate().toString());
+            stmt.setInt(4, entity.getPrice());
+            stmt.setString(5, RentalType.values()[entity.getTypeId()].toString());
+            stmt.setInt(6, entity.getId());
+
+            stmt.execute();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        return getSingleEntityById(entity.getId());
     }
 
     /**
@@ -141,4 +182,15 @@ public class RentalAgreementRepo implements IRentalAgreementRepository {
         }
         return rentalAgreements;    }
 
+    @Override
+    public boolean deleteById(int id) {
+        return false;
+    }
+
+    /**
+     *  @author Mathias(Eliot996)
+     */
+    private RentalAgreement makeRentalAgreementFromResultSet(ResultSet rs) {
+        return makeRentalAgreementsFromResultSet(rs).get(0);
+    }
 }

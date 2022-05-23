@@ -38,9 +38,12 @@ public class RentalAgreementService {
      *  @author Mathias(Eliot996)
      */
     public boolean update(RentalAgreement rentalAgreement) {
-
-
-        return false;
+        if (rentalAgreement.getContract().isEmpty()) {
+            repo.updateWithoutContract(rentalAgreement);
+        }else {
+            repo.update(rentalAgreement);
+        }
+        return true;
     }
 
     public RentalAgreement get(int id) {

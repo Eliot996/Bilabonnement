@@ -35,7 +35,7 @@ public class RentalAgreementController {
         }
 
         UserRole userRole = (UserRole)session.getAttribute("userRole");
-         model.addAttribute("userRole", userRole.toString());
+        model.addAttribute("userRole", userRole.toString());
 
         model.addAttribute("cars", CAR_SERVICE.getAllCars()); // todo: make get only relevant cars
         model.addAttribute("rentalAgreement", new RentalAgreement());
@@ -115,5 +115,12 @@ public class RentalAgreementController {
         model.addAttribute("cars", CAR_SERVICE.getAllCars());
 
         return "edit-rental-agreement";
+    }
+
+    @PostMapping("/lejekontrakt/{id}")
+    public String getEditRentalAgreement(@PathVariable() int id, HttpSession session, @ModelAttribute RentalAgreement rentalAgreement) {
+        rentalAgreement.setId(id);
+        RENTAL_AGREEMENT_SERVICE.update(rentalAgreement);
+        return "redirect:/lejekontrakt/" + id;
     }
 }
