@@ -90,9 +90,9 @@ public class RentalAgreementController {
      */
     @GetMapping("/lejekontrakt/{id}")
     public String getEditRentalAgreement(@PathVariable() int id, HttpSession session, Model model) {
-        /*if (session.getAttribute("userRole") != UserRole.DATA_REGISTRATION) {
+        if (session.getAttribute("userRole") != UserRole.DATA_REGISTRATION) {
             return "redirect:/logout";
-        }*/
+        }
 
         // brutalization of locations to make the dropdown for rental type work
         Location[] types = {new Location(0, "Limited"), new Location(1, "Unlimited")};
@@ -119,6 +119,9 @@ public class RentalAgreementController {
      */
     @PostMapping("/lejekontrakt/{id}")
     public String getEditRentalAgreement(@PathVariable() int id, HttpSession session, @ModelAttribute RentalAgreement rentalAgreement) {
+        if (session.getAttribute("userRole") != UserRole.DATA_REGISTRATION) {
+            return "redirect:/logout";
+        }
         rentalAgreement.setId(id);
         RENTAL_AGREEMENT_SERVICE.update(rentalAgreement);
         return "redirect:/lejekontrakt/" + id;
@@ -129,11 +132,14 @@ public class RentalAgreementController {
      */
     @GetMapping("/lejekontrakt/{id}/fil")
     @ResponseBody
-    public ResponseEntity<Resource> serveFile(@PathVariable int id) {
+    public ResponseEntity<Resource> serveFile(HttpSession session, @PathVariable int id) {
+        if (session.getAttribute("userRole") != UserRole.DATA_REGISTRATION) {
+            return null;
+        } else {
+            FileReply file = RENTAL_AGREEMENT_SERVICE.getFile(id);
 
-        FileReply file = RENTAL_AGREEMENT_SERVICE.getFile(id);
-
-        return ResponseEntity.ok().header(HttpHeaders.CONTENT_DISPOSITION,
-                "attachment; filename=\"" + file.getFileName() + "\"").body(file.getResource());
+            return ResponseEntity.ok().header(HttpHeaders.CONTENT_DISPOSITION,
+                    "attachment; filename=\"" + file.getFileName() + "\"").body(file.getResource());
+        }
     }
 }
