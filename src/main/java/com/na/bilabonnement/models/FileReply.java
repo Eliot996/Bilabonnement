@@ -3,8 +3,8 @@ package com.na.bilabonnement.models;
 import org.springframework.core.io.Resource;
 
 public class FileReply {
-    private Resource resource;
-    private String fileName;
+    private final Resource resource;
+    private final String fileName;
 
     public FileReply(Resource resource, String fileName) {
         this.resource = resource;
