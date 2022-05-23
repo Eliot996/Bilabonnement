@@ -126,7 +126,7 @@ public class DamageReportController {
 
 
     @PostMapping("/skade/{lineNumber}")
-    public String editDamageReport(HttpSession session, @ModelAttribute DamageReportLine damageReportLine, @PathVariable int lineNumber){
+    public String editDamageReportLine(HttpSession session, @ModelAttribute DamageReportLine damageReportLine, @PathVariable int lineNumber){
         DAMAGE_REPORT_LINE_SERVICE.updateDamageReportLine(damageReportLine.getLineNumber(), damageReportLine.getDamageReportId(), damageReportLine.getDamageNotes(), damageReportLine.getPrice());
         return "redirect:/skader";
     }
