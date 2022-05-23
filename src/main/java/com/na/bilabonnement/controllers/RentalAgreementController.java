@@ -118,7 +118,7 @@ public class RentalAgreementController {
      *  @author Mathias(Eliot996)
      */
     @PostMapping("/lejekontrakt/{id}")
-    public String getEditRentalAgreement(@PathVariable() int id, HttpSession session, @ModelAttribute RentalAgreement rentalAgreement) {
+    public String editRentalAgreement(@PathVariable() int id, HttpSession session, @ModelAttribute RentalAgreement rentalAgreement) {
         if (session.getAttribute("userRole") != UserRole.DATA_REGISTRATION) {
             return "redirect:/logout";
         }
