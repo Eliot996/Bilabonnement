@@ -27,7 +27,7 @@
             </tr>
             </thead>
             <tbody>
-            <tr th:each="damageReport : ${listOfDamageReports}">
+            <tr th:each="damageReportLine : ${listOfDamageReportLines}">
                 <td><span th:text="${damageReportLine.damageNotes}"> Note </span></td>
                 <td><span th:text="${damageReportLine.price}"> Pris </span></td>
 
