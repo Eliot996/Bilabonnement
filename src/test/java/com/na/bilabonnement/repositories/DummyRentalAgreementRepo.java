@@ -1,5 +1,6 @@
 package com.na.bilabonnement.repositories;
 
+import com.na.bilabonnement.models.FileReply;
 import com.na.bilabonnement.models.RentalAgreement;
 import com.na.bilabonnement.repositories.interfaces.IRentalAgreementRepository;
 
@@ -48,5 +49,15 @@ public class DummyRentalAgreementRepo implements IRentalAgreementRepository {
             }
         }
         return false;
+    }
+
+    @Override
+    public RentalAgreement updateWithoutContract(RentalAgreement entity) {
+        return null;
+    }
+
+    @Override
+    public FileReply loadFile(int id) {
+        return null;
     }
 }
