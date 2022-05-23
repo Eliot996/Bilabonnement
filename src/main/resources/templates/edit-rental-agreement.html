@@ -111,23 +111,11 @@
         }
     }
 
-    // gets the values out of the start date, and adds the months to it,
-    // and returns a new date, based on those values
+    // returns a new date, based on startDate plus the amount of mounts
     function addToMonth(amount) {
-        let dayCount = startDate.getDate();
-        let monthCount = startDate.getMonth() + amount + 1;
-        let yearCount = startDate.getFullYear();
-
-        console.log('before = day: ' + dayCount + '; month: ' + monthCount + '; year: ' + yearCount);
-
-        console.log(dayCount);
-
-        while (monthCount > 12) {
-            yearCount++;
-            monthCount -= 12;
-        }
-        console.log('after = day: ' + dayCount + '; month: ' + monthCount + '; year: ' + yearCount);
-        return new Date(yearCount + '-' + monthCount + '-' + dayCount);
+        let date = new Date(startDate);
+        date.setMonth(date.getMonth() + amount);
+        return date;
     }
 
     // 👇️👇️👇️ Format Date as yyyy-mm-dd
