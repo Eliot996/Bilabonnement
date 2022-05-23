@@ -4,9 +4,7 @@ import com.na.bilabonnement.models.FileReply;
 import com.na.bilabonnement.models.RentalAgreement;
 import com.na.bilabonnement.repositories.interfaces.IRentalAgreementRepository;
 import com.na.bilabonnement.repositories.RentalAgreementRepo;
-import org.springframework.core.io.Resource;
 
-import java.io.File;
 import java.util.List;
 
 public class RentalAgreementService {
