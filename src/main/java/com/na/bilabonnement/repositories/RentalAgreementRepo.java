@@ -104,6 +104,9 @@ public class RentalAgreementRepo implements IRentalAgreementRepository {
         return result;
     }
 
+    /**
+     *  @author Mathias(Eliot996)
+     */
     @Override
     public RentalAgreement update(RentalAgreement entity) {
         Connection con = DatabaseConnectionManager.getConnection();
@@ -132,6 +135,9 @@ public class RentalAgreementRepo implements IRentalAgreementRepository {
         return getSingleEntityById(entity.getId());
     }
 
+    /**
+     *  @author Mathias(Eliot996)
+     */
     @Override
     public RentalAgreement updateWithoutContract(RentalAgreement entity) {
         Connection con = DatabaseConnectionManager.getConnection();
