@@ -17,29 +17,26 @@
 
 <div class="content-under-header">
     <div>
-        <h1 class="center_things">Skadesrapporter:</h1>
+        <h1 class="center_things">Skader:</h1>
         <table>
             <thead>
             <tr>
-                <th> Skadesrapport id</th>
-                <th> Bemærkninger</th>
-                <th> Medarbejder id</th>
+                <th> Note  </th>
+                <th> Pris  </th>
+
             </tr>
             </thead>
             <tbody>
-            <tr th:if="${listOfDamageReports.empty}">
-                <td colspan="5"> Der er ingen skadesrapporter i systemet</td>
-            </tr>
             <tr th:each="damageReport : ${listOfDamageReports}">
-                <td><span th:text="${damageReport.id}"> Skadesrapport id </span></td>
-                <td><span th:text="${damageReport.notes}"> Bemærkninger </span></td>
-                <td><span th:text="${damageReport.technicianId}"> Bruger id </span></td>
+                <td><span th:text="${damageReportLine.damageNotes}"> Note </span></td>
+                <td><span th:text="${damageReportLine.price}"> Pris </span></td>
+
                 <td>
-                    <a th:href="@{/skadesrapport/{damageReportId}(damageReportId=${damageReport.id})}">
+                    <a th:href="@{/skade/{lineNumber}(lineNumber=${damageReportLine.lineNumber})}">
                         <button class="btn btn-secondary">Rediger</button>
                     </a>
-                    <a href="/skader">
-                        <button class="btn btn-secondary">Se skader</button>
+                    <a th:href="@{/skade/{lineNumber}/slet(lineNumber=${damageReportLine.lineNumber})}">
+                        <button class="btn btn-secondary">Slet</button>
                     </a>
                 </td>
             </tr>

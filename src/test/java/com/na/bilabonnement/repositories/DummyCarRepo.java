@@ -13,7 +13,7 @@ public class DummyCarRepo implements ICarRepository
     public DummyCarRepo(){
         Car carOne = new Car(1, "1234", "rented", "Fiat", "210", "to sidespejle", 200, 100, 120, 69, 420, "none", "green", "diesel", 1);
         Car carTwo = new Car(2, "4321", "rented", "Volvo", "210", "to sidespejle", 200, 100, 120, 69, 420, "none", "red", "diesel", 1);
-        Car carThree = new Car(3, "3214", "RENTED", "Mercedes", "210", "to sidespejle", 200, 100, 120, 69, 420, "none", "blue", "diesel", 1);
+        Car carThree = new Car(3, "3214", "home", "Mercedes", "210", "to sidespejle", 200, 100, 120, 69, 420, "none", "blue", "diesel", 1);
         Car carFour = new Car(4, "2341", "home", "Tesla", "210", "to sidespejle", 200, 100, 120, 69, 420, "none", "yellow", "diesel", 1);
 
         listOfCars.add(carOne);
