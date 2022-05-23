@@ -17,20 +17,20 @@
 <header th:insert="fragments/fragments.html :: header"> </header>
 
 
-<div class="container">
-    <div class="row">
+<div class="container mt-5">
+    <div class="row mt-2">
         <div class="col-4"></div>
         <p class="col-3">Total antal udlejde biler:</p>
         <p class="col-3" th:text="${numberOfRentedCars}"></p>
     </div>
 
-    <div class="row">
+    <div class="row mt-2">
         <div class="col-4"></div>
         <p class="col-3">Totalpris for udlejede biler:</p>
         <p class="col-3" th:text="${totalPriceOfRentedCars}"></p>
     </div>
 
-    <div class="row">
+    <div class="row mt-2">
         <div class="col-4"></div>
         <table class="col-3">
             <thead>

@@ -32,6 +32,15 @@
     height: 80vh;
 }
 
+.content-under-header{
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    background-color: #f2f2f2;
+    margin: auto;
+    height: 80vh;
+}
+
 
 .button-style-home{
     background-color: #f2f2f2;
@@ -47,6 +56,8 @@
 .header-style{
     padding-bottom: 10px;
 }
+
+
 
 .img_style{
     width: 30%;

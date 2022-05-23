@@ -92,7 +92,7 @@ public class DamageReportLineRepo implements IDamageReportLineRepository
     {
         Connection connection = DatabaseConnectionManager.getConnection();
 
-        String selectSQL = "SELECT * FROM damage_report WHERE `id` = ?;";
+        String selectSQL = "SELECT * FROM damageline WHERE `lineNumber` = ?;";
 
         ResultSet rs = null;
         try {

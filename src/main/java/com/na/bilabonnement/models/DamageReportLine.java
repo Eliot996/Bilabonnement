@@ -15,6 +15,10 @@ public class DamageReportLine {
         this.price = price;
     }
 
+    public DamageReportLine(){
+
+    }
+
     public int getDamageReportId() {
         return damageReportId;
     }
