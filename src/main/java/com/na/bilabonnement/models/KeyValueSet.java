@@ -1,19 +1,19 @@
 package com.na.bilabonnement.models;
 
 public class KeyValueSet {
-    int key;
-    String value;
+    int value;
+    String name;
 
-    public KeyValueSet(int key, String value) {
-        this.key = key;
+    public KeyValueSet(int value, String name) {
         this.value = value;
+        this.name = name;
     }
 
-    public int getKey() {
-        return key;
-    }
-
-    public String getValue() {
+    public int getValue() {
         return value;
+    }
+
+    public String getName() {
+        return name;
     }
 }

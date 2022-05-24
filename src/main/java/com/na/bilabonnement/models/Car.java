@@ -8,6 +8,7 @@ public class Car {
     private int id;
     private String chassisNumber;
     private CarStatus status;
+    private int CarStatusId;
     private String make;
     private String model;
     private String trimLevel;
@@ -196,5 +197,13 @@ public class Car {
     public void setLocationId(int locationId)
     {
         this.locationId = locationId;
+    }
+
+    public int getCarStatusId() {
+        return CarStatusId;
+    }
+
+    public void setCarStatusId(int carStatusId) {
+        CarStatusId = carStatusId;
     }
 }

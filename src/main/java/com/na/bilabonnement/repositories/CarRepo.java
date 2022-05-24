@@ -219,8 +219,6 @@ public class CarRepo implements ICarRepository {
 
             stmt.setInt(15, entity.getId());
 
-            System.out.println(stmt);
-
             stmt.execute();
 
         } catch (SQLException e) {

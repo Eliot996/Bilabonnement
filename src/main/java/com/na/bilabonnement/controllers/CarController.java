@@ -2,6 +2,7 @@ package com.na.bilabonnement.controllers;
 
 import com.na.bilabonnement.models.Car;
 import com.na.bilabonnement.models.CarStatus;
+import com.na.bilabonnement.models.KeyValueSet;
 import com.na.bilabonnement.models.UserRole;
 import com.na.bilabonnement.services.CarService;
 import com.na.bilabonnement.services.LocationService;
@@ -13,7 +14,6 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 
 import javax.servlet.http.HttpSession;
-import java.util.List;
 
 @Controller
 public class CarController {
@@ -22,6 +22,13 @@ public class CarController {
  */
     private final CarService CAR_SERVICE = new CarService();
     private final LocationService LOCATION_SERVICE = new LocationService();
+    private final KeyValueSet[] CAR_STATUS_SET = {
+            new KeyValueSet(1, "klar til udlejning"),
+            new KeyValueSet(2, "Klar til levering"),
+            new KeyValueSet(3, "Udlejet"),
+            new KeyValueSet(4, "Tilbage fra udlejning"),
+            new KeyValueSet(5, "Klar til salg")
+    };
 
     @GetMapping("/opret-bil")
     public String getCreateCar(HttpSession session, Model model){
@@ -69,11 +76,14 @@ public class CarController {
         if (userRole != UserRole.BUSINESS_DEVELOPER){
             return "redirect:/biler";
         }
-
+        model.addAttribute("userRole", userRole.toString());
 
         Car car = CAR_SERVICE.getCar(carID);
 
-        model.addAttribute("userRole", userRole.toString());
+        car.setCarStatusId(CAR_SERVICE.getCarStatusValue(car));
+        model.addAttribute("statuses", CAR_STATUS_SET);
+
+        System.out.println(model.getAttribute("currentStatusValue"));
 
         model.addAttribute("car", car);
         model.addAttribute("locations",LOCATION_SERVICE.getAllLocations());
@@ -89,7 +99,21 @@ public class CarController {
     @PostMapping("/bil/{carID}")
     public String editCar(HttpSession session, @ModelAttribute Car car, @PathVariable int carID){
 
-        CAR_SERVICE.updateCar(car.getId(), car.getChassisNumber(), car.getStatus(), car.getMake(), car.getModel(), car.getTrimLevel(), car.getCarPrice(), car.getScrapPrice(), car.getRegistrationFee(), car.getCo2Emission(), car.getKilometersDriven(), car.getDamage(), car.getColour(), car.getFuelType(), car.getLocationId());
+        CAR_SERVICE.updateCar(car.getId(),
+                car.getChassisNumber(),
+                CarStatus.values()[car.getCarStatusId() - 1],
+                car.getMake(),
+                car.getModel(),
+                car.getTrimLevel(),
+                car.getCarPrice(),
+                car.getScrapPrice(),
+                car.getRegistrationFee(),
+                car.getCo2Emission(),
+                car.getKilometersDriven(),
+                car.getDamage(),
+                car.getColour(),
+                car.getFuelType(),
+                car.getLocationId());
 
         return "redirect:/biler";
 

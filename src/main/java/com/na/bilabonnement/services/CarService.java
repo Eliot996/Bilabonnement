@@ -97,4 +97,19 @@ public class CarService {
 
         return totalPrice;
     }
+
+    /**
+     *  @author Mathias(Eliot996)
+     *  Added to help set the right value to match the status
+     */
+    public int getCarStatusValue(Car car) {
+        switch (car.getStatus()) {
+            case READY_TO_BE_RENTED:     return 1;
+            case READY_FOR_DELIVERY:     return 2;
+            case RENTED:                 return 3;
+            case BACK_FROM_BEING_RENTED: return 4;
+            case READY_FOR_SALE:         return 5;
+        }
+        return -1;
+    }
 }

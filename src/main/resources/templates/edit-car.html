@@ -33,7 +33,13 @@
 
             <div class="row m-2">
                 <label class="col-6">Status</label>
-                <input class="col-6" type="text" th:placeholder="${car.status}" th:field="*{status}" required> <br><br>
+                <label class="col-6"><b>Status:</b> <br>
+                    <select th:field="*{carStatusId}">
+                        <option th:each="status : ${statuses}" th:value="${status.value}" th:text="${status.name}"
+                                th:selected="${car.getCarStatusId() == status.value}"></option>
+                    </select>
+                </label> <br> <br>
+                <span th:text="${currentStatusValue}"></span>
             </div>
 
             <div class="row m-2">
