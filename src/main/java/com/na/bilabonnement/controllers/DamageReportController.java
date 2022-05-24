@@ -36,7 +36,7 @@ public class DamageReportController {
     }
 
     @PostMapping("/opret-skadesrapport")
-    public String createDamageReport(HttpSession session, Model model, @ModelAttribute DamageReport damageReport){
+    public String createDamageReport(HttpSession session, @ModelAttribute DamageReport damageReport){
         if ( session.getAttribute("userRole") != UserRole.DAMAGE_AND_RECTIFICATION) {
             return "redirect:/logout";
         }
@@ -117,7 +117,7 @@ public class DamageReportController {
 
 
     @PostMapping("/opret-skade")
-    public String createDamageReportLine(HttpSession session, Model model, @ModelAttribute DamageReportLine damageReportLine){
+    public String createDamageReportLine(HttpSession session, @ModelAttribute DamageReportLine damageReportLine){
         if ( session.getAttribute("userRole") != UserRole.DAMAGE_AND_RECTIFICATION) {
             return "redirect:/logout";
         }
@@ -178,7 +178,7 @@ public class DamageReportController {
             return "redirect:/logout";
         }
 
-        DAMAGE_REPORT_LINE_SERVICE.updateDamageReportLine(damageReportLine.getLineNumber(), damageReportLine.getDamageReportId(), damageReportLine.getDamageNotes(), damageReportLine.getPrice());
+        DAMAGE_REPORT_LINE_SERVICE.updateDamageReportLine(lineNumber, damageReportLine.getDamageReportId(), damageReportLine.getDamageNotes(), damageReportLine.getPrice());
         return "redirect:/skader";
     }
 
