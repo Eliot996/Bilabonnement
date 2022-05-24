@@ -1,7 +1,6 @@
 package com.na.bilabonnement.controllers;
 
 import com.na.bilabonnement.models.*;
-import com.na.bilabonnement.repositories.CarRepo;
 import com.na.bilabonnement.services.CarService;
 import com.na.bilabonnement.services.DamageReportLineService;
 import com.na.bilabonnement.services.DamageReportService;
@@ -24,8 +23,12 @@ public class DamageReportController {
 
     @GetMapping("/opret-skadesrapport")
     public String getCreateDamageReport(HttpSession session, Model model){
+        if ( session.getAttribute("userRole") != UserRole.DAMAGE_AND_RECTIFICATION) {
+            return "redirect:/logout";
+        }
+
         UserRole userRole = (UserRole)session.getAttribute("userRole");
-         model.addAttribute("userRole", userRole.toString());
+        model.addAttribute("userRole", userRole.toString());
 
         model.addAttribute("damageReport", new DamageReport());
         model.addAttribute("cars", CAR_SERVICE.getCarsByStatus(CarStatus.BACK_FROM_BEING_RENTED));
@@ -34,14 +37,22 @@ public class DamageReportController {
 
     @PostMapping("/opret-skadesrapport")
     public String createDamageReport(HttpSession session, Model model, @ModelAttribute DamageReport damageReport){
+        if ( session.getAttribute("userRole") != UserRole.DAMAGE_AND_RECTIFICATION) {
+            return "redirect:/logout";
+        }
+
         DamageReport createdDamageReport = DAMAGE_REPORT_SERVICE.createDamageReport(damageReport);
         return "redirect:/skadesrapport/" + createdDamageReport.getId();
     }
 
     @GetMapping("/skadesrapporter")
     public String viewAllDamageReports(HttpSession session, Model model){
+        if ( session.getAttribute("userRole") != UserRole.DAMAGE_AND_RECTIFICATION) {
+            return "redirect:/logout";
+        }
+
         UserRole userRole = (UserRole)session.getAttribute("userRole");
-         model.addAttribute("userRole", userRole.toString());
+        model.addAttribute("userRole", userRole.toString());
 
         model.addAttribute("listOfDamageReports", DAMAGE_REPORT_SERVICE.getAllDamageReports());
         return "all-damage-reports";
@@ -49,6 +60,10 @@ public class DamageReportController {
 
     @GetMapping("/skadesrapport/{damageReportId}")
     public String getEditDamageReport(HttpSession session, @PathVariable() int damageReportId, Model model){
+        if ( session.getAttribute("userRole") != UserRole.DAMAGE_AND_RECTIFICATION) {
+            return "redirect:/logout";
+        }
+
         UserRole userRole = (UserRole) session.getAttribute("userRole");
         if (userRole != UserRole.DAMAGE_AND_RECTIFICATION){
             return "redirect:/skadesrapporter";
@@ -64,14 +79,22 @@ public class DamageReportController {
 
     @PostMapping("/skadesrapport/{damageReportId}")
     public String editDamageReport(HttpSession session, @ModelAttribute DamageReport damageReport, @PathVariable int damageReportId){
+        if ( session.getAttribute("userRole") != UserRole.DAMAGE_AND_RECTIFICATION) {
+            return "redirect:/logout";
+        }
+
         DAMAGE_REPORT_SERVICE.updateDamageReport(damageReport.getId(),damageReport.getNotes(),damageReport.getTechnicianId(), damageReport.getCarId());
         return "redirect:/skadesrapporter";
     }
 
     @GetMapping("/skadesrapport/{damageReportId}/slet")
     public String deleteDamageReport(HttpSession session, @PathVariable int damageReportId, Model model){
+        if ( session.getAttribute("userRole") != UserRole.DAMAGE_AND_RECTIFICATION) {
+            return "redirect:/logout";
+        }
+
         UserRole userRole = (UserRole)session.getAttribute("userRole");
-         model.addAttribute("userRole", userRole);
+        model.addAttribute("userRole", userRole);
 
         DAMAGE_REPORT_SERVICE.deleteDamageReport(damageReportId);
         return "redirect:/skadesrapporter";
@@ -80,6 +103,10 @@ public class DamageReportController {
     // for damage report lines
     @GetMapping("/opret-skade")
     public String getCreateDamageReportLine(HttpSession session, Model model){
+        if ( session.getAttribute("userRole") != UserRole.DAMAGE_AND_RECTIFICATION) {
+            return "redirect:/logout";
+        }
+
         UserRole userRole = (UserRole)session.getAttribute("userRole");
         model.addAttribute("userRole", userRole.toString());
 
@@ -91,6 +118,10 @@ public class DamageReportController {
 
     @PostMapping("/opret-skade")
     public String createDamageReportLine(HttpSession session, Model model, @ModelAttribute DamageReportLine damageReportLine){
+        if ( session.getAttribute("userRole") != UserRole.DAMAGE_AND_RECTIFICATION) {
+            return "redirect:/logout";
+        }
+
         DamageReportLine createdDamageReportLine = DAMAGE_REPORT_LINE_SERVICE.createDamageReportLine(damageReportLine);
         return "redirect:/skadesrapport/" + createdDamageReportLine.getLineNumber();
     }
@@ -98,6 +129,10 @@ public class DamageReportController {
 
     @GetMapping("/skader")
     public String viewAllDamageReportLines(HttpSession session, Model model){
+        if ( session.getAttribute("userRole") != UserRole.DAMAGE_AND_RECTIFICATION) {
+            return "redirect:/logout";
+        }
+
         UserRole userRole = (UserRole) session.getAttribute("userRole");
         model.addAttribute("userRole", userRole.toString());
 
@@ -108,12 +143,11 @@ public class DamageReportController {
 
     @GetMapping("/skader/{damageReportId}")
     public String viewDamageReportLinesForReport(HttpSession session, @PathVariable() int damageReportId, Model model){
-        UserRole userRole = (UserRole) session.getAttribute("userRole");
-        if (userRole != UserRole.DAMAGE_AND_RECTIFICATION){
-            return "redirect:/skadesrapporter";
-
+        if ( session.getAttribute("userRole") != UserRole.DAMAGE_AND_RECTIFICATION) {
+            return "redirect:/logout";
         }
 
+        UserRole userRole = (UserRole) session.getAttribute("userRole");
         model.addAttribute("userRole", userRole.toString());
 
         DamageReport damageReport = DAMAGE_REPORT_SERVICE.getDamageReport(damageReportId);
@@ -125,12 +159,11 @@ public class DamageReportController {
 
     @GetMapping("/skade/{lineNumber}")
     public String getEditDamageReportLine(HttpSession session, @PathVariable() int lineNumber, Model model){
-        UserRole userRole = (UserRole) session.getAttribute("userRole");
-        if (userRole != UserRole.DAMAGE_AND_RECTIFICATION){
-            return "redirect:/skader";
-
+        if ( session.getAttribute("userRole") != UserRole.DAMAGE_AND_RECTIFICATION) {
+            return "redirect:/logout";
         }
 
+        UserRole userRole = (UserRole) session.getAttribute("userRole");
         model.addAttribute("userRole", userRole.toString());
 
         DamageReportLine damageReportLine = DAMAGE_REPORT_LINE_SERVICE.getDamageReportLine(lineNumber);
@@ -141,6 +174,10 @@ public class DamageReportController {
 
     @PostMapping("/skade/{lineNumber}")
     public String editDamageReportLine(HttpSession session, @ModelAttribute DamageReportLine damageReportLine, @PathVariable int lineNumber){
+        if ( session.getAttribute("userRole") != UserRole.DAMAGE_AND_RECTIFICATION) {
+            return "redirect:/logout";
+        }
+
         DAMAGE_REPORT_LINE_SERVICE.updateDamageReportLine(damageReportLine.getLineNumber(), damageReportLine.getDamageReportId(), damageReportLine.getDamageNotes(), damageReportLine.getPrice());
         return "redirect:/skader";
     }
@@ -149,6 +186,10 @@ public class DamageReportController {
 
     @GetMapping("/skade/{lineNumber}/slet")
     public String deleteDamageReportLine(HttpSession session, @PathVariable() int lineNumber, Model model){
+        if ( session.getAttribute("userRole") != UserRole.DAMAGE_AND_RECTIFICATION) {
+            return "redirect:/logout";
+        }
+
         UserRole userRole = (UserRole) session.getAttribute("userRole");
         model.addAttribute("userRole", userRole);
 
