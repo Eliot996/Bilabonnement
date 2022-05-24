@@ -37,7 +37,13 @@
                     <td ><span th:text="${car.id}"> Vognnummer </span></td>
                     <td ><span th:text="${car.make}"> Mærke </span></td>
                     <td ><span th:text="${car.model}"> Model </span></td>
-                    <td ><span th:text="${car.status}"> Status </span></td>
+                    <td >
+                        <span th:if="${car.status.toString() == 'READY_TO_BE_RENTED'}"> Klar til udlejning </span>
+                        <span th:if="${car.status.toString() == 'READY_FOR_DELIVERY'}"> Klar til levering </span>
+                        <span th:if="${car.status.toString() == 'RENTED'}"> Udlejet </span>
+                        <span th:if="${car.status.toString() == 'BACK_FROM_BEING_RENTED'}"> Tilbage fra udlejning </span>
+                        <span th:if="${car.status.toString() == 'READY_FOR_SALE'}"> Klar til salg </span>
+                    </td>
                     <td>
                         <a th:href="@{/bil/{carId}(carId=${car.id})}">
                             <div class="m-2">
