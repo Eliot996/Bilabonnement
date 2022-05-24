@@ -218,8 +218,21 @@ public class RentalAgreementRepo implements IRentalAgreementRepository {
         }
         return rentalAgreements;    }
 
+     /**
+          *  @author Arboe(H4ppyN4p)
+          */
     @Override
     public boolean deleteById(int id) {
+        Connection conn = DatabaseConnectionManager.getConnection();
+        try {
+            PreparedStatement stmt = conn.prepareStatement("DELETE FROM rental_agreements WHERE id=?");
+            stmt.setInt(1, id);
+            stmt.execute();
+            DatabaseConnectionManager.closeConnection();
+            return true;
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
         return false;
     }
 

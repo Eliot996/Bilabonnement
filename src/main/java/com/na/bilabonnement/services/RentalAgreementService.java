@@ -62,4 +62,11 @@ public class RentalAgreementService {
     public FileReply getFile(int id) {
         return repo.loadFile(id);
     }
+
+     /**
+          *  @author Arboe(H4ppyN4p)
+          */
+     public boolean delete(int rentalAgreementId){
+         return repo.deleteById(rentalAgreementId);
+     }
 }
