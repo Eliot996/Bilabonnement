@@ -63,4 +63,9 @@ public class DummyDamageReportLineRepo implements IDamageReportLineRepository
         }
         return false;
     }
+
+    @Override
+    public List<DamageReportLine> getAllEntitiesWithDamageReportId(int damageReportId) {
+        return null;
+    }
 }

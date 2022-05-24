@@ -16,19 +16,16 @@
 <header th:insert="fragments/fragments.html :: header"> </header>
 
 <div class="content-under-header" id="all_buttons_in_body_createuser">
-    <form action="#" th:action="@{/opret-skade}" th:object="${damageReportLine}" method="post">
+    <form action="#" th:action="@{/opret-skade/{damageReportId}(damageReportId=${damageReportId})}" th:object="${damageReportLine}" method="post">
 
         <div>
-
             <label><b>Note:*</b></label> <br>
             <input type="text" placeholder="Note" th:field="*{damageNotes}" required> <br> <br>
 
             <label><b>Pris:*</b></label> <br>
             <input type="text" placeholder="Pris" th:field="*{price}" required> <br><br>
 
-            <a th:href="@{/skadesrapport/{damageReportId}}">
             <button class="btn btn-secondary" type="submit">Tilføj skade</button>
-            </a>
         </div>
     </form>
 </div>

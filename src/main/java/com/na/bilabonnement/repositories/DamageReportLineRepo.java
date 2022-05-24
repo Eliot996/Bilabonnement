@@ -22,15 +22,24 @@ public class DamageReportLineRepo implements IDamageReportLineRepository
     public DamageReportLine create(DamageReportLine entity)
     {
         Connection connection = DatabaseConnectionManager.getConnection();
+        String maxSQL = "SELECT max(lineNumber) AS aValue FROM damageline WHERE damageReportId = ?";
         String insertSQL = "INSERT INTO `bilabonnement`.`damageline` (`linenumber`, `damageReportId`, `damageNotes`, `price`)" +
                 "VALUES (?, ?, ?, ?);";
 
         try {
-            PreparedStatement stmt = connection.prepareStatement(insertSQL);
-            stmt.setInt(1, entity.getLineNumber());
+            PreparedStatement stmt = connection.prepareStatement(maxSQL);
+            stmt.setInt(1,entity.getDamageReportId());
+            ResultSet rs = stmt.executeQuery();
+            rs.next();
+            int newLineNumber = rs.getInt("aValue")+1 ;
+
+            stmt = connection.prepareStatement(insertSQL);
+            stmt.setInt(1, newLineNumber);
             stmt.setInt(2, entity.getDamageReportId());
             stmt.setString(3, entity.getDamageNotes());
             stmt.setInt(4, entity.getPrice());
+
+            stmt.execute();
 
         } catch (SQLException e) {
             e.printStackTrace();
@@ -52,7 +61,7 @@ public class DamageReportLineRepo implements IDamageReportLineRepository
         } catch (SQLException e) {
             e.printStackTrace();
         }
-        
+
         DamageReportLine result = null;
         if (rs != null){
             result = makeDamageReportLineFromResultSet(rs);
@@ -176,5 +185,35 @@ public class DamageReportLineRepo implements IDamageReportLineRepository
         }
         return false;
 
+    }
+
+    @Override
+    public List<DamageReportLine> getAllEntitiesWithDamageReportId(int damageReportId) {
+        Connection connection = DatabaseConnectionManager.getConnection();
+
+        String selectSQL = "SELECT * FROM damageline WHERE `damageReportId` = ?;";
+
+        ResultSet rs = null;
+        try {
+            PreparedStatement stmt = connection.prepareStatement(selectSQL);
+            stmt.setInt(1, damageReportId);
+            rs = stmt.executeQuery();
+        } catch (SQLException e){
+            e.printStackTrace();
+        }
+
+        List<DamageReportLine> result = new ArrayList<>();
+        if (rs != null){
+            result = makeDamageReportLinesFromResultSet(rs);
+        }
+
+        DatabaseConnectionManager.closeConnection();
+
+        for (DamageReportLine damageReportLine: result
+             ) {
+            System.out.println(damageReportLine.getLineNumber());
+        }
+
+        return result;
     }
 }

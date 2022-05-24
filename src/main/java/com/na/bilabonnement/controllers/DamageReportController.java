@@ -12,6 +12,8 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 
 import javax.servlet.http.HttpSession;
+import java.util.List;
+
 @Controller
 public class DamageReportController {
     /*
@@ -71,6 +73,7 @@ public class DamageReportController {
         }
 
          model.addAttribute("userRole", userRole.toString());
+        model.addAttribute("damageReportId", damageReportId);
 
         DamageReport damageReport = DAMAGE_REPORT_SERVICE.getDamageReport(damageReportId);
         model.addAttribute("damageReport", damageReport);
@@ -101,8 +104,8 @@ public class DamageReportController {
     }
 
     // for damage report lines
-    @GetMapping("/opret-skade")
-    public String getCreateDamageReportLine(HttpSession session, Model model){
+    @GetMapping("/opret-skade/{damageReportId}")
+    public String getCreateDamageReportLine(HttpSession session, Model model, @PathVariable int damageReportId){
         if ( session.getAttribute("userRole") != UserRole.DAMAGE_AND_RECTIFICATION) {
             return "redirect:/logout";
         }
@@ -112,11 +115,12 @@ public class DamageReportController {
 
         model.addAttribute("damageReportLine", new DamageReportLine());
         model.addAttribute("damageReports", DAMAGE_REPORT_SERVICE.getAllDamageReports());
+        model.addAttribute("damageReportId", damageReportId);
+        System.out.println(model.getAttribute("damageReportId"));
         return "create-damage-report-line";
     }
 
-
-    @PostMapping("/opret-skade")
+    @PostMapping("/opret-skade/{damageReportId}")
     public String createDamageReportLine(HttpSession session, @ModelAttribute DamageReportLine damageReportLine){
         if ( session.getAttribute("userRole") != UserRole.DAMAGE_AND_RECTIFICATION) {
             return "redirect:/logout";
@@ -152,8 +156,8 @@ public class DamageReportController {
 
         DamageReport damageReport = DAMAGE_REPORT_SERVICE.getDamageReport(damageReportId);
         model.addAttribute("damageReport", damageReport);
-        DamageReportLine damageReportLines = DAMAGE_REPORT_LINE_SERVICE.getDamageReportLine(damageReportId);
-        model.addAttribute("damageReportLines",damageReportLines);
+        List<DamageReportLine> listOfDamageReportLines = DAMAGE_REPORT_LINE_SERVICE.getAllDamageReportLinesWithReportId(damageReportId);
+        model.addAttribute("damageReportLines",listOfDamageReportLines);
         return "all-damage-report-lines";
     }
 

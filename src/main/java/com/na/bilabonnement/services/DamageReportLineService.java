@@ -4,6 +4,7 @@ import com.na.bilabonnement.models.DamageReportLine;
 import com.na.bilabonnement.repositories.DamageReportLineRepo;
 import com.na.bilabonnement.repositories.interfaces.IDamageReportLineRepository;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /*
@@ -40,4 +41,10 @@ public class DamageReportLineService {
     public List<DamageReportLine> getAllDamageReportLines(){
         return repo.getAllEntities();
     }
+
+    public List<DamageReportLine> getAllDamageReportLinesWithReportId(int damageReportId){
+        return repo.getAllEntitiesWithDamageReportId(damageReportId);
+    }
+
+
 }
