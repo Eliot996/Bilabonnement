@@ -35,6 +35,10 @@ public class UserController {
      */
     @GetMapping("/opret-bruger")
     public String getCreateUser(HttpSession session, Model model) {
+        if ( session.getAttribute("userRole") != UserRole.ADMINISTRATOR) {
+            return "redirect:/logout";
+        }
+
         UserRole userRole = (UserRole)session.getAttribute("userRole");
         model.addAttribute("userRole", userRole.toString());
 
@@ -49,6 +53,10 @@ public class UserController {
      */
     @PostMapping("/opret-bruger")
     public String createUser(HttpSession session, @ModelAttribute User user) {
+        if ( session.getAttribute("userRole") != UserRole.ADMINISTRATOR) {
+            return "redirect:/logout";
+        }
+
         User createdUser = USER_SERVICE.createUser(user.getUsername(), user.getPassword(), user.getRoleID(), user.getLocationId());
 
         return "redirect:/bruger/" + createdUser.getId();
@@ -60,6 +68,10 @@ public class UserController {
      */
     @GetMapping("/brugere")
     public String getAllUsers(HttpSession session, Model model) {
+        if ( session.getAttribute("userRole") != UserRole.ADMINISTRATOR) {
+            return "redirect:/logout";
+        }
+
         UserRole userRole = (UserRole)session.getAttribute("userRole");
         model.addAttribute("userRole", userRole.toString());
 
@@ -73,10 +85,11 @@ public class UserController {
      */
     @GetMapping("/bruger/{userID}")
     public String getEditUser(HttpSession session, @PathVariable() int userID, Model model){
-        UserRole userRole = (UserRole) session.getAttribute("userRole");
-        if (userRole!=UserRole.ADMINISTRATOR){
-            return "redirect:/";
+        if ( session.getAttribute("userRole") != UserRole.ADMINISTRATOR) {
+            return "redirect:/logout";
         }
+
+        UserRole userRole = (UserRole) session.getAttribute("userRole");
 
         User user = USER_SERVICE.getUser(userID);
 
@@ -107,9 +120,8 @@ public class UserController {
 
     @PostMapping("/bruger/{userID}")
     public String editUser(HttpSession session, @PathVariable() int userID, @ModelAttribute User user){
-        UserRole userRole = (UserRole) session.getAttribute("userRole");
-        if (userRole != UserRole.ADMINISTRATOR){
-            return "redirect:/";
+        if ( session.getAttribute("userRole") != UserRole.ADMINISTRATOR) {
+            return "redirect:/logout";
         }
 
         if (user.getPassword().equals("")) {
@@ -126,10 +138,10 @@ public class UserController {
      */
     @GetMapping("/bruger/{userID}/slet")
     public String deleteUser(HttpSession session, @PathVariable() int userID){
-        UserRole userRole = (UserRole) session.getAttribute("userRole");
-        if (userRole!=UserRole.ADMINISTRATOR){
+        if ( session.getAttribute("userRole") != UserRole.ADMINISTRATOR) {
             return "redirect:/logout";
         }
+
         USER_SERVICE.deleteUser(userID);
         return "redirect:/brugere";
     }
