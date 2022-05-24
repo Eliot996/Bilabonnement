@@ -16,7 +16,7 @@ class getRentedCarsTest
 
         carService.setRepo(dummyCarRepo);
 
-        int totalNumberOfRentedCars = 3;
+        int totalNumberOfRentedCars = 2;
 
         //Act
         int actualNumberOfRentedCars = carService.getRentedCars().size();

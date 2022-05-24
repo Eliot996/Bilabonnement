@@ -35,7 +35,7 @@ public class CarController {
 @Author Sofia
  */
     @PostMapping("/opret-bil")
-    public String createCar(HttpSession session, Model model, @ModelAttribute Car car){
+    public String createCar(HttpSession session, @ModelAttribute Car car){
         Car createdCar = CAR_SERVICE.createCar(car);
         return "redirect:/bil/" + createdCar.getId();
     }
