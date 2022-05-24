@@ -72,5 +72,10 @@ public class DummyCarRepo implements ICarRepository
         return null;
     }
 
+    @Override
+    public List<Car> getEntitiesByStatus(CarStatus status) {
+        return null;
+    }
+
 
 }
