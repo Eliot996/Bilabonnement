@@ -34,7 +34,7 @@ public class RentalAgreementController {
         UserRole userRole = (UserRole)session.getAttribute("userRole");
         model.addAttribute("userRole", userRole.toString());
 
-        model.addAttribute("cars", CAR_SERVICE.getAllCars()); // todo: make get only relevant cars
+        model.addAttribute("cars", CAR_SERVICE.getCarsByStatus(CarStatus.READY_TO_BE_RENTED));
         model.addAttribute("rentalAgreement", new RentalAgreement());
         return "create-rental-agreement";
     }
@@ -53,7 +53,7 @@ public class RentalAgreementController {
         if (rentalAgreement.getCarId() == -1 ||
             rentalAgreement.getEndDate().isBefore(rentalAgreement.getStartDate())) {
 
-            model.addAttribute("cars", CAR_SERVICE.getAllCars()); // todo: make get only relevant cars
+            model.addAttribute("cars", CAR_SERVICE.getCarsByStatus(CarStatus.READY_TO_BE_RENTED));
             model.addAttribute("rentalAgreement", new RentalAgreement());
 
             if (rentalAgreement.getCarId() == -1) {
@@ -107,7 +107,7 @@ public class RentalAgreementController {
         }
 
         model.addAttribute("RA", ra);
-        model.addAttribute("cars", CAR_SERVICE.getAllCars());
+        model.addAttribute("cars", CAR_SERVICE.getCarsByStatus(CarStatus.READY_TO_BE_RENTED));
 
         return "edit-rental-agreement";
     }
