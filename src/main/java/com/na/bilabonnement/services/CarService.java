@@ -67,23 +67,6 @@ public class CarService {
         return repo.getAllEntities();
     }
 
-
-     /**
-          *  @author Arboe(H4ppyN4p)
-          */
-    public List<Car> getRentedCars(){
-        ArrayList<Car> listOfRentedCars = new ArrayList<>();
-
-        for (Car car: repo.getAllEntities()
-        ) {
-            if (car.getStatus() == CarStatus.RENTED)
-            {
-                listOfRentedCars.add(car);
-            }
-        }
-        return listOfRentedCars;
-    }
-
      /**
           *  @author Arboe(H4ppyN4p)
           */
