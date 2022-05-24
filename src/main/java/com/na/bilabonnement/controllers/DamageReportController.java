@@ -1,9 +1,6 @@
 package com.na.bilabonnement.controllers;
 
-import com.na.bilabonnement.models.DamageReport;
-import com.na.bilabonnement.models.DamageReportLine;
-import com.na.bilabonnement.models.User;
-import com.na.bilabonnement.models.UserRole;
+import com.na.bilabonnement.models.*;
 import com.na.bilabonnement.repositories.CarRepo;
 import com.na.bilabonnement.services.CarService;
 import com.na.bilabonnement.services.DamageReportLineService;
@@ -31,7 +28,7 @@ public class DamageReportController {
          model.addAttribute("userRole", userRole.toString());
 
         model.addAttribute("damageReport", new DamageReport());
-        model.addAttribute("cars", CAR_SERVICE.getAllCars()); // todo: make get only relevant cars
+        model.addAttribute("cars", CAR_SERVICE.getCarsByStatus(CarStatus.BACK_FROM_BEING_RENTED));
         return "create-damage-report";
     }
 
