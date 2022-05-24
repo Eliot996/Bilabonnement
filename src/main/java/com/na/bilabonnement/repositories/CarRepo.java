@@ -113,6 +113,34 @@ public class CarRepo implements ICarRepository {
     }
 
     /**
+     *  @author Mathias(Eliot996)
+     */
+    @Override
+    public List<Car> getEntitiesByStatus(CarStatus status) {
+        Connection con = DatabaseConnectionManager.getConnection();
+
+        String selectSQL = "SELECT * FROM cars " +
+                "WHERE `status` = ?;";
+
+        ResultSet rs = null;
+        try {
+            PreparedStatement stmt = con.prepareStatement(selectSQL);
+            stmt.setString(1, status.toString());
+            rs = stmt.executeQuery();
+        }   catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        List<Car> result = new ArrayList<>();
+        if (rs != null){
+            result = makeCarsFromResultSet(rs);
+        }
+
+        DatabaseConnectionManager.closeConnection();
+        return result;
+    }
+
+    /**
      *  @author Lasse
      */
     private Car makeCarFromResultSet(ResultSet rs)
