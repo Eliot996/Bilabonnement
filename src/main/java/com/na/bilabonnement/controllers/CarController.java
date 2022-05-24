@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 
 import javax.servlet.http.HttpSession;
+import java.util.List;
 
 @Controller
 public class CarController {
@@ -133,14 +134,20 @@ public class CarController {
         return "redirect:/biler";
     }
 
+    /**
+     *  @author Arboe(H4ppyN4p)
+     *  @author Mathias(Eliot996)
+     */
     @GetMapping("/biler/data")
     public String carData(HttpSession session, Model model){
 
         UserRole userRole = (UserRole)session.getAttribute("userRole");
         model.addAttribute("userRole", userRole.toString());
 
-        model.addAttribute("listOfRentedCars", CAR_SERVICE.getRentedCars());
-        model.addAttribute("numberOfRentedCars", CAR_SERVICE.getRentedCars().size());
+        List<Car> listOfCars = CAR_SERVICE.getCarsByStatus(CarStatus.RENTED);
+
+        model.addAttribute("listOfRentedCars", listOfCars);
+        model.addAttribute("numberOfRentedCars", listOfCars.size());
         model.addAttribute("totalPriceOfRentedCars", CAR_SERVICE.getPriceOfRentedCars());
 
         return "car-data";
