@@ -140,4 +140,14 @@ public class RentalAgreementController {
                     "attachment; filename=\"" + file.getFileName() + "\"").body(file.getResource());
         }
     }
+
+     /**
+          *  @author Arboe(H4ppyN4p)
+          */
+     @GetMapping("/lejekontrakt/{id}/slet")
+    public String deleteRentalAgreement(@PathVariable() int id){
+
+         RENTAL_AGREEMENT_SERVICE.delete(id);
+         return "redirect:/lejekontrakter";
+     }
 }

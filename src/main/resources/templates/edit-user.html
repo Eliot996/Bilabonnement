@@ -16,36 +16,57 @@
 <body>
 <header th:insert="fragments/fragments.html :: header"> </header>
 
-<div class="content-under-header">
+<div class="content-under-header-vertical">
     <form action="#" th:action="@{/bruger/{userId}(userId=${user.id})}" th:object="${user}" method="post">
 
-        <div>
-            <label><b>Brugernavn:</b></label> <br>
-            <input type="text" th:placeholder="${user.username}" th:field="*{username}" required> <br><br>
+        <div class="container" style="width: 50%">
+            
+            <div class="row m-2">
+                <label class="col-6"><b>Brugernavn:</b></label> <br>
+                <input class="col-6" type="text" th:placeholder="${user.username}" th:field="*{username}" required> <br><br>
+            </div>
 
-            <label><b>Ny adgangskode:</b></label> <br>
-            <input type="password" placeholder="Indtast adgangskode" th:field="*{password}"> <br> <br>
+            <div class="row m-2">
+                <label class="col-6"><b>Ny adgangskode:</b></label> <br>
+                <input class="col-6" type="password" placeholder="Indtast adgangskode" th:field="*{password}"> <br> <br>
+            </div>
 
-            <label><b>Rolle: </b> <br>
-                <select th:field="*{roleID}">
-                    <option th:each="role : ${roles}" th:value="${role.id}" th:text="${role.name}"
-                            th:selected="${user.roleID == role.id}"></option>
-                </select>
-            </label> <br><br>
+            <div class="row m-2">
+                <label class="col-6"><b>Rolle: </b> <br>
+                    <select th:field="*{roleID}">
+                        <option th:each="role : ${roles}" th:value="${role.id}" th:text="${role.name}"
+                                th:selected="${user.roleID == role.id}"></option>
+                    </select>
+                </label> <br><br>
+            </div>
 
-            <label><b>Lokation:</b> <br>
-                <select th:field="*{locationId}">
-                    <option th:each="location : ${locations}" th:value="${location.id}" th:text="${location.name}"
-                            th:selected="${user.locationId == location.id}"></option>
-                </select>
-            </label> <br> <br>
 
-            <button class="btn btn-secondary" type="submit">Rediger bruger</button>
-            <a th:href="@{/bruger/{userId}/slet(userId=${user.id})}">
-                <button class="btn btn-secondary">Slet</button>
-            </a>
+            <div class="row m-2">
+                <label class="col-6"><b>Lokation:</b> <br>
+                    <select th:field="*{locationId}">
+                        <option th:each="location : ${locations}" th:value="${location.id}" th:text="${location.name}"
+                                th:selected="${user.locationId == location.id}"></option>
+                    </select>
+                </label> <br> <br>
+            </div>
+
+            <div class="row m-2">
+                <div class="col-6">
+                     <button class="btn btn-secondary" type="submit">Rediger bruger</button>
+                </div>
+            </div>
+
         </div>
     </form>
+    <div class="container" style="width: 50%">
+        <div class="row">
+            <div class="col-6">
+                <a th:href="@{/bruger/{userId}/slet(userId=${user.id})}">
+                    <button class="btn btn-secondary">Slet</button>
+                </a>
+            </div>
+        </div>
+    </div>
 
 </div>
 
