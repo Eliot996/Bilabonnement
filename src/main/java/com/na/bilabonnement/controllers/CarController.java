@@ -1,6 +1,7 @@
 package com.na.bilabonnement.controllers;
 
 import com.na.bilabonnement.models.Car;
+import com.na.bilabonnement.models.CarStatus;
 import com.na.bilabonnement.models.UserRole;
 import com.na.bilabonnement.services.CarService;
 import com.na.bilabonnement.services.LocationService;
@@ -31,12 +32,17 @@ public class CarController {
         model.addAttribute("car", new Car());
         return "create-car";
     }
-/*
-@Author Sofia
- */
+
+    /**
+     *  @author Sofia
+     *  @author Mathias(Eliot996)
+     */
     @PostMapping("/opret-bil")
     public String createCar(HttpSession session, @ModelAttribute Car car){
+        car.setStatus(CarStatus.READY_TO_BE_RENTED);
+
         Car createdCar = CAR_SERVICE.createCar(car);
+
         return "redirect:/bil/" + createdCar.getId();
     }
 
