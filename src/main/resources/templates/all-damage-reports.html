@@ -38,7 +38,7 @@
                     <a th:href="@{/skadesrapport/{damageReportId}(damageReportId=${damageReport.id})}">
                         <button class="btn btn-secondary">Rediger</button>
                     </a>
-                    <a href="/skader">
+                    <a th:href="@{/skader/{damageReportId}(damageReportId=${damageReport.id})}">
                         <button class="btn btn-secondary">Se skader</button>
                     </a>
                 </td>

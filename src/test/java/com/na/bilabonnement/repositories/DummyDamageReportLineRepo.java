@@ -10,7 +10,8 @@ import java.util.List;
 /*
 @Author Sofia
  */
-public class DummyDamageReportLineRepo implements IDamageReportLineRepository {
+public class DummyDamageReportLineRepo implements IDamageReportLineRepository
+{
     private List<DamageReportLine> listOfDamageReportLines = new ArrayList<>();
 
     public DummyDamageReportLineRepo(){
