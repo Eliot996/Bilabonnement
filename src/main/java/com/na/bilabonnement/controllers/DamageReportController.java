@@ -109,6 +109,23 @@ public class DamageReportController {
         return "all-damage-report-lines";
     }
 
+    @GetMapping("/skader/{damageReportId}")
+    public String viewDamageReportLinesForReport(HttpSession session, @PathVariable() int damageReportId, Model model){
+        UserRole userRole = (UserRole) session.getAttribute("userRole");
+        if (userRole != UserRole.DAMAGE_AND_RECTIFICATION){
+            return "redirect:/skadesrapporter";
+
+        }
+
+        model.addAttribute("userRole", userRole.toString());
+
+        DamageReport damageReport = DAMAGE_REPORT_SERVICE.getDamageReport(damageReportId);
+        model.addAttribute("damageReport", damageReport);
+        DamageReportLine damageReportLines = DAMAGE_REPORT_LINE_SERVICE.getDamageReportLine(damageReportId);
+        model.addAttribute("damageReportLines",damageReportLines);
+        return "all-damage-report-lines";
+    }
+
     @GetMapping("/skade/{lineNumber}")
     public String getEditDamageReportLine(HttpSession session, @PathVariable() int lineNumber, Model model){
         UserRole userRole = (UserRole) session.getAttribute("userRole");
