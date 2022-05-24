@@ -1,6 +1,7 @@
 package com.na.bilabonnement.services;
 
 import com.na.bilabonnement.models.Car;
+import com.na.bilabonnement.models.CarStatus;
 import com.na.bilabonnement.repositories.DummyCarRepo;
 import org.junit.jupiter.api.Test;
 
@@ -23,7 +24,7 @@ class UpdateCarTest
         String expectedChassisNumber = "5678";
 
         //Act
-        carService.updateCar(3, "5678", "status","make","Model","trimlevel", 1000, 10000,20000,30000,100000,"damage","colour","fueltype",3);
+        carService.updateCar(3, "5678", CarStatus.READY_FOR_DELIVERY,"make","Model","trimlevel", 1000, 10000,20000,30000,100000,"damage","colour","fueltype",3);
         Car car = dummyCarRepo.getSingleEntityById(3);
 
         //Assert
