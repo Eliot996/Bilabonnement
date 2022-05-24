@@ -19,8 +19,9 @@ import javax.servlet.http.HttpSession;
 public class MainController {
     private final UserService USER_SERVICE = new UserService();
 
-
-
+/**
+ *  @author Tobias Arboe
+ */
     @GetMapping("/")
         public String landingPage(HttpSession session, Model model){
 
@@ -37,6 +38,9 @@ public class MainController {
         return "landingpage";
     }
 
+    /**
+     *  @author Tobias Arboe
+     */
    @PostMapping("/login")
     public String landingPage(WebRequest dataFromForm, HttpSession session){
 
@@ -66,6 +70,9 @@ public class MainController {
         return "redirect:/";
     }
 
+    /**
+     *  @author Tobias Arboe
+     */
     @GetMapping ("/home")
     public String home(HttpSession session, Model model){
         UserRole userRole = (UserRole)session.getAttribute("userRole");
@@ -84,7 +91,6 @@ public class MainController {
             model.addAttribute("userRole", userRole.toString());
             return "dataregistration";
         }
-        
 
         return "redirect:/";
     }
