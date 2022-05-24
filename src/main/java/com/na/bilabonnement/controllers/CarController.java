@@ -121,7 +121,7 @@ public class CarController {
             return "redirect:/logout";
         }
 
-        CAR_SERVICE.updateCar(car.getId(),
+        CAR_SERVICE.updateCar(carID,
                 car.getChassisNumber(),
                 CarStatus.values()[car.getCarStatusId() - 1],
                 car.getMake(),
