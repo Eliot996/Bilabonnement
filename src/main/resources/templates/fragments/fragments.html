@@ -30,13 +30,13 @@
 
          <section class="row" th:case="'DATA_REGISTRATION'">
              <div class="col-6 ">
-                 <a href="/">
-                     <button class="btn btn-secondary header-button">Opret lejeaftale</button>
+                 <a th:href="@{/opret-lejekontrakt}">
+                     <button class="btn btn-secondary header-button">Opret lejekontrakt</button>
                  </a>
              </div>
              <div class="col-6">
-                 <a href="/">
-                     <button class="btn btn-secondary header-button">Se alle lejeaftaler</button>
+                 <a th:href="@{/lejekontrakter}">
+                     <button class="btn btn-secondary header-button">Se alle lejekontrakter</button>
                  </a>
              </div>
          </section>

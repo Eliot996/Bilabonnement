@@ -19,8 +19,12 @@
 <div class="content-under-header">
     <div id="button-style-home">
         <div>
-            <button class="button-style-home" type="submit">Opret lejeaftale</button><br><br>
-            <button class="button-style-home" type="submit">Se alle lejeaftale</button><br><br>
+            <a th:href="@{/opret-lejekontrakt}">
+                <button class="button-style-home" type="submit">Opret lejeaftale</button><br><br>
+            </a>
+            <a th:href="@{/lejekontrakter}">
+                <button class="button-style-home" type="submit">Se alle lejeaftale</button><br><br>
+            </a>
         </div>
     </div>
 </div>
