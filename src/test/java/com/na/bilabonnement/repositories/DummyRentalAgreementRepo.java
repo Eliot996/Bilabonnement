@@ -37,7 +37,8 @@ public class DummyRentalAgreementRepo implements IRentalAgreementRepository {
 
     @Override
     public RentalAgreement update(RentalAgreement entity) {
-        return null;
+        entity.setTypeId(1);
+        return entity;
     }
 
     @Override
@@ -53,7 +54,8 @@ public class DummyRentalAgreementRepo implements IRentalAgreementRepository {
 
     @Override
     public RentalAgreement updateWithoutContract(RentalAgreement entity) {
-        return null;
+        entity.setTypeId(2);
+        return entity;
     }
 
     @Override
