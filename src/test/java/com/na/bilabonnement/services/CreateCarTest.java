@@ -1,6 +1,7 @@
 package com.na.bilabonnement.services;
 
 import com.na.bilabonnement.models.Car;
+import com.na.bilabonnement.models.CarStatus;
 import com.na.bilabonnement.repositories.DummyCarRepo;
 import org.junit.jupiter.api.Test;
 
@@ -15,7 +16,7 @@ public class CreateCarTest {
         //Arrange
         CarService carService = new CarService();
         carService.setRepo(new DummyCarRepo());
-        Car expected = new Car(5,"123456","status","make","Model","trimlevel", 200000, 10000,20000,30000,100000,"damage","colour","fueltype",1);
+        Car expected = new Car(5,"123456", CarStatus.RENTED,"make","Model","trimlevel", 200000, 10000,20000,30000,100000,"damage","colour","fueltype",1);
 
         //Act
         Car actual = carService.createCar(expected);

@@ -1,5 +1,6 @@
 package com.na.bilabonnement.repositories;
 import com.na.bilabonnement.models.Car;
+import com.na.bilabonnement.models.CarStatus;
 import com.na.bilabonnement.repositories.interfaces.ICarRepository;
 import com.na.bilabonnement.utils.DatabaseConnectionManager;
 
@@ -33,7 +34,7 @@ public class CarRepo implements ICarRepository {
             PreparedStatement stmt = conn.prepareStatement(insertSQL);
             stmt.setInt(1, entity.getId());
             stmt.setString(2, entity.getChassisNumber());
-            stmt.setString(3, entity.getStatus());
+            stmt.setString(3, entity.getStatus().toString());
             stmt.setString(4, entity.getMake());
             stmt.setString(5, entity.getModel());
             stmt.setString(6, entity.getTrimLevel());
@@ -133,7 +134,7 @@ public class CarRepo implements ICarRepository {
             while(rs.next()) {
                 int carId = rs.getInt("id");
                 String chassisNumber = rs.getString("chassisnumber");
-                String status = rs.getString("status");
+                CarStatus status = CarStatus.valueOf(rs.getString("status"));
                 String make = rs.getString("make");
                 String model = rs.getString("model");
                 String trimLevel = rs.getString("trimlevel");
@@ -202,7 +203,7 @@ public class CarRepo implements ICarRepository {
         try {
             PreparedStatement stmt = con.prepareStatement(insertSQL);
             stmt.setString(1, entity.getChassisNumber());
-            stmt.setString(2, entity.getStatus());
+            stmt.setString(2, entity.getStatus().toString());
             stmt.setString(3, entity.getMake());
             stmt.setString(4, entity.getModel());
             stmt.setString(5, entity.getTrimLevel());

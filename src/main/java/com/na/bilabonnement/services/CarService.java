@@ -1,6 +1,7 @@
 package com.na.bilabonnement.services;
 
 import com.na.bilabonnement.models.Car;
+import com.na.bilabonnement.models.CarStatus;
 import com.na.bilabonnement.repositories.*;
 import com.na.bilabonnement.repositories.interfaces.ICarRepository;
 
@@ -30,7 +31,7 @@ public class CarService {
      /**
           *  @author Arboe(H4ppyN4p)
           */
-    public Car updateCar( int id, String chassisNumber, String status, String make, String model, String trimLevel,
+    public Car updateCar(int id, String chassisNumber, CarStatus status, String make, String model, String trimLevel,
                          int carPrice, int scrapPrice, int registrationFee, int co2Emission, int kilometersDriven,
                          String damage, String colour, String fuelType, int locationId) {
 
@@ -75,7 +76,7 @@ public class CarService {
 
         for (Car car: repo.getAllEntities()
         ) {
-            if (car.getStatus().toLowerCase().equals("rented"))
+            if (car.getStatus() == CarStatus.RENTED)
             {
                 listOfRentedCars.add(car);
             }

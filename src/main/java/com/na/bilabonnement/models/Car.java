@@ -7,7 +7,7 @@ public class Car {
 
     private int id;
     private String chassisNumber;
-    private String status;
+    private CarStatus status;
     private String make;
     private String model;
     private String trimLevel;
@@ -22,7 +22,7 @@ public class Car {
     private int locationId;
 
 
-    public Car(int id, String chassisNumber, String status, String make, String model, String trimLevel,
+    public Car(int id, String chassisNumber, CarStatus status, String make, String model, String trimLevel,
                int carPrice, int scrapPrice, int registrationFee, int co2Emission, int kilometersDriven,
                String damage, String colour, String fuelType, int locationId)
     {
@@ -67,12 +67,12 @@ public class Car {
         this.chassisNumber = chassisNumber;
     }
 
-    public String getStatus()
+    public CarStatus getStatus()
     {
         return status;
     }
 
-    public void setStatus(String status)
+    public void setStatus(CarStatus status)
     {
         this.status = status;
     }
