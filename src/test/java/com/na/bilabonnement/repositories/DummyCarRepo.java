@@ -74,7 +74,13 @@ public class DummyCarRepo implements ICarRepository
 
     @Override
     public List<Car> getEntitiesByStatus(CarStatus status) {
-        return null;
+        ArrayList<Car> list = new ArrayList<>();
+        for (Car car : listOfCars) {
+            if (car.getStatus() == status) {
+                list.add(car);
+            }
+        }
+        return list;
     }
 
 

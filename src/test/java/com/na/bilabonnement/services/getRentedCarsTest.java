@@ -1,5 +1,6 @@
 package com.na.bilabonnement.services;
 
+import com.na.bilabonnement.models.CarStatus;
 import com.na.bilabonnement.repositories.DummyCarRepo;
 import org.junit.jupiter.api.Test;
 
@@ -9,7 +10,7 @@ class getRentedCarsTest
 {
 
     @Test
-    void getRentedCars() {
+    void getCarsByStatus() {
         //Arrange
         CarService carService = new CarService();
         DummyCarRepo dummyCarRepo = new DummyCarRepo();
@@ -19,7 +20,7 @@ class getRentedCarsTest
         int totalNumberOfRentedCars = 2;
 
         //Act
-        int actualNumberOfRentedCars = carService.getRentedCars().size();
+        int actualNumberOfRentedCars = carService.getCarsByStatus(CarStatus.RENTED).size();
 
         //Assert
         assertEquals(totalNumberOfRentedCars, actualNumberOfRentedCars);
