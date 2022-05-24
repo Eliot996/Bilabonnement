@@ -23,7 +23,9 @@ class UpdateCarTest
         int expectedScrapPrice = 10000;
 
         //Act
-        carService.updateCar(5, "1234", CarStatus.RENTED,"make","Model","trimlevel", 1000, 10000,20000,30000,100000,"damage","colour","fueltype",1);
+        carService.updateCar(5, "1234", CarStatus.RENTED,"make","Model","trimlevel",
+                1000, 10000,20000,30000,100000,"damage",
+                "colour","fueltype",1);
         Car car = dummyCarRepo.getSingleEntityByChassisNumber("1234");
 
         //Assert
