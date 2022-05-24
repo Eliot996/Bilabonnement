@@ -100,6 +100,13 @@ public class CarService {
 
     /**
      *  @author Mathias(Eliot996)
+     */
+    public List<Car> getCarsByStatus(CarStatus status) {
+        return repo.getEntitiesByStatus(status);
+    }
+
+    /**
+     *  @author Mathias(Eliot996)
      *  Added to help set the right value to match the status
      */
     public int getCarStatusValue(Car car) {
