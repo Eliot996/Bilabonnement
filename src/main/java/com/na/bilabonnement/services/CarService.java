@@ -90,7 +90,7 @@ public class CarService {
     public int getPriceOfRentedCars(){
         int totalPrice = 0;
 
-        for (Car car: getRentedCars()
+        for (Car car: getCarsByStatus(CarStatus.RENTED)
              ) {
             totalPrice += car.getCarPrice();
         }
