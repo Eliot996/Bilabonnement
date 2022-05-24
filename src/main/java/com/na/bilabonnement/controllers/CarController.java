@@ -31,8 +31,15 @@ public class CarController {
             new KeyValueSet(5, "Klar til salg")
     };
 
+    /**
+     *  @author Sofia
+     */
     @GetMapping("/opret-bil")
     public String getCreateCar(HttpSession session, Model model){
+        if ((int) session.getAttribute("userID") < 0) {
+            return "redirect:/logout";
+        }
+
         UserRole userRole = (UserRole)session.getAttribute("userRole");
         model.addAttribute("userRole", userRole.toString());
 
@@ -47,6 +54,10 @@ public class CarController {
      */
     @PostMapping("/opret-bil")
     public String createCar(HttpSession session, @ModelAttribute Car car){
+        if ((int) session.getAttribute("userID") < 0) {
+            return "redirect:/logout";
+        }
+
         car.setStatus(CarStatus.READY_TO_BE_RENTED);
 
         Car createdCar = CAR_SERVICE.createCar(car);
@@ -59,6 +70,10 @@ public class CarController {
      */
     @GetMapping("/biler")
     public String viewAllCars(HttpSession session, Model model) {
+        if ((int) session.getAttribute("userID") < 0) {
+            return "redirect:/logout";
+        }
+
         UserRole userRole = (UserRole)session.getAttribute("userRole");
         model.addAttribute("userRole", userRole.toString());
 
@@ -72,6 +87,9 @@ public class CarController {
           */
     @GetMapping("/bil/{carID}")
     public String getEditCar(HttpSession session, @PathVariable() int carID, Model model){
+        if ((int) session.getAttribute("userID") < 0) {
+            return "redirect:/logout";
+        }
 
         UserRole userRole = (UserRole) session.getAttribute("userRole");
         if (userRole != UserRole.BUSINESS_DEVELOPER){
@@ -99,6 +117,9 @@ public class CarController {
           */
     @PostMapping("/bil/{carID}")
     public String editCar(HttpSession session, @ModelAttribute Car car, @PathVariable int carID){
+        if ((int) session.getAttribute("userID") < 0) {
+            return "redirect:/logout";
+        }
 
         CAR_SERVICE.updateCar(car.getId(),
                 car.getChassisNumber(),
@@ -125,6 +146,9 @@ public class CarController {
           */
     @GetMapping("/bil/{carID}/slet")
     public String deleteCar(HttpSession session, @PathVariable() int carID, Model model){
+        if ((int) session.getAttribute("userID") < 0) {
+            return "redirect:/logout";
+        }
 
         UserRole userRole = (UserRole)session.getAttribute("userRole");
         model.addAttribute("userRole", userRole);
@@ -140,6 +164,9 @@ public class CarController {
      */
     @GetMapping("/biler/data")
     public String carData(HttpSession session, Model model){
+        if (session.getAttribute("userRole") != UserRole.BUSINESS_DEVELOPER) {
+            return "redirect:/logout";
+        }
 
         UserRole userRole = (UserRole)session.getAttribute("userRole");
         model.addAttribute("userRole", userRole.toString());
