@@ -33,7 +33,7 @@
 
     <button class="btn btn-secondary" type="submit">Rediger rapport</button>
 </form>
-<a href="/opret-skade">
+<a th:href="@{/opret-skade/{damageReportId}/(damageReportId=${damageReportId})}">
     <button class="btn btn-secondary">Tilføj skade</button>
 </a>
 <a th:href="@{/skadesrapport/{damageReportId}/slet(damageReportId=${damageReport.id})}">
