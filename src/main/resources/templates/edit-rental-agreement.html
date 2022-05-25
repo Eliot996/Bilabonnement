@@ -14,55 +14,84 @@
 <body>
 <header th:insert="fragments/fragments.html :: header"> </header>
 
-<div class="content-under-header" id="all_buttons_in_body_createuser">
+<div class="w-50 container-fluid ">
+    <!--id="all_buttons_in_body_createuser"-->
 
-    <div style="width: 100%">
-        <h1>Rediger Lejekontrakt:</h1>
+    <div class="row m-3">
+        <div class="col-12">
+           <h1>Rediger Lejekontrakt:</h1>
+        </div>
     </div>
     <form action="#" th:action="@{/lejekontrakt/{raId}(raId = ${RA.id})}" th:object="${RA}" method="post" enctype="multipart/form-data">
 
-        <div>
-            <label><b>Vælg bil:*</b> <br>
-                <select th:field="*{carId}">
-                    <option th:value="${RA.car.id}" th:text="${RA.car.id + ' - ' + RA.car.make + ' ' + RA.car.model}"></option>
-                    <option th:each="car : ${cars}" th:value="${car.id}"
-                            th:text="${car.id + ' - ' + car.make + ' ' + car.model}"></option>
-                </select>
-            </label> <br> <br>
 
-            <label><b>Type:*</b> <br>
-                <select id="type" th:field="*{typeId}" onchange="updateDateInputs()">
-                    <option th:each="type : ${types}" th:value="${type.id}" th:text="${type.name}"
-                            th:selected="${RA.typeId == type.id}"></option>
-                </select>
-            </label> <br> <br>
+            <div class="row m-3">
+                <label class="col-6"><b>Vælg bil:*</b> <br>
+                    <select th:field="*{carId}">
+                        <option th:value="${RA.car.id}" th:text="${RA.car.id + ' - ' + RA.car.make + ' ' + RA.car.model}"></option>
+                        <option th:each="car : ${cars}" th:value="${car.id}"
+                                th:text="${car.id + ' - ' + car.make + ' ' + car.model}"></option>
+                    </select>
+                </label>
+                <!--<br> <br> -->
+            </div>
 
-            <label><b>Start Dato:*</b></label> <br>
-            <input id="start_date" type="date" value="" th:field="*{startDateString}" required onchange="updateDateInputs()"> <br><br>
+            <div class="row m-3">
+                <label class="col-6"><b>Type:*</b> <br>
+                    <select id="type" th:field="*{typeId}" onchange="updateDateInputs()">
+                        <option th:each="type : ${types}" th:value="${type.id}" th:text="${type.name}"
+                                th:selected="${RA.typeId == type.id}"></option>
+                    </select>
+                </label>
+                <!--<br> <br>-->
+            </div>
 
-            <label><b>Slut Dato:*</b></label> <br>
-            <span th:if="${noCar}" style="font-size: small; color: red">Slut dato er før start dato <br></span>
-            <input id="end_date" type="date" th:value="${{RA.endDate.toString()}}" th:field="*{endDateString}" required onchange="updateDateInputs()"> <br> <br>
+            <div class="row m-3">
+                <label class="col-6"><b>Start Dato:*</b></label> <br>
+                    <input class="col-6" id="start_date" type="date" value="" th:field="*{startDateString}" required onchange="updateDateInputs()">
+                    <!--<br><br>-->
+            </div>
 
-            <label><b>Månedlig pris:*</b></label> <br>
-            <input type="text" placeholder="0" th:field="*{price}" required> <br><br>
+            <div class="row m-3">
+                <label class="col-6"><b>Slut Dato:*</b></label> <br>
+                    <span th:if="${noCar}" style="font-size: small; color: red">Slut dato er før start dato <br></span>
+                <input class="col-6" id="end_date" type="date" th:value="${{RA.endDate.toString()}}" th:field="*{endDateString}" required onchange="updateDateInputs()">
+                    <!--<br> <br>-->
+            </div>
 
-            <label><b>Kontrakt:</b></label> <br>
-            <span style="font-size: small">Maks. 16MB</span>
-            <input type="file"  th:field="*{contract}"> <br><br>
+            <div class="row m-3">
+                <label class="col-6"><b>Månedlig pris:*</b></label> <br>
+                <input class="col-6" type="text" placeholder="0" th:field="*{price}" required>
+                <!--<br><br>-->
+            </div>
 
+            <div class="row m-3">
+                <label class="col-6"><b>Kontrakt:</b></label> <br>
+                <span class="col-6" style="font-size: small">Maks. 16MB</span>
+                <input class="col-12" type="file"  th:field="*{contract}">
+                <!--<br><br>-->
+            </div>
 
-
-            <button class="btn btn-secondary" type="submit">Ret lejekontrakt</button>
-        </div>
+            <div class="row m-3">
+                <div class="col-6">
+                    <button class="btn btn-secondary" type="submit">Ret lejekontrakt</button>
+                </div>
+            </div>
     </form>
 
-    <a th:href="@{/lejekontrakt/{raId}/fil(raId = ${RA.id})}">
-        <button class="btn btn-secondary">Hent fil</button>
-    </a>
-    <a th:href="@{/lejekontrakt/{raId}/slet(raId = ${RA.id})}">
-        <button class="btn btn-secondary">Slet lejekontrakt</button>
-    </a>
+    <div class=" row m-3">
+        <div class="col-6">
+            <a th:href="@{/lejekontrakt/{raId}/fil(raId = ${RA.id})}">
+                <button class="btn btn-secondary w-100">Hent fil</button>
+            </a>
+        </div>
+
+        <div class="col-6">
+            <a th:href="@{/lejekontrakt/{raId}/slet(raId = ${RA.id})}">
+                <button class="btn btn-secondary w-100">Slet lejekontrakt</button>
+            </a>
+        </div>
+    </div>
 </div>
 
 <script th:inline="javascript">

@@ -22,6 +22,8 @@
 }
 
 
+
+
 .content-under-header{
     display: flex;
     align-items: center;
@@ -32,10 +34,10 @@
     height: 80vh;
 }
 
-.content-under-header{
+.content-under-header-vertical{
     display: flex;
     justify-content: center;
-    width: 100%;
+    width: 50%;
     background-color: #f2f2f2;
     margin: auto;
     height: 80vh;

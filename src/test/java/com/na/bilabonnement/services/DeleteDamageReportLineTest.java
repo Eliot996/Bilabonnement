@@ -28,12 +28,12 @@ public class DeleteDamageReportLineTest {
         boolean deleteFail = false;
 
         //Act
-        boolean deleteDamageReportLine0Fail = damageReportLineService.deleteDamageReportLine(damageReportId0);
-        boolean deleteDamageReportLine1Success = damageReportLineService.deleteDamageReportLine(damageReportId1);
-        boolean deleteDamageReportLine2Success = damageReportLineService.deleteDamageReportLine(damageReportId2);
-        boolean deleteDamageReportLine3Success = damageReportLineService.deleteDamageReportLine(damageReportId3);
-        boolean deleteDamageReportLine4Success = damageReportLineService.deleteDamageReportLine(damageReportId4);
-        boolean deleteDamageReportLine5Fail = damageReportLineService.deleteDamageReportLine(damageReportId5);
+        boolean deleteDamageReportLine0Fail = damageReportLineService.deleteDamageReportLine(damageReportId0, 0);
+        boolean deleteDamageReportLine1Success = damageReportLineService.deleteDamageReportLine(damageReportId1, 1);
+        boolean deleteDamageReportLine2Success = damageReportLineService.deleteDamageReportLine(damageReportId2, 2);
+        boolean deleteDamageReportLine3Success = damageReportLineService.deleteDamageReportLine(damageReportId3, 3);
+        boolean deleteDamageReportLine4Success = damageReportLineService.deleteDamageReportLine(damageReportId4, 4);
+        boolean deleteDamageReportLine5Fail = damageReportLineService.deleteDamageReportLine(damageReportId5, 5);
 
         //Assert
         assertEquals(deleteDamageReportLine0Fail, deleteFail);

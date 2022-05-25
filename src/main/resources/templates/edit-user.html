@@ -16,11 +16,16 @@
 <body>
 <header th:insert="fragments/fragments.html :: header"> </header>
 
-<div class="content-under-header-vertical">
+<div class="container-fluid w-50">
+
+    <div class="row m-2">
+        <div class="col-12">
+            <h1>Rediger bruger:</h1>
+        </div>
+    </div>
     <form action="#" th:action="@{/bruger/{userId}(userId=${user.id})}" th:object="${user}" method="post">
 
-        <div class="container" style="width: 50%">
-            
+
             <div class="row m-2">
                 <label class="col-6"><b>Brugernavn:</b></label> <br>
                 <input class="col-6" type="text" th:placeholder="${user.username}" th:field="*{username}" required> <br><br>
@@ -37,34 +42,29 @@
                         <option th:each="role : ${roles}" th:value="${role.id}" th:text="${role.name}"
                                 th:selected="${user.roleID == role.id}"></option>
                     </select>
-                </label> <br><br>
-            </div>
+                </label>
 
-
-            <div class="row m-2">
                 <label class="col-6"><b>Lokation:</b> <br>
                     <select th:field="*{locationId}">
                         <option th:each="location : ${locations}" th:value="${location.id}" th:text="${location.name}"
                                 th:selected="${user.locationId == location.id}"></option>
                     </select>
-                </label> <br> <br>
+                </label>
             </div>
 
             <div class="row m-2">
-                <div class="col-6">
-                     <button class="btn btn-secondary" type="submit">Rediger bruger</button>
+                <div class="col-12">
+                     <button class="btn btn-secondary w-50" type="submit">Rediger bruger</button>
                 </div>
             </div>
 
-        </div>
     </form>
-    <div class="container" style="width: 50%">
-        <div class="row">
-            <div class="col-6">
-                <a th:href="@{/bruger/{userId}/slet(userId=${user.id})}">
-                    <button class="btn btn-secondary">Slet</button>
-                </a>
-            </div>
+
+    <div class="row m-2">
+        <div class="col-12">
+            <a th:href="@{/bruger/{userId}/slet(userId=${user.id})}">
+                <button class="btn btn-secondary w-100">Slet</button>
+            </a>
         </div>
     </div>
 

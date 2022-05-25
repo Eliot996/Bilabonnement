@@ -15,58 +15,87 @@
 <body>
  <header th:insert="fragments/fragments.html :: header"> </header>
 
- <div id="all_buttons_in_body_createuser">
-     <div>
+ <div class="container-fluid w-75" >
+     <div class="row m-2">
+         <div class="col-12">
+             <h1>Opret bil:</h1>
+         </div>
+     </div>
          <form action="#" th:action="@{/opret-bil}" th:object="${car}" method="post">
 
-             <div>
-                 <label><b>Vognnummer:*</b></label> <br>
-                 <input type="text" placeholder="Vognnummer" th:field="*{chassisNumber}" required> <br><br>
+             <div class="row m-2">
+                 <label class="col-6"><b>Vognnummer:*</b></label> <br>
+                 <input class="col-6" type="text" placeholder="Vognnummer" th:field="*{chassisNumber}" required> <br><br>
+             </div>
 
-                 <label><b>Mærke:*</b></label> <br>
-                 <input type="text" placeholder="Mærke" th:field="*{make}" required> <br><br>
+             <div class="row m-2">
+                 <label class="col-6"><b>Mærke:*</b></label> <br>
+                 <input class="col-6" type="text" placeholder="Mærke" th:field="*{make}" required> <br><br>
+             </div>
 
-                 <label><b>Model:*</b></label> <br>
-                 <input type="text" placeholder="Model" th:field="*{model}" required> <br><br>
+             <div class="row m-2">
+                 <label class="col-6"><b>Model:*</b></label> <br>
+                 <input class="col-6" type="text" placeholder="Model" th:field="*{model}" required> <br><br>
+             </div>
 
-                 <label><b>Udstyrsniveau:*</b></label> <br>
-                 <input type="text" placeholder="Udstyrsniveau" th:field="*{trimLevel}" required> <br><br>
+             <div class="row m-2">
+                 <label class="col-6"><b>Udstyrsniveau:*</b></label> <br>
+                 <input class="col-6" type="text" placeholder="Udstyrsniveau" th:field="*{trimLevel}" required> <br><br>
+             </div>
 
-                 <label><b>købspris:*</b></label> <br>
-                 <input type="text" placeholder="" th:field="*{carPrice}" required> <br><br>
+             <div class="row m-2">
+                 <label class="col-6"><b>købspris:*</b></label> <br>
+                 <input class="col-6" type="text" placeholder="" th:field="*{carPrice}" required> <br><br>
+             </div>
 
-                 <label><b>Skrotpris:*</b></label> <br>
-                 <input type="text" placeholder="" th:field="*{scrapPrice}" required> <br><br>
+             <div class="row m-2">
+                 <label class="col-6"><b>Skrotpris:*</b></label> <br>
+                 <input class="col-6" type="text" placeholder="" th:field="*{scrapPrice}" required> <br><br>
+             </div>
 
-                 <label><b>Registreringsafgift:*</b></label> <br>
-                 <input type="text" placeholder="" th:field="*{registrationFee}" required> <br><br>
+             <div class="row m-2">
+                 <label class="col-6"><b>Registreringsafgift:*</b></label> <br>
+                 <input class="col-6" type="text" placeholder="" th:field="*{registrationFee}" required> <br><br>
+             </div>
 
-                 <label><b>Co2 udledning:*</b></label> <br>
-                 <input type="text" placeholder="" th:field="*{co2Emission}" required> <br><br>
+             <div class="row m-2">
+                 <label class="col-6"><b>Co2 udledning:*</b></label> <br>
+                 <input class="col-6" type="text" placeholder="" th:field="*{co2Emission}" required> <br><br>
+             </div>
 
-                 <label><b>Kørte kilometer:</b></label> <br>
-                 <input type="text" placeholder="" th:field="*{kilometersDriven}"> <br><br>
+             <div class="row m-2">
+                 <label class="col-6"><b>Kørte kilometer:</b></label> <br>
+                 <input class="col-6" type="text" placeholder="" th:field="*{kilometersDriven}"> <br><br>
+             </div>
 
-                 <label><b>Noter:</b></label> <br>
-                 <input type="text" placeholder="Noter" th:field="*{damage}"> <br><br>
+             <div class="row m-2">
+                 <label class="col-6"><b>Noter:</b></label> <br>
+                 <input class="col-6" type="text" placeholder="Noter" th:field="*{damage}"> <br><br>
+             </div>
 
-                 <label><b>Farve:</b></label> <br>
-                 <input type="text" placeholder="Farve" th:field="*{colour}" required> <br><br>
+             <div class="row m-2">
+                 <label class="col-6"><b>Farve:</b></label> <br>
+                 <input class="col-6" type="text" placeholder="Farve" th:field="*{colour}" required> <br><br>
+             </div>
 
-                 <label><b>Brændstofstype:</b></label> <br>
-                 <input type="text" placeholder="Brændstofstype" th:field="*{fuelType}" required> <br><br>
+             <div class="row m-2">
+                 <label class="col-6"><b>Brændstofstype:</b></label> <br>
+                 <input class="col-6" type="text" placeholder="Brændstofstype" th:field="*{fuelType}" required> <br><br>
+             </div>
 
-                 <label><b>Lokation:</b> <br>
+             <div class="row m-2">
+                 <label class="col-6"><b>Lokation:</b> <br>
                      <select th:field="*{locationId}">
                          <option th:each="location : ${locations}" th:value="${location.id}"
                                  th:text="${location.name}"></option>
                      </select>
                  </label> <br> <br>
+             </div>
 
+             <div class="row m-2">
                  <button class="btn btn-secondary" type="submit">Opret bil</button>
              </div>
          </form>
-     </div>
  </div>
 
  <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>

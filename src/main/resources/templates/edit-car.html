@@ -15,11 +15,14 @@
 <body>
 <header th:insert="fragments/fragments.html :: header"></header>
 
-<div class="content-under-header-vertical">
-
+<div class="container-fluid w-50">
+    <div class="row m-2">
+        <div class="col-12">
+            <h1>Rediger bil:</h1>
+        </div>
+    </div>
     <form action="#" th:action="@{/bil/{carId}(carId=${car.id})}" th:object="${car}"  method="post">
 
-        <div class="container" style="width: 50%">
 
             <div class="row m-2">
                 <label class="col-6">Id i systemet</label>
@@ -108,24 +111,21 @@
             </div>
 
             <div class="row m-2">
-                <div class="col-6">
-                  <button class="btn btn-secondary" type="submit">Rediger bil</button>
+                <div class="col-12">
+                  <button class="btn btn-secondary w-50" type="submit">Rediger bil</button>
                 </div>
 
             </div>
 
-        </div>
-
     </form>
-    <div class="container" style="width: 50%">
-        <div class="row">
-            <div class="col-6">
+
+        <div class="row m-2">
+            <div class="col-12">
                 <a th:href="@{/bil/{carId}/slet(carId=${car.id})}">
-                    <button class="btn btn-secondary">Slet</button>
+                    <button class="btn btn-secondary w-100">Slet</button>
                 </a>
             </div>
         </div>
-    </div>
 </div>
 
 <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
