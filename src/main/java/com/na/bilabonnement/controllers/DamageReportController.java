@@ -121,7 +121,6 @@ public class DamageReportController {
         model.addAttribute("damageReportLine", new DamageReportLine());
         model.addAttribute("damageReports", DAMAGE_REPORT_SERVICE.getAllDamageReports());
         model.addAttribute("damageReportId", damageReportId);
-        System.out.println(model.getAttribute("damageReportId"));
         return "create-damage-report-line";
     }
 
@@ -132,7 +131,7 @@ public class DamageReportController {
         }
 
         DamageReportLine createdDamageReportLine = DAMAGE_REPORT_LINE_SERVICE.createDamageReportLine(damageReportLine);
-        return "redirect:/skadesrapport/" + createdDamageReportLine.getLineNumber();
+        return "redirect:/skadesrapport/" + createdDamageReportLine.getDamageReportId();
     }
 
 
