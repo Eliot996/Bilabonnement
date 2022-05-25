@@ -50,7 +50,7 @@
             </tr>
             </thead>
             <tbody>
-            <tr th:each="damageReportLines : ${listOfDamageReportLines}">
+            <tr th:each="damageReportLines : ${damageReportLines}">
                 <td><span th:text="${damageReportLines.damageNotes}"> Note </span></td>
                 <td><span th:text="${damageReportLines.price}"> Pris </span></td>
 

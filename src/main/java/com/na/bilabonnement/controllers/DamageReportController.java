@@ -79,6 +79,7 @@ public class DamageReportController {
 
         List<DamageReportLine> listOfDamageReportLines = DAMAGE_REPORT_LINE_SERVICE.
                 getAllDamageReportLinesWithReportId(damageReportId);
+
         model.addAttribute("damageReportLines",listOfDamageReportLines);
 
         return "edit-damage-report";

@@ -209,11 +209,6 @@ public class DamageReportLineRepo implements IDamageReportLineRepository
 
         DatabaseConnectionManager.closeConnection();
 
-        for (DamageReportLine damageReportLine: result
-             ) {
-            System.out.println(damageReportLine.getLineNumber());
-        }
-
         return result;
     }
 }
