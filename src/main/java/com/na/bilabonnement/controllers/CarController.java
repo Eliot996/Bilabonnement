@@ -36,7 +36,7 @@ public class CarController {
      */
     @GetMapping("/opret-bil")
     public String getCreateCar(HttpSession session, Model model){
-        if ((int) session.getAttribute("userID") < 0) {
+        if ( session.getAttribute("userRole") == null) {
             return "redirect:/logout";
         }
 
@@ -54,7 +54,7 @@ public class CarController {
      */
     @PostMapping("/opret-bil")
     public String createCar(HttpSession session, @ModelAttribute Car car){
-        if ((int) session.getAttribute("userID") < 0) {
+        if ( session.getAttribute("userRole") == null) {
             return "redirect:/logout";
         }
 
@@ -70,7 +70,7 @@ public class CarController {
      */
     @GetMapping("/biler")
     public String viewAllCars(HttpSession session, Model model) {
-        if ((int) session.getAttribute("userID") < 0) {
+        if ( session.getAttribute("userRole") == null) {
             return "redirect:/logout";
         }
 
@@ -87,7 +87,7 @@ public class CarController {
           */
     @GetMapping("/bil/{carID}")
     public String getEditCar(HttpSession session, @PathVariable() int carID, Model model){
-        if ((int) session.getAttribute("userID") < 0) {
+        if ( session.getAttribute("userRole") == null) {
             return "redirect:/logout";
         }
 
@@ -117,7 +117,7 @@ public class CarController {
           */
     @PostMapping("/bil/{carID}")
     public String editCar(HttpSession session, @ModelAttribute Car car, @PathVariable int carID){
-        if ((int) session.getAttribute("userID") < 0) {
+        if ( session.getAttribute("userRole") == null) {
             return "redirect:/logout";
         }
 
@@ -146,7 +146,7 @@ public class CarController {
           */
     @GetMapping("/bil/{carID}/slet")
     public String deleteCar(HttpSession session, @PathVariable() int carID, Model model){
-        if ((int) session.getAttribute("userID") < 0) {
+        if ( session.getAttribute("userRole") == null) {
             return "redirect:/logout";
         }
 
