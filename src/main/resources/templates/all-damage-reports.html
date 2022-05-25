@@ -18,22 +18,25 @@
 <div class="content-under-header">
     <div>
         <h1 class="center_things">Skadesrapporter:</h1>
-        <table>
+        <table class="table table-bordered table-hover">
             <thead>
             <tr>
-                <th> Skadesrapport id</th>
-                <th> Bemærkninger</th>
-                <th> Medarbejder id</th>
+                <th scope="col" class="table-secondary"> Bil </th>
+                <th scope="col" class="table-secondary"> Skadesrapport id</th>
+                <th scope="col" class="table-secondary"> Bemærkninger</th>
+                <th scope="col" class="table-secondary"> Medarbejder </th>
+                <th scope="col" class="table-secondary"> Link </th>
             </tr>
             </thead>
             <tbody>
             <tr th:if="${listOfDamageReports.empty}">
-                <td colspan="5"> Der er ingen skadesrapporter i systemet</td>
+                <td colspan="4"> Der er ingen skadesrapporter i systemet</td>
             </tr>
             <tr th:each="damageReport : ${listOfDamageReports}">
+                <td><span th:text="${damageReport.carId}"></span></td>
                 <td><span th:text="${damageReport.id}"> Skadesrapport id </span></td>
                 <td><span th:text="${damageReport.notes}"> Bemærkninger </span></td>
-                <td><span th:text="${damageReport.technicianId}"> Bruger id </span></td>
+                <td><span th:text="${damageReport.technicianId + ' - ' + damageReport.technicianName}"> Bruger id </span></td>
                 <td>
                     <a th:href="@{/skadesrapport/{damageReportId}(damageReportId=${damageReport.id})}">
                         <button class="btn btn-secondary">Rediger</button>

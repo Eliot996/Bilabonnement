@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-    <title>Ændre skadesrapport</title>
+    <title>Rediger skadesrapport</title>
 
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css" integrity="sha384-zCbKRCUGaJDkqS1kPbPd7TveP5iyJE0EjAuZQTgFLD2ylzuqKfdKlfG/eSrtxUkn" crossorigin="anonymous">
@@ -15,41 +15,88 @@
 <body>
 <header th:insert="fragments/fragments.html :: header"></header>
 
+<div class="content-under-header-vertical">
+
 <form action="#" th:action="@{/skadesrapport/{damageReportId}(damageReportId=${damageReport.id})}" th:object="${damageReport}"  method="post">
 
-    <div>
-        <label>Id i systemet</label>
-        <input type="text" th:placeholder="${damageReport.id}" th:field="*{id}" required readonly> <br><br>
+    <div class="container" style="width: 50%">
+        <div class="row m-2">
+            <div class="col-6">
+                <h1 class="center_things">Skadesrapport:</h1>
+            </div>
+        </div>
 
-        <label>Bil id for rapporten</label>
-        <input type="text" th:placeholder="${damageReport.carId}" th:field="*{carId}" required> <br><br>
+        <div class="row m-2">
+            <label class="col-6">Id i systemet</label>
+            <input class="col-6" type="text" th:placeholder="${damageReport.id}" th:field="*{id}" required readonly> <br><br>
+        </div>
 
-        <label>Medarbejder id</label>
-        <input type="text" th:placeholder="${damageReport.technicianId}" th:field="*{technicianId}" required> <br><br>
+        <div class="row m-2">
+            <label class="col-6">Bil id for rapporten</label>
+            <input class="col-6" type="text" th:placeholder="${damageReport.carId}" th:field="*{carId}" required> <br><br>
+        </div>
 
-        <label>Bemærkninger</label>
-        <input type="text" th:placeholder="${damageReport.notes}" th:field="*{notes}" required> <br><br>
+        <div class="row m-2">
+            <label class="col-6">Medarbejder id</label>
+            <input class="col-6" type="text" th:placeholder="${damageReport.technicianId}" th:field="*{technicianId}" required> <br><br>
+        </div>
+
+        <div class="row m-2">
+            <label class="col-6">Bemærkninger</label>
+            <input class="col-6" type="text" th:placeholder="${damageReport.notes}" th:field="*{notes}" required> <br><br>
+        </div>
+
+        <div class="row m-2">
+            <div class="col-6">
+            <button class="btn btn-secondary" type="submit">Gem ændringer</button>
+            </div>
+        </div>
+
+    </div>
+</form>
+    <div class="container" style="width: 50%">
+        <div class="row m-2">
+            <div class="col-6">
+                <a th:href="@{/skadesrapport/{damageReportId}/slet(damageReportId=${damageReport.id})}">
+                <button class="btn btn-secondary">Slet</button>
+                </a>
+            </div>
+        </div>
     </div>
 
-    <button class="btn btn-secondary" type="submit">Rediger rapport</button>
-</form>
-<a th:href="@{/skadesrapport/{damageReportId}/slet(damageReportId=${damageReport.id})}">
-    <button class="btn btn-secondary">Slet</button>
-</a>
-<a th:href="@{/opret-skade/{damageReportId}/(damageReportId=${damageReportId})}">
-    <button class="btn btn-secondary">Tilføj skade</button>
-</a>
-<div>
-        <h1 class="center_things">Skader:</h1>
-        <table>
+    <div class="container" style="width: 50%">
+        <div class="row m-2">
+            <div class="col-6">
+                <a th:href="@{/opret-skade/{damageReportId}/(damageReportId=${damageReportId})}">
+                <button class="btn btn-secondary">Tilføj skade</button>
+                </a>
+            </div>
+        </div>
+    </div>
+
+
+<div class="content-under-header-vertical">
+    <div class="container" style="width: 50%">
+
+        <div class="row m-2">
+            <div class="col-6">
+                <h1 class="center_things">Skader:</h1>
+            </div>
+        </div>
+
+        <div class="row m-2" style="padding-left: 18px">
+        <table class="table table-bordered table-hover">
             <thead>
             <tr>
-                <th> Note  </th>
-                <th> Pris  </th>
-
+                <th scope="col" class="table-secondary"> Note </th>
+                <th scope="col" class="table-secondary"> Pris </th>
+                <th scope="col" class="table-secondary"> Link </th>
             </tr>
             </thead>
             <tbody>
+            <tr th:if="${damageReportLines.empty}">
+                <td colspan="3"> Der er ingen skader på den valgte skadesrapport</td>
+            </tr>
             <tr th:each="damageReportLine : ${damageReportLines}">
                 <td><span th:text="${damageReportLine.damageNotes}"> Note </span></td>
                 <td><span th:text="${damageReportLine.price}"> Pris </span></td>
@@ -65,8 +112,11 @@
             </tr>
             </tbody>
         </table>
-    </div>
+        </div>
 
+        </div>
+    </div>
+</div>
 <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-fQybjgWLrvvRgtW6bFlB7jaZrFsaBXjsOMm/tB9LTS58ONXgqbR9W8oWht/amnpF" crossorigin="anonymous"></script>
 

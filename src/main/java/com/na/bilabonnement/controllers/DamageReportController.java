@@ -43,6 +43,8 @@ public class DamageReportController {
             return "redirect:/logout";
         }
 
+        damageReport.setTechnicianId((int) session.getAttribute("userID"));
+
         DamageReport createdDamageReport = DAMAGE_REPORT_SERVICE.createDamageReport(damageReport);
         return "redirect:/skadesrapport/" + createdDamageReport.getId();
     }
