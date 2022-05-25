@@ -50,6 +50,9 @@
             </tr>
             </thead>
             <tbody>
+            <tr th:if="${damageReportLines.empty}">
+                <td colspan="5"> Der er ingen skader på den valgte skadesrapport</td>
+            </tr>
             <tr th:each="damageReportLine : ${damageReportLines}">
                 <td><span th:text="${damageReportLine.damageNotes}"> Note </span></td>
                 <td><span th:text="${damageReportLine.price}"> Pris </span></td>
