@@ -79,6 +79,8 @@ public class RentalAgreementController {
             return "redirect:/logout";
         }
 
+        UserRole userRole = (UserRole) session.getAttribute("userRole");
+        model.addAttribute("userRole", userRole.toString());
         model.addAttribute("listOfRentalAgreement", RENTAL_AGREEMENT_SERVICE.getAll());
 
         return "all-rental-agreements";
@@ -104,6 +106,9 @@ public class RentalAgreementController {
         } else {
             ra.setTypeId(1);
         }
+
+        UserRole userRole = (UserRole) session.getAttribute("userRole");
+        model.addAttribute("userRole", userRole.toString());
 
         model.addAttribute("RA", ra);
         model.addAttribute("cars", CAR_SERVICE.getCarsByStatus(CarStatus.READY_TO_BE_RENTED));

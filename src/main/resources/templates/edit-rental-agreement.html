@@ -53,15 +53,15 @@
 
 
 
-            <button type="submit">Ret lejekontrakt</button>
+            <button class="btn btn-secondary" type="submit">Ret lejekontrakt</button>
         </div>
     </form>
 
     <a th:href="@{/lejekontrakt/{raId}/fil(raId = ${RA.id})}">
-        <button>Hent fil</button>
+        <button class="btn btn-secondary">Hent fil</button>
     </a>
     <a th:href="@{/lejekontrakt/{raId}/slet(raId = ${RA.id})}">
-        <button>Slet lejekontrakt</button>
+        <button class="btn btn-secondary">Slet lejekontrakt</button>
     </a>
 </div>
 
