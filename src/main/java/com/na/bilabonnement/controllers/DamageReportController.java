@@ -131,6 +131,7 @@ public class DamageReportController {
         }
 
         DamageReportLine createdDamageReportLine = DAMAGE_REPORT_LINE_SERVICE.createDamageReportLine(damageReportLine);
+        System.out.println(createdDamageReportLine.getDamageReportId());
         return "redirect:/skadesrapport/" + createdDamageReportLine.getDamageReportId();
     }
 

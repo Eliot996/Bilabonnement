@@ -93,7 +93,7 @@ public class DamageReportLineRepo implements IDamageReportLineRepository
                 int damageReportId = rs.getInt("damageReportId");
                 String damageNotes = rs.getString("damageNotes");
                 int price = rs.getInt("price");
-                damageReportLines.add(new DamageReportLine(lineNumber, damageReportId, damageNotes, price));
+                damageReportLines.add(new DamageReportLine(damageReportId, lineNumber, damageNotes, price));
             }
         } catch (SQLException e) {
             e.printStackTrace();
