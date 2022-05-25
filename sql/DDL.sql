@@ -81,11 +81,11 @@ CREATE TABLE `damage_report` (
                                  CONSTRAINT `technicianId` FOREIGN KEY (`technicianId`) REFERENCES `users` (`id`));
 
 CREATE TABLE `bilabonnement`.`damageline` (
+                                              `damageReportId` INT NOT NULL,
                                               `lineNumber` INT NOT NULL,
-                                              `damageReportId` INT NULL,
                                               `damageNotes` VARCHAR(255) NULL,
                                               `price` INT NULL,
-                                              PRIMARY KEY (`lineNumber`),
+                                              PRIMARY KEY (`lineNumber`, damageReportId),
                                               INDEX `damageReportId_idx` (`damageReportId` ASC) VISIBLE,
                                               CONSTRAINT `damageReportId`
                                                   FOREIGN KEY (`damageReportId`)

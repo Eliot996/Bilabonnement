@@ -60,6 +60,6 @@ INSERT INTO `bilabonnement`.`damage_report` (`id`, `notes`, `technicianId`, `car
 
 -- for damage lines
 INSERT INTO `bilabonnement`.`damageline` (`lineNumber`, `damageReportId`, `damageNotes`, `price`) VALUES ('1', '1', 'skrammer', '12');
-INSERT INTO `bilabonnement`.`damageline` (`lineNumber`, `damageReportId`, `damageNotes`, `price`) VALUES ('2', '2', 'bilsrkammer', '123');
-INSERT INTO `bilabonnement`.`damageline` (`lineNumber`, `damageReportId`, `damageNotes`, `price`) VALUES ('3', '3', 'dørskrammer', '1234');
-INSERT INTO `bilabonnement`.`damageline` (`lineNumber`, `damageReportId`, `damageNotes`, `price`) VALUES ('4', '4', 'vinduesskrammer', '12345');
+INSERT INTO `bilabonnement`.`damageline` (`lineNumber`, `damageReportId`, `damageNotes`, `price`) VALUES ('1', '2', 'bilsrkammer', '123');
+INSERT INTO `bilabonnement`.`damageline` (`lineNumber`, `damageReportId`, `damageNotes`, `price`) VALUES ('1', '3', 'dørskrammer', '1234');
+INSERT INTO `bilabonnement`.`damageline` (`lineNumber`, `damageReportId`, `damageNotes`, `price`) VALUES ('1', '4', 'vinduesskrammer', '12345');
