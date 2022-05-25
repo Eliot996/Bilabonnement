@@ -29,19 +29,24 @@
      </section>
 
          <section class="row" th:case="'DATA_REGISTRATION'">
-             <div class="col-4 ">
+             <div class="col-3 ">
                  <a th:href="@{/opret-lejekontrakt}">
                      <button class="btn btn-secondary header-button">Opret lejekontrakt</button>
                  </a>
              </div>
-             <div class="col-4">
+             <div class="col-3">
                  <a th:href="@{/lejekontrakter}">
                      <button class="btn btn-secondary header-button">Se alle lejekontrakter</button>
                  </a>
              </div>
-             <div class="col-4">
+             <div class="col-3">
                  <a th:href="@{/biler}">
                      <button class="btn btn-secondary header-button">Se alle biler</button>
+                 </a>
+             </div>
+             <div class="col-3">
+                 <a href="/opret-bil">
+                     <button class="btn btn-secondary header-button">Opret ny bil</button>
                  </a>
              </div>
          </section>
@@ -65,17 +70,12 @@
          </section>
 
          <section class="row" th:case="'BUSINESS_DEVELOPER'">
-             <div class="col-4 ">
+             <div class="col-6 ">
                  <a href="/biler">
                      <button class="btn btn-secondary header-button">Se alle biler</button>
                  </a>
              </div>
-             <div class="col-4">
-                 <a href="/opret-bil">
-                     <button class="btn btn-secondary header-button">Opret ny bil</button>
-                 </a>
-             </div>
-             <div class="col-4">
+             <div class="col-6">
                  <a href="/biler/data">
                      <button class="btn btn-secondary header-button">Se data over alle biler</button>
                  </a>
