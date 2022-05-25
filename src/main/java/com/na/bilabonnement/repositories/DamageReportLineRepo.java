@@ -32,16 +32,15 @@ public class DamageReportLineRepo implements IDamageReportLineRepository
             stmt.setInt(1,entity.getDamageReportId());
             ResultSet rs = stmt.executeQuery();
             rs.next();
-            int newLineNumber = rs.getInt("aValue")+1 ;
+            entity.setLineNumber( rs.getInt("aValue") + 1);
 
             stmt = connection.prepareStatement(insertSQL);
-            stmt.setInt(1, newLineNumber);
+            stmt.setInt(1, entity.getLineNumber());
             stmt.setInt(2, entity.getDamageReportId());
             stmt.setString(3, entity.getDamageNotes());
             stmt.setInt(4, entity.getPrice());
 
             stmt.execute();
-
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -76,15 +75,18 @@ public class DamageReportLineRepo implements IDamageReportLineRepository
     private DamageReportLine makeDamageReportLineFromResultSet(ResultSet rs) {
 
         List<DamageReportLine> damageReportLines = makeDamageReportLinesFromResultSet(rs);
+
         if (damageReportLines.size() > 0) {
             return damageReportLines.get(0);
         }
+
         return null;
     }
 
 
     private List<DamageReportLine> makeDamageReportLinesFromResultSet(ResultSet rs) {
         ArrayList<DamageReportLine> damageReportLines = new ArrayList<>();
+
         try {
             while (rs.next()){
                 int lineNumber = rs.getInt("linenumber");
@@ -96,6 +98,7 @@ public class DamageReportLineRepo implements IDamageReportLineRepository
         } catch (SQLException e) {
             e.printStackTrace();
         }
+
         return damageReportLines;
     }
 
