@@ -18,18 +18,15 @@
 <div class="content-under-header">
     <div>
         <h1 class="center_things">Lejekontrakter:</h1>
-        <table>
+        <table class="table table-bordered table-hover">
             <thead>
             <tr>
-                <th> ID </th>
-                <th class="p-2"></th>
-                <th> Bil </th>
-                <th class="p-2"></th>
-                <th> StartDato </th>
-                <th class="p-2"></th>
-                <th> SlutDato </th>
-                <th class="p-2"></th>
-                <th> Type </th>
+                <th scope="col" class="table-secondary"> ID </th>
+                <th scope="col" class="table-secondary"> Bil </th>
+                <th scope="col" class="table-secondary"> StartDato </th>
+                <th scope="col" class="table-secondary"> SlutDato </th>
+                <th scope="col" class="table-secondary"> Type </th>
+                <th scope="col" class="table-secondary"> Link </th>
             </tr>
             </thead>
             <tbody>
@@ -38,15 +35,10 @@
             </tr>
             <tr th:each="RA : ${listOfRentalAgreement}">
                 <td><span th:text="${RA.id}"> ID </span></td>
-                <td class="p-2"></td>
                 <td><span th:text="${RA.car.id + ' - ' + RA.car.make + ' ' + RA.car.model}" > Bil </span></td>
-                <td class="p-2"></td>
                 <td><span th:text="${RA.startDate.toString()}" > Startdato </span></td>
-                <td class="p-2"></td>
                 <td><span th:text="${RA.endDate.toString()}" > Slutdato </span></td>
-                <td class="p-2"></td>
                 <td><span th:text="${RA.type}" > Type </span></td>
-                <td class="p-2"></td>
                 <td>
                     <a th:href="@{/lejekontrakt/{RAId}(RAId=${RA.id})}">
                         <button class="btn btn-secondary">Rediger</button>
