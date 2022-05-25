@@ -41,16 +41,17 @@
 </a>
 <div>
         <h1 class="center_things">Skader:</h1>
-        <table>
+        <table class="table table-bordered table-hover">
             <thead>
             <tr>
-                <th> Note  </th>
-                <th> Pris  </th>
+                <th scope="col" class="table-secondary"> Note </th>
+                <th scope="col" class="table-secondary"> Pris </th>
+                <th scope="col" class="table-secondary"> Link </th>
             </tr>
             </thead>
             <tbody>
             <tr th:if="${damageReportLines.empty}">
-                <td colspan="5"> Der er ingen skader på den valgte skadesrapport</td>
+                <td colspan="3"> Der er ingen skader på den valgte skadesrapport</td>
             </tr>
             <tr th:each="damageReportLine : ${damageReportLines}">
                 <td><span th:text="${damageReportLine.damageNotes}"> Note </span></td>

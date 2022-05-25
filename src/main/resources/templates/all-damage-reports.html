@@ -18,18 +18,19 @@
 <div class="content-under-header">
     <div>
         <h1 class="center_things">Skadesrapporter:</h1>
-        <table class="table table-bordered table-hover table-secondary">
+        <table class="table table-bordered table-hover">
             <thead>
             <tr>
-                <th scope="col"> Bil </th>
-                <th scope="col"> Skadesrapport id</th>
-                <th scope="col"> Bemærkninger</th>
-                <th scope="col"> Medarbejder </th>
+                <th scope="col" class="table-secondary"> Bil </th>
+                <th scope="col" class="table-secondary"> Skadesrapport id</th>
+                <th scope="col" class="table-secondary"> Bemærkninger</th>
+                <th scope="col" class="table-secondary"> Medarbejder </th>
+                <th scope="col" class="table-secondary"> Link </th>
             </tr>
             </thead>
             <tbody>
             <tr th:if="${listOfDamageReports.empty}">
-                <td colspan="5"> Der er ingen skadesrapporter i systemet</td>
+                <td colspan="4"> Der er ingen skadesrapporter i systemet</td>
             </tr>
             <tr th:each="damageReport : ${listOfDamageReports}">
                 <td><span th:text="${damageReport.carId}"></span></td>

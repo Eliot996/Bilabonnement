@@ -21,18 +21,34 @@
     </div>
     <div>
         <h1 class="center_things">Bruger:</h1>
-    <section id="all_buttons_in_body_alluser" th:each="user : ${listOfUsers}">
-        <div>
-                <span th:text="${user.username}"></span>
-                <span th:if="${user.role.toString() == 'DATA_REGISTRATION'}" th:text="'- Dataregistrering'"></span>
-                <span th:if="${user.role.toString() == 'DAMAGE_AND_RECTIFICATION'}" th:text="'- Skade og udbedring'"></span>
-                <span th:if="${user.role.toString() == 'BUSINESS_DEVELOPER'}" th:text="'- Forretningsudvikler'"></span>
-                <span th:if="${user.role.toString() == 'ADMINISTRATOR'}" th:text="'- Administrator'"></span>
-                <a th:href="@{/bruger/{userId}(userId=${user.id})}">
-                    <button class="btn btn-secondary">Rediger</button>
-                </a>
-        </div>
-    </section>
+        <table class="table table-bordered table-hover">
+            <thead>
+            <tr>
+                <th scope="col" class="table-secondary"> Brugernavn </th>
+                <th scope="col" class="table-secondary"> Rolle </th>
+                <th scope="col" class="table-secondary"> Link </th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:if="${listOfUsers.empty}">
+                <td colspan="4"> Der er ingen brugere i systemet</td>
+            </tr>
+            <tr th:each="user : ${listOfUsers}">
+                <td ><span th:text="${user.username}"> brugernavn </span></td>
+                <td >
+                    <span th:if="${user.role.toString() == 'DATA_REGISTRATION'}" th:text="'Dataregistrering'"></span>
+                    <span th:if="${user.role.toString() == 'DAMAGE_AND_RECTIFICATION'}" th:text="'Skade og udbedring'"></span>
+                    <span th:if="${user.role.toString() == 'BUSINESS_DEVELOPER'}" th:text="'Forretningsudvikler'"></span>
+                    <span th:if="${user.role.toString() == 'ADMINISTRATOR'}" th:text="'Administrator'"></span>
+                </td>
+                <td>
+                    <a th:href="@{/bruger/{userId}(userId=${user.id})}">
+                        <button class="btn btn-secondary">Rediger</button>
+                    </a>
+                </td>
+            </tr>
+            </tbody>
+        </table>
     </div>
 </div>
 
