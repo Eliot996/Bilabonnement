@@ -7,6 +7,7 @@ public class DamageReport
     private int id;
     private String notes;
     private int technicianId;
+    private String technicianName;
     private int carId;
 
 
@@ -60,5 +61,13 @@ public class DamageReport
     public void setCarId(int carId)
     {
         this.carId = carId;
+    }
+
+    public String getTechnicianName() {
+        return technicianName;
+    }
+
+    public void setTechnicianName(String technicianName) {
+        this.technicianName = technicianName;
     }
 }

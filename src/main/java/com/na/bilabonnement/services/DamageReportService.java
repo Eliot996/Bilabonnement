@@ -1,8 +1,11 @@
 package com.na.bilabonnement.services;
 
 import com.na.bilabonnement.models.DamageReport;
+import com.na.bilabonnement.models.UserRole;
 import com.na.bilabonnement.repositories.DamageReportRepo;
+import com.na.bilabonnement.repositories.UserRepo;
 import com.na.bilabonnement.repositories.interfaces.IDamageReportRepository;
+import com.na.bilabonnement.repositories.interfaces.IUserRepository;
 
 import java.util.List;
 
@@ -11,6 +14,7 @@ import java.util.List;
  */
 public class DamageReportService {
     private IDamageReportRepository repo = DamageReportRepo.getInstance();
+    private IUserRepository userRepo = UserRepo.getInstance();
     public void setRepo(IDamageReportRepository repo) {
         this.repo = repo;
     }
@@ -38,6 +42,15 @@ public class DamageReportService {
     }
 
     public List<DamageReport> getAllDamageReports(){
-        return repo.getAllEntities();
+        List<DamageReport> list = repo.getAllEntities();
+
+        for (DamageReport dr : list) {
+            dr.setTechnicianName(
+                    userRepo.
+                    getSingleEntityById(dr.getTechnicianId()).
+                    getUsername());
+        }
+
+        return list;
     }
 }
