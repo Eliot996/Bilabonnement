@@ -6,5 +6,6 @@ import java.util.List;
 
 public interface IDamageReportLineRepository extends IRepository<DamageReportLine>
 {
+    DamageReportLine getSingleEntityByLinenumberAndDamageReportId(int lineNumber, int damageReportId);
     List<DamageReportLine> getAllEntitiesWithDamageReportId(int damageReportId);
 }

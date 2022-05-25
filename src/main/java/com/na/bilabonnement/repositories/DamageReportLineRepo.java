@@ -23,6 +23,7 @@ public class DamageReportLineRepo implements IDamageReportLineRepository
     {
         Connection connection = DatabaseConnectionManager.getConnection();
         String maxSQL = "SELECT max(lineNumber) AS aValue FROM damageline WHERE damageReportId = ?";
+
         String insertSQL = "INSERT INTO `bilabonnement`.`damageline` (`linenumber`, `damageReportId`, `damageNotes`, `price`)" +
                 "VALUES (?, ?, ?, ?);";
 
@@ -45,18 +46,20 @@ public class DamageReportLineRepo implements IDamageReportLineRepository
             e.printStackTrace();
         }
 
-        return getSingleEntityByLinenumber(entity.getLineNumber());
+        return getSingleEntityByLinenumberAndDamageReportId(entity.getLineNumber(), entity.getDamageReportId());
     }
 
-    public DamageReportLine getSingleEntityByLinenumber(int lineNumber)
+    public DamageReportLine getSingleEntityByLinenumberAndDamageReportId(int lineNumber, int damageReportId)
     {
         Connection connection = DatabaseConnectionManager.getConnection();
 
         String selectSQL = "SELECT * FROM damageline " +
-                "WHERE `lineNumber` = '" + lineNumber +  "';";
+                "WHERE `lineNumber` = ? AND `damageReportId` = ?;";
         ResultSet rs = null;
         try {
             PreparedStatement stmt = connection.prepareStatement(selectSQL);
+            stmt.setInt(1, lineNumber);
+            stmt.setInt(2, damageReportId);
             rs = stmt.executeQuery();
         } catch (SQLException e) {
             e.printStackTrace();
