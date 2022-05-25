@@ -19,8 +19,8 @@ public class DamageReportLineService {
         return repo.create(damageReportLine);
     }
 
-    public boolean deleteDamageReportLine(int id){
-        return repo.deleteById(id);
+    public boolean deleteDamageReportLine(int lineNumber, int damageReportId){
+        return repo.deleteById(lineNumber,damageReportId);
     }
 
     public DamageReportLine updateDamageReportLine(int damageReportLineId, int lineNumber, String damageNotes, int price){

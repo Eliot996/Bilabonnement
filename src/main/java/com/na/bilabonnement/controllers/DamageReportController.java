@@ -172,7 +172,7 @@ public class DamageReportController {
             return "redirect:/logout";
         }
 
-        DAMAGE_REPORT_LINE_SERVICE.deleteDamageReportLine(lineNumber);
+        DAMAGE_REPORT_LINE_SERVICE.deleteDamageReportLine(lineNumber, damageReportId);
         return "redirect:/skadesrapport/" + damageReportId;
     }
 

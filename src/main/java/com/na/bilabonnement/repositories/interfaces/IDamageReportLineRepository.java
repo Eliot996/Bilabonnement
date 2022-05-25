@@ -8,4 +8,5 @@ public interface IDamageReportLineRepository extends IRepository<DamageReportLin
 {
     DamageReportLine getSingleEntityByLinenumberAndDamageReportId(int lineNumber, int damageReportId);
     List<DamageReportLine> getAllEntitiesWithDamageReportId(int damageReportId);
+    boolean deleteById(int lineNumber, int damageReportId);
 }

@@ -55,17 +55,27 @@ public class DummyDamageReportLineRepo implements IDamageReportLineRepository
 
     @Override
     public boolean deleteById(int id) {
-        for (DamageReportLine damageReportLine: listOfDamageReportLines){
-            if (damageReportLine.getLineNumber() == id){
-                listOfDamageReportLines.remove(damageReportLine);
-                return true;
-            }
-        }
         return false;
+    }
+
+    @Override
+    public DamageReportLine getSingleEntityByLinenumberAndDamageReportId(int lineNumber, int damageReportId) {
+        return null;
     }
 
     @Override
     public List<DamageReportLine> getAllEntitiesWithDamageReportId(int damageReportId) {
         return null;
+    }
+
+    @Override
+    public boolean deleteById(int lineNumber, int damageReportId) {
+        for (DamageReportLine damageReportLine: listOfDamageReportLines){
+            if (damageReportLine.getLineNumber() == lineNumber && damageReportLine.getDamageReportId() == damageReportId){
+                listOfDamageReportLines.remove(damageReportLine);
+                return true;
+            }
+        }
+        return false;
     }
 }

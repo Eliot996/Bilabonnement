@@ -178,11 +178,17 @@ public class DamageReportLineRepo implements IDamageReportLineRepository
     }
 
     @Override
-    public boolean deleteById(int id){
+    public boolean deleteById(int id) {
+        return false;
+    }
+
+    @Override
+    public boolean deleteById(int lineNumber, int damageReportId){
         Connection connection = DatabaseConnectionManager.getConnection();
         try {
-            PreparedStatement stmt = connection.prepareStatement("DELETE FROM damageline where lineNumber=?");
-            stmt.setInt(1, id);
+            PreparedStatement stmt = connection.prepareStatement("DELETE FROM damageline where lineNumber=? AND damageReportId=?");
+            stmt.setInt(1, lineNumber);
+            stmt.setInt(2, damageReportId);
             stmt.execute();
 
             DatabaseConnectionManager.closeConnection();
