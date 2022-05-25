@@ -70,6 +70,7 @@ public class DummyDamageReportLineRepo implements IDamageReportLineRepository
 
     @Override
     public boolean deleteById(int lineNumber, int damageReportId) {
+        System.out.println("linenumner:" + lineNumber + ", damageReportId: " + damageReportId);
         for (DamageReportLine damageReportLine: listOfDamageReportLines){
             if (damageReportLine.getLineNumber() == lineNumber && damageReportLine.getDamageReportId() == damageReportId){
                 listOfDamageReportLines.remove(damageReportLine);
