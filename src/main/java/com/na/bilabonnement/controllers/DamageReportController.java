@@ -60,23 +60,27 @@ public class DamageReportController {
         return "all-damage-reports";
     }
 
+    /**
+     *  @author Mathias(Eliot996)
+     *  @author Sofia
+     */
     @GetMapping("/skadesrapport/{damageReportId}")
     public String getEditDamageReport(HttpSession session, @PathVariable() int damageReportId, Model model){
+
         if ( session.getAttribute("userRole") != UserRole.DAMAGE_AND_RECTIFICATION) {
             return "redirect:/logout";
         }
 
         UserRole userRole = (UserRole) session.getAttribute("userRole");
-        if (userRole != UserRole.DAMAGE_AND_RECTIFICATION){
-            return "redirect:/skadesrapporter";
-
-        }
-
-         model.addAttribute("userRole", userRole.toString());
-        model.addAttribute("damageReportId", damageReportId);
+        model.addAttribute("userRole", userRole.toString());
 
         DamageReport damageReport = DAMAGE_REPORT_SERVICE.getDamageReport(damageReportId);
         model.addAttribute("damageReport", damageReport);
+
+        List<DamageReportLine> listOfDamageReportLines = DAMAGE_REPORT_LINE_SERVICE.
+                getAllDamageReportLinesWithReportId(damageReportId);
+        model.addAttribute("damageReportLines",listOfDamageReportLines);
+
         return "edit-damage-report";
     }
 
@@ -102,8 +106,8 @@ public class DamageReportController {
         DAMAGE_REPORT_SERVICE.deleteDamageReport(damageReportId);
         return "redirect:/skadesrapporter";
     }
-
     // for damage report lines
+
     @GetMapping("/opret-skade/{damageReportId}")
     public String getCreateDamageReportLine(HttpSession session, Model model, @PathVariable int damageReportId){
         if ( session.getAttribute("userRole") != UserRole.DAMAGE_AND_RECTIFICATION) {
@@ -142,22 +146,6 @@ public class DamageReportController {
 
         model.addAttribute("listOfDamageReportLines", DAMAGE_REPORT_LINE_SERVICE.getAllDamageReportLines());
 
-        return "all-damage-report-lines";
-    }
-
-    @GetMapping("/skader/{damageReportId}")
-    public String viewDamageReportLinesForReport(HttpSession session, @PathVariable() int damageReportId, Model model){
-        if ( session.getAttribute("userRole") != UserRole.DAMAGE_AND_RECTIFICATION) {
-            return "redirect:/logout";
-        }
-
-        UserRole userRole = (UserRole) session.getAttribute("userRole");
-        model.addAttribute("userRole", userRole.toString());
-
-        DamageReport damageReport = DAMAGE_REPORT_SERVICE.getDamageReport(damageReportId);
-        model.addAttribute("damageReport", damageReport);
-        List<DamageReportLine> listOfDamageReportLines = DAMAGE_REPORT_LINE_SERVICE.getAllDamageReportLinesWithReportId(damageReportId);
-        model.addAttribute("damageReportLines",listOfDamageReportLines);
         return "all-damage-report-lines";
     }
 

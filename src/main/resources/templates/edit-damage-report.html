@@ -33,12 +33,39 @@
 
     <button class="btn btn-secondary" type="submit">Rediger rapport</button>
 </form>
-<a th:href="@{/opret-skade/{damageReportId}/(damageReportId=${damageReportId})}">
-    <button class="btn btn-secondary">Tilføj skade</button>
-</a>
 <a th:href="@{/skadesrapport/{damageReportId}/slet(damageReportId=${damageReport.id})}">
     <button class="btn btn-secondary">Slet</button>
 </a>
+<a th:href="@{/opret-skade/{damageReportId}/(damageReportId=${damageReportId})}">
+    <button class="btn btn-secondary">Tilføj skade</button>
+</a>
+<div>
+        <h1 class="center_things">Skader:</h1>
+        <table>
+            <thead>
+            <tr>
+                <th> Note  </th>
+                <th> Pris  </th>
+
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="damageReportLines : ${listOfDamageReportLines}">
+                <td><span th:text="${damageReportLines.damageNotes}"> Note </span></td>
+                <td><span th:text="${damageReportLines.price}"> Pris </span></td>
+
+                <td>
+                    <a th:href="@{/skade/{lineNumber}(lineNumber=${damageReportLines.lineNumber})}">
+                        <button class="btn btn-secondary">Rediger</button>
+                    </a>
+                    <a th:href="@{/skade/{lineNumber}/slet(lineNumber=${damageReportLines.lineNumber})}">
+                        <button class="btn btn-secondary">Slet</button>
+                    </a>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
 
 <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-fQybjgWLrvvRgtW6bFlB7jaZrFsaBXjsOMm/tB9LTS58ONXgqbR9W8oWht/amnpF" crossorigin="anonymous"></script>
