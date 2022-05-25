@@ -50,15 +50,15 @@
             </tr>
             </thead>
             <tbody>
-            <tr th:each="damageReportLines : ${damageReportLines}">
-                <td><span th:text="${damageReportLines.damageNotes}"> Note </span></td>
-                <td><span th:text="${damageReportLines.price}"> Pris </span></td>
+            <tr th:each="damageReportLine : ${damageReportLines}">
+                <td><span th:text="${damageReportLine.damageNotes}"> Note </span></td>
+                <td><span th:text="${damageReportLine.price}"> Pris </span></td>
 
                 <td>
-                    <a th:href="@{/skade/{lineNumber}(lineNumber=${damageReportLines.lineNumber})}">
+                    <a th:href="@{/skadesrapport/{damageReportId}/{lineNumber}(lineNumber = ${damageReportLine.lineNumber}, damageReportId = ${damageReportLine.damageReportId})}">
                         <button class="btn btn-secondary">Rediger</button>
                     </a>
-                    <a th:href="@{/skade/{lineNumber}/slet(lineNumber=${damageReportLines.lineNumber})}">
+                    <a th:href="@{/skadesrapport/{damageReportId}/{lineNumber}/slet(lineNumber=${damageReportLine.lineNumber}, damageReportId = ${damageReportLine.damageReportId})}">
                         <button class="btn btn-secondary">Slet</button>
                     </a>
                 </td>
