@@ -22,6 +22,9 @@ public class CarService {
         return repo.create(car);
     }
 
+    /**
+     *  @author Arboe(H4ppyN4p)
+     */
     public boolean deleteCar(int carId){
         return repo.deleteById(carId);
     }
