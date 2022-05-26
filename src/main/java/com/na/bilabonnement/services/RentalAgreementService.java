@@ -41,7 +41,7 @@ public class RentalAgreementService {
     public boolean update(RentalAgreement rentalAgreement) {
         if (rentalAgreement.getContract().isEmpty()) {
             repo.updateWithoutContract(rentalAgreement);
-        }else {
+        } else {
             repo.update(rentalAgreement);
         }
         return true;
@@ -64,8 +64,8 @@ public class RentalAgreementService {
     }
 
      /**
-          *  @author Arboe(H4ppyN4p)
-          */
+      *  @author Arboe(H4ppyN4p)
+      */
      public boolean delete(int rentalAgreementId){
          return repo.deleteById(rentalAgreementId);
      }
