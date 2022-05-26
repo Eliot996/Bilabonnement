@@ -21,6 +21,7 @@ public class CarService {
 @Author Sofia
  */
     public Car createCar(Car car){
+        car.setStatus(CarStatus.READY_TO_BE_RENTED);
         return repo.create(car);
     }
 

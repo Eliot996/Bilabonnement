@@ -55,8 +55,6 @@ public class CarController {
             return "redirect:/logout";
         }
 
-        car.setStatus(CarStatus.READY_TO_BE_RENTED);
-
         Car createdCar = CAR_SERVICE.createCar(car);
 
         return "redirect:/bil/" + createdCar.getId();
