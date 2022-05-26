@@ -16,17 +16,8 @@ import javax.servlet.http.HttpSession;
 
 @Controller
 public class UserController {
-
-    /*
-    @Author Sofia
-     */
-
     private final UserService USER_SERVICE = new UserService();
     private final LocationService LOCATION_SERVICE = new LocationService();
-
-    /*
-   @Author Lasse
-   */
 
 
     /**
@@ -64,7 +55,7 @@ public class UserController {
 
     /**
      *  @author Mathias(Eliot996)
-     *  return view of all the users on the system
+     *  Return view of all the users on the system
      */
     @GetMapping("/brugere")
     public String getAllUsers(HttpSession session, Model model) {
@@ -118,6 +109,9 @@ public class UserController {
         return "edit-user";
     }
 
+    /**
+     *  @author Mathias(Eliot996)
+     */
     @PostMapping("/bruger/{userID}")
     public String editUser(HttpSession session, @PathVariable() int userID, @ModelAttribute User user){
         if ( session.getAttribute("userRole") != UserRole.ADMINISTRATOR) {
@@ -133,8 +127,9 @@ public class UserController {
         return "redirect:/bruger/" + userID;
     }
 
-    /*
-    @Author Sofia
+    /**
+     *  @author Mathias(Eliot996)
+     *  @author Sofia
      */
     @GetMapping("/bruger/{userID}/slet")
     public String deleteUser(HttpSession session, @PathVariable() int userID){
