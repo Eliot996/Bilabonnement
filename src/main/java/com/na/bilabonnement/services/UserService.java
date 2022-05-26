@@ -21,25 +21,6 @@ public class UserService {
     private final String PEPPER_CHARACTERS = "aAbBcCdDeEfFgGhHiIjJkKlLmMnNoOpPqQrRsStTuUvVwWxXyYzZ0123456789";
     private final Random random = new Random();
 
-    /**
-     *  @author Tobias Arboe
-     */
-    //TODO: change Unit Test
-    public boolean checkLogin(String expectedUsername, String expectedPassword){
-        boolean loginValidity = false;
-
-        List<User> listOfUsers = repo.getAllEntities();
-
-        for (User user: listOfUsers
-             ) {
-            if (user.getUsername().equals(expectedUsername) && user.getPassword().equals(expectedPassword) ){
-                loginValidity = true;
-            }
-        }
-
-        return loginValidity;
-    }
-
     public User login(String username, String password) {
         // Get the user from the database
         User user = repo.getSingleEntityByUsername(username);
@@ -49,16 +30,17 @@ public class UserService {
         }
 
         if (checkPassword(user.getPassword(), user.getSalt(), password)) {
-
             return user;
         } else {
             return null;
         }
     }
 
+    /**
+     *  @author Tobias Arboe
+     */
     private boolean checkPassword(String userPassword, String userSalt, String passwordToCheck) {
         String hashToCheck;
-
 
         for (int i = 0; i < PEPPER_CHARACTERS.length(); i++) {
             hashToCheck = hashPassword(PEPPER_CHARACTERS.substring(i, i+1),
@@ -90,6 +72,9 @@ public class UserService {
         return repo.create(newUser);
     }
 
+    /**
+     *  @author Tobias Arboe
+     */
     public User getUser(String username){
         return repo.getSingleEntityByUsername(username);
     }

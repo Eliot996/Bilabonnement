@@ -18,45 +18,44 @@ class UserServiceTest
         UserService userService = new UserService();
         userService.setRepo(new DummyUserRepo());
 
-        final boolean isLoggedIn = true;
-        final boolean isNotLoggedIn = false;
-
-
+        User userOne = userService.createUser("Sofia", "1234", 0, 1);
+        User userTwo = userService.createUser("Lasse", "password", 1, 1);
+        User userThree = userService.createUser("Arboe", "test", 2, 1);
+        User userFour = userService.createUser("Mathias", "Pass1234", 3, 1);
 
         //Act
+        User testUserOneTrue = userService.login("Sofia", "1234");
+        User testUserOneFalse = userService.login("Sofia", "123456");
+        User testUserOneFalse2 = userService.login("Sofias", "1234");
 
-        boolean testUserOneTrue = userService.checkLogin("Sofia", "1234");
-        boolean testUserOneFalse = userService.checkLogin("Sofia", "123456");
-        boolean testUserOneFalse2 = userService.checkLogin("Sofias", "1234");
+        User testUserTwoTrue = userService.login("Lasse", "password");
+        User testUserTwoFalse = userService.login("Lasse", "Password");
+        User testUserTwoFalse2 = userService.login("Lasses", "password");
 
-        boolean testUserTwoTrue = userService.checkLogin("Lasse", "password");
-        boolean testUserTwoFalse = userService.checkLogin("Lasse", "Password");
-        boolean testUserTwoFalse2 = userService.checkLogin("Lasses", "password");
+        User testUserThreeTrue = userService.login("Arboe", "test");
+        User testUserThreeFalse = userService.login("Arboe", "testy");
+        User testUserThreeFalse2 = userService.login("Arboes", "test");
 
-        boolean testUserThreeTrue = userService.checkLogin("Arboe", "test");
-        boolean testUserThreeFalse = userService.checkLogin("Arboe", "testy");
-        boolean testUserThreeFalse2 = userService.checkLogin("Arboes", "test");
-
-        boolean testUserFourTrue = userService.checkLogin("Mathias", "Pass1234");
-        boolean testUserFourFalse = userService.checkLogin("Mathias", "Pass12345");
-        boolean testUserFourFalse2 = userService.checkLogin("Mathiass", "Pass1234");
+        User testUserFourTrue = userService.login("Mathias", "Pass1234");
+        User testUserFourFalse = userService.login("Mathias", "Pass12345");
+        User testUserFourFalse2 = userService.login("Mathiass", "Pass1234");
 
         //Assert
-        assertEquals(isLoggedIn, testUserOneTrue);
-        assertEquals(isNotLoggedIn, testUserOneFalse);
-        assertEquals(isNotLoggedIn, testUserOneFalse2);
+        assertEquals(userOne, testUserOneTrue);
+        assertNull(testUserOneFalse);
+        assertNull(testUserOneFalse2);
 
-        assertEquals(isLoggedIn, testUserTwoTrue);
-        assertEquals(isNotLoggedIn, testUserTwoFalse);
-        //assertEquals(isNotLoggedIn, testUserTwoFalse2);
+        assertEquals(userTwo, testUserTwoTrue);
+        assertNull(testUserTwoFalse);
+        assertNull(testUserTwoFalse2);
 
-        assertEquals(isLoggedIn, testUserThreeTrue);
-        assertEquals(isNotLoggedIn, testUserThreeFalse);
-       // assertEquals(isNotLoggedIn, testUserThreeFalse2);
+        assertEquals(userThree, testUserThreeTrue);
+        assertNull(testUserThreeFalse);
+        assertNull(testUserThreeFalse2);
 
-        assertEquals(isLoggedIn, testUserFourTrue);
-        assertEquals(isNotLoggedIn, testUserFourFalse);
-       // assertEquals(isNotLoggedIn, testUserFourFalse2);
+        assertEquals(userFour, testUserFourTrue);
+        assertNull(testUserFourFalse);
+        assertNull(testUserFourFalse2);
 
     }
 
@@ -87,6 +86,11 @@ class UserServiceTest
         // Arrange
         UserService userService = new UserService();
         userService.setRepo(new DummyUserRepo());
+
+        userService.createUser("Sofia", "1234", 0, 1);
+        userService.createUser("Lasse", "password", 1, 1);
+        userService.createUser("Arboe", "test", 2, 1);
+        userService.createUser("Mathias", "Pass1234", 3, 1);
 
         int expectedLength = 4;
 
