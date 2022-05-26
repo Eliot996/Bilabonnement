@@ -1,10 +1,9 @@
 package com.na.bilabonnement.services;
 
 import com.na.bilabonnement.models.DamageReport;
-import com.na.bilabonnement.models.UserRole;
 import com.na.bilabonnement.repositories.DamageReportRepo;
 import com.na.bilabonnement.repositories.UserRepo;
-import com.na.bilabonnement.repositories.interfaces.IDamageReportRepository;
+import com.na.bilabonnement.repositories.interfaces.IRepository;
 import com.na.bilabonnement.repositories.interfaces.IUserRepository;
 
 import java.util.List;
@@ -13,9 +12,9 @@ import java.util.List;
 @Author Sofia
  */
 public class DamageReportService {
-    private IDamageReportRepository repo = DamageReportRepo.getInstance();
+    private IRepository<DamageReport> repo = DamageReportRepo.getInstance();
     private IUserRepository userRepo = UserRepo.getInstance();
-    public void setRepo(IDamageReportRepository repo) {
+    public void setRepo(IRepository<DamageReport> repo) {
         this.repo = repo;
     }
 

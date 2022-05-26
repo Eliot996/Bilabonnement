@@ -1,6 +1,6 @@
 package com.na.bilabonnement.repositories;
 import com.na.bilabonnement.models.DamageReport;
-import com.na.bilabonnement.repositories.interfaces.IDamageReportRepository;
+import com.na.bilabonnement.repositories.interfaces.IRepository;
 import com.na.bilabonnement.utils.DatabaseConnectionManager;
 
 import java.sql.Connection;
@@ -10,7 +10,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-public class DamageReportRepo implements IDamageReportRepository {
+public class DamageReportRepo implements IRepository<DamageReport> {
 
         private static final DamageReportRepo instance = new DamageReportRepo();
 
