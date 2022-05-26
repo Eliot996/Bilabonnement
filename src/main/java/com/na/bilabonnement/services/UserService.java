@@ -73,13 +73,6 @@ public class UserService {
     }
 
     /**
-     *  @author Tobias Arboe
-     */
-    public User getUser(String username){
-        return repo.getSingleEntityByUsername(username);
-    }
-
-    /**
      *  @author Mathias(Eliot996)
      */
     public User getUser(int id){
