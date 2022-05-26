@@ -21,7 +21,7 @@
         <div>
 
             <label><b>Vælg bil:*</b> <br>
-                <span th:if="${noCar}" style="font-size: small; color: red">Vælg en bil! <br></span>
+                <span th:if="${noCar}" class="no-entities-in-list">Vælg en bil! <br></span>
                 <select th:field="*{carId}">
                     <option value="-1">Vælg bil</option>
                     <option th:each="car : ${cars}" th:value="${car.id}"

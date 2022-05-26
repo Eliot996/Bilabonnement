@@ -54,7 +54,7 @@
 
             <div class="row m-3">
                 <label class="col-6"><b>Slut Dato:*</b></label> <br>
-                    <span th:if="${noCar}" style="font-size: small; color: red">Slut dato er før start dato <br></span>
+                    <span th:if="${noCar}" class="no-entities-in-list">Slut dato er før start dato <br></span>
                 <input class="col-6" id="end_date" type="date" th:value="${{RA.endDate.toString()}}" th:field="*{endDateString}" required onchange="updateDateInputs()">
                     <!--<br> <br>-->
             </div>
@@ -66,8 +66,8 @@
             </div>
 
             <div class="row m-3">
-                <label class="col-6"><b>Kontrakt:</b></label> <br>
-                <span class="col-6" style="font-size: small">Maks. 16MB</span>
+                <label class="col-3"><b>Kontrakt:</b></label> <br>
+                <span class="col-9 font-small" >Maks. 16MB</span>
                 <input class="col-12" type="file"  th:field="*{contract}">
                 <!--<br><br>-->
             </div>

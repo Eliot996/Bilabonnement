@@ -16,44 +16,58 @@
 
 <header th:insert="fragments/fragments.html :: header"> </header>
 
-
-<div class="container mt-5">
-    <div class="row mt-2">
-        <div class="col-4"></div>
-        <p class="col-3">Total antal udlejde biler:</p>
-        <p class="col-3" th:text="${numberOfRentedCars}"></p>
+<div class="container-fluid w-75">
+    <div class="row m-2">
+        <div class="col-12">
+            <h1>Data over biler:</h1>
+        </div>
     </div>
 
-    <div class="row mt-2">
-        <div class="col-4"></div>
-        <p class="col-3">Totalpris for udlejede biler:</p>
-        <p class="col-3" th:text="${totalPriceOfRentedCars}"></p>
-    </div>
+    <div class="row">
 
-    <div class="row mt-2">
-        <div class="col-4"></div>
-        <table class="col-3">
+        <table class="col-12 m-2 table table-bordered table-hover">
             <thead>
-                <tr>
-                    <th style="padding: 0 20px"> Vognnummer </th>
-                    <th style="padding: 0 20px"> Købspris </th>
-                </tr>
+                <th scope="col" class="table-secondary">Total antal udlejede biler</th>
+                <th scope="col" class="table-secondary">Totalpris for udlejde biler</th>
             </thead>
             <tbody>
+
                 <tr th:if="${listOfRentedCars.empty}">
-                    <td colspan="5"> Der er ingen udlejede biler i systemet </td>
+                    <td colspan="5"> Der er ingen biler i systemet</td>
                 </tr>
 
-
-                <p>Udlejede biler:</p>
-                <tr th:each="car : ${listOfRentedCars}">
-                    <td style="padding: 0 20px"><span th:text="${car.id}"> Vognnummer </span></td>
-                    <td style="padding: 0 20px"><span th:text="${car.carPrice}"> Købspris </span></td>
+                <tr>
+                    <td ><span th:text="${numberOfRentedCars}"> Antal Udlejde biler </span></td>
+                    <td ><span th:text="${totalPriceOfRentedCars}"> Totalpris udlejede biler </span></td>
                 </tr>
+
             </tbody>
         </table>
+
+        <table class="col-12 m-2 table table-bordered table-hover">
+            <thead>
+                <th scope="col" class="table-secondary">Vognnummer</th>
+                <th scope="col" class="table-secondary">Købspris</th>
+
+            </thead>
+            <tbody>
+
+                <tr th:if="${listOfRentedCars.empty}">
+                    <td colspan="5"> Der er ingen biler i systemet</td>
+                </tr>
+
+                <tr  th:each="car : ${listOfRentedCars}">
+                    <td ><span th:text="${car.id}"> Vognnummer </span></td>
+                    <td ><span th:text="${car.carPrice}"> Købspris </span></td>
+
+                </tr>
+
+            </tbody>
+        </table>
+
     </div>
 </div>
+
 
 <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-fQybjgWLrvvRgtW6bFlB7jaZrFsaBXjsOMm/tB9LTS58ONXgqbR9W8oWht/amnpF" crossorigin="anonymous"></script>

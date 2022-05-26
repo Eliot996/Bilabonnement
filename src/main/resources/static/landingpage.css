@@ -8,3 +8,7 @@
     width: 100%
 }
 
+.site-container{
+    max-width: 70%;
+    margin: auto;
+}
