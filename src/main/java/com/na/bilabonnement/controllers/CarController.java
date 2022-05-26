@@ -18,9 +18,6 @@ import java.util.List;
 
 @Controller
 public class CarController {
-/*
-@Author Sofia
- */
     private final CarService CAR_SERVICE = new CarService();
     private final LocationService LOCATION_SERVICE = new LocationService();
     private final KeyValueSet[] CAR_STATUS_SET = {
