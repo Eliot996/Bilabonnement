@@ -12,6 +12,13 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class LocationRepo implements IRepository<Location> {
+
+    private static LocationRepo instance = new LocationRepo();
+    public static LocationRepo getInstance() {
+        return instance;
+    }
+    private LocationRepo() {}
+
     @Override
     public Location create(Location entity) {
         return null;
