@@ -92,17 +92,12 @@ public class CarController {
         }
 
         UserRole userRole = (UserRole) session.getAttribute("userRole");
-        if (userRole != UserRole.BUSINESS_DEVELOPER){
-            return "redirect:/biler";
-        }
         model.addAttribute("userRole", userRole.toString());
 
         Car car = CAR_SERVICE.getCar(carID);
 
         car.setCarStatusId(CAR_SERVICE.getCarStatusValue(car));
         model.addAttribute("statuses", CAR_STATUS_SET);
-
-        System.out.println(model.getAttribute("currentStatusValue"));
 
         model.addAttribute("car", car);
         model.addAttribute("locations",LOCATION_SERVICE.getAllLocations());
