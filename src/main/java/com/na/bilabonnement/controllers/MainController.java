@@ -23,7 +23,7 @@ public class MainController {
  *  @author Tobias Arboe
  */
     @GetMapping("/")
-        public String landingPage(HttpSession session, Model model){
+        public String getLandingPage(HttpSession session, Model model){
 
         if (session.getAttribute("loginSuccess") == null){
             session.setAttribute("loginSuccess", "none");
