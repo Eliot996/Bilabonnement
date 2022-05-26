@@ -161,7 +161,7 @@ public class DamageReportController {
             return "redirect:/logout";
         }
 
-        DAMAGE_REPORT_LINE_SERVICE.updateDamageReportLine(lineNumber, damageReportId, damageReportLine.getDamageNotes(), damageReportLine.getPrice());
+        DAMAGE_REPORT_LINE_SERVICE.updateDamageReportLine(damageReportId, lineNumber, damageReportLine.getDamageNotes(), damageReportLine.getPrice());
 
         return "redirect:/skadesrapport/" + damageReportId;
     }

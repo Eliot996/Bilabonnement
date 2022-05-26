@@ -159,16 +159,16 @@ public class DamageReportLineRepo implements IDamageReportLineRepository
         Connection connection = DatabaseConnectionManager.getConnection();
 
         String insertSQL = "UPDATE `bilabonnement`.`damageline`" +
-                "SET `damageNotes` = ?,  `damageReportId` = ?, `price` = ? " +
-                "WHERE (`lineNumber` = ?);";
+                "SET `damageNotes` = ?, `price` = ? " +
+                "WHERE `lineNumber` = ? AND `damageReportId` = ?;";
+
 
         try {
             PreparedStatement stmt = connection.prepareStatement(insertSQL);
             stmt.setString(1,entity.getDamageNotes());
-            stmt.setInt(2, entity.getDamageReportId());
-            stmt.setInt(3,entity.getPrice());
-
-            stmt.setInt(4, entity.getLineNumber());
+            stmt.setInt(2,entity.getPrice());
+            stmt.setInt(3, entity.getLineNumber());
+            stmt.setInt(4, entity.getDamageReportId());
 
             stmt.execute();
         }catch (SQLException e){
