@@ -19,8 +19,8 @@ public class DamageReportController {
     /*
     @Author Sofia
      */
-    private final DamageReportService DAMAGE_REPORT_SERVICE = new DamageReportService();
     private final CarService CAR_SERVICE = new CarService();
+    private final DamageReportService DAMAGE_REPORT_SERVICE = new DamageReportService();
     private final DamageReportLineService DAMAGE_REPORT_LINE_SERVICE = new DamageReportLineService();
 
     @GetMapping("/opret-skadesrapport")
