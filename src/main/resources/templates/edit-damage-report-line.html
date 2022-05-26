@@ -16,7 +16,8 @@
 <header th:insert="fragments/fragments.html :: header"> </header>
 
 <div class="content-under-header" id="all_buttons_in_body_createuser">
-    <form action="#" th:action="@{/skade/{lineNumber}(lineNumber=${lineNumber})}" th:object="${damageReportLine}" method="post">
+    <form action="#" th:action="@{/skadesrapport/{damageReportId}/{lineNumber}(lineNumber = ${damageReportLine.lineNumber}, damageReportId = ${damageReportLine.damageReportId})}"
+          th:object="${damageReportLine}" method="post">
 
         <div>
 
