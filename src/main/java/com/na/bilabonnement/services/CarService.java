@@ -5,21 +5,18 @@ import com.na.bilabonnement.models.CarStatus;
 import com.na.bilabonnement.repositories.*;
 import com.na.bilabonnement.repositories.interfaces.ICarRepository;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class CarService {
-/*
-@Author Sofia
- */
     private ICarRepository repo = CarRepo.getInstance();
 
     public void setRepo(ICarRepository repo) {
         this.repo = repo;
     }
-/*
-@Author Sofia
- */
+
+    /**
+     *  @author Sofia
+     */
     public Car createCar(Car car){
         car.setStatus(CarStatus.READY_TO_BE_RENTED);
         return repo.create(car);
@@ -30,8 +27,8 @@ public class CarService {
     }
 
      /**
-          *  @author Arboe(H4ppyN4p)
-          */
+      *  @author Arboe(H4ppyN4p)
+      */
     public Car updateCar(int id, String chassisNumber, CarStatus status, String make, String model, String trimLevel,
                          int carPrice, int scrapPrice, int registrationFee, int co2Emission, int kilometersDriven,
                          String damage, String colour, String fuelType, int locationId) {
@@ -57,6 +54,9 @@ public class CarService {
         return repo.update(car);
     }
 
+    /**
+     *  @author Arboe(H4ppyN4p)
+     */
     public Car getCar(int id){
         return repo.getSingleEntityById(id);
     }
@@ -69,8 +69,8 @@ public class CarService {
     }
 
      /**
-          *  @author Arboe(H4ppyN4p)
-          */
+      *  @author Arboe(H4ppyN4p)
+      */
     public int getPriceOfRentedCars(){
         int totalPrice = 0;
 
