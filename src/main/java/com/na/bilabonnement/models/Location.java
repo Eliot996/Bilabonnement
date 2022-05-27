@@ -9,10 +9,6 @@ public class Location {
         this.name = name;
     }
 
-    public Location() {
-
-    }
-
 
     public int getId() {
         return id;
