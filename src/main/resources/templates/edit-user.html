@@ -39,8 +39,8 @@
             <div class="row m-2">
                 <label class="col-6"><b>Rolle: </b> <br>
                     <select th:field="*{roleID}">
-                        <option th:each="role : ${roles}" th:value="${role.id}" th:text="${role.name}"
-                                th:selected="${user.roleID == role.id}"></option>
+                        <option th:each="role : ${roles}" th:value="${role.value}" th:text="${role.name}"
+                                th:selected="${user.roleID == role.value}"></option>
                     </select>
                 </label>
 

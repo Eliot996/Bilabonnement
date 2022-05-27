@@ -1,5 +1,6 @@
 package com.na.bilabonnement.controllers;
 
+import com.na.bilabonnement.models.KeyValueSet;
 import com.na.bilabonnement.models.Location;
 import com.na.bilabonnement.models.UserRole;
 import org.springframework.stereotype.Controller;
@@ -98,11 +99,11 @@ public class UserController {
         model.addAttribute("locations",LOCATION_SERVICE.getAllLocations());
 
         // brutalized to make the dropdown work...
-        Location[] roles = {
-                new Location(0, "Dataregistrering"),
-                new Location(1, "Skade og Udbedring"),
-                new Location(2, "Forretningsudvikler"),
-                new Location(3, "Administrator")
+        KeyValueSet[] roles = {
+                new KeyValueSet(0, "Dataregistrering"),
+                new KeyValueSet(1, "Skade og Udbedring"),
+                new KeyValueSet(2, "Forretningsudvikler"),
+                new KeyValueSet(3, "Administrator")
         };
         model.addAttribute("roles", roles);
 

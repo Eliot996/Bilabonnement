@@ -33,17 +33,15 @@
                                 th:text="${car.id + ' - ' + car.make + ' ' + car.model}"></option>
                     </select>
                 </label>
-                <!--<br> <br> -->
             </div>
 
             <div class="row m-3">
                 <label class="col-6"><b>Type:*</b> <br>
                     <select id="type" th:field="*{typeId}" onchange="updateDateInputs()">
-                        <option th:each="type : ${types}" th:value="${type.id}" th:text="${type.name}"
-                                th:selected="${RA.typeId == type.id}"></option>
+                        <option th:each="type : ${types}" th:value="${type.value}" th:text="${type.name}"
+                                th:selected="${RA.typeId == type.value}"></option>
                     </select>
                 </label>
-                <!--<br> <br>-->
             </div>
 
             <div class="row m-3">

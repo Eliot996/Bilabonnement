@@ -96,7 +96,9 @@ public class RentalAgreementController {
         }
 
         // brutalization of locations to make the dropdown for rental type work
-        Location[] types = {new Location(0, "Limited"), new Location(1, "Unlimited")};
+        KeyValueSet[] types = {
+                new KeyValueSet(0, "Limited"),
+                new KeyValueSet(1, "Unlimited")};
         model.addAttribute("types", types);
 
         RentalAgreement ra = RENTAL_AGREEMENT_SERVICE.get(id);
