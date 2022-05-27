@@ -41,6 +41,7 @@ public class RentalAgreementRepo implements IRentalAgreementRepository {
 
             if (entity.getContract().isEmpty()) {
                 stmt.setNull(6, Types.BLOB);
+                stmt.setNull(7, Types.VARCHAR);
             } else {
                 stmt.setBlob(6,  entity.getContract().getInputStream());
                 stmt.setString(7, entity.getContract().getOriginalFilename());
@@ -185,9 +186,11 @@ public class RentalAgreementRepo implements IRentalAgreementRepository {
         if (rs != null){
             try {
                 rs.next();
-                Resource resource = new InputStreamResource(rs.getBlob("contract").getBinaryStream());
-                String name = rs.getString("filename");
-                result = new FileReply(resource, name);
+                if (rs.getString("filename") != null) {
+                    Resource resource = new InputStreamResource(rs.getBlob("contract").getBinaryStream());
+                    String name = rs.getString("filename");
+                    result = new FileReply(resource, name);
+                }
             } catch (SQLException e) {
                 throw new RuntimeException(e);
             }
