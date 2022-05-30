@@ -1,12 +1,13 @@
 package com.na.bilabonnement.repositories;
 
 import com.na.bilabonnement.models.DamageReport;
-import com.na.bilabonnement.repositories.interfaces.IDamageReportRepository;
+import com.na.bilabonnement.repositories.interfaces.IRepository;
+
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class DummyDamageReportRepo implements IDamageReportRepository {
+public class DummyDamageReportRepo implements IRepository<DamageReport> {
     /*
     @Author Sofia
      */
