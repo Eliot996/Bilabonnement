@@ -21,6 +21,11 @@ public class UserService {
     private final String PEPPER_CHARACTERS = "aAbBcCdDeEfFgGhHiIjJkKlLmMnNoOpPqQrRsStTuUvVwWxXyYzZ0123456789";
     private final Random random = new Random();
 
+    /**
+     *  @author Tobias Arboe
+     *  Method to log in a user, from the username and password given.
+     *  Returns null, if no user was found, or wrong password
+     */
     public User login(String username, String password) {
         // Get the user from the database
         User user = repo.getSingleEntityByUsername(username);
@@ -43,7 +48,7 @@ public class UserService {
         String hashToCheck;
 
         for (int i = 0; i < PEPPER_CHARACTERS.length(); i++) {
-            hashToCheck = hashPassword(PEPPER_CHARACTERS.substring(i, i+1),
+            hashToCheck = hashPassword(PEPPER_CHARACTERS.substring(i, i + 1),
                     passwordToCheck,
                     userSalt);
 
@@ -95,7 +100,7 @@ public class UserService {
 
     /**
      *  @author Mathias(Eliot996)
-     *  returns a random char as a string
+     *  returns a random char as a string from the PEPPER_CHARACTERS
      */
     private String generatePepper() {
         return String.valueOf(
@@ -141,9 +146,9 @@ public class UserService {
     */
     private String bytesToHex(byte[] hash) {
         StringBuilder hexString = new StringBuilder(2 * hash.length);
-        for (int i = 0; i < hash.length; i++) {
-            String hex = Integer.toHexString(0xff & hash[i]);
-            if(hex.length() == 1) {
+        for (byte b : hash) {
+            String hex = Integer.toHexString(0xff & b); // bitwise operator "&"
+            if (hex.length() == 1) {
                 hexString.append('0');
             }
             hexString.append(hex);
