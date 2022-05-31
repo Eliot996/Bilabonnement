@@ -168,7 +168,13 @@ public class DamageReportRepo implements IRepository<DamageReport> {
     public boolean deleteById(int id) {
         Connection conn = DatabaseConnectionManager.getConnection();
         try {
-            PreparedStatement stmt = conn.prepareStatement("DELETE FROM damage_report WHERE id=?");
+            // delete all the damageLines before the deletion of the damageReport
+            PreparedStatement stmt = conn.prepareStatement("DELETE FROM damageline WHERE damageReportId=?");
+            stmt.setInt(1, id);
+            stmt.execute();
+
+            // and then delete the damageReport
+            stmt = conn.prepareStatement("DELETE FROM damage_report WHERE id=?");
             stmt.setInt(1, id);
             stmt.execute();
 
