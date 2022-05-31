@@ -30,7 +30,7 @@ public class DamageReportLineService {
      *  @author Sofia
      */
     public DamageReportLine updateDamageReportLine(int damageReportLineId, int lineNumber, String damageNotes, int price){
-        DamageReportLine damageReportLine = repo.getSingleEntityById(damageReportLineId);
+        DamageReportLine damageReportLine = repo.getSingleEntityByLinenumberAndDamageReportId(lineNumber, damageReportLineId);
         damageReportLine.setDamageReportId(damageReportLineId);
         damageReportLine.setLineNumber(lineNumber);
         damageReportLine.setDamageNotes(damageNotes);
