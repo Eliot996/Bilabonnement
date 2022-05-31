@@ -62,4 +62,9 @@ public class DummyRentalAgreementRepo implements IRentalAgreementRepository {
     public FileReply loadFile(int id) {
         return null;
     }
+
+    @Override
+    public List<RentalAgreement> getAllEntitiesPastEndDate() {
+        return null;
+    }
 }
