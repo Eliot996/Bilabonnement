@@ -55,6 +55,8 @@ public class DamageReportService {
     public List<DamageReport> getAllDamageReports(){
         List<DamageReport> list = repo.getAllEntities();
 
+        //when seeing the list of all damage reports, you have to see the technicians name
+        //which is why you set the technician name
         for (DamageReport dr : list) {
             dr.setTechnicianName(
                     userRepo.

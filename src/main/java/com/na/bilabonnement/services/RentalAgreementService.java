@@ -53,6 +53,8 @@ public class RentalAgreementService {
      *  helperfunction to get the car to the right rentalagreement
      */
     private void bindCarsToRentalAgreement(List<RentalAgreement> list) {
+        //goes through the Rental Agreements and find the right one based on the car's id
+        //then binds the two together
         for (RentalAgreement ra : list) {
             ra.setCar(carService.getCar(ra.getCarId()));
         }

@@ -16,9 +16,7 @@ public class CarService {
     public void setRepo(ICarRepository repo) {
         this.repo = repo;
     }
-    public void setRAService(RentalAgreementService RAService) {
-        this.RAService = RAService;
-    }
+
 
     /**
      *  @author Sofia
@@ -83,6 +81,8 @@ public class CarService {
     public int getPriceOfRentedCars(){
         int totalPrice = 0;
 
+        //checks for each car that has the status RENTED;
+        //Then adds together their price and returns that
         for (Car car: getCarsByStatus(CarStatus.RENTED)
              ) {
             totalPrice += car.getCarPrice();
