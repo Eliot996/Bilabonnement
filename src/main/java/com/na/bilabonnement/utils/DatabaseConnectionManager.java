@@ -9,46 +9,44 @@ import java.sql.SQLException;
 import java.util.Properties;
 
 public class DatabaseConnectionManager {
-    private static Connection conn;
+    private static Connection con;
 
     private DatabaseConnectionManager(){}
 
+    /**
+     *  @author Mathias(Eliot996)
+     *  heavily borrowed from:
+     *  https://github.com/nicklasdean/spring-jdbc/blob/master/src/main/java/com/example/demo/utility/DatabaseConnectionManager.java
+     */
     public static Connection getConnection(){
-        if(conn != null){
-            return conn;
+        if(con != null){
+            return con;
         }
 
-        //Properties file
         try(InputStream propertiesFile = new FileInputStream("src/main/resources/application.properties")){
             Properties props = new Properties();
             props.load(propertiesFile);
+
             String url = props.getProperty("db.url");
             String username = props.getProperty("db.username");
             String password = props.getProperty("db.password");
-            conn = DriverManager.getConnection(url, username, password);
-        }
 
-        //Environment Variables
-        /*try {
-            url = System.getenv("db.url");
-            username = System.getenv("db.username");
-            password = System.getenv("db.password");
-            conn = DriverManager.getConnection(url, username, password);
-        }*/
+            con = DriverManager.getConnection(url, username, password);
+        }
 
         catch(SQLException | IOException e){
             e.printStackTrace();
         }
-        return conn;
+        return con;
     }
 
     public static void closeConnection() {
         try {
-            conn.close();
+            con.close();
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
 
-        conn = null;
+        con = null;
     }
 }
