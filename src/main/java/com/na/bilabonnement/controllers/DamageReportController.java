@@ -16,8 +16,8 @@ import java.util.List;
 
 @Controller
 public class DamageReportController {
-    /*
-    @Author Sofia
+    /**
+     * @author Sofia
      */
     private final CarService CAR_SERVICE = new CarService();
     private final DamageReportService DAMAGE_REPORT_SERVICE = new DamageReportService();
@@ -33,7 +33,7 @@ public class DamageReportController {
         model.addAttribute("userRole", userRole.toString());
 
         model.addAttribute("damageReport", new DamageReport());
-        model.addAttribute("cars", CAR_SERVICE.getCarsByStatus(CarStatus.BACK_FROM_BEING_RENTED));
+        model.addAttribute("cars", CAR_SERVICE.getValidCarsForDamageReportCreation());
         return "create-damage-report";
     }
 
