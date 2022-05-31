@@ -10,7 +10,7 @@ class RentalAgreementServiceTest
 
     @Test
     void delete() {
-        RentalAgreementService rentalAgreementService = new RentalAgreementService();
+        RentalAgreementService rentalAgreementService = RentalAgreementService.getInstance();
         DummyRentalAgreementRepo dummyRentalAgreementRepo = new DummyRentalAgreementRepo();
 
         rentalAgreementService.setRepo(dummyRentalAgreementRepo);

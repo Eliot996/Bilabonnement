@@ -23,7 +23,7 @@ public class RentalAgreementTest {
     @Test
     void RentalAgreement_Create() {
         // Arrange
-        RentalAgreementService RA_SERVICE = new RentalAgreementService();
+        RentalAgreementService RA_SERVICE = RentalAgreementService.getInstance();
         RA_SERVICE.setRepo(new DummyRentalAgreementRepo());
 
         int id = -1;
@@ -56,7 +56,7 @@ public class RentalAgreementTest {
         CarService CAR_SERVICE = new CarService();
         CAR_SERVICE.setRepo(new DummyCarRepo());
 
-        RentalAgreementService RA_SERVICE = new RentalAgreementService();
+        RentalAgreementService RA_SERVICE = RentalAgreementService.getInstance();
         RA_SERVICE.setRepo(new DummyRentalAgreementRepo());
         RA_SERVICE.setCarService(CAR_SERVICE);
 
@@ -91,7 +91,7 @@ public class RentalAgreementTest {
         CarService CAR_SERVICE = new CarService();
         CAR_SERVICE.setRepo(new DummyCarRepo());
 
-        RentalAgreementService RA_SERVICE = new RentalAgreementService();
+        RentalAgreementService RA_SERVICE = RentalAgreementService.getInstance();
         RA_SERVICE.setRepo(new DummyRentalAgreementRepo());
         RA_SERVICE.setCarService(CAR_SERVICE);
 
@@ -117,7 +117,7 @@ public class RentalAgreementTest {
         CarService CAR_SERVICE = new CarService();
         CAR_SERVICE.setRepo(new DummyCarRepo());
 
-        RentalAgreementService RA_SERVICE = new RentalAgreementService();
+        RentalAgreementService RA_SERVICE = RentalAgreementService.getInstance();
         RA_SERVICE.setRepo(new DummyRentalAgreementRepo());
         RA_SERVICE.setCarService(CAR_SERVICE);
 

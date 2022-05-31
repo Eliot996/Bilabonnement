@@ -16,7 +16,7 @@ import javax.servlet.http.HttpSession;
 public class RentalAgreementController {
 
     private final CarService CAR_SERVICE = new CarService();
-    private final RentalAgreementService RENTAL_AGREEMENT_SERVICE = new RentalAgreementService();
+    private final RentalAgreementService RENTAL_AGREEMENT_SERVICE = RentalAgreementService.getInstance();
 
     /**
      *  @author Mathias(Eliot996)
