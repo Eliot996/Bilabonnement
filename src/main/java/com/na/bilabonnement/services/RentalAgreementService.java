@@ -28,11 +28,30 @@ public class RentalAgreementService {
     public List<RentalAgreement> getAll() {
         List<RentalAgreement> list = repo.getAllEntities();
 
+        bindCarsToRentalAgreement(list);
+
+        return list;
+    }
+
+    /**
+     *  @author Mathias(Eliot996)
+     */
+    public List<RentalAgreement> getPastEndDate() {
+        List<RentalAgreement> list = repo.getAllEntitiesPastEndDate();
+
+        bindCarsToRentalAgreement(list);
+
+        return list;
+    }
+
+    /**
+     *  @author Mathias(Eliot996)
+     *  helperfunction to get the car to the right rentalagreement
+     */
+    private void bindCarsToRentalAgreement(List<RentalAgreement> list) {
         for (RentalAgreement ra : list) {
             ra.setCar(carService.getCar(ra.getCarId()));
         }
-
-        return list;
     }
 
     /**
