@@ -37,9 +37,9 @@ INSERT INTO `bilabonnement`.`cars` (`id`,`chassisNumber`, `status`, `make`, `mod
 INSERT INTO `bilabonnement`.`cars` (`id`,`chassisNumber`, `status`, `make`, `model`, `trimLevel`, `carPrice`, `scrapPrice`, `registrationFee`, `co2Emission`, `kilometersDriven`, `damages`, `colour`, `fuelType`, `locationId`)
     VALUES (3, '123894', 'READY_FOR_SALE', 'renault', 'clio', 'sport', '7000', '4000', '123', '98', '50', 'ok', 'lilla', 'benzin', '2');
 INSERT INTO `bilabonnement`.`cars` (`id`,`chassisNumber`, `status`, `make`, `model`, `trimLevel`, `carPrice`, `scrapPrice`, `registrationFee`, `co2Emission`, `kilometersDriven`, `damages`, `colour`, `fuelType`, `locationId`)
-    VALUES (4, '12345123123', 'RENTED', 'bmw', 'i4', 'brugt', '5500', '3500', '1234', '0', '197000', 'ingen', 'sort', 'el', '1');
+    VALUES (4, '12345123123', 'BACK_FROM_BEING_RENTED', 'bmw', 'i4', 'brugt', '5500', '3500', '1234', '0', '197000', 'ingen', 'sort', 'el', '1');
 INSERT INTO `bilabonnement`.`cars` (`id`,`chassisNumber`, `status`, `make`, `model`, `trimLevel`, `carPrice`, `scrapPrice`, `registrationFee`, `co2Emission`, `kilometersDriven`, `damages`, `colour`, `fuelType`, `locationId`)
-    VALUES (5, 'vsszzzf56343434', 'BACK_FROM_BEING_RENTED', 'bmw', 'x4', 'brugt', '20000', '4000', '1234', '250', '19', 'ingen', 'blå', 'diesel', '1');
+    VALUES (5, 'vsszzzf56343434', 'RENTED', 'bmw', 'x4', 'brugt', '20000', '4000', '1234', '250', '19', 'ingen', 'blå', 'diesel', '1');
 
 
 -- for rental agreements
