@@ -2,16 +2,22 @@ package com.na.bilabonnement.services;
 
 import com.na.bilabonnement.models.Car;
 import com.na.bilabonnement.models.CarStatus;
+import com.na.bilabonnement.models.RentalAgreement;
 import com.na.bilabonnement.repositories.*;
 import com.na.bilabonnement.repositories.interfaces.ICarRepository;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class CarService {
     private ICarRepository repo = CarRepo.getInstance();
+    private RentalAgreementService RAService = RentalAgreementService.getInstance();
 
     public void setRepo(ICarRepository repo) {
         this.repo = repo;
+    }
+    public void setRAService(RentalAgreementService RAService) {
+        this.RAService = RAService;
     }
 
     /**
@@ -90,6 +96,23 @@ public class CarService {
      */
     public List<Car> getCarsByStatus(CarStatus status) {
         return repo.getEntitiesByStatus(status);
+    }
+
+    /**
+     *  @author Mathias(Eliot996)
+     *  get cars for damage report creation and check for valid date
+     */
+    public List<Car> getValidCarsForDamageReportCreation() {
+        List<RentalAgreement> rentalAgreements = RAService.getPastEndDate();
+        ArrayList<Car> cars = new ArrayList<>();
+
+        for (RentalAgreement ra : rentalAgreements) {
+            if (ra.getCar().getStatus() == CarStatus.BACK_FROM_BEING_RENTED) {
+                cars.add(ra.getCar());
+            }
+        }
+
+        return cars;
     }
 
     /**
