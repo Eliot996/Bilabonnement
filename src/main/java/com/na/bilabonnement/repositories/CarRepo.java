@@ -1,4 +1,5 @@
 package com.na.bilabonnement.repositories;
+
 import com.na.bilabonnement.models.Car;
 import com.na.bilabonnement.models.CarStatus;
 import com.na.bilabonnement.repositories.interfaces.ICarRepository;
@@ -16,16 +17,17 @@ public class CarRepo implements ICarRepository {
     private static final CarRepo instance = new CarRepo();
 
     private CarRepo() {}
+
     public static CarRepo getInstance() {
         return instance;
     }
 
     /**
-     *  @author Lasse
+     * @author Lasse
+     * @author Tobias
      */
     @Override
-    public Car create(Car entity)
-    {
+    public Car create(Car entity) {
         Connection conn = DatabaseConnectionManager.getConnection();
         String insertSQL = "INSERT INTO Cars (`id`, `chassisNumber`, `status`, `make`, `model`, `trimLevel`, `carPrice`, `scrapPrice`, `registrationFee`, `co2Emission`, `kilometersDriven`, `damages`, `colour`, `fuelType`, `locationId`)" +
                 "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ? ,? ,?, ?);";
@@ -57,11 +59,10 @@ public class CarRepo implements ICarRepository {
     }
 
     /**
-     *  @author Mathias(Eliot996)
+     * @author Mathias(Eliot996)
      */
     @Override
-    public Car getSingleEntityById(int id)
-    {
+    public Car getSingleEntityById(int id) {
         Connection con = DatabaseConnectionManager.getConnection();
 
         String selectSQL = "SELECT * FROM cars " +
@@ -72,12 +73,12 @@ public class CarRepo implements ICarRepository {
             PreparedStatement stmt = con.prepareStatement(selectSQL);
             stmt.setInt(1, id);
             rs = stmt.executeQuery();
-        }   catch (SQLException e) {
+        } catch (SQLException e) {
             e.printStackTrace();
         }
 
         Car result = null;
-        if (rs != null){
+        if (rs != null) {
             result = makeCarFromResultSet(rs);
         }
 
@@ -86,25 +87,24 @@ public class CarRepo implements ICarRepository {
     }
 
     /**
-     *  @author Lasse
+     * @author Lasse
      */
-    public Car getSingleEntityByChassisNumber(String chassisNumber)
-    {
+    public Car getSingleEntityByChassisNumber(String chassisNumber) {
         Connection con = DatabaseConnectionManager.getConnection();
 
         String selectSQL = "SELECT * FROM cars " +
-                "WHERE `chassisNumber` = '" + chassisNumber +  "';";
+                "WHERE `chassisNumber` = '" + chassisNumber + "';";
 
         ResultSet rs = null;
         try {
             PreparedStatement stmt = con.prepareStatement(selectSQL);
             rs = stmt.executeQuery();
-        }   catch (SQLException e) {
+        } catch (SQLException e) {
             e.printStackTrace();
         }
 
         Car result = null;
-        if (rs != null){
+        if (rs != null) {
             result = makeCarFromResultSet(rs);
         }
 
@@ -113,7 +113,7 @@ public class CarRepo implements ICarRepository {
     }
 
     /**
-     *  @author Mathias(Eliot996)
+     * @author Mathias(Eliot996)
      */
     @Override
     public List<Car> getEntitiesByStatus(CarStatus status) {
@@ -127,12 +127,12 @@ public class CarRepo implements ICarRepository {
             PreparedStatement stmt = con.prepareStatement(selectSQL);
             stmt.setString(1, status.toString());
             rs = stmt.executeQuery();
-        }   catch (SQLException e) {
+        } catch (SQLException e) {
             e.printStackTrace();
         }
 
         List<Car> result = new ArrayList<>();
-        if (rs != null){
+        if (rs != null) {
             result = makeCarsFromResultSet(rs);
         }
 
@@ -141,10 +141,9 @@ public class CarRepo implements ICarRepository {
     }
 
     /**
-     *  @author Lasse
+     * @author Lasse
      */
-    private Car makeCarFromResultSet(ResultSet rs)
-    {
+    private Car makeCarFromResultSet(ResultSet rs) {
         List<Car> cars = makeCarsFromResultSet(rs);
         if (cars.size() > 0) {
             return cars.get(0);
@@ -153,13 +152,13 @@ public class CarRepo implements ICarRepository {
     }
 
     /**
-     *  @author Mathias(Eliot996)
-     *  @author Lasse
+     * @author Mathias(Eliot996)
+     * @author Lasse
      */
     private List<Car> makeCarsFromResultSet(ResultSet rs) {
         ArrayList<Car> cars = new ArrayList<>();
         try {
-            while(rs.next()) {
+            while (rs.next()) {
                 int carId = rs.getInt("id");
                 String chassisNumber = rs.getString("chassisnumber");
                 CarStatus status = CarStatus.valueOf(rs.getString("status"));
@@ -181,16 +180,15 @@ public class CarRepo implements ICarRepository {
             }
         } catch (SQLException e) {
             e.printStackTrace();
-            }
+        }
         return cars;
     }
 
     /**
-     *  @author Mathias(Eliot996)
+     * @author Mathias(Eliot996)
      */
     @Override
-    public List<Car> getAllEntities()
-    {
+    public List<Car> getAllEntities() {
         Connection con = DatabaseConnectionManager.getConnection();
 
         String selectSQL = "SELECT * FROM cars;";
@@ -199,12 +197,12 @@ public class CarRepo implements ICarRepository {
         try {
             PreparedStatement stmt = con.prepareStatement(selectSQL);
             rs = stmt.executeQuery();
-        }   catch (SQLException e) {
+        } catch (SQLException e) {
             e.printStackTrace();
         }
 
         List<Car> result = new ArrayList<>();
-        if (rs != null){
+        if (rs != null) {
             result = makeCarsFromResultSet(rs);
         }
 
@@ -213,19 +211,18 @@ public class CarRepo implements ICarRepository {
     }
 
     /**
-     *  @author Tobias(H4ppyN4p)
+     * @author Tobias(H4ppyN4p)
      */
     @Override
-    public Car update(Car entity)
-    {
+    public Car update(Car entity) {
         Connection con = DatabaseConnectionManager.getConnection();
 
         String insertSQL = "UPDATE `bilabonnement`.`cars`" +
-                            "SET `chassisNumber` = ?,  `status` = ?, `make` = ?, " +
-                                "`model` = ?, `trimLevel` = ?, `carPrice` = ?, `scrapPrice` = ?, " +
-                                "`registrationFee` = ?, `co2Emission` = ?, `kilometersDriven` = ?, " +
-                                "`damages` = ?, `colour` = ?, `fuelType` = ?, `locationId` = ? " +
-                            "WHERE (`id` = ?);";
+                "SET `chassisNumber` = ?,  `status` = ?, `make` = ?, " +
+                "`model` = ?, `trimLevel` = ?, `carPrice` = ?, `scrapPrice` = ?, " +
+                "`registrationFee` = ?, `co2Emission` = ?, `kilometersDriven` = ?, " +
+                "`damages` = ?, `colour` = ?, `fuelType` = ?, `locationId` = ? " +
+                "WHERE (`id` = ?);";
 
 
         try {
@@ -256,12 +253,12 @@ public class CarRepo implements ICarRepository {
     }
 
     /**
-     *  @author Tobias(H4ppyN4p)
+     * @author Tobias(H4ppyN4p)
      */
     @Override
     public boolean deleteById(int id) {
         Connection conn = DatabaseConnectionManager.getConnection();
-        try{
+        try {
             PreparedStatement stmt = conn.prepareStatement("DELETE FROM cars WHERE id=?");
             stmt.setInt(1, id);
             stmt.execute();
@@ -272,7 +269,6 @@ public class CarRepo implements ICarRepository {
         }
         return false;
     }
-
 
 
 }

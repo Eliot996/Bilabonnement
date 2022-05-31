@@ -11,26 +11,22 @@ import org.springframework.web.context.request.WebRequest;
 
 import javax.servlet.http.HttpSession;
 
-/*
-@Author Sofia
- */
-
 @Controller
 public class MainController {
     private final UserService USER_SERVICE = new UserService();
 
-/**
- *  @author Tobias Arboe
- */
+    /**
+     * @author Tobias Arboe
+     */
     @GetMapping("/")
-        public String getLandingPage(HttpSession session, Model model){
+    public String getLandingPage(HttpSession session, Model model) {
 
-        if (session.getAttribute("loginSuccess") == null){
+        if (session.getAttribute("loginSuccess") == null) {
             session.setAttribute("loginSuccess", "none");
         }
         model.addAttribute("loginValidity", session.getAttribute("loginSuccess"));
 
-        if (session.getAttribute("userID") != null){
+        if (session.getAttribute("userID") != null) {
             return "redirect:/home";
         }
 
@@ -39,27 +35,23 @@ public class MainController {
     }
 
     /**
-     *  @author Tobias Arboe
+     * @author Tobias Arboe
      */
-   @PostMapping("/login")
-    public String landingPage(WebRequest dataFromForm, HttpSession session){
+    @PostMapping("/login")
+    public String landingPage(WebRequest dataFromForm, HttpSession session) {
 
         User user = USER_SERVICE.login(dataFromForm.getParameter("uname"), dataFromForm.getParameter("psw"));
 
-        if (user != null)
-        {
+        if (user != null) {
             session.setAttribute("userID", user.getId());
             session.setAttribute("userRole", user.getRole());
             session.setAttribute("loginSuccess", "success");
             return "redirect:/home";
-        }
-
-        else
-        {
+        } else {
             session.setAttribute("loginSuccess", "fail");
             return "redirect:/";
         }
-   }
+    }
 
     /*
     @Author Sofia
@@ -71,23 +63,21 @@ public class MainController {
     }
 
     /**
-     *  @author Tobias Arboe
+     * @author Tobias Arboe
      */
-    @GetMapping ("/home")
-    public String home(HttpSession session, Model model){
-        UserRole userRole = (UserRole)session.getAttribute("userRole");
-        if (userRole == UserRole.ADMINISTRATOR){
+    @GetMapping("/home")
+    public String home(HttpSession session, Model model) {
+        UserRole userRole = (UserRole) session.getAttribute("userRole");
+        if (userRole == UserRole.ADMINISTRATOR) {
             model.addAttribute("userRole", userRole.toString());
             return "administratorpage";
         } else if (userRole == UserRole.BUSINESS_DEVELOPER) {
             model.addAttribute("userRole", userRole.toString());
             return "businessdeveloper";
-        }
-        else if (userRole == UserRole.DAMAGE_AND_RECTIFICATION) {
+        } else if (userRole == UserRole.DAMAGE_AND_RECTIFICATION) {
             model.addAttribute("userRole", userRole.toString());
             return "damageAndRectification";
-        }
-        else if (userRole == UserRole.DATA_REGISTRATION) {
+        } else if (userRole == UserRole.DATA_REGISTRATION) {
             model.addAttribute("userRole", userRole.toString());
             return "dataregistration";
         }

@@ -1,4 +1,5 @@
 package com.na.bilabonnement.repositories;
+
 import com.na.bilabonnement.models.DamageReportLine;
 import com.na.bilabonnement.repositories.interfaces.IDamageReportLineRepository;
 import com.na.bilabonnement.utils.DatabaseConnectionManager;
@@ -10,17 +11,23 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-public class DamageReportLineRepo implements IDamageReportLineRepository
-{
+public class DamageReportLineRepo implements IDamageReportLineRepository {
     private static final DamageReportLineRepo instance = new DamageReportLineRepo();
 
-    private DamageReportLineRepo(){}
-    public static DamageReportLineRepo getInstance(){return instance;}
+    private DamageReportLineRepo() {
+    }
 
+    public static DamageReportLineRepo getInstance() {
+        return instance;
+    }
 
+    /**
+     *  @author Lasse
+     *  @author Sofia
+     *  @author Mathias(Eliot996)
+     */
     @Override
-    public DamageReportLine create(DamageReportLine entity)
-    {
+    public DamageReportLine create(DamageReportLine entity) {
         Connection connection = DatabaseConnectionManager.getConnection();
         String maxSQL = "SELECT max(lineNumber) AS aValue FROM damageline WHERE damageReportId = ?";
 
@@ -29,10 +36,10 @@ public class DamageReportLineRepo implements IDamageReportLineRepository
 
         try {
             PreparedStatement stmt = connection.prepareStatement(maxSQL);
-            stmt.setInt(1,entity.getDamageReportId());
+            stmt.setInt(1, entity.getDamageReportId());
             ResultSet rs = stmt.executeQuery();
             rs.next();
-            entity.setLineNumber( rs.getInt("aValue") + 1);
+            entity.setLineNumber(rs.getInt("aValue") + 1);
 
             stmt = connection.prepareStatement(insertSQL);
             stmt.setInt(1, entity.getLineNumber());
@@ -48,8 +55,11 @@ public class DamageReportLineRepo implements IDamageReportLineRepository
         return getSingleEntityByLinenumberAndDamageReportId(entity.getLineNumber(), entity.getDamageReportId());
     }
 
-    public DamageReportLine getSingleEntityByLinenumberAndDamageReportId(int lineNumber, int damageReportId)
-    {
+    /**
+     *  @author Lasse
+     *  @author Mathias(Eliot996)
+     */
+    public DamageReportLine getSingleEntityByLinenumberAndDamageReportId(int lineNumber, int damageReportId) {
         Connection connection = DatabaseConnectionManager.getConnection();
 
         String selectSQL = "SELECT * FROM damageline " +
@@ -65,13 +75,16 @@ public class DamageReportLineRepo implements IDamageReportLineRepository
         }
 
         DamageReportLine result = null;
-        if (rs != null){
+        if (rs != null) {
             result = makeDamageReportLineFromResultSet(rs);
         }
         DatabaseConnectionManager.closeConnection();
         return result;
     }
 
+    /**
+     *  @author Lasse
+     */
     private DamageReportLine makeDamageReportLineFromResultSet(ResultSet rs) {
 
         List<DamageReportLine> damageReportLines = makeDamageReportLinesFromResultSet(rs);
@@ -84,11 +97,15 @@ public class DamageReportLineRepo implements IDamageReportLineRepository
     }
 
 
+    /**
+     *  @author Lasse
+     *  @author Mathias(Eliot996)
+     */
     private List<DamageReportLine> makeDamageReportLinesFromResultSet(ResultSet rs) {
         ArrayList<DamageReportLine> damageReportLines = new ArrayList<>();
 
         try {
-            while (rs.next()){
+            while (rs.next()) {
                 int lineNumber = rs.getInt("linenumber");
                 int damageReportId = rs.getInt("damageReportId");
                 String damageNotes = rs.getString("damageNotes");
@@ -102,9 +119,11 @@ public class DamageReportLineRepo implements IDamageReportLineRepository
         return damageReportLines;
     }
 
+    /**
+     *  @author Lasse
+     */
     @Override
-    public DamageReportLine getSingleEntityById(int id)
-    {
+    public DamageReportLine getSingleEntityById(int id) {
         Connection connection = DatabaseConnectionManager.getConnection();
 
         String selectSQL = "SELECT * FROM damageline WHERE `lineNumber` = ?;";
@@ -127,9 +146,11 @@ public class DamageReportLineRepo implements IDamageReportLineRepository
         return result;
     }
 
+    /**
+     *  @author Lasse
+     */
     @Override
-    public List<DamageReportLine> getAllEntities()
-    {
+    public List<DamageReportLine> getAllEntities() {
         {
             Connection connection = DatabaseConnectionManager.getConnection();
 
@@ -139,12 +160,12 @@ public class DamageReportLineRepo implements IDamageReportLineRepository
             try {
                 PreparedStatement stmt = connection.prepareStatement(selectSQL);
                 rs = stmt.executeQuery();
-            } catch (SQLException e){
+            } catch (SQLException e) {
                 e.printStackTrace();
             }
 
             List<DamageReportLine> result = new ArrayList<>();
-            if (rs != null){
+            if (rs != null) {
                 result = makeDamageReportLinesFromResultSet(rs);
             }
 
@@ -153,9 +174,12 @@ public class DamageReportLineRepo implements IDamageReportLineRepository
         }
     }
 
+    /**
+     *  @author Lasse
+     *  @author Mathias(Eliot996)
+     */
     @Override
-    public DamageReportLine update(DamageReportLine entity)
-    {
+    public DamageReportLine update(DamageReportLine entity) {
         Connection connection = DatabaseConnectionManager.getConnection();
 
         String insertSQL = "UPDATE `bilabonnement`.`damageline`" +
@@ -165,13 +189,13 @@ public class DamageReportLineRepo implements IDamageReportLineRepository
 
         try {
             PreparedStatement stmt = connection.prepareStatement(insertSQL);
-            stmt.setString(1,entity.getDamageNotes());
-            stmt.setInt(2,entity.getPrice());
+            stmt.setString(1, entity.getDamageNotes());
+            stmt.setInt(2, entity.getPrice());
             stmt.setInt(3, entity.getLineNumber());
             stmt.setInt(4, entity.getDamageReportId());
 
             stmt.execute();
-        }catch (SQLException e){
+        } catch (SQLException e) {
             e.printStackTrace();
         }
         return null;
@@ -182,8 +206,12 @@ public class DamageReportLineRepo implements IDamageReportLineRepository
         return false;
     }
 
+    /**
+     *  @author Lasse
+     *  @author Sofia
+     */
     @Override
-    public boolean deleteById(int lineNumber, int damageReportId){
+    public boolean deleteById(int lineNumber, int damageReportId) {
         Connection connection = DatabaseConnectionManager.getConnection();
         try {
             PreparedStatement stmt = connection.prepareStatement("DELETE FROM damageline where lineNumber=? AND damageReportId=?");
@@ -192,13 +220,16 @@ public class DamageReportLineRepo implements IDamageReportLineRepository
             stmt.execute();
 
             DatabaseConnectionManager.closeConnection();
-        } catch (SQLException throwables){
+        } catch (SQLException throwables) {
             throwables.printStackTrace();
         }
         return false;
 
     }
 
+    /**
+     *  @author Sofia
+     */
     @Override
     public List<DamageReportLine> getAllEntitiesWithDamageReportId(int damageReportId) {
         Connection connection = DatabaseConnectionManager.getConnection();
@@ -210,12 +241,12 @@ public class DamageReportLineRepo implements IDamageReportLineRepository
             PreparedStatement stmt = connection.prepareStatement(selectSQL);
             stmt.setInt(1, damageReportId);
             rs = stmt.executeQuery();
-        } catch (SQLException e){
+        } catch (SQLException e) {
             e.printStackTrace();
         }
 
         List<DamageReportLine> result = new ArrayList<>();
-        if (rs != null){
+        if (rs != null) {
             result = makeDamageReportLinesFromResultSet(rs);
         }
 

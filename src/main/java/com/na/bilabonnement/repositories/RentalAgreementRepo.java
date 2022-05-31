@@ -61,6 +61,9 @@ public class RentalAgreementRepo implements IRentalAgreementRepository {
         return null;
     }
 
+    /**
+     *  @author Mathias(Eliot996)
+     */
     @Override
     public RentalAgreement getSingleEntityById(int id) {
         Connection conn = DatabaseConnectionManager.getConnection();
@@ -168,6 +171,9 @@ public class RentalAgreementRepo implements IRentalAgreementRepository {
         return getSingleEntityById(entity.getId());
     }
 
+    /**
+     *  @author Mathias(Eliot996)
+     */
     @Override
     public FileReply loadFile(int id) {
         Connection conn = DatabaseConnectionManager.getConnection();

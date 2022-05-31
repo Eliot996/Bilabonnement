@@ -29,15 +29,16 @@ public class CarController {
     };
 
     /**
-     *  @author Sofia
+     * @author Sofia
+     * @author Mathias(Eliot996)
      */
     @GetMapping("/opret-bil")
-    public String getCreateCar(HttpSession session, Model model){
-        if ( session.getAttribute("userRole") == null) {
+    public String getCreateCar(HttpSession session, Model model) {
+        if (session.getAttribute("userRole") == null) {
             return "redirect:/logout";
         }
 
-        UserRole userRole = (UserRole)session.getAttribute("userRole");
+        UserRole userRole = (UserRole) session.getAttribute("userRole");
         model.addAttribute("userRole", userRole.toString());
 
         model.addAttribute("locations", LOCATION_SERVICE.getAllLocations());
@@ -46,12 +47,12 @@ public class CarController {
     }
 
     /**
-     *  @author Sofia
-     *  @author Mathias(Eliot996)
+     * @author Sofia
+     * @author Mathias(Eliot996)
      */
     @PostMapping("/opret-bil")
-    public String createCar(HttpSession session, @ModelAttribute Car car){
-        if ( session.getAttribute("userRole") == null) {
+    public String createCar(HttpSession session, @ModelAttribute Car car) {
+        if (session.getAttribute("userRole") == null) {
             return "redirect:/logout";
         }
 
@@ -61,15 +62,16 @@ public class CarController {
     }
 
     /**
-     *  @author Mathias(Eliot996)
+     * @author Mathias(Eliot996)
+     * @author Tobias(H4ppyN4p)
      */
     @GetMapping("/biler")
     public String viewAllCars(HttpSession session, Model model) {
-        if ( session.getAttribute("userRole") == null) {
+        if (session.getAttribute("userRole") == null) {
             return "redirect:/logout";
         }
 
-        UserRole userRole = (UserRole)session.getAttribute("userRole");
+        UserRole userRole = (UserRole) session.getAttribute("userRole");
         model.addAttribute("userRole", userRole.toString());
 
         model.addAttribute("listOfCars", CAR_SERVICE.getAllCars());
@@ -77,12 +79,12 @@ public class CarController {
         return "all-cars";
     }
 
-     /**
-          *  @author Arboe(H4ppyN4p)
-          */
+    /**
+     * @author Arboe(H4ppyN4p)
+     */
     @GetMapping("/bil/{carID}")
-    public String getEditCar(HttpSession session, @PathVariable() int carID, Model model){
-        if ( session.getAttribute("userRole") == null) {
+    public String getEditCar(HttpSession session, @PathVariable() int carID, Model model) {
+        if (session.getAttribute("userRole") == null) {
             return "redirect:/logout";
         }
 
@@ -95,19 +97,17 @@ public class CarController {
         model.addAttribute("statuses", CAR_STATUS_SET);
 
         model.addAttribute("car", car);
-        model.addAttribute("locations",LOCATION_SERVICE.getAllLocations());
-
-
+        model.addAttribute("locations", LOCATION_SERVICE.getAllLocations());
 
         return "edit-car";
     }
 
-     /**
-          *  @author Arboe(H4ppyN4p)
-          */
+    /**
+     * @author Arboe(H4ppyN4p)
+     */
     @PostMapping("/bil/{carID}")
-    public String editCar(HttpSession session, @ModelAttribute Car car, @PathVariable int carID){
-        if ( session.getAttribute("userRole") == null) {
+    public String editCar(HttpSession session, @ModelAttribute Car car, @PathVariable int carID) {
+        if (session.getAttribute("userRole") == null) {
             return "redirect:/logout";
         }
 
@@ -131,16 +131,16 @@ public class CarController {
 
     }
 
-     /**
-          *  @author Arboe(H4ppyN4p)
-          */
+    /**
+     * @author Arboe(H4ppyN4p)
+     */
     @GetMapping("/bil/{carID}/slet")
-    public String deleteCar(HttpSession session, @PathVariable() int carID, Model model){
-        if ( session.getAttribute("userRole") == null) {
+    public String deleteCar(HttpSession session, @PathVariable() int carID, Model model) {
+        if (session.getAttribute("userRole") == null) {
             return "redirect:/logout";
         }
 
-        UserRole userRole = (UserRole)session.getAttribute("userRole");
+        UserRole userRole = (UserRole) session.getAttribute("userRole");
         model.addAttribute("userRole", userRole);
 
         CAR_SERVICE.deleteCar(carID);
@@ -149,16 +149,16 @@ public class CarController {
     }
 
     /**
-     *  @author Arboe(H4ppyN4p)
-     *  @author Mathias(Eliot996)
+     * @author Arboe(H4ppyN4p)
+     * @author Mathias(Eliot996)
      */
     @GetMapping("/biler/data")
-    public String carData(HttpSession session, Model model){
+    public String carData(HttpSession session, Model model) {
         if (session.getAttribute("userRole") != UserRole.BUSINESS_DEVELOPER) {
             return "redirect:/logout";
         }
 
-        UserRole userRole = (UserRole)session.getAttribute("userRole");
+        UserRole userRole = (UserRole) session.getAttribute("userRole");
         model.addAttribute("userRole", userRole.toString());
 
         List<Car> listOfCars = CAR_SERVICE.getCarsByStatus(CarStatus.RENTED);

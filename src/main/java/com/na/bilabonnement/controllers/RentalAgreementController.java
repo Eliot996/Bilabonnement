@@ -19,18 +19,17 @@ public class RentalAgreementController {
     private final RentalAgreementService RENTAL_AGREEMENT_SERVICE = RentalAgreementService.getInstance();
 
     /**
-     *  @author Mathias(Eliot996)
+     * @author Mathias(Eliot996)
+     * @author Tobias(H4ppyN4p)
      */
     @GetMapping("/opret-lejekontrakt")
     public String getCreateRentalAgreement(HttpSession session, Model model) {
-
-
 
         if (session.getAttribute("userRole") != UserRole.DATA_REGISTRATION) {
             return "redirect:/logout";
         }
 
-        UserRole userRole = (UserRole)session.getAttribute("userRole");
+        UserRole userRole = (UserRole) session.getAttribute("userRole");
         model.addAttribute("userRole", userRole.toString());
 
         model.addAttribute("cars", CAR_SERVICE.getCarsByStatus(CarStatus.READY_TO_BE_RENTED));
@@ -39,7 +38,7 @@ public class RentalAgreementController {
     }
 
     /**
-     *  @author Mathias(Eliot996)
+     * @author Mathias(Eliot996)
      */
     @PostMapping("/opret-lejekontrakt")
     public String createRentalAgreement(HttpSession session, Model model,
@@ -50,7 +49,7 @@ public class RentalAgreementController {
         }
 
         if (rentalAgreement.getCarId() == -1 ||
-            rentalAgreement.getEndDate().isBefore(rentalAgreement.getStartDate())) {
+                rentalAgreement.getEndDate().isBefore(rentalAgreement.getStartDate())) {
 
             model.addAttribute("cars", CAR_SERVICE.getCarsByStatus(CarStatus.READY_TO_BE_RENTED));
             model.addAttribute("rentalAgreement", new RentalAgreement());
@@ -71,7 +70,8 @@ public class RentalAgreementController {
     }
 
     /**
-     *  @author Mathias(Eliot996)
+     * @author Mathias(Eliot996)
+     * @author Tobias(H4ppyN4p)
      */
     @GetMapping("/lejekontrakter")
     public String viewAllRentalAgreements(HttpSession session, Model model) {
@@ -87,7 +87,8 @@ public class RentalAgreementController {
     }
 
     /**
-     *  @author Mathias(Eliot996)
+     * @author Mathias(Eliot996)
+     * @author Tobias(H4ppyN4p)
      */
     @GetMapping("/lejekontrakt/{id}")
     public String getEditRentalAgreement(@PathVariable() int id, HttpSession session, Model model) {
@@ -119,7 +120,7 @@ public class RentalAgreementController {
     }
 
     /**
-     *  @author Mathias(Eliot996)
+     * @author Mathias(Eliot996)
      */
     @PostMapping("/lejekontrakt/{id}")
     public String editRentalAgreement(@PathVariable() int id, HttpSession session, @ModelAttribute RentalAgreement rentalAgreement) {
@@ -132,7 +133,7 @@ public class RentalAgreementController {
     }
 
     /**
-     *  @author Mathias(Eliot996)
+     * @author Mathias(Eliot996)
      */
     @GetMapping("/lejekontrakt/{id}/fil")
     @ResponseBody
@@ -147,13 +148,13 @@ public class RentalAgreementController {
         }
     }
 
-     /**
-          *  @author Arboe(H4ppyN4p)
-          */
-     @GetMapping("/lejekontrakt/{id}/slet")
-    public String deleteRentalAgreement(@PathVariable() int id){
+    /**
+     * @author Arboe(H4ppyN4p)
+     */
+    @GetMapping("/lejekontrakt/{id}/slet")
+    public String deleteRentalAgreement(@PathVariable() int id) {
 
-         RENTAL_AGREEMENT_SERVICE.delete(id);
-         return "redirect:/lejekontrakter";
-     }
+        RENTAL_AGREEMENT_SERVICE.delete(id);
+        return "redirect:/lejekontrakter";
+    }
 }

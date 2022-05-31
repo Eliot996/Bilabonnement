@@ -23,13 +23,18 @@ public class DamageReportController {
     private final DamageReportService DAMAGE_REPORT_SERVICE = new DamageReportService();
     private final DamageReportLineService DAMAGE_REPORT_LINE_SERVICE = new DamageReportLineService();
 
+    /**
+     *  @author Mathias(Eliot996)
+     *  @author Tobias(H4ppyN4p)
+     *  @author Sofia
+     */
     @GetMapping("/opret-skadesrapport")
-    public String getCreateDamageReport(HttpSession session, Model model){
-        if ( session.getAttribute("userRole") != UserRole.DAMAGE_AND_RECTIFICATION) {
+    public String getCreateDamageReport(HttpSession session, Model model) {
+        if (session.getAttribute("userRole") != UserRole.DAMAGE_AND_RECTIFICATION) {
             return "redirect:/logout";
         }
 
-        UserRole userRole = (UserRole)session.getAttribute("userRole");
+        UserRole userRole = (UserRole) session.getAttribute("userRole");
         model.addAttribute("userRole", userRole.toString());
 
         model.addAttribute("damageReport", new DamageReport());
@@ -37,9 +42,13 @@ public class DamageReportController {
         return "create-damage-report";
     }
 
+    /**
+     *  @author Mathias(Eliot996)
+     *  @author Sofia
+     */
     @PostMapping("/opret-skadesrapport")
-    public String createDamageReport(HttpSession session, @ModelAttribute DamageReport damageReport){
-        if ( session.getAttribute("userRole") != UserRole.DAMAGE_AND_RECTIFICATION) {
+    public String createDamageReport(HttpSession session, @ModelAttribute DamageReport damageReport) {
+        if (session.getAttribute("userRole") != UserRole.DAMAGE_AND_RECTIFICATION) {
             return "redirect:/logout";
         }
 
@@ -49,13 +58,18 @@ public class DamageReportController {
         return "redirect:/skadesrapport/" + createdDamageReport.getId();
     }
 
+    /**
+     *  @author Mathias(Eliot996)
+     *  @author Tobias(H4ppyN4p)
+     *  @author Sofia
+     */
     @GetMapping("/skadesrapporter")
-    public String viewAllDamageReports(HttpSession session, Model model){
-        if ( session.getAttribute("userRole") != UserRole.DAMAGE_AND_RECTIFICATION) {
+    public String viewAllDamageReports(HttpSession session, Model model) {
+        if (session.getAttribute("userRole") != UserRole.DAMAGE_AND_RECTIFICATION) {
             return "redirect:/logout";
         }
 
-        UserRole userRole = (UserRole)session.getAttribute("userRole");
+        UserRole userRole = (UserRole) session.getAttribute("userRole");
         model.addAttribute("userRole", userRole.toString());
 
         model.addAttribute("listOfDamageReports", DAMAGE_REPORT_SERVICE.getAllDamageReports());
@@ -63,13 +77,13 @@ public class DamageReportController {
     }
 
     /**
-     *  @author Mathias(Eliot996)
-     *  @author Sofia
+     * @author Mathias(Eliot996)
+     * @author Sofia
      */
     @GetMapping("/skadesrapport/{damageReportId}")
-    public String getEditDamageReport(HttpSession session, @PathVariable() int damageReportId, Model model){
+    public String getEditDamageReport(HttpSession session, @PathVariable() int damageReportId, Model model) {
 
-        if ( session.getAttribute("userRole") != UserRole.DAMAGE_AND_RECTIFICATION) {
+        if (session.getAttribute("userRole") != UserRole.DAMAGE_AND_RECTIFICATION) {
             return "redirect:/logout";
         }
 
@@ -82,28 +96,37 @@ public class DamageReportController {
         List<DamageReportLine> listOfDamageReportLines = DAMAGE_REPORT_LINE_SERVICE.
                 getAllDamageReportLinesWithReportId(damageReportId);
 
-        model.addAttribute("damageReportLines",listOfDamageReportLines);
+        model.addAttribute("damageReportLines", listOfDamageReportLines);
 
         return "edit-damage-report";
     }
 
+    /**
+     *  @author Sofia
+     *  @author Mathias(Eliot996)
+     */
     @PostMapping("/skadesrapport/{damageReportId}")
-    public String editDamageReport(HttpSession session, @ModelAttribute DamageReport damageReport, @PathVariable int damageReportId){
-        if ( session.getAttribute("userRole") != UserRole.DAMAGE_AND_RECTIFICATION) {
+    public String editDamageReport(HttpSession session, @ModelAttribute DamageReport damageReport, @PathVariable int damageReportId) {
+        if (session.getAttribute("userRole") != UserRole.DAMAGE_AND_RECTIFICATION) {
             return "redirect:/logout";
         }
 
-        DAMAGE_REPORT_SERVICE.updateDamageReport(damageReport.getId(),damageReport.getNotes(),damageReport.getTechnicianId(), damageReport.getCarId());
+        DAMAGE_REPORT_SERVICE.updateDamageReport(damageReport.getId(), damageReport.getNotes(), damageReport.getTechnicianId(), damageReport.getCarId());
         return "redirect:/skadesrapporter";
     }
 
+    /**
+     *  @author Sofia
+     *  @author Mathias(Eliot996)
+     *  @author Tobias(H4ppyN4p)
+     */
     @GetMapping("/skadesrapport/{damageReportId}/slet")
-    public String deleteDamageReport(HttpSession session, @PathVariable int damageReportId, Model model){
-        if ( session.getAttribute("userRole") != UserRole.DAMAGE_AND_RECTIFICATION) {
+    public String deleteDamageReport(HttpSession session, @PathVariable int damageReportId, Model model) {
+        if (session.getAttribute("userRole") != UserRole.DAMAGE_AND_RECTIFICATION) {
             return "redirect:/logout";
         }
 
-        UserRole userRole = (UserRole)session.getAttribute("userRole");
+        UserRole userRole = (UserRole) session.getAttribute("userRole");
         model.addAttribute("userRole", userRole);
 
         DAMAGE_REPORT_SERVICE.deleteDamageReport(damageReportId);
@@ -111,13 +134,18 @@ public class DamageReportController {
     }
     // for damage report lines
 
+    /**
+     * @author Lasse
+     * @author Sofia
+     * @author Mathias(Eliot996)
+     */
     @GetMapping("/opret-skade/{damageReportId}")
-    public String getCreateDamageReportLine(HttpSession session, Model model, @PathVariable int damageReportId){
-        if ( session.getAttribute("userRole") != UserRole.DAMAGE_AND_RECTIFICATION) {
+    public String getCreateDamageReportLine(HttpSession session, Model model, @PathVariable int damageReportId) {
+        if (session.getAttribute("userRole") != UserRole.DAMAGE_AND_RECTIFICATION) {
             return "redirect:/logout";
         }
 
-        UserRole userRole = (UserRole)session.getAttribute("userRole");
+        UserRole userRole = (UserRole) session.getAttribute("userRole");
         model.addAttribute("userRole", userRole.toString());
 
         model.addAttribute("damageReportLine", new DamageReportLine());
@@ -126,9 +154,13 @@ public class DamageReportController {
         return "create-damage-report-line";
     }
 
+    /**
+     *  @author Lasse
+     *  @author Mathias(Eliot996)
+     */
     @PostMapping("/opret-skade/{damageReportId}")
-    public String createDamageReportLine(HttpSession session, @ModelAttribute DamageReportLine damageReportLine){
-        if ( session.getAttribute("userRole") != UserRole.DAMAGE_AND_RECTIFICATION) {
+    public String createDamageReportLine(HttpSession session, @ModelAttribute DamageReportLine damageReportLine) {
+        if (session.getAttribute("userRole") != UserRole.DAMAGE_AND_RECTIFICATION) {
             return "redirect:/logout";
         }
 
@@ -137,10 +169,14 @@ public class DamageReportController {
         return "redirect:/skadesrapport/" + createdDamageReportLine.getDamageReportId();
     }
 
+    /**
+     *  @author Mathias(Eliot996)
+     *  @author Lasse
+     */
     @GetMapping("/skadesrapport/{damageReportId}/{lineNumber}")
     public String getEditDamageReportLine(HttpSession session, @PathVariable() int lineNumber,
-                                          @PathVariable() int damageReportId, Model model){
-        if ( session.getAttribute("userRole") != UserRole.DAMAGE_AND_RECTIFICATION) {
+                                          @PathVariable() int damageReportId, Model model) {
+        if (session.getAttribute("userRole") != UserRole.DAMAGE_AND_RECTIFICATION) {
             return "redirect:/logout";
         }
 
@@ -154,10 +190,14 @@ public class DamageReportController {
     }
 
 
+    /**
+     *  @author Mathias(Eliot996)
+     *  @author Lasse
+     */
     @PostMapping("/skadesrapport/{damageReportId}/{lineNumber}")
     public String editDamageReportLine(HttpSession session, @ModelAttribute DamageReportLine damageReportLine,
-                                       @PathVariable() int damageReportId, @PathVariable int lineNumber){
-        if ( session.getAttribute("userRole") != UserRole.DAMAGE_AND_RECTIFICATION) {
+                                       @PathVariable() int damageReportId, @PathVariable int lineNumber) {
+        if (session.getAttribute("userRole") != UserRole.DAMAGE_AND_RECTIFICATION) {
             return "redirect:/logout";
         }
 
@@ -167,10 +207,15 @@ public class DamageReportController {
     }
 
 
+    /**
+     *  @author Mathias(Eliot996)
+     *  @author Lasse
+     *  @author Sofia
+     */
     @GetMapping("/skadesrapport/{damageReportId}/{lineNumber}/slet")
     public String deleteDamageReportLine(HttpSession session, @PathVariable() int damageReportId,
                                          @PathVariable() int lineNumber) {
-        if ( session.getAttribute("userRole") != UserRole.DAMAGE_AND_RECTIFICATION) {
+        if (session.getAttribute("userRole") != UserRole.DAMAGE_AND_RECTIFICATION) {
             return "redirect:/logout";
         }
 
