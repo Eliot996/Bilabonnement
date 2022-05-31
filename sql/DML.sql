@@ -53,10 +53,10 @@ INSERT INTO `bilabonnement`.`rental_agreements` (`carId`, `startDate`, `endDate`
     VALUES ('4', '2018-02-01', '2022-01-01', '4000', 'UNLIMITED');
 
 -- for damage reports
-INSERT INTO `bilabonnement`.`damage_report` (`id`, `notes`, `technicianId`, `carId`) VALUES ('1', 'skrammer for 100000', '1', '1');
-INSERT INTO `bilabonnement`.`damage_report` (`id`, `notes`, `technicianId`, `carId`) VALUES ('2', 'smadret rude', '2', '2');
+INSERT INTO `bilabonnement`.`damage_report` (`id`, `notes`, `technicianId`, `carId`) VALUES ('1', 'skrammer for 100000', '3', '1');
+INSERT INTO `bilabonnement`.`damage_report` (`id`, `notes`, `technicianId`, `carId`) VALUES ('2', 'smadret rude', '3', '2');
 INSERT INTO `bilabonnement`.`damage_report` (`id`, `notes`, `technicianId`, `carId`) VALUES ('3', 'smadret gearkasse', '3', '3');
-INSERT INTO `bilabonnement`.`damage_report` (`id`, `notes`, `technicianId`, `carId`) VALUES ('4', 'smadret bremer', '4', '4');
+INSERT INTO `bilabonnement`.`damage_report` (`id`, `notes`, `technicianId`, `carId`) VALUES ('4', 'smadret bremer', '3', '4');
 
 -- for damage lines
 INSERT INTO `bilabonnement`.`damageline` (`lineNumber`, `damageReportId`, `damageNotes`, `price`) VALUES ('1', '1', 'skrammer', '12');
