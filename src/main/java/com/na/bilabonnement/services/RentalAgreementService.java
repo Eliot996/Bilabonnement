@@ -9,6 +9,10 @@ import java.util.List;
 
 public class RentalAgreementService {
 
+    private static final RentalAgreementService instance = new RentalAgreementService();
+    public static RentalAgreementService getInstance() {return instance;}
+    private RentalAgreementService() {}
+
     private IRentalAgreementRepository repo = RentalAgreementRepo.getInstance();
     private CarService carService =  new CarService();
     public void setRepo(IRentalAgreementRepository repo) { this.repo = repo; }
