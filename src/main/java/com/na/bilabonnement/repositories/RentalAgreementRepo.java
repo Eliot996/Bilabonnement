@@ -204,6 +204,32 @@ public class RentalAgreementRepo implements IRentalAgreementRepository {
     /**
      *  @author Mathias(Eliot996)
      */
+    @Override
+    public List<RentalAgreement> getAllEntitiesPastEndDate() {
+        Connection conn = DatabaseConnectionManager.getConnection();
+        String selectSQL = "SELECT id, carId, startDate, endDate, price, type " +
+                "FROM rental_agreements WHERE `endDate` < date(now());";
+
+        ResultSet rs = null;
+        try {
+            PreparedStatement stmt = conn.prepareStatement(selectSQL);
+            rs = stmt.executeQuery();
+        }   catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        List<RentalAgreement> result = new ArrayList<>();
+        if (rs != null){
+            result = makeRentalAgreementsFromResultSet(rs);
+        }
+
+        DatabaseConnectionManager.closeConnection();
+        return result;
+    }
+
+    /**
+     *  @author Mathias(Eliot996)
+     */
     private List<RentalAgreement> makeRentalAgreementsFromResultSet(ResultSet rs) {
         ArrayList<RentalAgreement> rentalAgreements = new ArrayList<>();
         try {
@@ -219,11 +245,12 @@ public class RentalAgreementRepo implements IRentalAgreementRepository {
         } catch (SQLException e) {
             e.printStackTrace();
         }
-        return rentalAgreements;    }
+        return rentalAgreements;
+    }
 
      /**
-          *  @author Arboe(H4ppyN4p)
-          */
+      *  @author Arboe(H4ppyN4p)
+      */
     @Override
     public boolean deleteById(int id) {
         Connection conn = DatabaseConnectionManager.getConnection();
