@@ -1,6 +1,11 @@
--- For locations
-INSERT INTO Locations(name) VALUES("HQ");
-INSERT INTO Locations(name) VALUES("DS Forhandler");
+-- For locations - https://www.dsautomobiles.dk/vehicle/juridisk/forhandlere-og-samarbejdspartnere/
+INSERT INTO Locations(name) VALUES("Bilabonnement Hovedkontor");
+INSERT INTO Locations(name) VALUES("DS SALON HOLSTEBRO");
+INSERT INTO Locations(name) VALUES("DS SALON ÅRHUS");
+INSERT INTO Locations(name) VALUES("DS SALON ODENSE");
+INSERT INTO Locations(name) VALUES("DS STORE VIRUM");
+INSERT INTO Locations(name) VALUES("DS SALON AALBORG");
+INSERT INTO Locations(name) VALUES("DS SALON SILKEBORG");
 
 -- for Users
 INSERT INTO Users(`name`, `password`, `role`, `locationId`, `salt`)
