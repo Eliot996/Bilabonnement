@@ -20,7 +20,7 @@
     width: 100%;
     background-color: #f2f2f2;
     margin: auto;
-    height: 80vh;
+    min-height: 80vh;
 }
 
 
