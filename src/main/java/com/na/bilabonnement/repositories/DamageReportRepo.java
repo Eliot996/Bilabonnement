@@ -28,19 +28,23 @@ public class DamageReportRepo implements IRepository<DamageReport> {
     @Override
     public DamageReport create(DamageReport entity) {
         Connection conn = DatabaseConnectionManager.getConnection();
-        String insertSQL = "INSERT INTO damage_report (`id`, `notes`, `technicianId`, `carId`)" +
-                "VALUES (?, ?, ?, ?);";
+        String insertSQL = "INSERT INTO damage_report (`notes`, `technicianId`, `carId`)" +
+                "VALUES (?, ?, ?);";
         try {
             PreparedStatement stmt = conn.prepareStatement(insertSQL);
-            stmt.setInt(1, entity.getId());
-            stmt.setString(2, entity.getNotes());
-            stmt.setInt(3, entity.getTechnicianId());
-            stmt.setInt(4, entity.getCarId());
+            stmt.setString(1, entity.getNotes());
+            stmt.setInt(2, entity.getTechnicianId());
+            stmt.setInt(3, entity.getCarId());
             stmt.execute();
+
+            stmt = conn.prepareStatement("SELECT LAST_INSERT_ID();");
+            ResultSet rs = stmt.executeQuery();
+            rs.next();
+
+            entity.setId(rs.getInt("LAST_INSERT_ID()"));
         } catch (SQLException e) {
             e.printStackTrace();
         }
-
 
         return getSingleEntityById(entity.getId());
     }
