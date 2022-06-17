@@ -581,25 +581,140 @@ INSERT INTO Cars (`id`, `chassisNumber`, `status`, `make`, `model`, `trimLevel`,
 INSERT INTO Cars (`id`, `chassisNumber`, `status`, `make`, `model`, `trimLevel`, `carPrice`, `scrapPrice`, `registrationFee`, `co2Emission`, `kilometersDriven`, `damages`, `colour`, `fuelType`, `locationId`)
     VALUES (349, 'WBAYF8C51ED538260', 'READY_FOR_SALE', 'Dodge', 'Caravan', '', 269282, 6766, 107778, 11, 54, '' ,'Goldenrod' ,'benzin', 1);
 
-
 -- for rental agreements
 INSERT INTO `bilabonnement`.`rental_agreements` (`carId`, `startDate`, `endDate`, `price`, `type`)
-    VALUES ('1', '2022-10-02', '2022-12-02', '3500', 'UNLIMITED');
+    VALUES ('101', '2022-10-02', '2022-12-02', '3500', 'UNLIMITED');
 INSERT INTO `bilabonnement`.`rental_agreements` (`carId`, `startDate`, `endDate`, `price`, `type`)
-    VALUES ('2', '2022-05-01', '2022-12-01', '4000', 'UNLIMITED');
+    VALUES ('102', '2022-05-01', '2022-12-01', '4000', 'UNLIMITED');
 INSERT INTO `bilabonnement`.`rental_agreements` (`carId`, `startDate`, `endDate`, `price`, `type`)
-    VALUES ('3', '2021-01-01', '2022-02-01', '5000', 'UNLIMITED');
+    VALUES ('103', '2021-01-01', '2022-02-01', '5000', 'UNLIMITED');
 INSERT INTO `bilabonnement`.`rental_agreements` (`carId`, `startDate`, `endDate`, `price`, `type`)
-    VALUES ('4', '2018-02-01', '2022-01-01', '4000', 'UNLIMITED');
+    VALUES ('104', '2018-02-01', '2022-01-01', '4000', 'UNLIMITED');
 
 -- for damage reports
-INSERT INTO `bilabonnement`.`damage_report` (`id`, `notes`, `technicianId`, `carId`) VALUES ('1', 'skrammer for 100000', '3', '1');
-INSERT INTO `bilabonnement`.`damage_report` (`id`, `notes`, `technicianId`, `carId`) VALUES ('2', 'smadret rude', '3', '2');
-INSERT INTO `bilabonnement`.`damage_report` (`id`, `notes`, `technicianId`, `carId`) VALUES ('3', 'smadret gearkasse', '3', '3');
-INSERT INTO `bilabonnement`.`damage_report` (`id`, `notes`, `technicianId`, `carId`) VALUES ('4', 'smadret bremer', '3', '4');
+INSERT INTO damage_report (`notes`, `technicianId`, `carId`)
+    VALUES ('', 28, 100);
+INSERT INTO damage_report (`notes`, `technicianId`, `carId`)
+    VALUES ('', 29, 109);
+INSERT INTO damage_report (`notes`, `technicianId`, `carId`)
+    VALUES ('', 8, 113);
+INSERT INTO damage_report (`notes`, `technicianId`, `carId`)
+    VALUES ('', 11, 126);
+INSERT INTO damage_report (`notes`, `technicianId`, `carId`)
+    VALUES ('', 22, 130);
+INSERT INTO damage_report (`notes`, `technicianId`, `carId`)
+    VALUES ('', 29, 139);
+INSERT INTO damage_report (`notes`, `technicianId`, `carId`)
+    VALUES ('', 14, 150);
+INSERT INTO damage_report (`notes`, `technicianId`, `carId`)
+    VALUES ('', 14, 152);
+INSERT INTO damage_report (`notes`, `technicianId`, `carId`)
+    VALUES ('', 12, 154);
+INSERT INTO damage_report (`notes`, `technicianId`, `carId`)
+    VALUES ('', 26, 160);
+INSERT INTO damage_report (`notes`, `technicianId`, `carId`)
+    VALUES ('', 15, 162);
+INSERT INTO damage_report (`notes`, `technicianId`, `carId`)
+    VALUES ('', 9, 165);
+INSERT INTO damage_report (`notes`, `technicianId`, `carId`)
+    VALUES ('', 8, 166);
+INSERT INTO damage_report (`notes`, `technicianId`, `carId`)
+    VALUES ('', 27, 170);
+INSERT INTO damage_report (`notes`, `technicianId`, `carId`)
+    VALUES ('', 21, 171);
+INSERT INTO damage_report (`notes`, `technicianId`, `carId`)
+    VALUES ('', 30, 173);
+INSERT INTO damage_report (`notes`, `technicianId`, `carId`)
+    VALUES ('', 12, 175);
+INSERT INTO damage_report (`notes`, `technicianId`, `carId`)
+    VALUES ('', 11, 181);
+INSERT INTO damage_report (`notes`, `technicianId`, `carId`)
+    VALUES ('', 11, 185);
+INSERT INTO damage_report (`notes`, `technicianId`, `carId`)
+    VALUES ('', 27, 188);
+INSERT INTO damage_report (`notes`, `technicianId`, `carId`)
+    VALUES ('', 20, 189);
+INSERT INTO damage_report (`notes`, `technicianId`, `carId`)
+    VALUES ('', 8, 199);
+INSERT INTO damage_report (`notes`, `technicianId`, `carId`)
+    VALUES ('', 20, 206);
+INSERT INTO damage_report (`notes`, `technicianId`, `carId`)
+    VALUES ('', 15, 207);
+INSERT INTO damage_report (`notes`, `technicianId`, `carId`)
+    VALUES ('', 12, 227);
+INSERT INTO damage_report (`notes`, `technicianId`, `carId`)
+    VALUES ('', 12, 232);
+INSERT INTO damage_report (`notes`, `technicianId`, `carId`)
+    VALUES ('', 26, 233);
+INSERT INTO damage_report (`notes`, `technicianId`, `carId`)
+    VALUES ('', 11, 236);
+INSERT INTO damage_report (`notes`, `technicianId`, `carId`)
+    VALUES ('', 21, 239);
+INSERT INTO damage_report (`notes`, `technicianId`, `carId`)
+    VALUES ('', 19, 243);
+INSERT INTO damage_report (`notes`, `technicianId`, `carId`)
+    VALUES ('', 14, 245);
+INSERT INTO damage_report (`notes`, `technicianId`, `carId`)
+    VALUES ('', 29, 246);
+INSERT INTO damage_report (`notes`, `technicianId`, `carId`)
+    VALUES ('', 22, 253);
+INSERT INTO damage_report (`notes`, `technicianId`, `carId`)
+    VALUES ('', 19, 260);
+INSERT INTO damage_report (`notes`, `technicianId`, `carId`)
+    VALUES ('', 21, 265);
+INSERT INTO damage_report (`notes`, `technicianId`, `carId`)
+    VALUES ('', 28, 266);
+INSERT INTO damage_report (`notes`, `technicianId`, `carId`)
+    VALUES ('', 12, 271);
+INSERT INTO damage_report (`notes`, `technicianId`, `carId`)
+    VALUES ('', 8, 272);
+INSERT INTO damage_report (`notes`, `technicianId`, `carId`)
+    VALUES ('', 8, 277);
+INSERT INTO damage_report (`notes`, `technicianId`, `carId`)
+    VALUES ('', 21, 281);
+INSERT INTO damage_report (`notes`, `technicianId`, `carId`)
+    VALUES ('', 30, 282);
+INSERT INTO damage_report (`notes`, `technicianId`, `carId`)
+    VALUES ('', 8, 287);
+INSERT INTO damage_report (`notes`, `technicianId`, `carId`)
+    VALUES ('', 28, 296);
+INSERT INTO damage_report (`notes`, `technicianId`, `carId`)
+    VALUES ('', 12, 298);
+INSERT INTO damage_report (`notes`, `technicianId`, `carId`)
+    VALUES ('', 29, 300);
+INSERT INTO damage_report (`notes`, `technicianId`, `carId`)
+    VALUES ('', 14, 308);
+INSERT INTO damage_report (`notes`, `technicianId`, `carId`)
+    VALUES ('', 27, 314);
+INSERT INTO damage_report (`notes`, `technicianId`, `carId`)
+    VALUES ('', 28, 315);
+INSERT INTO damage_report (`notes`, `technicianId`, `carId`)
+    VALUES ('', 30, 316);
+INSERT INTO damage_report (`notes`, `technicianId`, `carId`)
+    VALUES ('', 28, 317);
+INSERT INTO damage_report (`notes`, `technicianId`, `carId`)
+    VALUES ('', 19, 318);
+INSERT INTO damage_report (`notes`, `technicianId`, `carId`)
+    VALUES ('', 21, 319);
+INSERT INTO damage_report (`notes`, `technicianId`, `carId`)
+    VALUES ('', 14, 330);
+INSERT INTO damage_report (`notes`, `technicianId`, `carId`)
+    VALUES ('', 22, 331);
+INSERT INTO damage_report (`notes`, `technicianId`, `carId`)
+    VALUES ('', 26, 336);
+INSERT INTO damage_report (`notes`, `technicianId`, `carId`)
+    VALUES ('', 26, 337);
+INSERT INTO damage_report (`notes`, `technicianId`, `carId`)
+    VALUES ('', 27, 346);
+INSERT INTO damage_report (`notes`, `technicianId`, `carId`)
+    VALUES ('', 8, 348);
 
 -- for damage lines
-INSERT INTO `bilabonnement`.`damageline` (`lineNumber`, `damageReportId`, `damageNotes`, `price`) VALUES ('1', '1', 'skrammer', '12');
-INSERT INTO `bilabonnement`.`damageline` (`lineNumber`, `damageReportId`, `damageNotes`, `price`) VALUES ('1', '2', 'bilsrkammer', '123');
-INSERT INTO `bilabonnement`.`damageline` (`lineNumber`, `damageReportId`, `damageNotes`, `price`) VALUES ('1', '3', 'dørskrammer', '1234');
-INSERT INTO `bilabonnement`.`damageline` (`lineNumber`, `damageReportId`, `damageNotes`, `price`) VALUES ('1', '4', 'vinduesskrammer', '12345');
+INSERT INTO `bilabonnement`.`damageline` (`lineNumber`, `damageReportId`, `damageNotes`, `price`)
+    VALUES ('1', '1', 'skrammer', '12');
+INSERT INTO `bilabonnement`.`damageline` (`lineNumber`, `damageReportId`, `damageNotes`, `price`)
+    VALUES ('1', '2', 'bilsrkammer', '123');
+INSERT INTO `bilabonnement`.`damageline` (`lineNumber`, `damageReportId`, `damageNotes`, `price`)
+    VALUES ('1', '3', 'dørskrammer', '1234');
+INSERT INTO `bilabonnement`.`damageline` (`lineNumber`, `damageReportId`, `damageNotes`, `price`)
+    VALUES ('1', '4', 'vinduesskrammer', '12345');
