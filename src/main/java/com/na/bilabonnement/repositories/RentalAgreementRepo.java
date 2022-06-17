@@ -39,7 +39,7 @@ public class RentalAgreementRepo implements IRentalAgreementRepository {
             stmt.setInt(4, entity.getPrice());
             stmt.setString(5, RentalType.values()[entity.getTypeId()].toString());
 
-            if (entity.getContract().isEmpty()) {
+            if (entity.getContract() == null || entity.getContract().isEmpty()) {
                 stmt.setNull(6, Types.BLOB);
                 stmt.setNull(7, Types.VARCHAR);
             } else {
