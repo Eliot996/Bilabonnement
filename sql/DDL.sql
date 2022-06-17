@@ -70,7 +70,7 @@ CREATE TABLE `bilabonnement`.`rental_agreements` (
                                                              ON UPDATE NO ACTION);
 
 CREATE TABLE `damage_report` (
-                                 `id` int NOT NULL,
+                                 `id` int NOT NULL AUTO_INCREMENT,
                                  `notes` text,
                                  `technicianId` int DEFAULT NULL,
                                  `carId` int DEFAULT NULL,
