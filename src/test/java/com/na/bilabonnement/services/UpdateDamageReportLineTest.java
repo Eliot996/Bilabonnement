@@ -16,6 +16,7 @@ public class UpdateDamageReportLineTest {
         DamageReportLineService damageReportLineService = new DamageReportLineService();
         DummyDamageReportLineRepo dummyDamageReportLineRepo = new DummyDamageReportLineRepo();
         damageReportLineService.setRepo(dummyDamageReportLineRepo);
+        damageReportLineService.createDamageReportLine(new DamageReportLine(1,1, "", 0));
 
         int expectedDamageReportId = 1;
         String expectedDamageNotes = "Test bemærkninger";
@@ -23,7 +24,7 @@ public class UpdateDamageReportLineTest {
 
         //Act
         damageReportLineService.updateDamageReportLine(1,1,"Test bemærkninger",1); //setting my linenumber to 1
-        DamageReportLine damageReportLine = dummyDamageReportLineRepo.getSingleEntityById(1); //i choose 1 because its my linenumber
+        DamageReportLine damageReportLine = dummyDamageReportLineRepo.getSingleEntityByLinenumberAndDamageReportId(1, 1); //i choose 1 because its my linenumber
 
         //Assert
         assertEquals(damageReportLine.getDamageReportId(),expectedDamageReportId);

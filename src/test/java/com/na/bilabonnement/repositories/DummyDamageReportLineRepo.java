@@ -35,11 +35,6 @@ public class DummyDamageReportLineRepo implements IDamageReportLineRepository
 
     @Override
     public DamageReportLine getSingleEntityById(int id) {
-        for (DamageReportLine damageReportLine: listOfDamageReportLines){
-            if (damageReportLine.getLineNumber() == id){
-                return damageReportLine;
-            }
-        }
         return null;
     }
 
@@ -60,6 +55,11 @@ public class DummyDamageReportLineRepo implements IDamageReportLineRepository
 
     @Override
     public DamageReportLine getSingleEntityByLinenumberAndDamageReportId(int lineNumber, int damageReportId) {
+        for (DamageReportLine damageReportLine: listOfDamageReportLines){
+            if (damageReportLine.getLineNumber() == damageReportId && damageReportLine.getLineNumber() == lineNumber){
+                return damageReportLine;
+            }
+        }
         return null;
     }
 
