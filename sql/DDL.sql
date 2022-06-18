@@ -15,7 +15,7 @@ CREATE TABLE `bilabonnement`.`Users` (
                                         `name` VARCHAR(255) NOT NULL,
                                         `password` VARCHAR(64) NOT NULL,
                                         `salt` VARCHAR(16) NOT NULL,
-                                        `role` VARCHAR(25) NOT NULL,
+                                        `role` ENUM('DATA_REGISTRATION', 'DAMAGE_AND_RECTIFICATION', 'BUSINESS_DEVELOPER', 'ADMINISTRATOR') NOT NULL,
                                         `locationId` INT NOT NULL,
                                         PRIMARY KEY (`id`),
                                         UNIQUE INDEX `name_UNIQUE` (`name` ASC) VISIBLE,
@@ -30,7 +30,7 @@ CREATE TABLE `bilabonnement`.`Users` (
 CREATE TABLE `bilabonnement`.`cars` (
                                         `id` INT NOT NULL,
                                         `chassisNumber` VARCHAR(17) NULL,
-                                        `status` VARCHAR(255) NULL,
+                                        `status` ENUM('READY_TO_BE_RENTED', 'READY_FOR_DELIVERY', 'RENTED', 'BACK_FROM_BEING_RENTED', 'READY_FOR_SALE') NULL,
                                         `make` VARCHAR(255) NULL,
                                         `model` VARCHAR(255) NULL,
                                         `trimLevel` VARCHAR(2400) NULL,
@@ -60,7 +60,7 @@ CREATE TABLE `bilabonnement`.`rental_agreements` (
                                                      `price` INT NULL,
                                                      `contract` MEDIUMBLOB NULL, -- 16MB max
                                                      `filename`VARCHAR(100) NULL,
-                                                     `type` VARCHAR(45) NULL,
+                                                     `type` ENUM('LIMITED', 'UNLIMITED') NULL,
                                                      PRIMARY KEY (`id`),
                                                      INDEX `carId_RA_FK_idx` (`carId` ASC) VISIBLE,
                                                      CONSTRAINT `carId_RA_FK`
