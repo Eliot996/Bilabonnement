@@ -11,7 +11,6 @@ import java.util.List;
 
 public class CarService {
     private ICarRepository repo = CarRepo.getInstance();
-    private RentalAgreementService RAService = RentalAgreementService.getInstance();
 
     public void setRepo(ICarRepository repo) {
         this.repo = repo;
@@ -103,7 +102,7 @@ public class CarService {
      *  get cars for damage report creation and check for valid date
      */
     public List<Car> getValidCarsForDamageReportCreation() {
-        List<RentalAgreement> rentalAgreements = RAService.getPastEndDate();
+        List<RentalAgreement> rentalAgreements = RentalAgreementService.getInstance().getPastEndDate();
         ArrayList<Car> cars = new ArrayList<>();
 
         for (RentalAgreement ra : rentalAgreements) {
