@@ -13,38 +13,38 @@ import java.util.Scanner;
 public class DataCreator {
 
     private static Scanner fileScanner = null;
-    private static final UserService US = new UserService();
+    private static final UserService USER_SERVICE = new UserService();
     private static final Random random = new Random();
 
     public static void main(String[] args) {
         System.out.println("making users");
         makeUsers();
         System.out.println("make users: done");
+
         System.out.println("making RentalAgreements");
         makeRentalAgreements();
         System.out.println("make RentalAgreements: done");
+
         System.out.println("making damageReports");
         makeDamageReports();
         System.out.println("make damageReports: done");
+
         System.out.println("making Damagelines");
         makeDamageLines();
         System.out.println("make damageLines: done");
     }
 
     private static void makeUsers() {
-        // make file scanner
         try {
             fileScanner = new Scanner(new File("sql/user.csv"));
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         }
 
-        UserService us = new UserService();
-
         while (fileScanner.hasNextLine()) {
             String username = fileScanner.nextLine();
 
-            us.createUser(username, "kode", random.nextInt(3), 1);
+            USER_SERVICE.createUser(username, "kode", random.nextInt(3), 1);
         }
     }
 
@@ -104,14 +104,15 @@ public class DataCreator {
         CarService cs = new CarService();
         ArrayList<Car> cars = (ArrayList<Car>) cs.getAllCars();
 
-        ArrayList<User> users = (ArrayList<User>) US.getAllUsers();
+        ArrayList<User> users = (ArrayList<User>) USER_SERVICE.getAllUsers();
 
         users.removeIf(u -> u.getRole() != UserRole.DAMAGE_AND_RECTIFICATION);
 
         DamageReportService ds = new DamageReportService();
         for (Car c : cars) {
             if (c.getStatus() == CarStatus.READY_FOR_SALE) {
-                ds.createDamageReport(new DamageReport(-1, "", users.get(random.nextInt(users.size() - 1)).getId(), c.getId()));
+                ds.createDamageReport(new DamageReport(-1, "",
+                        users.get(random.nextInt(users.size() - 1)).getId(), c.getId()));
             }
         }
     }
