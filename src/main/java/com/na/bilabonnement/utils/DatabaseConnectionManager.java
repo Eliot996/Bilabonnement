@@ -23,30 +23,27 @@ public class DatabaseConnectionManager {
             return con;
         }
 
-        try(InputStream propertiesFile = new FileInputStream("src/main/resources/application.properties")){
-            Properties props = new Properties();
-            props.load(propertiesFile);
+        String URL = System.getenv("DB_URL");
+        String user = System.getenv("DB_USER");
+        String password = System.getenv("DB_PASSWORD");
 
-            String url = props.getProperty("db.url");
-            String username = props.getProperty("db.username");
-            String password = props.getProperty("db.password");
+        // tables er oprettet i DB
+        Connection con = null;
 
-            con = DriverManager.getConnection(url, username, password);
-        }
-
-        catch(SQLException | IOException e){
+        try {
+            con = DriverManager.getConnection(URL, user, password);
+        } catch(SQLException e){
             e.printStackTrace();
         }
         return con;
     }
 
     public static void closeConnection() {
-        try {
+        /*try {
             con.close();
+            System.out.println(con == null);
         } catch (SQLException e) {
             throw new RuntimeException(e);
-        }
-
-        con = null;
+        }*/
     }
 }

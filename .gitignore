@@ -35,6 +35,3 @@ build/
 ### Visual Paradigm ###
 *.vpp.???
 *.vpp.bak_????
-
-### To prevetn the spread of key and properties ###
-src/main/resources/application.properties
