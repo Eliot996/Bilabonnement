@@ -10,7 +10,7 @@ CREATE TABLE `bilabonnement`.`Locations` (
                                             UNIQUE INDEX `name_UNIQUE` (`name` ASC) VISIBLE);
 
 
-CREATE TABLE `bilabonnement`.`Users` (
+CREATE TABLE `bilabonnement`.`users` (
                                         `id` INT NOT NULL AUTO_INCREMENT,
                                         `name` VARCHAR(255) NOT NULL,
                                         `password` VARCHAR(64) NOT NULL,
@@ -47,7 +47,7 @@ CREATE TABLE `bilabonnement`.`cars` (
                                         UNIQUE INDEX `chassisNumber_UNIQUE` (`chassisNumber` ASC) VISIBLE,
                                         CONSTRAINT `locationId_FK`
                                             FOREIGN KEY (`locationId`)
-                                                REFERENCES `bilabonnement`.`locations` (`id`)
+                                                REFERENCES `bilabonnement`.`Locations` (`id`)
                                                 ON DELETE NO ACTION
                                                 ON UPDATE NO ACTION);
 

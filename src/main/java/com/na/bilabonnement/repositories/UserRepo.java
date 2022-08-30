@@ -28,7 +28,7 @@ public class UserRepo implements IUserRepository {
     public User create(User entity) {
         Connection con = DatabaseConnectionManager.getConnection();
 
-        String insertSQL = "INSERT INTO Users(`name`, `password`, `role`, `locationId`, `salt`) " +
+        String insertSQL = "INSERT INTO users(`name`, `password`, `role`, `locationId`, `salt`) " +
                 "VALUES (?, ?, ?, ?, ?);";
 
         try {
